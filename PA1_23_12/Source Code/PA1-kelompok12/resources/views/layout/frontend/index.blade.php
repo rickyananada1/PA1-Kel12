@@ -44,12 +44,12 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">BetaTudia?</a>
+						<a href="{{Route('index')}}" class="logo m-0 float-start">BetaTudia?</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
 							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="home/about">Tentang Kami</a></li>
+							<li><a href="/about">Tentang Kami</a></li>
 							<li class="has-children">
 								<a href="#">Cari Apa?</a>
 								<ul class="dropdown">
@@ -97,8 +97,8 @@
 			<div class="row align-items-center justify-content-start">
 				<div class="col-lg-5">
 
-					<h1 class="heading" data-aos="fade-up">Website Wisata Sekitar Toba</h1><span id="i"></span>
-					<p class="mb-5" data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+					<h1 class="heading" data-aos="fade-up">Website Wisata Sekitaran Toba</h1><span id="i"></span>
+					<p class="mb-5" data-aos="fade-up">BetaTudia> adalah website wista terlengkap mengenai daerah sekitaran Toba</p>
 
 					<div data-aos="fade-up">
 						<a href="https://www.youtube.com/watch?v=5n-e6lOhVq0" class="play-button align-items-center d-flex glightbox3" >
@@ -218,7 +218,7 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-between  mb-5">
 				<div class="col-lg-5" data-aos="fade-up">
-					<h2 class="heading mb-3">Discover Hundred of Travel Destinations</h2>
+					<h2 class="heading mb-3">Beberapa Destinasi Favorite</h2>
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
 				</div>		
 				<div class="col-lg-5 text-md-end" data-aos="fade-up" data-aos-delay="100">

@@ -44,12 +44,12 @@
 			<div class="site-navigation">
 				<div class="row">
 					<div class="col-6 col-lg-3">
-						<a href="index.html" class="logo m-0 float-start">BetaTudia?</a>
+						<a href="{{Route('index')}}" class="logo m-0 float-start">BetaTudia?</a>
 					</div>
 					<div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
 						<ul class="js-clone-nav  text-center site-menu p-0 m-0">
-							<li><a href="index.html">Home</a></li>
-							<li class="active"><a href="about.html">About us</a></li>
+							<li><a href="{{Route('index')}}">Home</a></li>
+							<li class="active"><a href="/about">About us</a></li>
 							<li class="has-children">
 								<a href="#">Dropdown</a>
 								<ul class="dropdown">
