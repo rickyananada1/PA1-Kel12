@@ -15,19 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
-Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/home/about', function () {
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/about', function () {
     return view('layout.frontend.about');
 });
-Route::get('/home/news', function () {
+Route::get('/news', function () {
     return view('layout.frontend.news');
 });
-Route::get('/home/newsdetail', function () {
+Route::get('/newsdetail', function () {
     return view('layout.frontend.newsdetail');
 });
 

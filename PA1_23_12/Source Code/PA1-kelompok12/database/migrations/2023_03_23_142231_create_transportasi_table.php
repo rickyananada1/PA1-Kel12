@@ -19,7 +19,7 @@ class CreateTransportasiTable extends Migration
             $table->string('harga');
             $table->string('lokasi');
             $table->string('trayek');
-            $table->foreignId('wisata_id')->constrained('wisata');
+            $table->foreignId('wisata_id')->constrained('wisata')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

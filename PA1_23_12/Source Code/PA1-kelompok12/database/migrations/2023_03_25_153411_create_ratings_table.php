@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKomenTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateKomenTable extends Migration
      */
     public function up()
     {
-        Schema::create('komen', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email');
-            $table->string('pesan');
+            $table->int('bintang');
             $table->foreignId('wisata_id')->constrained('wisata')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ class CreateKomenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('komen');
+        Schema::dropIfExists('ratings');
     }
 }

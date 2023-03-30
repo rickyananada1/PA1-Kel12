@@ -19,7 +19,7 @@ class CreateEventTable extends Migration
             $table->string('lokasi');
             $table->date('tanggal');
             $table->text('deskripsi');
-            $table->foreignId('wisata_id')->constrained('wisata');
+            $table->foreignId('wisata_id')->constrained('wisata')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

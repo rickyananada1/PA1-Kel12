@@ -17,7 +17,7 @@ class CreateMakananTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('kisaran_harga');
-            $table->foreignId('wisata_id')->constrained('wisata');
+            $table->foreignId('wisata_id')->constrained('wisata')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
