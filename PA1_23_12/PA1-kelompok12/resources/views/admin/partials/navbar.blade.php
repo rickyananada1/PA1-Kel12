@@ -66,12 +66,11 @@
       <!-- Notifikasi End-->
       
       {{-- Profile --}}
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-          
-        </a>
-      </li>
+      <x-app-layout>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+  </x-app-layout>
       {{-- Profile  End--}}
     </ul>
   </nav>

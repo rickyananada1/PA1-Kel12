@@ -22,7 +22,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  @include('layout.backend.navbar')
+  @include('layouts.backend.navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -31,7 +31,7 @@
     
 
     <!-- Sidebar -->
-    @include('layout.backend.sidebar')
+    @include('layouts.backend.sidebar')
     <!-- /.sidebar -->
 
   </aside>

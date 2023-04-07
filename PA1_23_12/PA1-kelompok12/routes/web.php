@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LoginWithGoogleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -29,16 +29,16 @@ Route::get('/admin/wisata', [AdminController::class, 'kumpulanwisata'])->name('w
 /* End Admin Route */
 
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('/about', function () {
-    return view('layout.frontend.about');
-});
-Route::get('/news', function () {
-    return view('layout.frontend.news');
-});
-Route::get('/newsdetail', function () {
-    return view('layout.frontend.newsdetail');
-});
+/* Tampian front */
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
+Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');
+Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
+
+
+/* Tampian front end*/
+
+
 
 
 Route::middleware([
@@ -47,7 +47,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('layout.backend.dashboard');
+        return view('layouts.backend.dashboard');
     })->name('dashboard');
 });
 
@@ -57,3 +57,9 @@ Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoo
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Test
+Route::get('/test', function () {
+    return view('home');
+});
+// Test
