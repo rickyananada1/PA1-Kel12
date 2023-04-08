@@ -20,24 +20,4 @@ class Wisata extends Model
         return $this->hasMany(Komen::class);
     }
 
-    public function makanan()
-    {
-        return $this->hasMany(Makanan::class);
-    }
-
-    public function tempatmakan()
-    {
-        return $this->hasMany(TempatMakan::class);
-    }
-
-    public function trasportasi()
-    {
-        return $this->hasMany(Transportasi::class);
-    }
-
-    // relasi one to one
-    public function rating()
-    {
-        return $this->hasOne(Rating::class);
-    }
 }

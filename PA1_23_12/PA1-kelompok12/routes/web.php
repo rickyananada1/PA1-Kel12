@@ -24,8 +24,8 @@ Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
 Route::get('/admin', [AdminController::class, 'table'])->name('table');
 
-Route::get('/admin/berita', [AdminController::class, 'berita'])->name('berita');
-Route::get('/admin/wisata', [AdminController::class, 'kumpulanwisata'])->name('wisata');
+Route::get('/admin/list-blog', [AdminController::class, 'listblog'])->name('listblog');
+Route::get('/admin/list-wisata', [AdminController::class, 'listwisata'])->name('listwisata');
 /* End Admin Route */
 
 
@@ -34,6 +34,7 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
 Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
+Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
 
 
 /* Tampian front end*/
@@ -47,7 +48,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('layouts.backend.dashboard');
+        return view('admin.dashboard');
     })->name('dashboard');
 });
 
@@ -60,6 +61,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Test
 Route::get('/test', function () {
-    return view('home');
+    return view('navigation-menu');
 });
 // Test

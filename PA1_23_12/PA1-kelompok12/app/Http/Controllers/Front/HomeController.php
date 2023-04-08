@@ -23,5 +23,9 @@ class HomeController extends Controller
     {
         return view('front.berita');
     }
+    public function kumpulanlokasi()
+    {
+        return view('front.kumpulanlokasi');
+    }
     
 }

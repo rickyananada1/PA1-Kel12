@@ -22,7 +22,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  @include('layouts.backend.navbar')
+  @include('admin.partials.navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -31,7 +31,7 @@
     
 
     <!-- Sidebar -->
-    @include('layouts.backend.sidebar')
+    @include('admin.partials.sidebar')
     <!-- /.sidebar -->
 
   </aside>
@@ -45,11 +45,7 @@
           <div class="col-sm-6">
             <h1>@yield('title')</h1>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Beranda</a></li>
-            </ol>
-          </div>
+          
         </div>
       </div><!-- /.container-fluid -->
     </section>

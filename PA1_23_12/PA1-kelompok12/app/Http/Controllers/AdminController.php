@@ -8,19 +8,19 @@ class AdminController extends Controller
 {
     public function admin(Request $request)
     {
-        return view('layouts.master');
+        return view('admin.master');
     }
 
     public function table(Request $request)
     {
-        return view('layouts.backend.dashboard');
+        return view('admin.dashboard');
     }
-    public function berita(Request $request)
+    public function listblog(Request $request)
     {
-        return view('layouts.backend.berita');
+        return view('admin.listblog');
     }
-    public function kumpulanwisata(Request $request)
+    public function listwisata(Request $request)
     {
-        return view('layouts.backend.kumpulanwisata');
+        return view('admin.listwisata');
     }
 }

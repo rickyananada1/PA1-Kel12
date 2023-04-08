@@ -1,10 +1,6 @@
-@extends('layouts.master')
+@extends('admin.master')
 
 @section('title')
-    Halaman CRUD Wisata
-@endsection
-
-@section('subtitle')
     List Tempat Wisata
 @endsection
 
@@ -13,6 +9,7 @@
 
 <div class="main-admin">
     <div class="header-admin">
+        <h4>List Tempat Wisata</h4>
         <a href="/admin/wisata/create" class="ml-auto">
             <button class="btn btn-primary ">Add Wisata</button>
         </a>
@@ -24,28 +21,28 @@
                       <span class="input-group-text"><i class="fas fa-search"></i></span>
                   </div>
                   <form action="/wisata" method="GET">
-                    {{-- <input class="form-control" type="text" name="search" value="{{ request()->get('search') }}" placeholder="Cari Wisata"> --}}
+                    <input class="form-control" type="text" name="search" value="{{ request()->get('search') }}" placeholder="Cari Wisata">
                   </form>
               </div>
           </div>
         </form>
-      {{-- @if (Session::has('message')) --}}
+      @if (Session::has('message'))
         <h5><font color="green"> {{ Session::get('message') }}</font></h5><br>
-      {{-- @endif --}}
+      @endif
 
     <div class="content-admin">
         <div class="row">
             {{-- @foreach($wisata as $data) --}}
             <div class="col-md-3 col-sm-6">
                 {{-- <a href="/admin/wisata/{{$data->id}}/edit"> --}}
-                    <div class="wisata-card" style="background-image: url({{asset('Template/dist/img/avatar.png')}})">
                     {{-- <div class="wisata-card" style="background-image: url({{asset('assets/images/wisata')}}/{{ $data->background }})"> --}}
+                    <div class="wisata-card" style="background-image: url({{asset('asset/thumbnail.jpg' )}})">
                         <div class="wisata-card-desc">
-                            <h5>awdawdawdawdawd</h5>
-                            <p>awgdbcauwgnvukVUGuvguQ</p>
                             {{-- <h5>{{ $data->nama }}</h5> --}}
+                            <h5>Danau Toba</h5>
                             {{-- <p>{{ $data->alamat }}</p> --}}
-                            {{-- <a style="float: right;" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Tempat Wisata ?')" href="/admin/wisata/{{ $data->id }}"> --}}
+                            <p>Toba samosir,delitua</p>
+                            <a style="float: right;" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Tempat Wisata ?')" href="#">
                                 <svg style="fill: #f8ba10!important" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
                             </a>
                         </div>
@@ -57,6 +54,7 @@
         </div>
 
         {{-- <ul style="padding-bottom:50px" class="pagination justify-content-center">{!! $wisata->appends(request()->all())->links() !!}</ul> --}}
+        <ul style="padding-bottom:50px" class="pagination justify-content-center">Danau Toba</ul>
     </div>
 </div>
 <!-- End of Wisata Content -->

@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('admin.master')
 
 @section('title')
-    Dasboard
+    Selamat Datang Admin
 @endsection
 
 @section('subtitle')
@@ -11,13 +11,13 @@
 @section('content')
 {{-- custom --}}
 <div class="row">
-    <div class="col-lg-6 col-6">
+    <div class="col-lg-4 col-4">
       <!-- small box -->
-      <div class="small-box bg-info">
+      <div class="small-box bg-purple">
         <div class="inner">
-          <h3>150</h3>
+          <h3>3</h3>
 
-          <p>Jumlah Wisata</p>
+          <p>Kategori Destinasi</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
@@ -26,13 +26,13 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-6 col-6">
+    <div class="col-lg-4 col-4">
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>53</h3>
+          <h3>3</h3>
 
-          <p>Jumlah Berita</p>
+          <p>Kategori Blog</p>
         </div>
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
@@ -41,13 +41,13 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-6 col-6">
+    <div class="col-lg-4 col-4">
       <!-- small box -->
       <div class="small-box bg-warning">
         <div class="inner">
           <h3>44</h3>
 
-          <p>User Registrations</p>
+          <p>Pemilik wisata Registrations</p>
         </div>
         <div class="icon">
           <i class="ion ion-person-add"></i>
@@ -56,13 +56,13 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-6 col-6">
+    <div class="col-lg-4 col-4">
       <!-- small box -->
-      <div class="small-box bg-danger">
+      <div class="small-box bg-purple">
         <div class="inner">
           <h3>65</h3>
 
-          <p>Unique Visitors</p>
+          <p>Jumlah Destinasi</p>
         </div>
         <div class="icon">
           <i class="ion ion-pie-graph"></i>
@@ -71,5 +71,33 @@
       </div>
     </div>
     <!-- ./col -->
+    <div class="col-lg-4 col-4">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>65</h3>
+
+          <p>Jumlah Blog</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-4">
+      <!-- small box -->
+      <div class="small-box bg-pink">
+        <div class="inner">
+          <h3>65</h3>
+
+          <p>Jumlah Visitors</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
   </div>
 @endsection

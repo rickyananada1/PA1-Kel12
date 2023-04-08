@@ -16,10 +16,11 @@ class CreateWisataTable extends Migration
         Schema::create('wisata', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('lokasi');
-            $table->string('jenis_wisata');
-            $table->string('fasilitas');
             $table->text('deskripsi');
+            $table->string('lokasi');
+            $table->string('gambar');
+            $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('fasilitas');
             $table->timestamps();
         });
     }

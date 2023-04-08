@@ -15,13 +15,19 @@
             <div class="col-lg-4 order-lg-1">
 
                 <div>
-                    <h2 class="heading mb-3" data-aos="fade-up" data-aos-delay="100">Explore All Corners of The World With Us</h2>
+                    <h2 class="heading mb-3" data-aos="fade-up" data-aos-delay="100">Explore Sekitaran Toba Bersama Kami</h2>
 
-                    <p data-aos="fade-up" data-aos-delay="200">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                    <h4 data-aos="fade-up" data-aos-delay="300">Kota Jakarta kota metropolitan
 
-                    <p data-aos="fade-up" data-aos-delay="300">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                        Surga impian para perantau
+                        
+                        Kusapa “Horas apa kabar kawan”
+                        
+                        Hampa hatiku dibalas “fine, thank you”</h4>
+                    <p data-aos="fade-up" data-aos-delay="200">Beragam pesona tujuan destinasi yang ada di Toba dari Budaya, Alam, Bahari ataupun kearifan lokal.</p>
 
-                    <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary">Read more</a></p>
+
+                    <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="{{Route('kumpulanlokasi')}}" class="btn btn-primary">Read more</a></p>
                 </div>
             </div>
             
