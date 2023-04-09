@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMakananTable extends Migration
+class CreateBlogkategorisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateMakananTable extends Migration
      */
     public function up()
     {
-        Schema::create('makanan', function (Blueprint $table) {
+        Schema::create('blog_kategoris', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('kisaran_harga');
-            $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateMakananTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('makanan');
+        Schema::dropIfExists('blog_kategoris');
     }
 }

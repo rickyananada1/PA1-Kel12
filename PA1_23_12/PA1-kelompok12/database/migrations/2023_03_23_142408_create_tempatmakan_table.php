@@ -17,7 +17,7 @@ class CreateTempatmakanTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('lokasi');
-            $table->foreignId('wisata_id')->constrained('wisata')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogKategoriController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LoginWithGoogleController;
+use \App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,26 +21,31 @@ use Illuminate\Support\Facades\Auth;
 
 
 /* Admin Route */
+Route::middleware(['admin'])->group(function() {
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+    Route::get('/admin', [AdminController::class, 'table'])->name('table');
+    // Blog Kategori 
+    Route::resource('blogkategori', \App\Http\Controllers\Admin\BlogKategoriController::class)->except('show');
+    
+    Route::get('/admin/list-blog', [AdminController::class, 'listblog'])->name('listblog');
+    Route::get('/admin/list-wisata', [AdminController::class, 'listwisata'])->name('listwisata');
+});
 
-Route::get('/admin', [AdminController::class, 'table'])->name('table');
-
-Route::get('/admin/berita', [AdminController::class, 'berita'])->name('berita');
-Route::get('/admin/wisata', [AdminController::class, 'kumpulanwisata'])->name('wisata');
 /* End Admin Route */
 
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('/about', function () {
-    return view('layout.frontend.about');
-});
-Route::get('/news', function () {
-    return view('layout.frontend.news');
-});
-Route::get('/newsdetail', function () {
-    return view('layout.frontend.newsdetail');
-});
+/* Tampian front */
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
+Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');
+Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
+Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
+
+
+/* Tampian front end*/
+
+
 
 
 Route::middleware([
@@ -47,7 +54,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('layout.backend.dashboard');
+        return view('admin.dashboard');
     })->name('dashboard');
 });
 
@@ -57,3 +64,9 @@ Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoo
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Test
+Route::get('/test', function () {
+    return view('navigation-menu');
+});
+// Test
