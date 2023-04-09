@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogKategoriController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LoginWithGoogleController;
+use \App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +21,17 @@ use Illuminate\Support\Facades\Auth;
 
 
 /* Admin Route */
+Route::middleware(['admin'])->group(function() {
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+    Route::get('/admin', [AdminController::class, 'table'])->name('table');
+    // Blog Kategori 
+    Route::resource('blogkategori', \App\Http\Controllers\Admin\BlogKategoriController::class)->except('show');
+    
+    Route::get('/admin/list-blog', [AdminController::class, 'listblog'])->name('listblog');
+    Route::get('/admin/list-wisata', [AdminController::class, 'listwisata'])->name('listwisata');
+});
 
-Route::get('/admin', [AdminController::class, 'table'])->name('table');
-
-Route::get('/admin/list-blog', [AdminController::class, 'listblog'])->name('listblog');
-Route::get('/admin/list-wisata', [AdminController::class, 'listwisata'])->name('listwisata');
 /* End Admin Route */
 
 

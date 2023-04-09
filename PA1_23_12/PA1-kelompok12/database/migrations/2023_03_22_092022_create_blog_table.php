@@ -16,7 +16,7 @@ class CreateBlogTable extends Migration
         Schema::create('blog', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->foreignId('kategori_blog_id')->constrained('kategori_blog')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('blog_kategoris_id')->constrained('blog_kategoris')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('tanggal');
             $table->string('foto');
             $table->text('isi');

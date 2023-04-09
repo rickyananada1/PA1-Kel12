@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Berita extends Model
 {
     use HasFactory;
+
+    public function blogkategori()
+    {
+        return $this->belongsTo(BlogKategori::class);
+    }
+
+    public function incrementReadCount()
+    {
+        $this->reads++;
+        return $this->save();
+    }
+
 }
