@@ -36,7 +36,7 @@
             with font-awesome or any other icon font library -->
             <li class="nav-item">
                 <a href="/admin" class="nav-link">
-                    <i class="nav-icon fas fa-th fa-beat"></i>
+                    <i class="nav-icon fa-solid fa-home"></i>
                     <p>
                         {{ __('Dashboard') }}
                     </p>
@@ -54,7 +54,7 @@
 
             {{-- Wisata --}}
             <li class="nav-item">
-                <a href="/admin/wisata" class="nav-link">
+                <a href="{{Route('destinasikategori.index')}}" class="nav-link">
                     <i class="nav-icon fa fa-hotel"></i>
                     <p>
                         Wisata
@@ -63,13 +63,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="/admin/wisata" class="nav-link">
+                        <a href="{{Route('destinasikategori.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Categori</p>
+                            <p>{{__('Kategori')}}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('listwisata')}}" class="nav-link">
+                        <a href="{{Route('destinasikategori.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Wisata</p>
                         </a>
@@ -94,7 +94,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('listblog')}}" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Post</p>
                         </a>

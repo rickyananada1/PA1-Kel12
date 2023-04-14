@@ -25,11 +25,16 @@ Route::middleware(['admin'])->group(function() {
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
     Route::get('/admin', [AdminController::class, 'table'])->name('table');
+
     // Blog Kategori 
     Route::resource('blogkategori', \App\Http\Controllers\Admin\BlogKategoriController::class)->except('show');
-    
-    Route::get('/admin/list-blog', [AdminController::class, 'listblog'])->name('listblog');
-    Route::get('/admin/list-wisata', [AdminController::class, 'listwisata'])->name('listwisata');
+    // Destinasi Kategori
+    Route::resource('destinasikategori', \App\Http\Controllers\Admin\DestinasiKategoriController::class)->except('show');
+
+
+    // Route::get('/admin/list-blog', [AdminController::class, 'listblog'])->name('listblog');
+    // Route::get('/admin/list-wisata', [AdminController::class, 'listwisata'])->name('listwisata');
+
 });
 
 /* End Admin Route */
@@ -63,10 +68,9 @@ Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoo
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Test
 Route::get('/test', function () {
-    return view('navigation-menu');
+    return view('admin.destinasi_kategori.edit');
 });
-// Test

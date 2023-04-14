@@ -18,7 +18,7 @@ class CreateKomenTable extends Migration
             $table->string('nama');
             $table->string('email');
             $table->text('pesan');
-            $table->foreignId('wisata_id')->constrained('wisata')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('destinasi_id')->constrained('destinasi')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

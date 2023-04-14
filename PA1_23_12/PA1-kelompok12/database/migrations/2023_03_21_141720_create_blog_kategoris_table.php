@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWisataTable extends Migration
+class CreateBlogKategorisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateWisataTable extends Migration
      */
     public function up()
     {
-        Schema::create('wisata', function (Blueprint $table) {
+        Schema::create('blog_kategoris', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('deskripsi');
-            $table->string('lokasi');
-            $table->string('gambar');
-            $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('fasilitas');
+            $table->string('keterangan')->nullable()->default('');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateWisataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wisata');
+        Schema::dropIfExists('blog_kategoris');
     }
 }

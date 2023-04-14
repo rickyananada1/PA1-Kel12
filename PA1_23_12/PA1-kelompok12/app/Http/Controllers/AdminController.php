@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DestinasiKategori;
+use App\Models\BlogKategori;
 
 class AdminController extends Controller
 {
@@ -13,7 +15,10 @@ class AdminController extends Controller
 
     public function table(Request $request)
     {
-        return view('admin.dashboard');
+        $jumlahDestinasiKategori = DestinasiKategori::count();
+        $jumlahBlogKategori = BlogKategori::count();
+
+        return view('admin.dashboard', compact('jumlahDestinasiKategori','jumlahBlogKategori'));
     }
     public function listblog(Request $request)
     {

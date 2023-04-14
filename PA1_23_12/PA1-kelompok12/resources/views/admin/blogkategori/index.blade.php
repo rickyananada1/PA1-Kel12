@@ -5,6 +5,7 @@
 @endsection
 
 
+
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -43,10 +44,10 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $kategori->nama }}</td>
                                             <td>
-                                                <a href="{{ route('admin.categories.edit', [$kategori]) }}"
+                                                <a href="{{ route('blogkategori.edit', [$kategori]) }}"
                                                     class="btn btn-sm btn-info"> <i class="fa fa-edit"></i> </a>
                                                 <form onclick="return confirm('are you sure ?');" class="d-inline-block"
-                                                    action="{{ route('admin.categories.destroy', [$kategori]) }}"
+                                                    action="{{ route('blogkategori.destroy', [$kategori]) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('delete')
