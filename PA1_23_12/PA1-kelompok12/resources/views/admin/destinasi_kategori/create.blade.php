@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{Route('destinasikategori.index')}}" role="button">kembali<i class="fa-regular fa-hand-back-point-left"></i></a>
+    <a class="btn btn-warning" href="{{Route('destinasikategori.index')}}" role="button"><i class="fa fa-arrow-left"></i> Kembali</a>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
     <form action="{{Route('destinasikategori.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group mb-3">
@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi" class="form-label">Deskripsi Kategori</label>
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Masukkan deskripsi untuk kategori yang anda masukkan........" required></textarea>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="10" placeholder="Masukkan deskripsi untuk kategori yang anda masukkan........" required></textarea>
                         </div>
                     </div>
                 </div>

@@ -14,11 +14,11 @@
     @csrf
     <div class="form-group">
         <label for="nama">Judul Buku</label>
-        <input type="text" class="form-control" id="nama" name="nama" value="{{ $destinasi_kategori->title }}" required>
+        <input type="text" class="form-control" id="nama" name="nama" value="{{ $destinasi_kategori->nama }}" required>
     </div>
     <div class="form-group">
         <label for="deskripsi">Deskripsi Buku</label>
-        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required>{{ $destinasi_kategori->description }}</textarea>
+        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="10" required>{{ $destinasi_kategori->deskripsi }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Simpan</button>
     <a href="{{ route('destinasikategori.index') }}" class="btn btn-secondary">Batal</a>

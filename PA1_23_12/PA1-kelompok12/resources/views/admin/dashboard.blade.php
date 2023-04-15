@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-    Selamat Datang Admin
+    Selamat Datang {{ Auth::user()->name }}
 @endsection
 
 @section('subtitle')
@@ -15,7 +15,7 @@
       <!-- small box -->
       <div class="small-box bg-purple">
         <div class="inner">
-            <h3>{{ $jumlahDestinasiKategori }}</h3>
+            <h3>{{ $total_destinasiKategori }}</h3>
             <p>Kategori Destinasi</p>
         </div>
         <div class="icon">
@@ -30,7 +30,7 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>{{ $jumlahBlogKategori }}</h3>
+          <h3>{{ $total_blogKategori }}</h3>
 
           <p>Kategori Blog</p>
         </div>

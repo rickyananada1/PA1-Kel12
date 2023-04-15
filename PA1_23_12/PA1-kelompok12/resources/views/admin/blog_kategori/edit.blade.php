@@ -1,0 +1,23 @@
+@extends('admin.master')
+
+@section('title')
+    edit Blog Kategori
+@endsection
+
+
+@section('content')
+<form action="{{ route('blogkategori.update', ['blogkategori' => $blog_kategori->id]) }}" method="post">
+    @method('put')
+    @csrf
+    <div class="form-group">
+        <label for="nama">Judul Buku</label>
+        <input type="text" class="form-control" id="nama" name="nama" value="{{ $blog_kategori->nama }}" required>
+    </div>
+    <div class="form-group">
+        <label for="deskripsi">Deskripsi Buku</label>
+        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="10" required>{{ $blog_kategori->deskripsi }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Simpan</button>
+    <a href="{{ route('blogkategori.index') }}" class="btn btn-secondary">Batal</a>
+</form>
+@endsection

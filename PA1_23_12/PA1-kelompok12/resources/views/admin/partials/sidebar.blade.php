@@ -35,7 +35,7 @@
             <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="/admin" class="nav-link">
+                <a href="{{Route('admin_dashboard')}}" class="nav-link">
                     <i class="nav-icon fa-solid fa-home"></i>
                     <p>
                         {{ __('Dashboard') }}
@@ -71,7 +71,7 @@
                     <li class="nav-item">
                         <a href="{{Route('destinasikategori.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Add Wisata</p>
+                            <p>{{__('Destinasi')}}</p>
                         </a>
                     </li>
                 </ul>
@@ -82,7 +82,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
-                        Post
+                        Blog
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -96,7 +96,7 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Add Post</p>
+                            <p>Blog</p>
                         </a>
                     </li>
                 </ul>

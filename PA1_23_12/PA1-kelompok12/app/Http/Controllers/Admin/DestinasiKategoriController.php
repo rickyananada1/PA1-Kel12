@@ -15,7 +15,7 @@ class DestinasiKategoriController extends Controller
      */
     public function index()
     {
-        // mengambil semua data dari tabel database
+        // mengambil semua data dari tabel destinasi_kategori
         $destinasi_kategoris = DestinasiKategori::all();
         // mengembalikan data ke halaman index
         return view('admin.destinasi_kategori.index', compact('destinasi_kategoris'));
@@ -49,7 +49,7 @@ class DestinasiKategoriController extends Controller
 
         // kembalikan ke halaman index dan tampilkan pesan berhasil
         return redirect()->route('destinasikategori.index')->with([
-            'message' => 'Kategori Destinasi berhasil ditambahkan',
+            'message' => 'Kategori Destinasi berhasil ditambahkan!',
             'alert-type' => 'succes'
         ]);
     }
@@ -73,8 +73,10 @@ class DestinasiKategoriController extends Controller
      */
     public function edit($id)
     {
-        $destinasi_kategori = DestinasiKategori::find($id); // Ambil data destinasi_kategori berdasarkan ID
-        return view('admin.destinasi_kategori.edit', compact('destinasi_kategori')); // Kirim data destinasi_kategori ke view edit.blade.php
+        // Ambil data destinasi_kategori berdasarkan ID
+        $destinasi_kategori = DestinasiKategori::find($id); 
+        // Kirim data destinasi_kategori ke view edit.blade.php
+        return view('admin.destinasi_kategori.edit', compact('destinasi_kategori')); 
     }
 
 
@@ -92,12 +94,14 @@ class DestinasiKategoriController extends Controller
             'deskripsi' => 'required|string',
         ]);
 
-        $destinasi_kategori = DestinasiKategori::find($id); // Ambil data buku berdasarkan ID
+        // Ambil data buku berdasarkan ID
+        $destinasi_kategori = DestinasiKategori::find($id);
         $destinasi_kategori->nama = $validatedData['nama'];
         $destinasi_kategori->deskripsi = $validatedData['deskripsi'];
-        $destinasi_kategori->save(); // Simpan data buku yang telah diupdate
-
-        return redirect()->route('destinasikategori.index')->with('success', 'kategori updated successfully!'); // Redirect ke halaman lain atau tampilkan pesan sukses
+        // Simpan data buku yang telah diupdate
+        $destinasi_kategori->save(); 
+        // Redirect ke halaman lain atau tampilkan pesan sukses
+        return redirect()->route('destinasikategori.index')->with('success', 'kategori updated successfully!');
     }
 
     /**

@@ -2,79 +2,121 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\BlogKategori;
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\BlogKategoriRequest;
+use App\Models\BlogKategori;
 
 class BlogKategoriController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $blogkategori = blogkategori::paginate(10);
-
-        return view('admin.blogkategori.index', compact('blogkategori'));
+        // mengambil semua data dari tabel blog_kategori
+        $blog_kategoris = blogkategori::all();
+        // mengembalikan data ke halaman index
+        return view('admin.blog_kategori.index', compact('blog_kategoris'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('admin.blogkategori.create');
+        // mengembalikan halaman create
+        return view('admin.blog_kategori.create');
     }
 
-    public function store(BlogKategoriRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        if ($request->validated()) {
-            $slug = Str::slug($request->nama, '-');
-            blogkategori::create($request->validated() + ['slug' => $slug]);
-        }
+        // validasi data
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+        ]);
+        // Simpan ke dalam basis data
+        $blog_kategori = BlogKategori::create($validatedData);
 
+        // kembalikan ke halaman index dan tampilkan pesan berhasil
         return redirect()->route('blogkategori.index')->with([
-            'message' => 'Success Created !',
-            'alert-type' => 'success'
+            'message' => 'Kategori Blog berhasil ditambahkan!',
+            'alert-type' => 'succes'
         ]);
     }
+
     /**
      * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function edit(BlogKategori $category)
+    public function edit($id)
     {
-        return view('blogkategori.edit', compact('category'));
+                // Ambil data blog_kategori berdasarkan ID
+                $blog_kategori = BlogKategori::find($id); 
+                // Kirim data blog_kategori ke view edit.blade.php
+                return view('admin.blog_kategori.edit', compact('blog_kategori')); 
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(BlogKategoriRequest $request, BlogKategori $category)
+    public function update(Request $request, $id)
     {
-        if ($request->validated()) {
-            $slug = Str::slug($request->nama, '-');
-            $category->update($request->validated() + ['slug' => $slug]);
-        }
-
-        return redirect()->route('blogkategori.index')->with([
-            'message' => 'Success Updated !',
-            'alert-type' => 'info'
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required',
         ]);
+
+        // Ambil data buku berdasarkan ID
+        $blog_kategori = BlogKategori::find($id);
+        $blog_kategori->nama = $validatedData['nama'];
+        $blog_kategori->deskripsi = $validatedData['deskripsi'];
+        // Simpan data buku yang telah diupdate
+        $blog_kategori->save(); 
+        // Redirect ke halaman lain atau tampilkan pesan sukses
+        return redirect()->route('blogkategori.index')->with('success', 'kategori updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(BlogKategori $category)
+    public function destroy($id)
     {
-        $category->delete();
+        $blog_kategori = BlogKategori::find($id);
+        $blog_kategori->delete();
 
         return redirect()->back()->with([
-            'message' => 'Success Deleted !',
+            'message' => 'Kategori Blog berhasil dihapus!',
             'alert-type' => 'danger'
         ]);
     }

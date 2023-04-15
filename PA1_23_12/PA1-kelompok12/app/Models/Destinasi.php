@@ -9,6 +9,11 @@ class Destinasi extends Model
 {
     use HasFactory;
 
+    // 1 destinasi memiliki banyak foto dari model gallery
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
     //one to many wisata dan hotel
     public function hotel()
     {
