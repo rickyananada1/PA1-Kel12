@@ -10,7 +10,7 @@
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
                         <li class="has-children">
-                            <a href="{{ Route('kumpulanberita') }}">Blog</a>
+                            <a href="{{ Route('kumpulanberita') }}">Blogs</a>
                             <ul class="dropdown">
                                 <li><a href="#">Berita</a></li>
                                 <li><a href="#">Tips & Triks</a></li>
@@ -22,7 +22,7 @@
                             <ul class="dropdown">
                                 <li><a href="#">Hotel</a></li>
                                 <li class="has-children">
-                                    <a href="#">Object Wisata</a>
+                                    <a href="#">Destinasi Wisata</a>
                                     <ul class="dropdown">
                                         <li><a href="#">Alami</a></li>
                                         <li><a href="#">Buatan</a></li>
@@ -30,7 +30,7 @@
                                     </ul>
                                 </li>
                                 <li class="has-children">
-                                    <a href="#">Makanan</a>
+                                    <a href="#">Kulineran</a>
                                     <ul class="dropdown">
                                         <li><a href="#">Pedas</a></li>
                                         <li><a href="#">Manis</a></li>

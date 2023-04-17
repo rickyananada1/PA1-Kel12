@@ -9,6 +9,7 @@ class Destinasi extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
     // 1 destinasi memiliki banyak foto dari model gallery
     public function galleries()
     {

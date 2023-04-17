@@ -9,8 +9,8 @@ class Gallery extends Model
 {
     use HasFactory;
 
-    public function wisata()
+    public function destinasi()
     {
-        return $this->belongsTo(Wisata::class);
+        return $this->belongsTo(Destinasi::class, 'destinasis_id');
     }
 }

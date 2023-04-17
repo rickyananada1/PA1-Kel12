@@ -19,7 +19,7 @@ class CreateHotelTable extends Migration
             $table->string('alamat');
             $table->string('harga');
             $table->string('fasilitas');
-            $table->foreignId('destinasi_id')->constrained('destinasi')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('destinasis_id')->constrained('destinasis')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

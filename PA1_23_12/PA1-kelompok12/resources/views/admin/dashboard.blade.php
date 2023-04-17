@@ -61,7 +61,7 @@
       <!-- small box -->
       <div class="small-box bg-purple">
         <div class="inner">
-          <h3>65</h3>
+          <h3>{{ $total_destinasi }}</h3>
 
           <p>Jumlah Destinasi</p>
         </div>
@@ -76,7 +76,7 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>65</h3>
+          <h3>100</h3>
 
           <p>Jumlah Blog</p>
         </div>

@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\Destinasi;
 use App\Models\Gallery;
-use Illuminate\Http\Request;
-use App\Http\Requests\Admin\DestinasiRequest;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\Admin\GalleryRequest;
 
-
-class DestinasiController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,7 @@ class DestinasiController extends Controller
      */
     public function index()
     {
-        $destinasis = Destinasi::paginate(10);
-
-        return view('admin.destinasi.index', compact('destinasis'));
+        //
     }
 
     /**
@@ -31,7 +28,7 @@ class DestinasiController extends Controller
      */
     public function create()
     {
-        return view('admin.destinasi.create');
+        //
     }
 
     /**
@@ -40,11 +37,14 @@ class DestinasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DestinasiRequest $request)
+    public function store(GalleryRequest $request, Destinasi $destinasi)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->lokasi, '-');
-            $destinasi = Destinasi::create($request->validated() + ['slug' => $slug]);
+            $gambars = $request->file('gambar')->store(
+                'destinasi/gallery',
+                'public'
+            );
+            Gallery::create($request->except('gambar') + ['gambar' => $gambars, 'destinasis_id' => $destinasi->id]);
         }
 
         return redirect()->route('destinasi.edit', [$destinasi])->with([
@@ -70,11 +70,9 @@ class DestinasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Destinasi $destinasi)
+    public function edit(Destinasi $destinasi, Gallery $gallery)
     {
-        $galleries = Gallery::paginate(10);
-
-        return view('admin.destinasi.edit', compact('destinasi', 'galleries'));
+        return view('admin.galleries.edit', compact('destinasi','gallery'));
     }
 
     /**
@@ -84,16 +82,23 @@ class DestinasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DestinasiRequest $request,Destinasi $destinasi)
+    public function update(GalleryRequest $request, Destinasi $destinasi, Gallery $gallery)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->lokasi, '-');
-            $destinasi = Destinasi::create($request->validated() + ['slug' => $slug]);
+            if ($request->gambar) {
+                File::delete('storage/'. $gallery->gambar);
+                $gambars = $request->file('gambar')->store(
+                    'destinasi/gallery', 'public'
+                );
+                $gallery->update($request->except('gambar') + ['gambar' => $gambars, 'destinasis_id' => $destinasi->id]);
+            } else {
+                $gallery->update($request->validated());
+            }
         }
 
-        return redirect()->route('destinasi.index')->with([
+        return redirect()->route('destinasi.edit', [$destinasi])->with([
             'message' => 'Success Updated !',
-            'alert-type' => 'success'
+            'alert-type' => 'info'
         ]);
     }
 
@@ -103,9 +108,10 @@ class DestinasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Destinasi $destinasi)
+    public function destroy(Destinasi $destinasi, Gallery $gallery)
     {
-        $destinasi->delete();
+        File::delete('storage/'. $gallery->gambar);
+        $gallery->delete();
 
         return redirect()->back()->with([
             'message' => 'Success Deleted !',

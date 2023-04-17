@@ -69,7 +69,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('destinasikategori.index')}}" class="nav-link">
+                        <a href="{{Route('destinasi.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>{{__('Destinasi')}}</p>
                         </a>

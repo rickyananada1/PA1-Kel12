@@ -13,14 +13,13 @@ class CreateDestinasiTable extends Migration
      */
     public function up()
     {
-        Schema::create('destinasi', function (Blueprint $table) {
+        Schema::create('destinasis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('deskripsi');
+            $table->string('slug')->unique();
             $table->string('lokasi');
-            $table->string('gambar');
-            $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('fasilitas');
+            $table->text('deskripsi');
+            // $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete()->default(1);
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateDestinasiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('destinasi');
+        Schema::dropIfExists('destinasis');
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogKategoriController;
-use \App\Http\Controllers\Admin\CategoryController;
+use \App\Http\Controllers\Admin\DestinasiKategoriController;
+use \App\Http\Controllers\Admin\GalleryController;
+use \App\Http\Controllers\Admin\DestinasiController;
 use \App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Front\HomeController;
@@ -31,6 +33,14 @@ Route::middleware(['admin'])->group(function() {
     Route::resource('blogkategori', \App\Http\Controllers\Admin\BlogKategoriController::class)->except('show');
     // Destinasi Kategori 
     Route::resource('destinasikategori', \App\Http\Controllers\Admin\DestinasiKategoriController::class)->except('show');
+    // Destinasi
+    Route::resource('destinasi', \App\Http\Controllers\Admin\DestinasiController::class)->except('show');
+    Route::resource('destinasi.galleries', \App\Http\Controllers\Admin\GalleryController::class)->except(['create', 'index','show']);
+    // Route::post('/galleries', [GalleryController::class ,'store'])->name('galleries.store');
+    Route::post('/galleries', 'Admin\GalleryController@store')->name('galleries.store');
+
+
+
 });
 /* End Admin Route */
 
@@ -55,7 +65,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/admin-dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
 });
 
 
