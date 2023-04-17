@@ -35,8 +35,8 @@
             <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="/admin" class="nav-link">
-                    <i class="nav-icon fas fa-th fa-beat"></i>
+                <a href="{{Route('admin_dashboard')}}" class="nav-link">
+                    <i class="nav-icon fa-solid fa-home"></i>
                     <p>
                         {{ __('Dashboard') }}
                     </p>
@@ -54,7 +54,7 @@
 
             {{-- Wisata --}}
             <li class="nav-item">
-                <a href="/admin/wisata" class="nav-link">
+                <a href="{{Route('destinasikategori.index')}}" class="nav-link">
                     <i class="nav-icon fa fa-hotel"></i>
                     <p>
                         Wisata
@@ -63,15 +63,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="/admin/wisata" class="nav-link">
+                        <a href="{{Route('destinasikategori.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Categori</p>
+                            <p>{{__('Kategori')}}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('listwisata')}}" class="nav-link">
+                        <a href="{{Route('destinasi.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Add Wisata</p>
+                            <p>{{__('Destinasi')}}</p>
                         </a>
                     </li>
                 </ul>
@@ -82,7 +82,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
-                        Post
+                        Blog
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
@@ -94,9 +94,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('listblog')}}" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Add Post</p>
+                            <p>Blog</p>
                         </a>
                     </li>
                 </ul>

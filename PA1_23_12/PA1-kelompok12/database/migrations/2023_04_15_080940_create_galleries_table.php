@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWisataTable extends Migration
+class CreateGalleriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateWisataTable extends Migration
      */
     public function up()
     {
-        Schema::create('wisata', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('deskripsi');
-            $table->string('lokasi');
-            $table->string('gambar');
-            $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('fasilitas');
+            $table->text('gambar');
+            $table->foreignId('destinasi_id')->constrained('destinasis')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateWisataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wisata');
+        Schema::dropIfExists('galleries');
     }
 }

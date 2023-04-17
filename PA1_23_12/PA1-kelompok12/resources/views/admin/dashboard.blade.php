@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-    Selamat Datang Admin
+    Selamat Datang {{ Auth::user()->name }}
 @endsection
 
 @section('subtitle')
@@ -15,31 +15,32 @@
       <!-- small box -->
       <div class="small-box bg-purple">
         <div class="inner">
-          <h3>3</h3>
-
-          <p>Kategori Destinasi</p>
+            <h3>{{ $total_destinasiKategori }}</h3>
+            <p>Kategori Destinasi</p>
         </div>
         <div class="icon">
-          <i class="ion ion-bag"></i>
+            <i class="ion ion-bag"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
+        <a href="{{Route('destinasikategori.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
+    </div>
+
     <!-- ./col -->
     <div class="col-lg-4 col-4">
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>3</h3>
+          <h3>{{ $total_blogKategori }}</h3>
 
           <p>Kategori Blog</p>
         </div>
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{Route('blogkategori.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
+
     <!-- ./col -->
     <div class="col-lg-4 col-4">
       <!-- small box -->
@@ -60,7 +61,7 @@
       <!-- small box -->
       <div class="small-box bg-purple">
         <div class="inner">
-          <h3>65</h3>
+          <h3>{{ $total_destinasi }}</h3>
 
           <p>Jumlah Destinasi</p>
         </div>
@@ -75,7 +76,7 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>65</h3>
+          <h3>100</h3>
 
           <p>Jumlah Blog</p>
         </div>

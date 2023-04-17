@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DestinasiKategori;
 use Illuminate\Http\Request;
-use App\Models\BlogKategori;
 
-class BlogKategoriController extends Controller
+class DestinasiKategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class BlogKategoriController extends Controller
      */
     public function index()
     {
-        // mengambil semua data dari tabel blog_kategori
-        $blog_kategoris = blogkategori::all();
+        // mengambil semua data dari tabel destinasi_kategori
+        $destinasi_kategoris = DestinasiKategori::all();
         // mengembalikan data ke halaman index
-        return view('admin.blog_kategori.index', compact('blog_kategoris'));
+        return view('admin.destinasi_kategori.index', compact('destinasi_kategoris'));
     }
 
     /**
@@ -28,8 +28,7 @@ class BlogKategoriController extends Controller
      */
     public function create()
     {
-        // mengembalikan halaman create
-        return view('admin.blog_kategori.create');
+        return view('admin.destinasi_kategori.create');
     }
 
     /**
@@ -46,11 +45,11 @@ class BlogKategoriController extends Controller
             'deskripsi' => 'required|string',
         ]);
         // Simpan ke dalam basis data
-        $blog_kategori = BlogKategori::create($validatedData);
+        $destinasi_kategori = DestinasiKategori::create($validatedData);
 
         // kembalikan ke halaman index dan tampilkan pesan berhasil
-        return redirect()->route('blogkategori.index')->with([
-            'message' => 'Kategori Blog berhasil ditambahkan!',
+        return redirect()->route('destinasikategori.index')->with([
+            'message' => 'Kategori Destinasi berhasil ditambahkan!',
             'alert-type' => 'succes'
         ]);
     }
@@ -74,11 +73,12 @@ class BlogKategoriController extends Controller
      */
     public function edit($id)
     {
-                // Ambil data blog_kategori berdasarkan ID
-                $blog_kategori = BlogKategori::find($id); 
-                // Kirim data blog_kategori ke view edit.blade.php
-                return view('admin.blog_kategori.edit', compact('blog_kategori')); 
+        // Ambil data destinasi_kategori berdasarkan ID
+        $destinasi_kategori = DestinasiKategori::find($id); 
+        // Kirim data destinasi_kategori ke view edit.blade.php
+        return view('admin.destinasi_kategori.edit', compact('destinasi_kategori')); 
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -91,17 +91,17 @@ class BlogKategoriController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
-            'deskripsi' => 'required',
+            'deskripsi' => 'required|string',
         ]);
 
         // Ambil data buku berdasarkan ID
-        $blog_kategori = BlogKategori::find($id);
-        $blog_kategori->nama = $validatedData['nama'];
-        $blog_kategori->deskripsi = $validatedData['deskripsi'];
+        $destinasi_kategori = DestinasiKategori::find($id);
+        $destinasi_kategori->nama = $validatedData['nama'];
+        $destinasi_kategori->deskripsi = $validatedData['deskripsi'];
         // Simpan data buku yang telah diupdate
-        $blog_kategori->save(); 
+        $destinasi_kategori->save(); 
         // Redirect ke halaman lain atau tampilkan pesan sukses
-        return redirect()->route('blogkategori.index')->with('success', 'kategori updated successfully!');
+        return redirect()->route('destinasikategori.index')->with('success', 'kategori updated successfully!');
     }
 
     /**
@@ -112,11 +112,11 @@ class BlogKategoriController extends Controller
      */
     public function destroy($id)
     {
-        $blog_kategori = BlogKategori::find($id);
-        $blog_kategori->delete();
+        $destinasi_kategori = DestinasiKategori::find($id);
+        $destinasi_kategori->delete();
 
         return redirect()->back()->with([
-            'message' => 'Kategori Blog berhasil dihapus!',
+            'message' => 'Kategori Destinasi berhasil dihapus!',
             'alert-type' => 'danger'
         ]);
     }

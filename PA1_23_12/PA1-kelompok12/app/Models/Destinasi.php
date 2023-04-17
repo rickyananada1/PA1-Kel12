@@ -5,10 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Wisata extends Model
+class Destinasi extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+    // 1 destinasi memiliki banyak foto dari model gallery
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
     //one to many wisata dan hotel
     public function hotel()
     {
@@ -19,5 +25,4 @@ class Wisata extends Model
     {
         return $this->hasMany(Komen::class);
     }
-
 }
