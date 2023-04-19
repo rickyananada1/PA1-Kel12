@@ -23,20 +23,8 @@ class GalleryRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->method()) {
-            case 'POST': {
-                    return [
-                        'nama' => 'required',
-                        'gambar' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-                    ];
-                }
-            case 'PUT':
-            case 'PATCH': {
-                    return [
-                        'nama' => 'required',
-                        'gambar' => ['image', 'mimes:png,jpg,jpeg']
-                    ];
-                }
-        }
+        return [
+            'path' => "required|image"
+        ];
     }
 }

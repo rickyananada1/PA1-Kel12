@@ -39,14 +39,17 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request, Destinasi $destinasi)
     {
-        $data = $request->all();
-        $data['path'] = $request->file('path')->store(
-            'destinasi/gallery', 'public'
-        );
+        if ($request->validated()) {
+            $gambars = $request->file('gambar')->store(
+                'destinasi/gallery',
+                'public'
+            );
 
-        $destinasi->galleries()->create($data);
+            Gallery::create($request->except('gambar') + ['gambar' => $gambars, 'destinasi_id' => $destinasi->id]);
 
-        return redirect()->route('destinasi.edit', $destinasi)->with([
+        }
+
+        return redirect()->route('destinasi.edit', [$destinasi])->with([
             'message' => 'Success Created !',
             'alert-type' => 'success'
         ]);
@@ -83,18 +86,20 @@ class GalleryController extends Controller
      */
     public function update(GalleryRequest $request, Destinasi $destinasi, Gallery $gallery)
     {
-        if($request->path){
-            File::delete('storage/' . $gallery->path);
+        if ($request->validated()) {
+            if ($request->gambar) {
+                File::delete('storage/'. $gallery->gambar);
+                $gambars = $request->file('gambar')->store(
+                    'destinasi/gallery',
+                    'public'
+                );
+                $gallery->update($request->except('gambar') + ['gambar' => $gambars, 'destinasi_id' => $destinasi->id]);
+            } else {
+                $gallery->update($request->validated());
+            }
         }
 
-        $data = $request->all();
-        $data['path'] = $request->file('path')->store(
-            'destinasi/gallery', 'public'
-        );
-        
-        $gallery->update($data);
-
-        return redirect()->route('destinasi.edit', $destinasi)->with([
+        return redirect()->route('destinasi.edit', [$destinasi])->with([
             'message' => 'Success Updated !',
             'alert-type' => 'info'
         ]);
@@ -108,11 +113,7 @@ class GalleryController extends Controller
      */
     public function destroy(Destinasi $destinasi, Gallery $gallery)
     {
-        if ($gallery->path) {
-            File::delete('storage/' . $gallery->path);
-        }
-
-        // Mengahapus data dari tabel galleri
+        File::delete('storage/' . $gallery->gambar);
         $gallery->delete();
 
         return redirect()->back()->with([

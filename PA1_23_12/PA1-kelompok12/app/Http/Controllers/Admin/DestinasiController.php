@@ -8,7 +8,7 @@ use App\Models\Destinasi;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\DestinasiRequest;
-
+use App\Models\DestinasiKategori;
 
 class DestinasiController extends Controller
 {
@@ -31,7 +31,9 @@ class DestinasiController extends Controller
      */
     public function create()
     {
-        return view('admin.destinasi.create');
+        // Mengambil data dari model destinasi kategori
+        $destinasiKategoris = DestinasiKategori::all();
+        return view('admin.destinasi.create', compact('destinasiKategoris'));
     }
 
     /**
@@ -88,7 +90,7 @@ class DestinasiController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->lokasi, '-');
-            $destinasi = Destinasi::create($request->validated() + ['slug' => $slug]);
+            $destinasi->update($request->validated() + ['slug' => $slug]);
         }
 
         return redirect()->route('destinasi.index')->with([

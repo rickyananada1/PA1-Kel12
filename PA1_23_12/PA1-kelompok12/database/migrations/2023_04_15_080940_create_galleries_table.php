@@ -15,9 +15,8 @@ class CreateGalleriesTable extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('gambar');
             $table->foreignId('destinasi_id')->constrained('destinasis')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->text('path');
             $table->timestamps();
         });
     }
