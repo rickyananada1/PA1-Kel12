@@ -17,12 +17,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group mb-3">
-                            <label for="nama">Kategori</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan kategori yang ingin anda tambahkan....." required>
+                            <label for="nama">Nama Kategori*</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Cth: Wisata Alami" required>
                         </div>
                         <div class="form-group">
-                            <label for="deskripsi" class="form-label">Deskripsi Kategori</label>
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="10" placeholder="Masukkan deskripsi untuk kategori yang anda masukkan........" required></textarea>
+                            <label for="deskripsi" class="form-label">Deskripsi Kategori*</label>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="10" placeholder="Deskripsi:" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -35,3 +35,22 @@
     </form>
 </div>
 @endsection
+
+@section('styles')
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+    </style>
+@endsection
+
+{{-- @section('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#deskripsi'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endsection --}}

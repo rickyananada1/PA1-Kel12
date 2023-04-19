@@ -11,28 +11,34 @@ class DestinasiRequest extends FormRequest
      *
      * @return bool
      */
+    public function autorize(): bool
+    {
+        return true;
+    }
+    
     public function rules(): array
-{
-    switch($this->method()){
-        case 'POST' : {
-            return [
-                'nama' => 'required',
-                'lokasi' => 'required',
-                'deskripsi' => 'required',
-            ];
-        }
-        case 'PUT':
-        case 'PATCH': {
-            return [
-                'nama' => 'required',
-                'lokasi' => 'required',
-                'deskripsi' => 'required',
-            ];
-        }
-        default: {
-            return []; // menambahkan return statement default yang mengembalikan array kosong
+    {
+        switch ($this->method()) {
+            case 'POST': {
+                    return [
+                        'nama' => 'required',
+                        'lokasi' => 'required',
+                        'tiket' => 'required',
+                        'deskripsi' => 'required',
+                        'destinasi_kategori_id' => 'required',
+                    ];
+                }
+            case 'PUT':
+            case 'PATCH': {
+                    return [
+                        'nama' => 'required',
+                        'lokasi' => 'required',
+                        'deskripsi' => 'required',
+                    ];
+                }
+            default: {
+                    return []; // menambahkan return statement default yang mengembalikan array kosong
+                }
         }
     }
-}
-
 }

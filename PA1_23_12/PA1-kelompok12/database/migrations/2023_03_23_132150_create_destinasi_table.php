@@ -17,8 +17,10 @@ class CreateDestinasiTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('slug')->unique();
+            $table->string('tiket');
             $table->string('lokasi');
             $table->text('deskripsi');
+            $table->foreignId('destinasi_kategori_id')->constrained('destinasi_kategoris')->cascadeOnUpdate()->cascadeOnDelete();
             // $table->foreignId('kabupaten_id')->constrained('kabupaten')->cascadeOnUpdate()->cascadeOnDelete()->default(1);
             $table->timestamps();
         });

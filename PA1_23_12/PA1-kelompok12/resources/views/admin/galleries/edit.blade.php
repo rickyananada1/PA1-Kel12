@@ -6,49 +6,46 @@
 
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12 d-flex justify-content-between">
-                    <h1 class="m-0">{{ __('Form Edit') }}</h1>
-                    <a href="{{ route('destinasi.index') }}" class="btn btn-primary"> <i class="fa fa-arrow-left"></i> </a>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<div class="container-fluid">
 
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card p-3">
-                        <form method="post" action="{{ route('destinasi.galleries.update', [$destinasi,$gallery]) }}" enctype="multipart/form-data">
-                            @csrf 
-                            @method('put')
-                            <div class="form-group row border-bottom pb-4">
-                                <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nama" value="{{ old('nama', $gallery->nama) }}" id="nama" placeholder="example: Kuta">
-                                </div>
-                            </div>
-                           
-                            <div class="form-group row border-bottom pb-4">
-                                <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
-                                <div class="col-sm-10">
-                                <input type="file" class="form-control" name="gambar" value="{{ old('gambar') }}" id="gambar">
-                                </div>
-                            </div>
-                           
-                            <button type="submit" class="btn btn-success">Save</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Edit Gallery Destinasi</h1>
     </div>
-    <!-- /.content -->
+
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+<!-- Content Row -->
+        <div class="card shadow">
+            <div class="card-body">
+                <form action="{{ route('destinasi.galleries.update', [$destinasi,$gallery]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
+                    <div class="form-group">
+                        <label for="path">Image</label>
+                        @if($gallery->path)
+                            <div>
+                                <img width="150" src="{{ Storage::url($gallery->path) }}" alt="">
+                            </div>
+                        @endif
+
+                        <input type="file" class="form-control" id="path" name="path" value="{{ $gallery->path }}" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Save Image</button>
+                </form>
+            </div>
+        </div>
+    
+
+    <!-- Content Row -->
+
+</div>
 @endsection
