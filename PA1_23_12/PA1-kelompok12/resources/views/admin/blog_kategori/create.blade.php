@@ -47,7 +47,7 @@
     </style>
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
@@ -56,4 +56,4 @@
                 console.error(error);
             });
     </script>
-@endsection
+@endsection --}}

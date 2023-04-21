@@ -78,7 +78,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>100</h3>
+                    <h3>{{ $total_blog }}</h3>
 
                     <p>Jumlah Blog</p>
                 </div>

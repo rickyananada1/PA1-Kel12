@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHotelTable extends Migration
+class CreateAkomodasisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateHotelTable extends Migration
      */
     public function up()
     {
-        Schema::create('hotel', function (Blueprint $table) {
+        Schema::create('akomodasis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('alamat');
+            $table->string('kategori');
             $table->string('harga');
-            $table->string('fasilitas');
-            $table->foreignId('destinasis_id')->constrained('destinasis')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('lokasi');
+            $table->text('deskripsi');
+            $table->foreignId('destinasi_id')->constrained('destinasis')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateHotelTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hotel');
+        Schema::dropIfExists('akomodasis');
     }
 }

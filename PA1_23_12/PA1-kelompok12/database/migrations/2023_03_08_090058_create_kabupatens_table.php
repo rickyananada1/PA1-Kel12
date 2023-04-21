@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKomenTable extends Migration
+class CreateKabupatensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateKomenTable extends Migration
      */
     public function up()
     {
-        Schema::create('komen', function (Blueprint $table) {
+        Schema::create('kabupatens', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('email');
-            $table->text('pesan');
-            $table->foreignId('destinasis_id')->constrained('destinasis')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('slug')->unique();
+            $table->text('logo');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateKomenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('komen');
+        Schema::dropIfExists('kabupatens');
     }
 }

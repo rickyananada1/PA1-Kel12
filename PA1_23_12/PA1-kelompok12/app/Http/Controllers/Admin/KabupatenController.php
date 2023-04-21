@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\BlogKategori;
-use Illuminate\Support\Str;
+use App\Http\Requests\Admin\KabupatenRequest;
+use App\Models\Kabupaten;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\Admin\BlogRequest;
 
-class BlogController extends Controller
+class KabupatenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('BlogKategori')->paginate(5);
+        $kabupatens = Kabupaten::all();
 
-        return view('admin.blog.index', compact('blogs'));
+        return view('admin.kabupaten.index', compact('kabupatens'));
     }
 
     /**
@@ -31,9 +30,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $kategoris = BlogKategori::all();
-
-        return view('admin.blog.create', compact('kategoris'));
+        return view('admin.kabupaten.create');
     }
 
     /**
@@ -42,16 +39,15 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BlogRequest $request)
+    public function store(KabupatenRequest $request)
     {
-        if($request->validated()){
-            $gambar = $request->file('gambar')->store(
-                // memasukkan gambar ke dalam public/storage/blog/gambar
-                'blog/gambar', 'public'
+        if ($request->validated()) {
+            $logo = $request->file('logo')->store(
+                'kabupaten/logo', 'public'
             );
-            $slug = Str::slug($request->title, '-'). '-' . time();
+            $slug = Str::slug($request->nama, '-'). '-' . time();
 
-            Blog::create($request->except('gambar') + ['slug' => $slug, 'gambar' => $gambar]);
+            Kabupaten::create($request->except('logo') + ['slug' => $slug, 'logo' => $logo]);
         }
     }
 
@@ -72,11 +68,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Kabupaten $kabupaten)
     {
-        $kategoris = BlogKategori::get(['nama','id']);
-
-        return view('admin.blog.edit', compact('blog', 'kategoris'));
+        return view('admin.kabupaten.edit', compact('kabupaten'));
     }
 
     /**
@@ -86,21 +80,21 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BlogRequest $request, Blog $blog)
+    public function update(KabupatenRequest $request, Kabupaten $kabupaten)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->judul, '-');
-            if ($request->gambar) {
-                File::delete('storage/'.$blog->gambar);
-                $gambar = $request->file('gambar')->store(
-                    'blog/gambar', 'public'
+            $slug = Str::slug($request->nama, '-');
+            if ($request->logo) {
+                File::delete('storage'.$kabupaten->logo);
+                $logo = $request->file('logo')->store(
+                    'kabupaten/logo', 'public'
                 );
-                $blog->update($request->except('gambar') + ['slug' => $slug, 'gambar' => $gambar]);
+                $kabupaten->update($request->except('logo') + ['slug' => $slug, 'logo' => $logo]);
             } else {
-                $blog->update($request->validated() + ['slug' => $slug]);
+                $kabupaten->update($request->validated() + ['slug' => $slug]);
             }
         }
-        return redirect()->route('blogs.index')->with([
+        return redirect()->route('kabupaten.index')->with([
             'message' => 'Success Updated !',
             'alert-type' => 'info'
         ]);
@@ -112,10 +106,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Kabupaten $kabupaten)
     {
-        File::delete('storage/'. $blog->gambar);
-        $blog->delete();
+        File::delete('storage/'. $kabupaten->logo);
+        $kabupaten->delete();
 
         return redirect()->back()->with([
             'message' => 'Success Deleted !',
