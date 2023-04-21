@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
 
     public function blogkategori()
     {
@@ -16,6 +17,7 @@ class Blog extends Model
 
     public function incrementReadCount()
     {
+        // $this->timestamps = false;
         $this->reads++;
         return $this->save();
     }

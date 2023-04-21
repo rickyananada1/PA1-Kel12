@@ -1,11 +1,11 @@
 @extends('admin.master')
 
 @section('title')
-    List Destinasi
+    List Blog
 @endsection
 
 @section('subtitle')
-<a class="btn btn-primary" href="{{ Route('destinasi.create') }}" role="button">Tambah <i
+<a class="btn btn-primary" href="{{ Route('blogs.create') }}" role="button">Tambah <i
     class="fa-solid fa-plus"></i></a>    
 @endsection
 
@@ -20,23 +20,28 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama Destinasi</th>
-                                        <th scope="col">Tiket</th>
-                                        <th scope="col">Lokasi</th>
+                                        <th scope="col">Judul Blog</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Kutipan</th>
+                                        <th scope="col">Kategori</th>
                                         <th scope="col">action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($destinasis as $destinasi)
+                                    @foreach ($blogs as $blog)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $destinasi->nama }}</td>
-                                            <td>{{ $destinasi->tiket }}</td>
-                                            <td>{{ $destinasi->lokasi }}</td>
-                                            {{-- <td>{{ Str::limit($destinasi->deskripsi,10) }}</td> --}}
+                                            <td>{{ $blog->judul }}</td>
+                                            <td>
+                                                <a href="{{ Storage::url($blog->gambar) }}" target="_blank">
+                                                    <img src="{{ Storage::url($blog->gambar) }}" width="100" alt="">
+                                                </a>
+                                            </td>
+                                            <td>{{ $blog->kutipan }}</td>
+                                            <td>{{ $blog->blog_kategoris_id }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form
-                                                    action="{{ route('destinasi.edit', [$destinasi]) }}"
+                                                    action="{{ route('blogs.edit', [$blog]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
@@ -44,7 +49,7 @@
                                                 </form>
                                                 <form
                                                     onclick="return confirm('are you sure ?');"
-                                                    action="{{ route('destinasi.destroy', [$destinasi]) }}"
+                                                    action="{{ route('blogs.destroy', [$blog]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf

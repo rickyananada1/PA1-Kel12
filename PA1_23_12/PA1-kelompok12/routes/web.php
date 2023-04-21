@@ -36,6 +36,8 @@ Route::middleware(['admin'])->group(function() {
     // Destinasi
     Route::resource('destinasi', \App\Http\Controllers\Admin\DestinasiController::class)->except('show');
     Route::resource('destinasi.galleries', \App\Http\Controllers\Admin\GalleryController::class)->except(['create', 'index','show']);
+    Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class)->except('show');
+    Route::resource('kabupaten', \App\Http\Controllers\Admin\KabupatenController::class)->except('show');
     // Route::post('/galleries', [GalleryController::class ,'store'])->name('galleries.store');
     // Route::post('/galleries', 'Admin\GalleryController@store')->name('galleries.store');
 

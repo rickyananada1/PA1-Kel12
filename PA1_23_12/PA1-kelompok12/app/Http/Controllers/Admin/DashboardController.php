@@ -19,14 +19,14 @@ class DashboardController extends Controller
         $total_destinasiKategori  = DestinasiKategori::count();
         $total_destinasi  = Destinasi::count();
         $total_blogKategori = BlogKategori::count();
-        // $total_blog = Blog::count();
+        $total_blog = Blog::count();
 
         return view('admin.dashboard', compact(
             'nama_admin',
             'total_destinasiKategori',
             'total_destinasi',
             'total_blogKategori',
-            // 'total_blog',
+            'total_blog',
         ));
     }
 }

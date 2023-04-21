@@ -2529,12 +2529,12 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #000;
-  background-color: #f17945;
-  border-color: #f17945; }
+  background-color: #5E8B7E;
+  border-color: #5E8B7E; }
   .btn-primary:hover {
     color: #000;
-    background-color: #f38d61;
-    border-color: #f28658; }
+    background-color: #5E8B7E;
+    border-color: #5E8B7E; }
   .btn-check:focus + .btn-primary, .btn-primary:focus {
     color: #000;
     background-color: #f38d61;

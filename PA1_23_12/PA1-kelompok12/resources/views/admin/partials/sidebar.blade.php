@@ -52,10 +52,19 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{Route('kabupaten.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-map"></i>
+                    <p>
+                        {{ __('Kabupaten') }}
+                    </p>
+                </a>
+            </li>
+
             {{-- Wisata --}}
             <li class="nav-item">
                 <a href="{{Route('destinasikategori.index')}}" class="nav-link">
-                    <i class="nav-icon fa fa-hotel"></i>
+                    <i class="nav-icon fa fa-map-pin"></i>
                     <p>
                         Wisata
                         <i class="right fas fa-angle-left"></i>
@@ -80,7 +89,7 @@
             {{-- Post --}}
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-circle nav-icon"></i>
+                    <i class="nav-icon fas fa-newspaper nav-icon"></i>
                     <p>
                         Blog
                         <i class="right fas fa-angle-left"></i>
@@ -94,9 +103,34 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{Route('blogs.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Blog</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            {{-- Akomodasi --}}
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-hotel nav-icon"></i>
+                    <p>
+                        Akomodasi
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kategori</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Akomodasi</p>
                         </a>
                     </li>
                 </ul>
