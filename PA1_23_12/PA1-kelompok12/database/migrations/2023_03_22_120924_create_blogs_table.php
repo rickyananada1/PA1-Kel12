@@ -15,12 +15,11 @@ class CreateBlogsTable extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('slug')->unique();
-            $table->text('kutipan');
-            $table->text('gambar');
-            $table->text('deskripsi');
             $table->foreignId('blog_kategoris_id')->constrained('blog_kategoris')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('slug')->unique();
+            $table->string('judul');
+            $table->text('kutipan');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

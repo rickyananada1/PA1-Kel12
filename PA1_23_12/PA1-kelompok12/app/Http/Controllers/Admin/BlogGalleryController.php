@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\BlogKategori;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\BlogGalleryRequest;
+use App\Http\Requests\Admin\GalleryRequest;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\Admin\BlogRequest;
+use App\Models\Blog;
 use App\Models\BlogGallery;
 
-class BlogController extends Controller
+class BlogGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +19,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('BlogKategori')->paginate(10);
-
-        return view('admin.blog.index', compact('blogs'));
+        //
     }
 
     /**
@@ -32,9 +29,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $kategoris = BlogKategori::all();
-
-        return view('admin.blog.create', compact('kategoris'));
+        //
     }
 
     /**
@@ -43,14 +38,17 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BlogRequest $request)
+    public function store(BlogGalleryRequest $request, Blog $blog)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->judul, '-') . '-' . time();
-            $blog = Blog::create($request->validated() + ['slug' => $slug ]);
+            $images = $request->file('images')->store(
+                'blog/gallery',
+                'public'
+            );
+            BlogGallery::create($request->except('images') + ['images' => $images, 'blog_id' => $blog->id]);
         }
 
-        return redirect()->route('blogs.edit',[$blog])->with([
+        return redirect()->route('blogs.edit', [$blog])->with([
             'message' => 'Success Created !',
             'alert-type' => 'success'
         ]);
@@ -73,12 +71,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Blog $blog, BlogGallery $gallery)
     {
-        $kategoris = BlogKategori::get(['nama', 'id']);
-        $blogGalleries = BlogGallery::paginate(10);
-
-        return view('admin.blog.edit', compact('blog', 'kategoris','blogGalleries'));
+        return view('admin.blog_galleries.edit', compact('blog', 'gallery'));
     }
 
     /**
@@ -88,13 +83,22 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BlogRequest $request, Blog $blog)
+    public function update(BlogGalleryRequest $request, Blog $blog, BlogGallery $gallery)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->judul, '-') . '-' . time();
-            $blog->update($request->validated() + ['slug' => $slug]);
+            if ($request->images) {
+                File::delete('storage/' . $gallery->images);
+                $images = $request->file('images')->store(
+                    'blog/gallery',
+                    'public'
+                );
+                $gallery->update($request->except('images') + ['images' => $images, 'blog_id' => $blog->id]);
+            } else {
+                $gallery->update($request->validated());
+            }
         }
-        return redirect()->route('blogs.index')->with([
+
+        return redirect()->route('blogs.edit', [$blog])->with([
             'message' => 'Success Updated !',
             'alert-type' => 'info'
         ]);
@@ -106,9 +110,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Blog $blog, BlogGallery $gallery)
     {
-        $blog->delete();
+        File::delete('storage/'. $gallery->images);
+        $gallery->delete();
 
         return redirect()->back()->with([
             'message' => 'Success Deleted !',

@@ -15,6 +15,11 @@ class Blog extends Model
         return $this->belongsTo(BlogKategori::class);
     }
 
+    public function galleries()
+    {
+        return $this->hasMany(BlogGallery::class);
+    }
+
     public function incrementReadCount()
     {
         // $this->timestamps = false;

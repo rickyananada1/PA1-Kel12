@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\DestinasiKategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Requests\Admin\DestinasiKategoriRequest;
 
 class DestinasiKategoriController extends Controller
 {
@@ -37,15 +39,12 @@ class DestinasiKategoriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DestinasiKategoriRequest $request)
     {
-        // validasi data
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-        ]);
-        // Simpan ke dalam basis data
-        $destinasi_kategori = DestinasiKategori::create($validatedData);
+        if ($request->validated()) {
+            $slug = Str::slug($request->nama . '-');
+            DestinasiKategori::create($request->validated() + ['slug' => $slug]);
+        }
 
         // kembalikan ke halaman index dan tampilkan pesan berhasil
         return redirect()->route('destinasikategori.index')->with([
@@ -71,12 +70,10 @@ class DestinasiKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DestinasiKategori $destinasikategori)
     {
-        // Ambil data destinasi_kategori berdasarkan ID
-        $destinasi_kategori = DestinasiKategori::find($id); 
         // Kirim data destinasi_kategori ke view edit.blade.php
-        return view('admin.destinasi_kategori.edit', compact('destinasi_kategori')); 
+        return view('admin.destinasi_kategori.edit', compact('destinasikategori')); 
     }
 
 
@@ -87,19 +84,12 @@ class DestinasiKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DestinasiKategoriRequest $request, DestinasiKategori $destinasikategori)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-        ]);
-
-        // Ambil data buku berdasarkan ID
-        $destinasi_kategori = DestinasiKategori::find($id);
-        $destinasi_kategori->nama = $validatedData['nama'];
-        $destinasi_kategori->deskripsi = $validatedData['deskripsi'];
-        // Simpan data buku yang telah diupdate
-        $destinasi_kategori->save(); 
+        if ($request->validated()) {
+            $slug = Str::slug($request->nama, '-');
+            $destinasikategori->update($request->validated() + ['slug' => $slug]);
+        }
         // Redirect ke halaman lain atau tampilkan pesan sukses
         return redirect()->route('destinasikategori.index')->with('success', 'kategori updated successfully!');
     }
@@ -110,10 +100,9 @@ class DestinasiKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DestinasiKategori $destinasikategori)
     {
-        $destinasi_kategori = DestinasiKategori::find($id);
-        $destinasi_kategori->delete();
+        $destinasikategori->delete();
 
         return redirect()->back()->with([
             'message' => 'Kategori Destinasi berhasil dihapus!',

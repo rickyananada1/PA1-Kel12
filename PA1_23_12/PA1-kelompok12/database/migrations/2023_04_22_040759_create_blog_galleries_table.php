@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDestinasiKategorisTable extends Migration
+class CreateBlogGalleriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateDestinasiKategorisTable extends Migration
      */
     public function up()
     {
-        Schema::create('destinasi_kategoris', function (Blueprint $table) {
+        Schema::create('blog_galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('deskripsi');
-            $table->string('slug')->unique();
+            $table->string('name');
+            $table->text('images');
+            $table->foreignId('blog_id')->constrained('blogs')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateDestinasiKategorisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('destinasi_kategoris');
+        Schema::dropIfExists('blog_galleries');
     }
 }

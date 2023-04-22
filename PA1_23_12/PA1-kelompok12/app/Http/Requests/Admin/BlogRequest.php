@@ -28,7 +28,6 @@ class BlogRequest extends FormRequest
                     return [
                         'judul' => 'required',
                         'kutipan' => 'required',
-                        'gambar' => ['required', 'image', 'mimes:png,jpg,jpeg'],
                         'deskripsi' => 'required',
                         'blog_kategoris_id' => 'required'
                     ];
@@ -38,7 +37,6 @@ class BlogRequest extends FormRequest
                     return [
                         'judul' => 'required',
                         'kutipan' => 'required',
-                        'gambar' => ['image', 'mimes:png,jpg,jpeg'],
                         'deskripsi' => 'required',
                         'blog_kategoris_id' => 'required'
                     ];
