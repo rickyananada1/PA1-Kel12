@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Akomodasi extends Model
 {
     use HasFactory;
+    public function wisata()
+    {
+        return $this->belongsTo(Wisata::class);
+    }
 }

@@ -24,7 +24,7 @@
                                 <label for="nama" class="col-sm-2 col-form-label">Nama Kabupaten</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="nama" value="{{ old('nama') }}"
-                                        id="nama" placeholder="example: 5 tips travel">
+                                        id="nama" placeholder="example: Toba Samosir">
                                 </div>
                             </div>
                             <div class="form-group row border-bottom pb-4">
