@@ -44,12 +44,13 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
-        if($request->validated()){
+        if ($request->validated()) {
             $gambar = $request->file('gambar')->store(
                 // memasukkan gambar ke dalam public/storage/blog/gambar
-                'blog/gambar', 'public'
+                'blog/gambar',
+                'public'
             );
-            $slug = Str::slug($request->title, '-'). '-' . time();
+            $slug = Str::slug($request->title, '-') . '-' . time();
 
             Blog::create($request->except('gambar') + ['slug' => $slug, 'gambar' => $gambar]);
         }
@@ -74,7 +75,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        $kategoris = BlogKategori::get(['nama','id']);
+        $kategoris = BlogKategori::get(['nama', 'id']);
 
         return view('admin.blog.edit', compact('blog', 'kategoris'));
     }
@@ -91,9 +92,10 @@ class BlogController extends Controller
         if ($request->validated()) {
             $slug = Str::slug($request->judul, '-');
             if ($request->gambar) {
-                File::delete('storage/'.$blog->gambar);
+                File::delete('storage/' . $blog->gambar);
                 $gambar = $request->file('gambar')->store(
-                    'blog/gambar', 'public'
+                    'blog/gambar',
+                    'public'
                 );
                 $blog->update($request->except('gambar') + ['slug' => $slug, 'gambar' => $gambar]);
             } else {
@@ -114,7 +116,7 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        File::delete('storage/'. $blog->gambar);
+        File::delete('storage/' . $blog->gambar);
         $blog->delete();
 
         return redirect()->back()->with([

@@ -15,6 +15,13 @@ class CreateKulinersTable extends Migration
     {
         Schema::create('kuliners', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('harga');
+            $table->text('deskripsi');
+            $table->text('gambar1');
+            $table->text('gambar2');
+            $table->text('gambar3');
+            $table->foreignId('kabupaten_id')->constrained('kabupatens')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

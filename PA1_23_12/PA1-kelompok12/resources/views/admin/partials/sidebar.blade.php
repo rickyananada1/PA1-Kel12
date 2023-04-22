@@ -61,6 +61,15 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{Route('kuliner.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-burger"></i>
+                    <p>
+                        {{ __('Kuliner') }}
+                    </p>
+                </a>
+            </li>
+
             {{-- Wisata --}}
             <li class="nav-item">
                 <a href="{{Route('destinasikategori.index')}}" class="nav-link">
