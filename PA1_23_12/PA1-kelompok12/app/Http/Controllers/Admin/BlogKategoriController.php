@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BlogKategori;
+use Illuminate\Support\Str;
+use App\Http\Requests\Admin\BlogKategoriRequest;
+use App\Models\BlogGallery;
 
 class BlogKategoriController extends Controller
 {
@@ -16,9 +19,9 @@ class BlogKategoriController extends Controller
     public function index()
     {
         // mengambil semua data dari tabel blog_kategori
-        $blog_kategoris = blogkategori::all();
+        $blogkategoris = BlogKategori::all();
         // mengembalikan data ke halaman index
-        return view('admin.blog_kategori.index', compact('blog_kategoris'));
+        return view('admin.blog_kategori.index', compact('blogkategoris'));
     }
 
     /**
@@ -38,20 +41,18 @@ class BlogKategoriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogKategoriRequest $request)
     {
         // validasi data
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-        ]);
-        // Simpan ke dalam basis data
-        $blog_kategori = BlogKategori::create($validatedData);
+        if ($request->validated()) {
+            $slug = Str::slug($request->nama . '-');
+            BlogKategori::create($request->validated() + ['slug' => $slug]);
+        }
 
         // kembalikan ke halaman index dan tampilkan pesan berhasil
         return redirect()->route('blogkategori.index')->with([
-            'message' => 'Kategori Blog berhasil ditambahkan!',
-            'alert-type' => 'succes'
+            'message' => 'Success Created!',
+            'alert-type' => 'success'
         ]);
     }
 
@@ -72,12 +73,10 @@ class BlogKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(BlogKategori $blogkategori)
     {
-                // Ambil data blog_kategori berdasarkan ID
-                $blog_kategori = BlogKategori::find($id); 
-                // Kirim data blog_kategori ke view edit.blade.php
-                return view('admin.blog_kategori.edit', compact('blog_kategori')); 
+        // Kirim data blog_kategori ke view edit.blade.php
+        return view('admin.blog_kategori.edit', compact('blogkategori'));
     }
 
     /**
@@ -87,21 +86,15 @@ class BlogKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogKategoriRequest $request, BlogKategori $blogkategori)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required',
-        ]);
-
-        // Ambil data buku berdasarkan ID
-        $blog_kategori = BlogKategori::find($id);
-        $blog_kategori->nama = $validatedData['nama'];
-        $blog_kategori->deskripsi = $validatedData['deskripsi'];
-        // Simpan data buku yang telah diupdate
-        $blog_kategori->save(); 
+        if ($request->validated()) {
+            $slug = Str::slug($request->nama, '-');
+            $blogkategori->update($request->validated() + ['slug' => $slug]);
+        }
         // Redirect ke halaman lain atau tampilkan pesan sukses
-        return redirect()->route('blogkategori.index')->with('success', 'kategori updated successfully!');
+        return redirect()->route('blogkategori.index')->with(
+            ['success', 'kategori updated successfully!']);
     }
 
     /**
@@ -110,13 +103,13 @@ class BlogKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(BlogKategori $blogkategori)
     {
-        $blog_kategori = BlogKategori::find($id);
-        $blog_kategori->delete();
+      
+        $blogkategori->delete();
 
         return redirect()->back()->with([
-            'message' => 'Kategori Blog berhasil dihapus!',
+            'message' => 'Success Delete!',
             'alert-type' => 'danger'
         ]);
     }

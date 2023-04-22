@@ -36,12 +36,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row border-bottom pb-4">
+                            {{-- <div class="form-group row border-bottom pb-4">
                                 <label for="gambar" class="col-sm-2 col-form-label">gambar</label>
                                 <div class="col-sm-10">
                                     <input type="file" name="gambar" class="form-control" id="gambar">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-group row border-bottom pb-4">
                                 <label for="kutipan" class="col-sm-2 col-form-label">Kutipan</label>
                                 <div class="col-sm-10">

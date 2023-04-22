@@ -10,11 +10,6 @@ class BlogKategori extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $fillable = ['nama', 'deskripsi'];
-
-    protected $attributes = [
-        'deskripsi' => '', // Menyediakan nilai default untuk kolom "keterangan"
-    ];
 
     public function blog()
     {

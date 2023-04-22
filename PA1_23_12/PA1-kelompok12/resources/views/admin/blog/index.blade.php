@@ -21,7 +21,6 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Judul Blog</th>
-                                        <th scope="col">Image</th>
                                         <th scope="col">Kutipan</th>
                                         <th scope="col">Kategori</th>
                                         <th scope="col">action</th>
@@ -32,11 +31,6 @@
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $blog->judul }}</td>
-                                            <td>
-                                                <a href="{{ Storage::url($blog->gambar) }}" target="_blank">
-                                                    <img src="{{ Storage::url($blog->gambar) }}" width="100" alt="">
-                                                </a>
-                                            </td>
                                             <td>{{ $blog->kutipan }}</td>
                                             <td>{{ $blog->blog_kategoris_id }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
