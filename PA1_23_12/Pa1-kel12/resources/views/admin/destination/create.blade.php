@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('destination.index') }}" role="button"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('destination.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -72,7 +72,7 @@
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success" id="btn-tambah">Save</button>
                         </form>
                     </div>
                 </div>

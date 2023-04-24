@@ -2,34 +2,9 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="author" content="Untree.co">
-    <link rel="website icon" type="png" href="{{ asset('Template/dist/img/LogoBetaTudia.png') }}">
-
-    <meta name="description" content="" />
-    <meta name="keywords" content="bootstrap, bootstrap5" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ URL::asset('frontend/fonts/icomoon/style.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('frontend/fonts/flaticon/font/flaticon.css') }}">
-
-    <link rel="stylesheet" href="{{ URL::asset('frontend/css/tiny-slider.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('frontend/css/aos.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('frontend/css/flatpickr.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('frontend/css/glightbox.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('frontend/css/style.css') }}">
-    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
-
-
-    <title>Beta &mdash;Tudia?</title>
+    {{-- head css --}}
+    @include('front.partials.head')
+    {{-- head css end --}}
 </head>
 
 <body>
@@ -59,14 +34,12 @@
             <div class="row align-items-center justify-content-start">
                 <div class="col-lg-5">
 
-                    <h1 class="heading" data-aos="fade-up" id="heading">Website Wisata Sekitaran Danau Toba</h1><span
+                    <h1 class="heading" data-aos="fade-up">Website Wisata Sekitaran Danau Toba</h1><span
                         id="i"></span>
-                    <p class="mb-5" data-aos="fade-up">BetaTudia adalah website penyedia informasi dan tips unik untuk
-                        kamu sekalian</p>
-
+                    <h3 class="mb-5" data-aos="fade-up" id="heading" style="color: white;">BetaTudia adalah website
+                        penyedia informasi dan tips unik untuk
+                        kamu sekalian</h3>
                 </div>
-
-
             </div>
         </div>
 
@@ -82,126 +55,11 @@
     @include('front.partials.services')
     {{-- services end --}}
 
-    <div class="section section-3" data-aos="fade-up" data-aos-delay="100">
-        <div class="container">
-            <div class="row align-items-center justify-content-between  mb-5">
-                <div class="col-lg-5" data-aos="fade-up">
-                    <h2 class="heading mb-3">Beberapa Destinasi Favorite</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                        a large language ocean.</p>
-                </div>
-                <div class="col-lg-5 text-md-end" data-aos="fade-up" data-aos-delay="100">
-                    <div id="destination-controls">
-                        <span class="prev me-3" data-controls="prev">
-                            <span class="icon-chevron-left"></span>
-
-                        </span>
-                        <span class="next" data-controls="next">
-                            <span class="icon-chevron-right"></span>
-
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="destination-slider-wrap">
-            <div class="destination-slider">
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-1.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$430</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
-
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-2.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$560</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
-
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-3.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$490</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
-
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-4.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$490</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
+    {{-- card --}}
+    @include('front.partials.card')
+    {{-- card end --}}
 
 
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-5.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$430</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
-
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-6.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$560</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
-
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-7.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$490</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
-
-                <div class="destination">
-                    <div class="thumb">
-                        <img src="{{ URL::asset('frontend/images/img-4.jpg') }}" alt="Image" class="img-fluid">
-                        <div class="price">$490</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                        <span class="meta">Maldives, Repbulic Maldives</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
 
     <div class="section">
         <div class="container">
@@ -223,133 +81,9 @@
         </div>
     </div>
 
-    <div class="section bg-light">
-
-
-
-
-        <h2 class="heading mb-5 text-center">Testimonials</h2>
-
-        <div class="text-center mb-5">
-            <div id="prevnext-testimonial">
-                <span class="prev me-3" data-controls="prev">
-                    <span class="icon-chevron-left"></span>
-
-                </span>
-                <span class="next" data-controls="next">
-                    <span class="icon-chevron-right"></span>
-
-                </span>
-            </div>
-        </div>
-
-        <div class="wide-slider-testimonial-wrap">
-            <div class="wide-slider-testimonial">
-                <div class="item">
-                    <blockquote class="block-testimonial">
-                        <div class="author">
-                            <img src="{{ URL::asset('frontend/images/person_1.jpg') }}"
-                                alt="Free template by TemplateUX">
-                            <h3>John Doe</h3>
-                            <p class="position mb-5">CEO, Founder</p>
-                        </div>
-                        <p>
-                        <div class="quote">&ldquo;</div>
-                        &ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                        there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the
-                        Semantics, a large language ocean.&rdquo;</p>
-                    </blockquote>
-                </div>
-
-                <div class="item">
-                    <blockquote class="block-testimonial">
-                        <div class="author">
-                            <img src="{{ URL::asset('frontend/images/person_2.jpg') }}"
-                                alt="Free template by TemplateUX">
-                            <h3>James Woodland</h3>
-                            <p class="position mb-5">Designer at Facebook</p>
-                        </div>
-                        <p>
-                        <div class="quote">&ldquo;</div>
-                        &ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the
-                        skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her
-                        own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her
-                        way.&rdquo;</p>
-
-                    </blockquote>
-                </div>
-
-                <div class="item">
-                    <blockquote class="block-testimonial">
-                        <div class="author">
-                            <img src="{{ URL::asset('frontend/images/person_3.jpg') }}"
-                                alt="Free template by TemplateUX">
-                            <h3>Rob Smith</h3>
-                            <p class="position mb-5">Product Designer at Twitter</p>
-                        </div>
-                        <p>
-                        <div class="quote">&ldquo;</div>
-                        &ldquo;A small river named Duden flows by their place and supplies it with the necessary
-                        regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your
-                        mouth.&rdquo;</p>
-                    </blockquote>
-                </div>
-
-                <div class="item">
-                    <blockquote class="block-testimonial">
-                        <div class="author">
-                            <img src="{{ URL::asset('frontend/images/person_1.jpg') }}"
-                                alt="Free template by TemplateUX">
-                            <h3>John Doe</h3>
-                            <p class="position mb-5">CEO, Founder</p>
-                        </div>
-                        <p>
-                        <div class="quote">&ldquo;</div>
-                        &ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                        there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the
-                        Semantics, a large language ocean.&rdquo;</p>
-                    </blockquote>
-                </div>
-
-                <div class="item">
-                    <blockquote class="block-testimonial">
-                        <div class="author">
-                            <img src="{{ URL::asset('frontend/images/person_2.jpg') }}"
-                                alt="Free template by TemplateUX">
-                            <h3>James Woodland</h3>
-                            <p class="position mb-5">Designer at Facebook</p>
-                        </div>
-                        <p>
-                        <div class="quote">&ldquo;</div>
-                        &ldquo;When she reached the first hills of the Italic Mountains, she had a last view back on the
-                        skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her
-                        own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her
-                        way.&rdquo;</p>
-
-                    </blockquote>
-                </div>
-
-                <div class="item">
-                    <blockquote class="block-testimonial">
-                        <div class="author">
-                            <img src="{{ URL::asset('frontend/images/person_3.jpg') }}"
-                                alt="Free template by TemplateUX">
-                            <h3>Rob Smith</h3>
-                            <p class="position mb-5">Product Designer at Twitter</p>
-                        </div>
-                        <p>
-                        <div class="quote">&ldquo;</div>
-                        &ldquo;A small river named Duden flows by their place and supplies it with the necessary
-                        regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your
-                        mouth.&rdquo;</p>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div> <!-- /.untree_co-section -->
+    {{-- card --}}
+    {{-- @include('front.partials.testimoni') --}}
+    {{-- card end --}}
 
     <div class="section">
         <div class="container">
@@ -365,8 +99,8 @@
                         <div class="accordion-item">
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">How to download and register?</button>
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How
+                                    to download and register?</button>
                             </h2>
 
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
@@ -526,18 +260,7 @@
 
 
 
-    <div class="py-5 bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 text-center mb-3 mb-lg-0 text-lg-start">
-                    <h3 class="text-white m-0">Jelajahi Sekitaran Toba Disini</h3>
-                </div>
-                <div class="col-lg-5 text-center text-lg-end">
-                    <a href="#" class="btn btn-outline-white">Get started</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- /.site-footer -->
     @include('front.partials.footer')
@@ -565,18 +288,35 @@
 
         var typewriter = new Typewriter(app, {
             loop: false,
-            delay: 150
+            delay: 75
         });
 
-        typewriter.typeString('Website Wisata Sekitaran Danau Toba')
+        typewriter.typeString('Jelajahi keindahan Danau Toba di website kami')
             .pauseFor(1000)
             .deleteAll()
-            .typeString('Website Informasi dan Tips BetaTudia')
+            .typeString('Liburan lebih seru bersama kami di sekitaran Danau Toba')
             .pauseFor(1000)
             .deleteAll()
-            .typeString('BetaTudia')
+            .typeString('Danau Toba merupakan destinasi terbaik di Sumatera Utara')
             .pauseFor(1000)
             .start();
+
+        var app = document.getElementById('text');
+
+        var typewriter = new Typewriter(app, {
+            loop: false,
+            delay: 75
+        });
+
+        typewriter.typeString('Kota Jakarta kota metropolitan, Surga impian para perantau <br> Kusapa“ Horas apa kabar kawan” Hampa hatiku dibalas“ fine, thank you” ')
+                .pauseFor(1000)
+                .deleteAll()
+                .typeString('Liburan lebih seru bersama kami di sekitaran Danau Toba')
+                .pauseFor(1000)
+                .deleteAll()
+                .typeString('Danau Toba merupakan destinasi terbaik di Sumatera Utara')
+                .pauseFor(1000)
+                .start();
     </script>
 </body>
 

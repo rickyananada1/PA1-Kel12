@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(KabupatenSeeder::class);
+        $this->call(DestinationCategorySeeder::class);
+        $this->call(DestinationSeeder::class);
     }
 }

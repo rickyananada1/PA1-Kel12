@@ -13,7 +13,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+ :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -2529,12 +2529,12 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #000;
-  background-color: #5E8B7E;
-  border-color: #5E8B7E; }
+  background-color: #f17945;
+  border-color: #f17945; }
   .btn-primary:hover {
     color: #000;
-    background-color: #5E8B7E;
-    border-color: #5E8B7E; }
+    background-color: #f38d61;
+    border-color: #f28658; }
   .btn-check:focus + .btn-primary, .btn-primary:focus {
     color: #000;
     background-color: #f38d61;

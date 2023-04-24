@@ -38,10 +38,10 @@
                                         </a>
                                     </td>
                                     <td>          
-                                        <form onclick="return confirm('are you sure ?');" class="d-inline-block" action="{{ route('destination.gallery.destroy', [$destination , $gallery]) }}" method="post">
+                                        <form  class="d-inline-block" action="{{ route('destination.gallery.destroy', [$destination , $gallery]) }}" method="post" id="form-hapus">
                                             @csrf 
                                             @method('delete')
-                                            <button class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i> </button>
+                                            <button class="btn btn-sm btn-danger" id="btn-hapus" type="submit"> <i class="fa fa-trash"></i> </button>
                                         </form>                              
                                     </td>
                                 </tr>
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                        
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-success" id="btn-tambah">Save</button>
                     </form>
                 </div>
 <!-- images -->

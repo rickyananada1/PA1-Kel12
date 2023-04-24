@@ -1,37 +1,9 @@
-<!-- /*
-* Template Name: Sterial
-* Template Author: Untree.co
-* Tempalte URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
 <!doctype html>
 <html lang="en">
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<meta name="author" content="Untree.co">
-	<link rel="shortcut icon" href="favicon.png">
-
-	<meta name="description" content="" />
-	<meta name="keywords" content="bootstrap, bootstrap5" />
-	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" href="{{ URL::asset('frontend/fonts/icomoon/style.css')}}">
-	<link rel="stylesheet" href="{{ URL::asset('frontend/fonts/flaticon/font/flaticon.css')}}">
-
-	<link rel="stylesheet" href="{{ URL::asset('frontend/css/tiny-slider.css')}}">
-	<link rel="stylesheet" href="{{ URL::asset('frontend/css/aos.css')}}">
-	<link rel="stylesheet" href="{{ URL::asset('frontend/css/flatpickr.min.css')}}">
-	<link rel="stylesheet" href="{{ URL::asset('frontend/css/glightbox.min.css')}}">
-	<link rel="stylesheet" href="{{ URL::asset('frontend/css/style.css')}}">
-
-
-	<title>Sterial &mdash; Free Bootstrap 5 Website Template by Untree.co </title>
+	{{-- head css --}}
+    @include('front.partials.head')
+    {{-- head css end --}}
 </head>
 <body>
 
@@ -57,7 +29,8 @@
 				<div class="col-lg-6 mx-auto text-center">
 					<p>By <a href="#">John Smith</a> on <a href="#">Feb 27, 2022</a></p>
 					<h1 class="heading" data-aos="fade-up">Blog Post Title</h1>
-					<p data-aos="fade-up">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+					<p data-aos="fade-up">Penuhi dahaga informasimu di sini, jangan ketinggalan update!
+						Blog kami berisi informasi segar seputar Danau toba terbaru. Jangan lewatkan artikel-artikel menarik yang akan memperkaya wawasanmu. Ayo, simak dan rasakan pengalaman baru bersama kami!</p>
 				</div>
 			</div>
 		</div>

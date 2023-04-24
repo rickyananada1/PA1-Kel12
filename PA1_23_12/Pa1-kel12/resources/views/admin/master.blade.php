@@ -116,6 +116,7 @@
                 confirmButtonText: 'Yes, hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $('form').submit();
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
@@ -171,6 +172,38 @@
             }
         })
     });
+
+
+    document.getElementById('btn-tambah').addEventListener('click', function() {
+        Swal.fire({
+            title: 'Data berhasil ditambahkan!',
+            icon: 'success'
+        });
+    });
+
+    $(document).on('click', '#btn-hapus', function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Data akan dihapus!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#form-hapus').submit();
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
+    })
+
     </script>
     @yield('scripts')
 </body>

@@ -1,7 +1,7 @@
 <nav class="site-nav mt-3">
     <div class="container">
 
-        <div class="site-navigation">
+        <div class="site-navigation" id="atas">
             <div class="row">
                 <div class="col-6 col-lg-3">
                     <a href="{{ Route('welcome') }}" class="logo m-0 float-start">BetaTudia?</a>
@@ -9,18 +9,13 @@
                 <div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
+                        <li class="active"><a href="{{ Route('kumpulanberita') }}">Blogs</a></li>
+
                         <li class="has-children">
-                            <a href="{{ Route('kumpulanberita') }}">Blogs</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Berita</a></li>
-                                <li><a href="#">Tips & Triks</a></li>
-                                <li><a href="#">Event</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-children">
-                            <a href="#">Cari Apa?</a>
+                            <a href="#">Apa carik?</a>
                             <ul class="dropdown">
                                 <li><a href="#">Hotel</a></li>
+                                <li><a href="#">Kulineran</a></li>
                                 <li class="has-children">
                                     <a href="#">Destinasi Wisata</a>
                                     <ul class="dropdown">
@@ -29,18 +24,10 @@
                                         <li><a href="#">Religi</a></li>
                                     </ul>
                                 </li>
-                                <li class="has-children">
-                                    <a href="#">Kulineran</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Pedas</a></li>
-                                        <li><a href="#">Manis</a></li>
-                                        <li><a href="#">Unik</a></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="#">Lokasi Wisata</a>
+                            <a href="#">Mau Kemana?</a>
                             <ul class="dropdown">
                                 <li><a href="#">Toba Samosir</a></li>
                                 <li><a href="#">Karo</a></li>

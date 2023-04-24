@@ -1,12 +1,26 @@
+<div class="py-5 bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 text-center mb-3 mb-lg-0 text-lg-start">
+                <h3 class="text-white m-0">Jelajahi Sekitaran Danau Toba Disini</h3>
+            </div>
+            <div class="col-lg-5 text-center text-lg-end">
+                <a href="#atas" class="btn btn-outline-white">Jelajahi</a>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="site-footer">
     <div class="container">
 
         <div class="row">
             <div class="col-lg-4">
                 <div class="widget">
-                    <h3>About Passport<span class="text-primary">.</span> </h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                        there live the blind texts.</p>
+                    <h3>Beta Tudia?<span class="text-primary">.</span> </h3>
+                    <p>Danau Toba memang surgawi <br>
+                        Tak bisa kuungkapkan dengan kata-kata
+                        <br>Biarlah hati ini yang merasakannya <br>
+                        Keindahan yang takkan pernah terlupa</p>
                 </div> <!-- /.widget -->
                 <div class="widget">
                     <h3>Connect</h3>
@@ -68,9 +82,9 @@
                     <script>
                         document.write(new Date().getFullYear());
                     </script>. All Rights Reserved. &mdash; Designed with love by <a
-                        href="https://untree.co">Untree.co</a>
+                        href="https://untree.co">Beta Tudia?</a>
                     <!-- License information: https://untree.co/license/ -->
-                    Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                    Distributed By <a href="https://themewagon.com" target="_blank">Kelompok12</a>
                 </p>
             </div>
         </div> <!-- /.container -->

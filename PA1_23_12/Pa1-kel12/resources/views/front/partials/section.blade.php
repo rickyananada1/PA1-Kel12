@@ -15,16 +15,10 @@
             <div class="col-lg-4 order-lg-1">
 
                 <div>
-                    <h2 class="heading mb-3" data-aos="fade-up" data-aos-delay="100">Explore Sekitaran Toba Bersama Kami</h2>
+                    <h2 class="heading mb-3" data-aos="fade-up" data-aos-delay="100">Jelajahi Sekitaran Danau Toba Bersama Kami</h2>
 
-                    <h4 data-aos="fade-up" data-aos-delay="300">Kota Jakarta kota metropolitan
-
-                        Surga impian para perantau
-                        
-                        Kusapa “Horas apa kabar kawan”
-                        
-                        Hampa hatiku dibalas “fine, thank you”</h4>
-                    <p data-aos="fade-up" data-aos-delay="200">Beragam pesona tujuan destinasi yang ada di Toba dari Budaya, Alam, Bahari ataupun kearifan lokal.</p>
+                    <h4 data-aos="fade-up" data-aos-delay="300">Kota Jakarta kota metropolitan ,Surga impian para perantau
+                        <br>Kusapa “Horas apa kabar kawan”, Hampa hatiku dibalas “fine, thank you”</h4>
 
 
                     <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="{{Route('kumpulanlokasi')}}" class="btn btn-primary">Read more</a></p>

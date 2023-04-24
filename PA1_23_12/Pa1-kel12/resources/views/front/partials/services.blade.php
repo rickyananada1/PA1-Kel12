@@ -5,8 +5,7 @@
             <div class="col-lg-3 mb-4 mb-lg-0">
                 <div class="heading-content" data-aos="fade-up">
                     <h2>Our <span class="d-block">Services</span></h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts.</p>
+                    <p data-aos="fade-up" data-aos-delay="200">Beragam pesona tujuan destinasi yang ada di Toba dari Budaya, Alam, Bahari ataupun kearifan lokal.</p>
                     <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#"
                             class="btn btn-primary">View All</a></p>
                 </div>

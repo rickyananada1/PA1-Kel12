@@ -42,7 +42,7 @@
                                                             class="fa fa-edit"></i></button>
                                                 </form>
                                                 <form
-                                                    onclick="return confirm('are you sure ?');"
+                                                id="btn-hapus"
                                                     action="{{ route('destination.destroy', [$destination]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
