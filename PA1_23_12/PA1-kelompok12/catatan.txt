@@ -1,8 +1,0 @@
-Tujuan Dari penggunaan Request di App/http
-- Agar Controller tidak bertanggung jawab untuk melakukan validasi
-- membantu agar kita tidak mengulangi code yang sama di masa mendatang
-- Jika Controller melakukan validasi maka akan melanggar prinsip single tanggung jawab
-- Jadi Controller hanya perlu melakukan control atas data yang sudah divalidasi
-
-$guarded: Mengizinkan semua kolom untuk diisi melalui mass assignment, kecuali kolom yang tercantum pada $guarded. Sebagai contoh, jika pada model terdapat $guarded = ['id'], maka seluruh kolom dapat diisi kecuali kolom id.
-$fillable: Mengizinkan hanya kolom-kolom yang tercantum pada $fillable untuk diisi melalui mass assignment. Semua kolom lainnya tidak dapat diisi melalui mass assignment. Sebagai contoh, jika pada model terdapat $fillable = ['nama', 'deskripsi'], maka hanya kolom nama dan deskripsi yang dapat diisi melalui mass assignment, sementara kolom lainnya tidak bisa.
