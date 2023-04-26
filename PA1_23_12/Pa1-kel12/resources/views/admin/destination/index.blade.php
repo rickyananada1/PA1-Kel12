@@ -9,6 +9,10 @@
     class="fa-solid fa-plus"></i></a>    
 @endsection
 
+@push('styles')
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+@endpush
+
 @section('content')
     <div class="section-body">
         <div class="row">
@@ -63,3 +67,12 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#example1').DataTable();
+        });
+    </script>
+    <script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
+@endpush

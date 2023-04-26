@@ -19,7 +19,9 @@
     <link rel="website icon" type="png" href="{{ asset('Template/dist/img/LogoBetaTudia.png') }}">
     <!-- Sweet Alert-->
     <link rel="stylesheet" href="{{ asset('Template/plugins/sweetalert2/sweetalert2.min.css') }}">
-    @yield('styles')
+    
+    @stack('styles')
+    
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -205,7 +207,8 @@
     })
 
     </script>
-    @yield('scripts')
+    @stack('scripts')
+
 </body>
 
 </html>
