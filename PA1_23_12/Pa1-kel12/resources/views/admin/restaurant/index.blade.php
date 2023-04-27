@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-    List Akomodasi
+    List Tempat Makan
 @endsection
 
 @section('subtitle')

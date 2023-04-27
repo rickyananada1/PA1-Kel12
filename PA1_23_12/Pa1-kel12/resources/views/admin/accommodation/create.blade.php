@@ -9,14 +9,6 @@
         Kembali</a>
 @endsection
 
-@push('styles')
-    <style>
-        .ck-editor__editable_inline {
-            min-height: 200px;
-        }
-    </style>
-@endpush
-
 @section('content')
     <!-- Main content -->
     <div class="content">
@@ -93,6 +85,14 @@
     </div>
     <!-- /.content -->
 @endsection
+
+@push('styles')
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+    </style>
+@endpush
 
 @push('scripts')
     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
