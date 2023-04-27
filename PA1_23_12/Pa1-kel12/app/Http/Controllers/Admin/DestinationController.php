@@ -20,7 +20,7 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        $destinations = Destination::paginate(10);
+        $destinations = Destination::with('DestinationCategory')->paginate(10);
 
         return view('admin.destination.index', compact('destinations'));
     }

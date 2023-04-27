@@ -25,6 +25,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Judul Blog</th>
+                                        <th scope="col">Gambar</th>
                                         <th scope="col">Kutipan</th>
                                         <th scope="col">Kategori</th>
                                         <th scope="col">action</th>
@@ -35,6 +36,9 @@
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $blog->title }}</td>
+                                            <td>
+                                                <img src="{{ Storage::url(optional($blog->galleries->first())->images)}}" alt="" class="popular__img" width="100"/>
+                                            </td>
                                             <td>{{ $blog->excerpt }}</td>
                                             <td>{{ $blog->blog_category_id }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">

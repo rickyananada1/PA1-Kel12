@@ -25,6 +25,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Destinasi</th>
+                                        <th scope="col">Gamber</th>
                                         <th scope="col">Tiket</th>
                                         <th scope="col">Lokasi</th>
                                         <th scope="col">action</th>
@@ -35,6 +36,9 @@
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $destination->name }}</td>
+                                            <td>
+                                                <img src="{{ Storage::url(optional($destination->galleries->first())->images)}}" alt="" class="popular__img" width="100"/>
+                                            </td>
                                             <td>{{ $destination->ticket }}</td>
                                             <td>{{ $destination->destination_category_id }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
