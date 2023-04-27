@@ -14,6 +14,7 @@
                         <li class="has-children">
                             <a href="#">Apa carik?</a>
                             <ul class="dropdown">
+                                <li><a href="{{Route('destinations.index')}}">Destinasi</a></li>
                                 <li><a href="#">Hotel</a></li>
                                 <li><a href="#">Kulineran</a></li>
                                 <li class="has-children">

@@ -19,6 +19,9 @@ use \App\Http\Controllers\Admin\DestinationCategoryController;
 |
 */
 
+
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
+require __DIR__.'/auth.php';
 Route::middleware(['admin'])->group(function() {
 
     Route::resource('kabupaten', \App\Http\Controllers\Admin\KabupatenController::class)->except('show');
@@ -32,37 +35,23 @@ Route::middleware(['admin'])->group(function() {
     Route::resource('restaurant', \App\Http\Controllers\Admin\RestaurantController::class)->except('show');
     Route::get('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
-    // Route::post('/galleries', [GalleryController::class ,'store'])->name('galleries.store');
-    // Route::post('/galleries', 'Admin\GalleryController@store')->name('galleries.store');
-
-
-
 });
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
 
 
-
-
-
-
-
-
-
-
-
-
-/*--------------Login With Google-------------- */
+/* ================================Login With Google============================================== */
 Route::get('auth/google',[LoginWithGoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']);
-/*--------------Login With Google End-------------- */
+/* ================================Login With Google============================================== */
 
-/* -----------------------Tampian front----------------- */
+/*==================================Frontend================================== */
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+
+Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations.index');
+Route::get('destinations/{destination:slug}',[\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
+
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
 Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
 Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
-/* ------------------------Tampian front end-------------------------*/
+/*==================================Frontend================================== */
