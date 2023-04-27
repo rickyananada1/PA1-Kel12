@@ -11,4 +11,9 @@ class DestinationGallery extends Model
 
     protected $guarded = ['id'];
 
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class);
+    }
+
 }

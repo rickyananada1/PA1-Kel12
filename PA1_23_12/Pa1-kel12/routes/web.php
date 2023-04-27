@@ -43,16 +43,6 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(
 require __DIR__.'/auth.php';
 
 
-
-
-
-
-
-
-
-
-
-
 /*--------------Login With Google-------------- */
 Route::get('auth/google',[LoginWithGoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']);
@@ -64,4 +54,9 @@ Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tenta
 Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
 Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
-/* ------------------------Tampian front end-------------------------*/
+
+/* Destination */
+Route::get('/destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations');
+Route::get('/destinations.detail', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
+
+/* ======================================================= front ================================================================ */

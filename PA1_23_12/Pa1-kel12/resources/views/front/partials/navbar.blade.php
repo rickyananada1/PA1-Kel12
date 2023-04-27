@@ -14,16 +14,17 @@
                         <li class="has-children">
                             <a href="#">Apa carik?</a>
                             <ul class="dropdown">
+                                <li><a href="{{route('destinations')}}">Destinasi Wisata</a></li>
                                 <li><a href="#">Hotel</a></li>
                                 <li><a href="#">Kulineran</a></li>
-                                <li class="has-children">
+                                {{-- <li class="has-children">
                                     <a href="#">Destinasi Wisata</a>
                                     <ul class="dropdown">
                                         <li><a href="#">Alami</a></li>
                                         <li><a href="#">Buatan</a></li>
                                         <li><a href="#">Religi</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <li class="has-children">

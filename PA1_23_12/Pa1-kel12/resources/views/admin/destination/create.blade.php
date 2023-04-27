@@ -5,9 +5,18 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('destination.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('destination.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
+
+@push('styles')
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+    </style>
+@endpush
 
 @section('content')
     <!-- Main content -->
@@ -33,7 +42,7 @@
                                         id="ticket" placeholder="example: 50k">
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row border-bottom pb-4">
                                 <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                 <div class="col-sm-10">
@@ -45,7 +54,8 @@
                             <div class="form-group row border-bottom pb-4">
                                 <label for="destination_category_id" class="col-sm-2 col-form-label">Kategory</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="destination_category_id" name="destination_category_id">
+                                    <select class="form-control" id="destination_category_id"
+                                        name="destination_category_id">
                                         <option value="">--Pilih--</option>
                                         @foreach ($destinationCategories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -83,16 +93,7 @@
     <!-- /.content -->
 @endsection
 
-
-@section('styles')
-    <style>
-        .ck-editor__editable_inline {
-            min-height: 200px;
-        }
-    </style>
-@endsection
-
-@section('scripts')
+@push('scripts')
     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
@@ -101,4 +102,4 @@
                 console.error(error);
             });
     </script>
-@endsection
+@endpush

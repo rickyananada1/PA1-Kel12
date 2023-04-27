@@ -92,15 +92,15 @@
                             @endsection
 
 
-                            @section('styles')
+                            @push('styles')
                                 <style>
                                     .ck-editor__editable_inline {
                                         min-height: 200px;
                                     }
                                 </style>
-                            @endsection
+                            @endpush
 
-                            @section('scripts')
+                            @push('scripts')
                                 <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
                                 <script>
                                     ClassicEditor
@@ -109,4 +109,4 @@
                                             console.error(error);
                                         });
                                 </script>
-                            @endsection
+                            @endpush

@@ -75,11 +75,11 @@ class DestinationController extends Controller
      */
     public function edit(Destination $destination)
     {
-        $destinationGalleries = DestinationGallery::paginate(10);
+        $destinationGalleries = DestinationGallery::all();
         $destinationCategories = DestinationCategory::all();
         $kabupatens = Kabupaten::all();
 
-        return view('admin.destination.edit', compact('destinationGalleries', 'destination', 'destinationCategories', 'kabupatens'));
+        return view('admin.destination.edit', compact('destination', 'destinationGalleries', 'destinationCategories', 'kabupatens'));
     }
 
     /**
