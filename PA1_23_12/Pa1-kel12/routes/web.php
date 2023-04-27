@@ -30,7 +30,8 @@ Route::middleware(['admin'])->group(function() {
     Route::resource('destination.gallery', \App\Http\Controllers\Admin\DestinationGalleryController::class)->except(['create', 'index','show', 'update']);
     Route::resource('accommodation', \App\Http\Controllers\Admin\AccommodationController::class)->except('show');
     Route::resource('restaurant', \App\Http\Controllers\Admin\RestaurantController::class)->except('show');
-
+    Route::get('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
     // Route::post('/galleries', [GalleryController::class ,'store'])->name('galleries.store');
     // Route::post('/galleries', 'Admin\GalleryController@store')->name('galleries.store');
 
