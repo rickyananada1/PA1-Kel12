@@ -1,3 +1,10 @@
+<style>
+    .tulisan {
+        color: #FFFFFF; /* warna tulisan */
+        mix-blend-mode: difference; /* efek blend */
+    }
+</style>
+
 <nav class="site-nav mt-3">
     <div class="container">
 

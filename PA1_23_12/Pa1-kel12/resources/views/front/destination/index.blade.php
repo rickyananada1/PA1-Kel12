@@ -49,18 +49,19 @@
                 @foreach ($destinations as $destination)
                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="media-entry">
-                            <a href="index.html">
+                            <a href="{{ Route('destinations.show', $destination->slug) }}">
                                 <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
                                     alt="Image" class="img-fluid">
                             </a>
                             <div class="bg-white m-body">
                                 <span class="date">{{ $destination->updated_at->format('F j, Y') }}</span>
-                                <h3><a href="index.html">{{ $destination->name }}</a></h3>
-                                <p>{{ Str::limit($destination->description, 50) }}</p>
+                                <h3><a href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a></h3>
+                                <p>{!! Str::limit($destination->description, 50) !!}</p>
 
-                                <a href="{{Route('destinations.show',$destination->slug)}}" class="more d-flex align-items-center float-start">
-                                <span class="label">Baca..</span>
-                                <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+                                <a href="{{ Route('destinations.show', $destination->slug) }}"
+                                    class="more d-flex align-items-center float-start">
+                                    <span class="label">Baca selengkapnya..</span>
+                                    <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
                                 </a>
                             </div>
                         </div>

@@ -55,3 +55,7 @@ Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name(
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
 Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
 /*==================================Frontend================================== */
+
+Route::get('/test' ,function(){
+    return view('front.pages.blog');
+});

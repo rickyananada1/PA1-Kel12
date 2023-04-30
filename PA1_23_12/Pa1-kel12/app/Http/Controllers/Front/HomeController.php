@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; // Tambahkan baris ini
+use App\Models\Destination;
 
 class HomeController extends Controller
 {
     public function welcome()
     {
-        return view('front.welcome');
+        $destinations = Destination::with('galleries')->get();
+
+        return view('front.welcome', compact('destinations'));
     }
     public function tentangkami()
     {

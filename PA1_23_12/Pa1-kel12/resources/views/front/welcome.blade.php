@@ -1,14 +1,8 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    {{-- head css --}}
-    @include('front.partials.head')
-    {{-- head css end --}}
-</head>
+{{-- head css --}}
+@include('front.partials.head')
+{{-- head css end --}}
 
 <body>
-
     <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close">
@@ -116,8 +110,8 @@
                         <div class="accordion-item">
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false"
-                                    aria-controls="collapseTwo">How to create your paypal account?</button>
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How
+                                    to create your paypal account?</button>
                             </h2>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#accordion_1">
@@ -151,8 +145,8 @@
                         <div class="accordion-item">
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFour" aria-expanded="false"
-                                    aria-controls="collapseFour">We are better than others?</button>
+                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">We
+                                    are better than others?</button>
                             </h2>
 
                             <div id="collapseFour" class="collapse" aria-labelledby="headingThree"
@@ -174,89 +168,39 @@
     </div>
 
 
-    <div class="section">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-12"data-aos="fade-up" data-aos-delay="0">
-
-                    <h2 class="heading mb-5">Recent Posts</h2>
-                </div>
-            </div>
-            <div class="row align-items-stretch">
-                <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="media-entry">
-                        <a href="#">
-                            <img src="{{ URL::asset('frontend/images/gal_1.jpg') }}" alt="Image"
-                                class="img-fluid">
-                        </a>
-                        <div class="bg-white m-body">
-                            <span class="date">May 14, 2020</span>
-                            <h3><a href="#">Far far away, behind the word mountains</a></h3>
-                            <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-
-                            <a href="single.html" class="more d-flex align-items-center float-start">
-                                <span class="label">Read More</span>
-                                <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-                            </a>
-                        </div>
+     <!--============================================ Recent Post ==============================================-->
+     <div class="section">
+         <div class="container">
+             
+             <div class="row">
+                 <div class="col-12"data-aos="fade-up" data-aos-delay="0">
+                     
+                     <h2 class="heading mb-5">Recent Posts</h2>
                     </div>
                 </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="media-entry">
-                        <a href="#">
-                            <img src="{{ URL::asset('frontend/images/gal_2.jpg') }}" alt="Image"
+                <div class="row align-items-stretch">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="media-entry">
+                            <a href="#">
+                                <img src="{{ URL::asset('frontend/images/gal_1.jpg') }}" alt="Image"
                                 class="img-fluid">
-                        </a>
-                        <div class="bg-white m-body">
-                            <span class="date">May 14, 2020</span>
-                            <h3><a href="#">Far far away, behind the word mountains</a></h3>
-                            <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-
-                            <a href="single.html" class="more d-flex align-items-center float-start">
-                                <span class="label">Read More</span>
-                                <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
                             </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="media-entry">
-                        <a href="#">
-                            <img src="{{ URL::asset('frontend/images/gal_3.jpg') }}" alt="Image"
-                                class="img-fluid">
-                        </a>
-                        <div class="bg-white m-body">
-                            <span class="date">May 14, 2020</span>
-                            <h3><a href="#">Far far away, behind the word mountains</a></h3>
-                            <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-                            <a href="single.html" class="more d-flex align-items-center float-start">
-                                <span class="label">Read More</span>
-                                <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-                    <div class="media-entry">
-                        <a href="#">
-                            <img src="{{ URL::asset('frontend/images/gal_4.jpg') }}" alt="Image"
-                                class="img-fluid">
-                        </a>
-                        <div class="bg-white m-body">
-                            <span class="date">May 14, 2020</span>
-                            <h3><a href="#">Far far away, behind the word mountains</a></h3>
-                            <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-                            <a href="single.html" class="more d-flex align-items-center float-start">
-                                <span class="label">Read More</span>
-                                <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-                            </a>
+                            <div class="bg-white m-body">
+                                <span class="date">May 14, 2020</span>
+                                <h3><a href="#">Far far away, behind the word mountains</a></h3>
+                                <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+                                
+                                <a href="single.html" class="more d-flex align-items-center float-start">
+                                    <span class="label">Read More</span>
+                                    <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!--============================================ Recent Post ==============================================-->
 
 
 
@@ -308,15 +252,17 @@
             delay: 75
         });
 
-        typewriter.typeString('Kota Jakarta kota metropolitan, Surga impian para perantau <br> Kusapa“ Horas apa kabar kawan” Hampa hatiku dibalas“ fine, thank you” ')
-                .pauseFor(1000)
-                .deleteAll()
-                .typeString('Liburan lebih seru bersama kami di sekitaran Danau Toba')
-                .pauseFor(1000)
-                .deleteAll()
-                .typeString('Danau Toba merupakan destinasi terbaik di Sumatera Utara')
-                .pauseFor(1000)
-                .start();
+        typewriter.typeString(
+                'Kota Jakarta kota metropolitan, Surga impian para perantau <br> Kusapa“ Horas apa kabar kawan” Hampa hatiku dibalas“ fine, thank you” '
+                )
+            .pauseFor(1000)
+            .deleteAll()
+            .typeString('Liburan lebih seru bersama kami di sekitaran Danau Toba')
+            .pauseFor(1000)
+            .deleteAll()
+            .typeString('Danau Toba merupakan destinasi terbaik di Sumatera Utara')
+            .pauseFor(1000)
+            .start();
     </script>
 </body>
 

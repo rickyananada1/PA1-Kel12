@@ -45,6 +45,7 @@
                                             <option value="{{ $kabupaten->id }}">{{ $kabupaten->name }}</option>
                                         @endforeach
                                     </select>
+                                    
                                 </div>
                             </div>
                             <div class="form-group row border-bottom pb-4">
@@ -83,7 +84,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
-            .create(document.querySelector('#deskripsi'))
+            .create(document.querySelector('#description'))
             .catch(error => {
                 console.error(error);
             });

@@ -25,94 +25,21 @@
 
     <div class="destination-slider-wrap">
         <div class="destination-slider">
-            <div class="destination">
+            
+            @foreach ($destinations as $destination)
+                
+            <div class="destination" style="width: 50px">
                 <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-1.jpg') }}" alt="Image" class="img-fluid">
+                    <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}" alt="Image" class="img-fluid">
                     <div class="price">$430</div>
                 </div>
                 <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
+                    <h3><a href="#">{{ $destination->name }}</a></h3>
                     <span class="meta">Maldives, Repbulic Maldives</span>
                 </div>
             </div>
-
-            <div class="destination">
-                <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-2.jpg') }}" alt="Image" class="img-fluid">
-                    <div class="price">$560</div>
-                </div>
-                <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
-                </div>
-            </div>
-
-            <div class="destination">
-                <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-3.jpg') }}" alt="Image" class="img-fluid">
-                    <div class="price">$490</div>
-                </div>
-                <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
-                </div>
-            </div>
-
-            <div class="destination">
-                <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-4.jpg') }}" alt="Image" class="img-fluid">
-                    <div class="price">$490</div>
-                </div>
-                <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
-                </div>
-            </div>
-
-
-            <div class="destination">
-                <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-5.jpg') }}" alt="Image" class="img-fluid">
-                    <div class="price">$430</div>
-                </div>
-                <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
-                </div>
-            </div>
-
-            <div class="destination">
-                <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-6.jpg') }}" alt="Image" class="img-fluid">
-                    <div class="price">$560</div>
-                </div>
-                <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
-                </div>
-            </div>
-
-            <div class="destination">
-                <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-7.jpg') }}" alt="Image" class="img-fluid">
-                    <div class="price">$490</div>
-                </div>
-                <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
-                </div>
-            </div>
-
-            <div class="destination">
-                <div class="thumb">
-                    <img src="{{ URL::asset('frontend/images/img-4.jpg') }}" alt="Image" class="img-fluid">
-                    <div class="price">$490</div>
-                </div>
-                <div class="mt-4">
-                    <h3><a href="#">Paradise Beach, Palawan Island</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
-                </div>
-            </div>
+            
+            @endforeach
 
         </div>
     </div>
