@@ -16,8 +16,8 @@ class KabupatenSeeder extends Seeder
     {
         $kabupatens = [
             [
-                'name' => 'Toba Samosir',
-                'slug' => 'kabupaten-Toba-Samosir',
+                'name' => 'Toba',
+                'slug' => 'kabupaten-Toba',
                 'logo' => 'kabupaten/logo/TobaSamosir.png',
                 'description' => 'Kabupaten Toba Samosir ini beribukota di Balige. Penduduk aslinya adalah Suku Batak Toba. Bupati Toba Samosir saat ini adalah Ir Darwin Siagian. Wisata andalan kabupaten ini adalah Pantai Lumban Bulbul dan Air terjun Situmurun.'
             ],
@@ -34,7 +34,7 @@ class KabupatenSeeder extends Seeder
                 'description' => 'Kabupaten Tapanuli Utara adalah kabupaten induk dari tiga kabupaten (Kabupaten Toba Samosir, Kabupaten Humbang Hasundutan dan Kabupaten Samosir). Setelah dimekarkan menjadi beberapa kabupaten tersebut, wilayah Tapanuli Utara yang ikut mengelilingi Danau Toba adalah Muara. Kabupaten Tapanuli Utara beribukota di Tarutung '
             ],
             [
-                'name' => 'Humbang Hasusutan',
+                'name' => 'Humbang Hasudutan',
                 'slug' => 'kabupaten-Humbang-hasudutan',
                 'logo' => 'kabupaten/logo/HumbangHasudutan.png',
                 'description' => 'Sungai terbesar yang dominan adalah Aek Silang yang bersumber dari air terjun yang tercurah dari bentangan perbukitan. Sungai kedua yang lebih kecil bernama Aek Simangira. Keduanya mengaliri beberapa desa dan bermuara di Danau Toba. Suku asli kabupaten Humbang Hasundutan adalah suku Batak Toba.'

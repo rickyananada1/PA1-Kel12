@@ -3,9 +3,7 @@
         <div class="row align-items-center justify-content-between  mb-5">
             <div class="col-lg-5" data-aos="fade-up">
                 <h2 class="heading mb-3">Beberapa Destinasi Favorite</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                    a large language ocean.</p>
+                <p>Terlepas dari keindahan alamnya, Danau Toba juga memiliki beberapa destinasi wisata populer yang bisa Anda kunjungi. Destinasi-destinasi ini menawarkan pemandangan alam yang menakjubkan dan berbagai aktivitas yang menyenangkan</p>
             </div>
             <div class="col-lg-5 text-md-end" data-aos="fade-up" data-aos-delay="100">
                 <div id="destination-controls">

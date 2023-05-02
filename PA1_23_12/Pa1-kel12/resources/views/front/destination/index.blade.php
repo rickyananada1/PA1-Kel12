@@ -56,7 +56,7 @@
                             <div class="bg-white m-body">
                                 <span class="date">{{ $destination->updated_at->format('F j, Y') }}</span>
                                 <h3><a href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a></h3>
-                                <p>{!! Str::limit($destination->description, 50) !!}</p>
+                                <p>{{ Str::limit(strip_tags($destination->description), 100) }}</p>
 
                                 <a href="{{ Route('destinations.show', $destination->slug) }}"
                                     class="more d-flex align-items-center float-start">
@@ -88,7 +88,7 @@
 
     <!-- /.site-footer -->
     @include('front.partials.footer')
-
+    
     <!-- Preloader -->
     <div id="overlayer"></div>
     <div class="loader">
@@ -96,17 +96,10 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
+    
+    
+    @include('front.partials.script')
 
-
-    <script src="{{ URL::asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/tiny-slider.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/aos.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/navbar.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/counter.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/rellax.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/flatpickr.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/glightbox.min.js') }}"></script>
-    <script src="{{ URL::asset('frontend/js/custom.js') }}"></script>
 </body>
 
 </html>

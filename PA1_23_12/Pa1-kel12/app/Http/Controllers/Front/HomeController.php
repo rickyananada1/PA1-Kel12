@@ -14,6 +14,7 @@ class HomeController extends Controller
 
         return view('front.welcome', compact('destinations'));
     }
+    
     public function tentangkami()
     {
         return view('front.tentangkami');
