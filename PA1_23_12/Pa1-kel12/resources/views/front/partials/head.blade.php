@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/glightbox.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/style.css') }}">
+
+    <!-- Tambahan -->
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"> --}}
     {{-- <link rel="stylesheet" href="{{ URL::asset('frontend/css/style2.css') }}"> --}}
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 
