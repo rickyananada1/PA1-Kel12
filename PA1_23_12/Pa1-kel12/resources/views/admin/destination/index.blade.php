@@ -25,7 +25,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Destinasi</th>
-                                        <th scope="col">Gamber</th>
+                                        <th scope="col">Gambaqr</th>
                                         <th scope="col">Tiket</th>
                                         <th scope="col">Lokasi</th>
                                         <th scope="col">action</th>

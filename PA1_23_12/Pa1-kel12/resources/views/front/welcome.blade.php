@@ -62,12 +62,12 @@
                     <img src="{{ URL::asset('frontend/images/img-1.jpg') }}" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="heading mb-4">Sweet Memories Come To Life Again</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
-                        a large language ocean.</p>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
-                        is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    <h2 class="heading mb-4">Bersama kami dan dapatkan kenangan manis untuk dikenang</h2>
+                    <p>Mengunjungi website wisata sekitaran Toba membawa kenangan manis yang tak terlupakan, seperti
+                        merasakan keindahan alamnya yang menakjubkan dan merasakan kehangatan keramahan penduduk
+                        setempat. 
+                    </p>
+                    <p>Semua itu telah kami sajikan agar menjadi sebuah kenangan manis yang selalu terukir dalam ingatan dan hati.</p>
                     <p class="my-4" data-aos="fade-up" data-aos-delay="200"><a href="#"
                             class="btn btn-primary">Read more</a></p>
                 </div>
@@ -168,39 +168,39 @@
     </div>
 
 
-     <!--============================================ Recent Post ==============================================-->
-     <div class="section">
-         <div class="container">
-             
-             <div class="row">
-                 <div class="col-12"data-aos="fade-up" data-aos-delay="0">
-                     
-                     <h2 class="heading mb-5">Recent Posts</h2>
-                    </div>
+    <!--============================================ Recent Post ==============================================-->
+    <div class="section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12"data-aos="fade-up" data-aos-delay="0">
+
+                    <h2 class="heading mb-5">Recent Posts</h2>
                 </div>
-                <div class="row align-items-stretch">
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                        <div class="media-entry">
-                            <a href="#">
-                                <img src="{{ URL::asset('frontend/images/gal_1.jpg') }}" alt="Image"
+            </div>
+            <div class="row align-items-stretch">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="media-entry">
+                        <a href="#">
+                            <img src="{{ URL::asset('frontend/images/gal_1.jpg') }}" alt="Image"
                                 class="img-fluid">
+                        </a>
+                        <div class="bg-white m-body">
+                            <span class="date">May 14, 2020</span>
+                            <h3><a href="#">Far far away, behind the word mountains</a></h3>
+                            <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+
+                            <a href="single.html" class="more d-flex align-items-center float-start">
+                                <span class="label">Read More</span>
+                                <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
                             </a>
-                            <div class="bg-white m-body">
-                                <span class="date">May 14, 2020</span>
-                                <h3><a href="#">Far far away, behind the word mountains</a></h3>
-                                <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
-                                
-                                <a href="single.html" class="more d-flex align-items-center float-start">
-                                    <span class="label">Read More</span>
-                                    <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--============================================ Recent Post ==============================================-->
+    </div>
+    <!--============================================ Recent Post ==============================================-->
 
 
 
@@ -245,7 +245,7 @@
 
         typewriter.typeString(
                 'Kota Jakarta kota metropolitan, Surga impian para perantau <br> Kusapa“ Horas apa kabar kawan” Hampa hatiku dibalas“ fine, thank you” '
-                )
+            )
             .pauseFor(1000)
             .deleteAll()
             .typeString('Liburan lebih seru bersama kami di sekitaran Danau Toba')

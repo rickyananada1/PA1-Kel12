@@ -74,6 +74,63 @@ class DestinationSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Pemandian air Soda',
+                'slug' => 'Pemandian-air-Soda',
+                'ticket' => '15.000',
+                'location' => 'Tapanuli Utara',
+                'destination_category_id' => 1,
+                'kabupaten_id' => 3,
+                'description' => 'Dari namanya saja kamu sudah bisa mengetahui bahwa objek wisata di Tapanuli Utara ini sangat unik. Bagaimana tidak? Berbeda dengan pemandian pada umumnya, di Pemandian Air Soda Parbubu kamu bisa berendam di kolam yang airnya mengeluarkan buih-buih gas layaknya air soda! Pemandian sejenis ini sendiri hanya terdapat dua saja di dunia, lho. Selain di Desa Parbubu, kamu bisa menemukan pemandian air soda di Venezuela.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Air panas Sipaholon',
+                'slug' => 'Air-panas-Sipaholon',
+                'ticket' => '15.000',
+                'location' => 'Tapanuli Utara',
+                'destination_category_id' => 1,
+                'kabupaten_id' => 3,
+                'description' => 'Pemandian air panas yang terletak di Situmeang Habinsaran, Kecamatan Sipoholon, Tapanuli Utara ini memiliki banyak persamaan dengan Pamukkale. Di setiap sudutnya, ada pegunungan pasir yang memancarkan warna putih bak kapas. Selain itu, aliran air panas dengan suhu 40 hingga 70 derajat celcius menjadikan tempat ini serasa surga lain di tanah Indonesia. Liburan ke sini, dijamin tidak ingin pulang.',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Pulau simamora',
+                'slug' => 'Pulau-simamora',
+                'ticket' => '0',
+                'location' => 'Tapanuli Utara',
+                'destination_category_id' => 1,
+                'kabupaten_id' => 4,
+                'description' => 'Pulau Simamora adalah sebuah pulau yang tidak berpenghuni. Bukan karena, kondisi wilayahnya yang kecil. Melainkan, topografi dari pulau ini sendiri yang kurang ramah untuk dihuni. Perbukitan dengan pepohonan dan bebatuan yang begitu banyak menghiasai kawasan ini.
+                Sehingga, saat anda mengunjunginya. Anda hanya bisa duduk di sampan dan melihat lebih dekat lagi pesona dari Simamora. Keindahan Pulau Simamora memang mengesankan nurani. Gundukan yang terlihat dari jauh mengingatkan kita akan sebuah gambar pemandangan anak-anak mengenai sebuah pulau. Apalagi, dengan langitnya yang biru mempesona. Waktu berkunjung yang paling tepat adalah pukul 9 hingga 10 pagi.
+                ',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Taman wisata iman',
+                'slug' => 'Taman-wisata-iman',
+                'ticket' => 'Harga Tiket Masuk
+                Dewasa	: Rp10.000
+                Anak-anak	: Rp5.000
+                Parkir
+                Roda Dua	: Rp2.000
+                Roda Empat : Rp5.000
+                Penginapan	: Rp150.00 - 300.000
+                Penyewaan Aula : Rp400.000
+                ',
+                'location' => 'Tapanuli Utara',
+                'destination_category_id' => 3,
+                'kabupaten_id' => 5,
+                'description' => 'Taman Wisata Iman Sitinjo (TWI Sitinjo) merupakan salah satu destinasi wisata unggulan kabupaten Dairi. Destinasi wisata ini disebut-sebut merupakan satu dari tujuh wisata paling unik dan langka di dunia. Kawasannya menyajikan wisata yang menggabungkan konsep wisata religi dengan wisata alam.
+                Taman Wisata Iman terletak di sebuah perbukitan di Kecamatan Sitinjo, Sidikalang. Kawasan ini menyuguhkan sejumlah tempat peribadatan dari agama-agama yang ada di Indonesia. Selain itu wisatawan bisa menyaksikan dan menikmati indahnya panorama alam Kabupaten Dairi.
+                Jam Buka
+                Senin - Minggu : 06.00 - 18.30',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
             // tambahkan data destinasi lainnya sesuai kebutuhan
         ];
         foreach ($destinations as $destination) {
