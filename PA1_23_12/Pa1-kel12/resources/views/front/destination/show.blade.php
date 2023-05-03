@@ -15,6 +15,11 @@
     <div class="container-fluid bg-primary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h3 class="display-3 font-weight-bold text-white">Destinasi </h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="{{route('destinations.index')}}">Home</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">Destinasi</p>
+              </div>
         </div>
     </div>
     <!-- Header End -->
@@ -50,10 +55,12 @@
         <div class="row pt-5">
             <div class="col-lg-8">
                 <div class="d-flex flex-column text-left mb-3">
-                    <p class="section-title pr-5">
-                        <span class="pr-2">{{ $destination->location }}</span>
-                    </p>
                     <h1 class="mb-3">{{ $destination->name }}</h1>
+                    <p class="section-title pr-5">
+                        <span class="pr-2">{{ $destination->location }}</span><br>
+                        <span class="date">Created {{ $destination->created_at->format('F j, Y') }}</span>
+                        <span class="date">Updated {{ $destination->updated_at->format('F j, Y') }}</span>
+                    </p>
                     <hr>
                 </div>
                 <!-- =============================================Image====================================================-->
@@ -109,7 +116,7 @@
                                         class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mx-3">
                                         <img class="img-fluid"
                                             src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
-                                            style="width: 80px; height: 80px" />
+                                            style="width: 80px; height: 80px" />&nbsp;
                                         <div class="pl-3">
                                             <h5 class="">{{ $destination->name }}</h5>
                                             <div class="d-flex">

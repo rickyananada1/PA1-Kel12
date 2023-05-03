@@ -18,22 +18,28 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <style>
+        .gambar {
+            height: 200px; /* ganti ukuran yang diinginkan */
+            height: 400px; /**/
+            object-fit: cover;
+        }
+    </style>
 
     <div class="destination-slider-wrap">
         <div class="destination-slider">
             
             @foreach ($destinations as $destination)
                 
-            <div class="destination" style="width: 50px">
+            <div class="destination">
                 <div class="thumb">
-                    <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}" alt="Image" class="img-fluid">
+                    <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}" alt="Image" class="img-fluid gambar">
                     <div class="price">$430</div>
                 </div>
                 <div class="mt-4">
-                    <h3><a href="#">{{ $destination->name }}</a></h3>
-                    <span class="meta">Maldives, Repbulic Maldives</span>
+                    <h3><a href="{{Route('destinations.show',[$destination])}}">{{ $destination->name }}</a></h3>
+                    <span class="meta">{{ $destination->location }}</span>
                 </div>
             </div>
             

@@ -5,8 +5,8 @@
 @endsection
 
 @section('subtitle')
-<a class="btn btn-primary" href="{{ Route('destination.create') }}" role="button">Tambah <i
-    class="fa-solid fa-plus"></i></a>    
+    <a class="btn btn-primary" href="{{ Route('destination.create') }}" role="button">Tambah <i
+            class="fa-solid fa-plus"></i></a>
 @endsection
 
 @push('styles')
@@ -25,7 +25,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Destinasi</th>
-                                        <th scope="col">Gamber</th>
+                                        <th scope="col">Gambar</th>
                                         <th scope="col">Tiket</th>
                                         <th scope="col">Lokasi</th>
                                         <th scope="col">action</th>
@@ -37,25 +37,24 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $destination->name }}</td>
                                             <td>
-                                                <img src="{{ Storage::url(optional($destination->galleries->first())->images)}}" alt="" class="popular__img" width="100"/>
+                                                <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
+                                                    alt="" class="popular__img" width="100" />
                                             </td>
                                             <td>{{ $destination->ticket }}</td>
                                             <td>{{ $destination->destination_category_id }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
-                                                <form
-                                                    action="{{ route('destination.edit', [$destination]) }}"
+                                                <form action="{{ route('destination.edit', [$destination]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
-                                                <form
-                                                id="btn-hapus"
+                                                <form 
                                                     action="{{ route('destination.destroy', [$destination]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn btn-danger">
+                                                    <button type="submit" class="btn btn btn-danger" id="btn-hapus">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -72,7 +71,19 @@
     </div>
 @endsection
 
+
 @push('scripts')
+    @if (session('alert-type') === 'success')
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('message') }}',
+                showConfirmButton: true,
+                timer: 2000
+            });
+        </script>
+    @endif
+
     <script>
         $(document).ready(function() {
             $('#example1').DataTable();

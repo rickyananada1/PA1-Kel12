@@ -17,7 +17,7 @@ class CreateDestinationsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('ticket');
+            $table->text('ticket');
             $table->string('location');
             $table->foreignId('destination_category_id')->constrained('destination_categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('kabupaten_id')->constrained('kabupatens')->cascadeOnUpdate()->cascadeOnDelete()->default(1);

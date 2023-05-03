@@ -31,12 +31,16 @@
         </div>
         <div class="container">
             <div class="row align-items-center justify-content-start">
-                <div class="col-lg-6 mx-auto text-center">
+                <div class="col-lg-8 mx-auto text-center">
 
                     <h1 class="heading" data-aos="fade-up">Destinasi Wisata Sekitaran Danau Toba</h1>
-                    <p class="mb-4" data-aos="fade-up">Penuhi dahaga informasimu di sini, jangan ketinggalan update!
-                        Blog kami berisi informasi segar seputar Danau toba terbaru. Jangan lewatkan artikel-artikel
-                        menarik yang akan memperkaya wawasanmu. Ayo, simak dan rasakan pengalaman baru bersama kami!</p>
+                    <p class="mb-4" data-aos="fade-up">Selamat datang di halaman destinasi BetaTudia?, salah
+                        satu destinasi wisata terpopuler di Indonesia yang menawarkan keindahan alam yang memukau dan
+                        kearifan lokal yang kaya akan budaya. mulai dari pemandangan hijau perbukitan, air terjun yang indah, dan keindahan pantai yang menawan. Selain itu,
+                        destinasi wisata sekitaran Danau Toba juga menawarkan pengalaman wisata budaya yang tak
+                        terlupakan, seperti mengunjungi desa tradisional Batak dan mencicipi kuliner khas daerah. Mari
+                        jelajahi keindahan alam dan kearifan lokal yang memukau di destinasi wisata sekitaran Danau
+                        Toba.</p>
                 </div>
             </div>
         </div>
@@ -44,6 +48,13 @@
     <div class="section">
         <div class="container">
 
+            <style>
+                .gambar {
+                    height: 200px; /* ganti ukuran yang diinginkan */
+                    height: 250px; /**/
+                    object-fit: cover;
+                }
+            </style>
 
             <div class="row align-items-stretch">
                 @foreach ($destinations as $destination)
@@ -51,11 +62,14 @@
                         <div class="media-entry">
                             <a href="{{ Route('destinations.show', $destination->slug) }}">
                                 <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
-                                    alt="Image" class="img-fluid">
+                                    alt="Image" class="img-fluid gambar">
                             </a>
                             <div class="bg-white m-body">
-                                <span class="date">{{ $destination->updated_at->format('F j, Y') }}</span>
-                                <h3><a href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a></h3>
+                                <span class="date">{{ $destination->updated_at->format('F j, Y') }}</span>&mdash;
+                                <span class="date">{{ $destination->location }}</span>
+                                <h3><a
+                                        href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a>
+                                </h3>
                                 <p>{{ Str::limit(strip_tags($destination->description), 100) }}</p>
 
                                 <a href="{{ Route('destinations.show', $destination->slug) }}"
@@ -68,7 +82,6 @@
 
                     </div>
                 @endforeach
-
 
 
 
@@ -88,7 +101,7 @@
 
     <!-- /.site-footer -->
     @include('front.partials.footer')
-    
+
     <!-- Preloader -->
     <div id="overlayer"></div>
     <div class="loader">
@@ -96,8 +109,8 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    
-    
+
+
     @include('front.partials.script')
 
 </body>
