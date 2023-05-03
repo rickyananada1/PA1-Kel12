@@ -98,7 +98,7 @@ class BlogController extends Controller
         }
         return redirect()->route('blog.index')->with([
             'message' => 'Success Updated !',
-            'alert-type' => 'info'
+            'alert-type' => 'success'
         ]);
     }
 

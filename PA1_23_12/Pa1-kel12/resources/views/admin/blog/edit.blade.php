@@ -150,6 +150,16 @@
 @endpush
 
 @push('scripts')
+    @if (session('alert-type') === 'success')
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('message') }}',
+                showConfirmButton: true,
+                timer: 2000
+            });
+        </script>
+    @endif
     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor

@@ -50,12 +50,11 @@
                                                             class="fa fa-edit"></i></button>
                                                 </form>
                                                 <form
-                                                    onclick="return confirm('are you sure ?');"
                                                     action="{{ route('blog.destroy', [$blog]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn btn-danger">
+                                                    <button type="submit" class="btn btn btn-danger" id="btn-delete">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -73,6 +72,18 @@
 @endsection
 
 @push('scripts')
+
+    @if (session('alert-type') === 'success')
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('message') }}',
+                showConfirmButton: true,
+                timer: 2000
+            });
+        </script>
+    @endif
+
     <script>
         $(document).ready(function() {
             $('#example1').DataTable();

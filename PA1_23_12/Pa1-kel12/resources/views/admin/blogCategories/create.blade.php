@@ -33,7 +33,7 @@
 
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" id="btn-simpan">Kirim</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
             </div>
         </form>
     </div>

@@ -105,7 +105,7 @@
     <script src="{{ asset('Template/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script>
-        $(document).on('click', '#btn-hapus', function(e) {
+        $(document).on('click', '#btn-delete', function(e) {
             e.preventDefault();
 
             Swal.fire({

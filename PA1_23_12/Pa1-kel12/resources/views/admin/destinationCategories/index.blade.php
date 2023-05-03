@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-
+                        
                         @push('scripts')
                             @if (session('alert-type') === 'success')
                                 <script>
@@ -30,8 +30,6 @@
                             
                             @endif
                         @endpush
-
-
 
                             <div class="table-responsive">
                                 <table class="table table-bordered " id="example1">
@@ -63,7 +61,7 @@
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit" class="btn btn btn-danger"
-                                                             id="btn-hapus">
+                                                             id="btn-delete">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </form>

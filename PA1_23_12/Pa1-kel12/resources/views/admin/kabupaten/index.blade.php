@@ -28,7 +28,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this item?')">
+                                    id="btn-delete">
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
                             </form>
@@ -45,3 +45,15 @@
 </div>
 
 @endsection
+@push('scripts')
+    @if (session('alert-type') === 'success')
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('message') }}',
+                showConfirmButton: true,
+                timer: 2000
+            });
+        </script>
+    @endif
+@endpush
