@@ -126,7 +126,7 @@
                     )
                 }
             })
-        })
+        });
 
         $(document).ready(function() {
             $('#btn-simpan').click(function(e) {
@@ -176,12 +176,6 @@
     });
 
 
-    document.getElementById('btn-tambah').addEventListener('click', function() {
-        Swal.fire({
-            title: 'Data berhasil ditambahkan!',
-            icon: 'success'
-        });
-    });
 
     $(document).on('click', '#btn-hapus', function(e) {
         e.preventDefault();
