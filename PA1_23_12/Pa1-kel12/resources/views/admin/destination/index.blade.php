@@ -54,7 +54,7 @@
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn btn-danger" id="btn-hapus">
+                                                    <button type="submit" class="btn btn btn-danger" id="btn-delete">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

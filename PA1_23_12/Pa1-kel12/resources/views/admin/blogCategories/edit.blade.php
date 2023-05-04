@@ -18,7 +18,7 @@
         <textarea class="form-control" id="description" name="description" rows="10" required>{{ $blogCategory->description }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Simpan</button>
-    <a href="{{ route('blogCategory.index') }}" class="btn btn-secondary">Batal</a>
+    <a href="{{ route('blogCategory.index') }}" class="btn btn-secondary" id="btn-batal">Batal</a>
 </form>
 @endsection
 

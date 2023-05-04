@@ -93,7 +93,10 @@ class BlogCategoryController extends Controller
         }
         // Redirect ke halaman lain atau tampilkan pesan sukses
         return redirect()->route('blogCategory.index')->with(
-            ['success', 'Category updated successfully!']
+            [
+                'message' => 'Success Updated!',
+                'alert-type' => 'success'
+            ]
         );
     }
 

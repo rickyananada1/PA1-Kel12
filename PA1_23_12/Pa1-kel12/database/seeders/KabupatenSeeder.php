@@ -18,7 +18,7 @@ class KabupatenSeeder extends Seeder
             [
                 'name' => 'Toba',
                 'slug' => 'kabupaten-Toba',
-                'logo' => 'kabupaten/logo/TobaSamosir.png',
+                'logo' => 'kabupaten/logo/Toba.png',
                 'description' => 'Kabupaten Toba Samosir ini beribukota di Balige. Penduduk aslinya adalah Suku Batak Toba. Bupati Toba Samosir saat ini adalah Ir Darwin Siagian. Wisata andalan kabupaten ini adalah Pantai Lumban Bulbul dan Air terjun Situmurun.'
             ],
             [
@@ -54,7 +54,7 @@ class KabupatenSeeder extends Seeder
             [
                 'name' => 'Samosir',
                 'slug' => 'kabupaten-Samosir',
-                'logo' => 'kabupaten/logo/TobaSamosir.png',
+                'logo' => 'kabupaten/logo/Samosir.jpeg',
                 'description' => 'Seperti yang sudah saya sampaikan sebelumnya, Kabupaten Samosir ini adalah kabupaten yang dimekarkan dari kabupaten Toba Samosir sebagai kabupaten induk'
             ],
         ];

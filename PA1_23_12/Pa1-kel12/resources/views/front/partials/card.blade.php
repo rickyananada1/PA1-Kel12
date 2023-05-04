@@ -34,7 +34,9 @@
                 
             <div class="destination">
                 <div class="thumb">
-                    <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}" alt="Image" class="img-fluid gambar">
+                    <a href="{{ Route('destinations.show', $destination->slug) }}">
+                        <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}" alt="Image" class="img-fluid gambar">
+                    </a>
                     <div class="price">$430</div>
                 </div>
                 <div class="mt-4">

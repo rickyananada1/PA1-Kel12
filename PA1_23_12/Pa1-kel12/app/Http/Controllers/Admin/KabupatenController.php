@@ -49,6 +49,12 @@ class KabupatenController extends Controller
 
             Kabupaten::create($request->except('logo') + ['slug' => $slug, 'logo' => $logo]);
         }
+
+        // kembalikan ke halaman index dan tampilkan pesan berhasil
+        return redirect()->route('kabupaten.index')->with([
+            'message' => 'Kabupaten baru berhasil ditambahkan!!',
+            'alert-type' => 'success'
+        ]);
     }
 
     /**
@@ -96,7 +102,7 @@ class KabupatenController extends Controller
         }
         return redirect()->route('kabupaten.index')->with([
             'message' => 'Success Updated !',
-            'alert-type' => 'info'
+            'alert-type' => 'success'
         ]);
     }
 
