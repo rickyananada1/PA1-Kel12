@@ -92,7 +92,7 @@ class DestinationController extends Controller
     public function update(DestinationRequest $request, Destination $destination)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->location, '-');
+            $slug = Str::slug($request->location, '-'). time();
             $destination->update($request->validated() + ['slug' => $slug]);
         }
 

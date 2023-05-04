@@ -58,8 +58,6 @@
                     <h1 class="mb-3">{{ $destination->name }}</h1>
                     <p class="section-title pr-5">
                         <span class="pr-2">{{ $destination->location }}</span><br>
-                        <span class="date">Created {{ $destination->created_at->format('F j, Y') }}</span>
-                        <span class="date">Updated {{ $destination->updated_at->format('F j, Y') }}</span>
                     </p>
                     <hr>
                 </div>
@@ -92,6 +90,8 @@
                         </a>
                     </div>
                     <!-- =============================================Image====================================================-->
+                    <span class="date">Created {{ $destination->created_at->format('F j, Y') }}</span>
+                        <span class="date">Updated {{ $destination->updated_at->format('F j, Y') }}</span>
                     <br>
                     <p>
                         {!! $destination->description !!}

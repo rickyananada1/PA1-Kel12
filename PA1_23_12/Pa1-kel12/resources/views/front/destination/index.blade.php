@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    {{-- head css --}}
     @include('front.partials.head')
-    {{-- head css end --}}
-</head>
 
 <body>
 
@@ -27,6 +20,8 @@
     <div class="hero overlay">
 
         <div class="img-bg rellax">
+
+            <img src="{{ URL::asset('frontend/images/hero_5.jpg') }}" alt="Image" class="img-fluid">
             <img src="{{ URL::asset('frontend/images/hero_2.jpg') }}" alt="Image" class="img-fluid">
         </div>
         <div class="container">
@@ -59,6 +54,7 @@
                 }
             </style>
 
+            <!-- ================================================ Card Destinasi =====================================================-->
             <div class="row align-items-stretch">
                 @foreach ($destinations as $destination)
                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
@@ -82,33 +78,36 @@
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 @endforeach
+                <!-- ================================================ Card Destinasi =====================================================-->
 
-            
+
                 <!--============================================= Paginate ===================================================-->
                 <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
                     <ul class="custom-pagination pagination">
                         @if ($destinations->onFirstPage())
                             <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                         @else
-                            <li class="page-item"><a class="page-link" href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
+                            <li class="page-item"><a class="page-link"
+                                    href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
                         @endif
-                        
+
                         @for ($i = 1; $i <= $destinations->lastPage(); $i++)
-                            <li class="page-item {{ $i == $destinations->currentPage() ? 'active' : '' }}"><a class="page-link" href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
+                            <li class="page-item {{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
+                                    class="page-link" href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
                         @endfor
-                        
+
                         @if ($destinations->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $destinations->nextPageUrl() }}">Next</a></li>
+                            <li class="page-item"><a class="page-link"
+                                    href="{{ $destinations->nextPageUrl() }}">Next</a></li>
                         @else
                             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                         @endif
                     </ul>
                 </nav>
                 <!--============================================= Paginate ===================================================-->
-                
+
             </div>
         </div>
     </div>
