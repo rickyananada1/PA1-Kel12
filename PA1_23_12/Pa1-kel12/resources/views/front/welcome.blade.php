@@ -18,27 +18,22 @@
 
 
 
-    <div class="hero overlay">
-
+    <div class="hero overlay zoom">
         <div class="img-bg rellax">
-            <img src="{{ URL::asset('asset/thumbnail.jpg') }}" alt="Image" class="img-fluid">
+          <img src="{{ URL::asset('asset/thumbnail.jpg') }}" alt="Image" class="img-fluid zoom-anim" id="image">
         </div>
-
         <div class="container">
-            <div class="row align-items-center justify-content-start">
-                <div class="col-lg-5">
-
-                    <h1 class="heading" data-aos="fade-up">Website Wisata Sekitaran Danau Toba</h1><span
-                        id="i"></span>
-                    <h3 class="mb-5" data-aos="fade-up" id="heading" style="color: white;">BetaTudia adalah website
-                        penyedia informasi dan tips unik untuk
-                        kamu sekalian</h3>
-                </div>
+          <div class="row align-items-center justify-content-start">
+            <div class="col-lg-5">
+              <h1 class="heading" data-aos="fade-up">Website Wisata Sekitaran Danau Toba</h1><span
+                id="i"></span>
+              <h3 class="mb-5" data-aos="fade-up" id="heading" style="color: white;">BetaTudia adalah website
+                penyedia informasi dan tips unik untuk kamu sekalian</h3>
             </div>
+          </div>
         </div>
+      </div>
 
-
-    </div>
 
     {{-- section  --}}
     @include('front.partials.section')
@@ -65,9 +60,10 @@
                     <h2 class="heading mb-4">Bersama kami dan dapatkan kenangan manis untuk dikenang</h2>
                     <p>Mengunjungi website wisata sekitaran Toba membawa kenangan manis yang tak terlupakan, seperti
                         merasakan keindahan alamnya yang menakjubkan dan merasakan kehangatan keramahan penduduk
-                        setempat. 
+                        setempat.
                     </p>
-                    <p>Semua itu telah kami sajikan agar menjadi sebuah kenangan manis yang selalu terukir dalam ingatan dan hati.</p>
+                    <p>Semua itu telah kami sajikan agar menjadi sebuah kenangan manis yang selalu terukir dalam ingatan
+                        dan hati.</p>
                     <p class="my-4" data-aos="fade-up" data-aos-delay="200"><a href="#"
                             class="btn btn-primary">Read more</a></p>
                 </div>
@@ -218,43 +214,7 @@
 
     @include('front.partials.script')
 
-    <script>
-        var app = document.getElementById('heading');
-
-        var typewriter = new Typewriter(app, {
-            loop: false,
-            delay: 75
-        });
-
-        typewriter.typeString('Jelajahi keindahan Danau Toba di website kami')
-            .pauseFor(1000)
-            .deleteAll()
-            .typeString('Liburan lebih seru bersama kami di sekitaran Danau Toba')
-            .pauseFor(1000)
-            .deleteAll()
-            .typeString('Danau Toba merupakan destinasi terbaik di Sumatera Utara')
-            .pauseFor(1000)
-            .start();
-
-        var app = document.getElementById('text');
-
-        var typewriter = new Typewriter(app, {
-            loop: false,
-            delay: 75
-        });
-
-        typewriter.typeString(
-                'Kota Jakarta kota metropolitan, Surga impian para perantau <br> Kusapa“ Horas apa kabar kawan” Hampa hatiku dibalas“ fine, thank you” '
-            )
-            .pauseFor(1000)
-            .deleteAll()
-            .typeString('Liburan lebih seru bersama kami di sekitaran Danau Toba')
-            .pauseFor(1000)
-            .deleteAll()
-            .typeString('Danau Toba merupakan destinasi terbaik di Sumatera Utara')
-            .pauseFor(1000)
-            .start();
-    </script>
+    
 
 </body>
 

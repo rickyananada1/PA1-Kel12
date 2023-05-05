@@ -16,22 +16,22 @@
                 <div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
-                        <li class="active"><a href="{{ Route('kumpulanberita') }}">Blogs</a></li>
+                        <li><a href="{{ Route('kumpulanberita') }}">Blogs</a></li>
 
                         <li class="has-children">
                             <a href="#">Apa carik?</a>
                             <ul class="dropdown">
                                 <li><a href="{{Route('destinations.index')}}">Destinasi</a></li>
-                                <li><a href="#">Hotel</a></li>
+                                <li><a href="#">Akomodasi</a></li>
                                 <li><a href="#">Kulineran</a></li>
-                                <li class="has-children">
+                                {{-- <li class="has-children">
                                     <a href="#">Destinasi Wisata</a>
                                     <ul class="dropdown">
                                         <li><a href="#">Alami</a></li>
                                         <li><a href="#">Buatan</a></li>
                                         <li><a href="#">Religi</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <li class="has-children">
