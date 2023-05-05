@@ -20,7 +20,9 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        $destinations = Destination::with('DestinationCategory')->paginate(10);
+        $destinations = Destination::with('DestinationCategory')
+                                    ->orderBy('created_at', 'desc')
+                                    ->get();
 
         return view('admin.destination.index', compact('destinations'));
     }

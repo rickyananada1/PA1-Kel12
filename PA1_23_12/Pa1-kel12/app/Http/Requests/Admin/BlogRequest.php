@@ -28,6 +28,7 @@ class BlogRequest extends FormRequest
                     return [
                         'title' => 'required',
                         'excerpt' => 'required',
+                        'is_share' => 'required',
                         'description' => 'required',
                         'blog_category_id' => 'required',
                         'kabupaten_id' => 'required',
@@ -38,6 +39,7 @@ class BlogRequest extends FormRequest
                     return [
                         'title' => 'required',
                         'excerpt' => 'required',
+                        'is_share' => 'required',
                         'description' => 'required',
                         'blog_category_id' => 'required',
                         'kabupaten_id' => 'required',

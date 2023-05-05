@@ -12,7 +12,10 @@ class DestinationController extends Controller
 {
     public function index()
     {
-        $destinations = Destination::with('galleries')->paginate(6);
+        $destinations = Destination::with('galleries')
+                                    ->where('is_share',1)
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(8);
 
         return view('front.destination.index', compact('destinations'));
     }

@@ -17,7 +17,7 @@ class KabupatenSeeder extends Seeder
         $kabupatens = [
             [
                 'name' => 'Toba',
-                'slug' => 'kabupaten-Toba',
+                'slug' => 'kabupaten-toba',
                 'logo' => 'kabupaten/logo/Toba.png',
                 'description' => 'Kabupaten Toba Samosir ini beribukota di Balige. Penduduk aslinya adalah Suku Batak Toba. Bupati Toba Samosir saat ini adalah Ir Darwin Siagian. Wisata andalan kabupaten ini adalah Pantai Lumban Bulbul dan Air terjun Situmurun.'
             ],

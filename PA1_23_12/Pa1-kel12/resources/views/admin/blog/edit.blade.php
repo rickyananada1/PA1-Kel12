@@ -111,8 +111,18 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" name="kabupaten_id" id="kabupaten_id">
                                         @foreach ($kabupatens as $kabupaten)
-                                        <option value="{{ $kabupaten->id }}" {{ $kabupaten->id == $blog->kabupaten_id ? 'selected' : '' }}">{{ $kabupaten->name }}</option>
+                                        <option value="{{ $kabupaten->id }}" {{ old('kabupaten_id', $blog->kabupaten_id) == $kabupaten->id ? 'selected' : '' }}>{{ $kabupaten->name }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row border-bottom pb-4">
+                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                <div class="col-sm-10">
+                                    <select name="is_share" class="form-control">
+                                        <option value="1" {{ old('is_share', $blog->is_share) == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="0" {{ old('is_share', $blog->is_share) == '0' ? 'selected' : '' }}>No</option>
                                     </select>
                                 </div>
                             </div>

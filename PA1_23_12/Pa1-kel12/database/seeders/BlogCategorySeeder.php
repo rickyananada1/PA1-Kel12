@@ -40,6 +40,11 @@ class BlogCategorySeeder extends Seeder
                 'slug' => 'Unik',
                 'description' => 'Berisi informasi yang pastinya unik di daerah sekitaran danau toba '
             ],
+            [
+                'name' => 'Event',
+                'slug' => 'Event',
+                'description' => 'Berisi informasi Mengenai Event yang terjadi di sekitaran danau toba'
+            ],
             ];
             foreach ($blogCategories as $blogCategory) {
                 BlogCategory::create($blogCategory);

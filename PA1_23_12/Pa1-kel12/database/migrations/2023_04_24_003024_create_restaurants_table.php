@@ -19,7 +19,7 @@ class CreateRestaurantsTable extends Migration
             $table->text('image');
             $table->foreignId('destination_id')->constrained('destinations')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('location');
-            $table->bigInteger('phone');
+            $table->string('phone')->nullable();
             $table->text('description');
             $table->timestamps();
         });

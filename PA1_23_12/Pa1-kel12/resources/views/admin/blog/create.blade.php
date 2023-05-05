@@ -45,9 +45,19 @@
                                             <option value="{{ $kabupaten->id }}">{{ $kabupaten->name }}</option>
                                         @endforeach
                                     </select>
-                                    
                                 </div>
                             </div>
+
+                            <div class="form-group row border-bottom pb-4">
+                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                <div class="col-sm-10">
+                                    <select name="is_share" class="form-control">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row border-bottom pb-4">
                                 <label for="excerpt" class="col-sm-2 col-form-label">Kutipan</label>
                                 <div class="col-sm-10">
@@ -60,7 +70,7 @@
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success" id="btn-simpan">Simpan</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>
                 </div>
