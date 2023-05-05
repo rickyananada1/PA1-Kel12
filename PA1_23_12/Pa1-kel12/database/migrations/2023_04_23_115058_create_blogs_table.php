@@ -19,6 +19,7 @@ class CreateBlogsTable extends Migration
             $table->foreignId('kabupaten_id')->constrained('kabupatens')->cascadeOnUpdate()->cascadeOnDelete()->default(1);
             $table->string('slug')->unique();
             $table->string('title');
+            $table->integer('is_share');
             $table->text('excerpt');
             $table->text('description');
             $table->timestamps();

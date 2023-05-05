@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Accommodation;
 
-class AccomodationSeeder extends Seeder
+class AccommodationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class AccomodationSeeder extends Seeder
      */
     public function run()
     {
-        $accomodations = [
+        $accommodations = [
             [
                 'name' => 'Pemandian Manigom Nauli',
                 'slug' => 'pemandian-manigom-nauli',
@@ -38,7 +38,7 @@ class AccomodationSeeder extends Seeder
                 'updated_at' => now()
             ],
         ];
-        foreach ($accomodations as $accommodation) {
+        foreach ($accommodations as $accommodation) {
             Accommodation::create($accommodation);
         }
     }

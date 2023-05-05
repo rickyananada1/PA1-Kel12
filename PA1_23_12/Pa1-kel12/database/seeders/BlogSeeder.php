@@ -18,6 +18,7 @@ class BlogSeeder extends Seeder
             [
                 'blog_category_id' => 1,
                 'kabupaten_id' => 4,
+                'is_share' => 1,
                 'slug' => 'Destination-Branding-Dorong-Pariwisata-Berkelanjutan-di-Bakkara-Toba',
                 'title' => 'Destination Branding, Dorong Pariwisata Berkelanjutan di Bakkara Toba',
                 'excerpt' => 'Ini adalah cuplikan dari blog pertama',
@@ -28,6 +29,7 @@ class BlogSeeder extends Seeder
             [
                 'blog_category_id' => 1,
                 'kabupaten_id' => 4,
+                'is_share' => 1,
                 'slug' => 'Humbang-Hasundutan-Turut-Memeriahkan-Acara-Woman-20-Summit-di-Pantai-Bebas-Parapat',
                 'title' => 'Humbang Hasundutan Turut Memeriahkan Acara Woman 20 Summit, di Pantai Bebas Parapat',
                 'excerpt' => 'Ini adalah cuplikan dari blog pertama',
@@ -38,6 +40,7 @@ class BlogSeeder extends Seeder
             [
                 'blog_category_id' => 1,
                 'kabupaten_id' => 4,
+                'is_share' => 1,
                 'slug' => '2-Desa-Wisata-di-Humbang-Hasundutan-Masuk-Nominasi-Anugrah-Desa-Wisata-Indonesia-(ADWI)-2022',
                 'title' => '2 Desa Wisata di Humbang Hasundutan, Masuk Nominasi Anugrah Desa Wisata Indonesia (ADWI) 2022',
                 'excerpt' => 'Ini adalah cuplikan dari blog pertama',
@@ -48,6 +51,7 @@ class BlogSeeder extends Seeder
             [
                 'blog_category_id' => 1,
                 'kabupaten_id' => 4,
+                'is_share' => 1,
                 'slug' => 'Penting!-7-Tips-Wajib-Diketahui-Sebelum-Jelajah-Danau-Toba',
                 'title' => 'Penting! 7 Tips Wajib Diketahui Sebelum Jelajah Danau Toba',
                 'excerpt' => 'Ini adalah cuplikan dari blog pertama',
