@@ -27,6 +27,9 @@ class ProfileUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'string', 'max:255'],
             'password' => ['nullable', 'string', 'confirmed', 'min:8'],
+            'image' => ['nullable','image', 'mimes:png,jpg,jpeg'],
+            'age' => ['nullable','integer'],
+            'phone' => ['nullable','integer', 'min:10'],
         ];
     }
 
@@ -35,5 +38,13 @@ class ProfileUpdateRequest extends FormRequest
         if ($this->password == null) {
             $this->request->remove('password');
         }
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'Kolom nama harus diisi.',
+            'password.required' => 'Kolom deskripsi wajib diisi!'
+        ];
     }
 }

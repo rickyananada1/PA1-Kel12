@@ -120,14 +120,9 @@ class DestinationSeeder extends Seeder
             [
                 'name' => 'Taman wisata iman',
                 'slug' => 'Taman-wisata-iman',
-                'ticket' => 'Harga Tiket Masuk
+                'ticket' => '
                 Dewasa	: Rp10.000
                 Anak-anak	: Rp5.000
-                Parkir
-                Roda Dua	: Rp2.000
-                Roda Empat : Rp5.000
-                Penginapan	: Rp150.00 - 300.000
-                Penyewaan Aula : Rp400.000
                 ',
                 'location' => 'Tapanuli Utara',
                 'destination_category_id' => 3,

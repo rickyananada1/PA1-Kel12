@@ -10,7 +10,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="card">
                         <img src="{{ asset('Template/dist/img/LogoBetaTudia.png') }}" alt="Profile Picture" width="100"
                             height="100" class="rounded-circle mr-2">
@@ -19,71 +19,135 @@
                             @csrf
                             @method('PUT')
 
-                            
-                            <div class="card-body">
-                                <div class="form-group row border-bottom pb-4">
-                                    <label for="image" class="col-sm-2 col-form-label">Foto Profile</label>
-                                    <div class="col-sm-10">
-                                        <input type="file" name="image" class="form-control" id="image">
-                                    </div>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <input type="text" name="name"
-                                        class="form-control @error('name') is-invalid @enderror"
-                                        placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}"
-                                        required>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-user"></span>
+                            <div class="row">
+                                <div class="card-body col-lg-6">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="name"
+                                            class="form-control @error('name') is-invalid @enderror"
+                                            placeholder="{{ __('Name') }}"
+                                            value="{{ old('name', auth()->user()->name) }}" required>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-user"></span>
+                                            </div>
                                         </div>
+                                        @error('name')
+                                            <span class="error invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
                                     </div>
-                                    @error('name')
-                                        <span class="error invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+
+                                    <div class="input-group mb-3">
+                                        <input type="email" name="email"
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            placeholder="{{ __('Email') }}"
+                                            value="{{ old('email', auth()->user()->email) }}" required readonly>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                        @error('email')
+                                            <span class="error invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+
+
+                                    <!-- Melakukan Pengecekan apakah user login menggunakan akun google-->
+                                    @if (!auth()->user()->google_id)
+                                        <!-- Jika dengan Google maka tidak dapat melakukan update password-->
+
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                placeholder="{{ __('New password') }}">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                            @error('password')
+                                                <span class="error invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="password_confirmation"
+                                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                placeholder="{{ __('New password confirmation') }}"
+                                                autocomplete="new-password">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <input type="email" name="email"
-                                        class="form-control @error('email') is-invalid @enderror"
-                                        placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}"
-                                        required readonly>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-envelope"></span>
-                                        </div>
-                                    </div>
-                                    @error('email')
-                                        <span class="error invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
+                                <div class="card-body col-lg-6">
 
-                                <div class="input-group mb-3">
-                                    <input type="password" name="password"
-                                        class="form-control @error('password') is-invalid @enderror"
-                                        placeholder="{{ __('New password') }}">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-lock"></span>
-                                        </div>
-                                    </div>
-                                    @error('password')
-                                        <span class="error invalid-feedback">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
-                                </div>
 
-                                <div class="input-group mb-3">
-                                    <input type="password" name="password_confirmation"
-                                        class="form-control @error('password_confirmation') is-invalid @enderror"
-                                        placeholder="{{ __('New password confirmation') }}" autocomplete="new-password">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fas fa-lock"></span>
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="phone"
+                                            class="form-control @error('phone') is-invalid @enderror"
+                                            placeholder="{{ __('Phone') }}"
+                                            value="{{ old('phone', auth()->user()->phone) }}">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-phone"></span>
+                                            </div>
+                                        </div>
+                                        @error('phone')
+                                            <span class="error invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="number" name="age"
+                                            class="form-control @error('age') is-invalid @enderror"
+                                            placeholder="{{ __('Umur') }}"
+                                            value="{{ old('age', auth()->user()->age) }}">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-cake"></span>
+                                            </div>
+                                        </div>
+                                        @error('age')
+                                            <span class="error invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="address"
+                                            class="form-control @error('address') is-invalid @enderror"
+                                            placeholder="{{ __('Alamat') }}"
+                                            value="{{ old('address', auth()->user()->address) }}">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-location"></span>
+                                            </div>
+                                        </div>
+                                        @error('address')
+                                            <span class="error invalid-feedback">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group row border-bottom pb-4">
+                                        <label for="image" class="col-sm-6 col-form-label">Foto Profile</label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="image" class="form-control" id="image">
                                         </div>
                                     </div>
                                 </div>
