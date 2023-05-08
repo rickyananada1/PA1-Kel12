@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -16,17 +17,39 @@ class ProfileController extends Controller
         return view('auth.profile');
     }
 
-    public function update(ProfileUpdateRequest $request, User $user)
+    public function update(Request $request)
     {
-        if ($request->validated()) {
-            auth()->user()->update(['password' => Hash::make($request->password)]);
-        }
+        $user = Auth::user();
 
-        auth()->user()->update([
-            'name' => $request['name'],
-            'email' => $request->email,
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'age' => 'nullable|numeric',
+            'address' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        return redirect()->back()->with('success', 'Profile updated.');
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->age = $request->input('age');
+        $user->address = $request->input('address');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $user->image = $imageName;
+        }
+
+        if ($request->filled('password')) {
+            $request->validate([
+                'password' => 'required|string|min:8|confirmed',
+            ]);
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 }
