@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('destinationCategory.update', ['destinationCategory' => $destinationCategory->id]) }}"
+    <form action="{{ route('admin.destinationCategory.update', ['destinationCategory' => $destinationCategory->id]) }}"
         method="post">
         @method('put')
         @csrf
@@ -23,7 +23,7 @@
             <textarea class="form-control" id="description" name="description" rows="10" required>{{ $destinationCategory->description }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary" id="btn-simpan">Simpan</button>
-        <a href="{{ route('destinationCategory.index') }}" class="btn btn-warning" id="btn-batal">Batal</a>
+        <a href="{{ route('admin.destinationCategory.index') }}" class="btn btn-warning" id="btn-batal">Batal</a>
     </form>
 @endsection
 

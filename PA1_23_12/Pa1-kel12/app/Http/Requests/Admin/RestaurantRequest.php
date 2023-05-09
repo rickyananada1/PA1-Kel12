@@ -27,10 +27,10 @@ class RestaurantRequest extends FormRequest
             case 'POST': {
                     return [
                         'name' => 'required',
-                        'image' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-                        'destination_id' => 'required',
+                        'kabupaten_id' => 'required',
+                        'phone' => 'nullable',
                         'location' => 'required',
-                        'phone' => 'required',
+                        'is_share' => 'required',
                         'description' => 'required',
                     ];
                 }
@@ -38,10 +38,10 @@ class RestaurantRequest extends FormRequest
             case 'PATCH': {
                     return [
                         'name' => 'required',
-                        'image' => ['image', 'mimes:png,jpg,jpeg'],
-                        'destination_id' => 'required',
+                        'kabupaten_id' => 'required',
+                        'phone' => 'nullable',
                         'location' => 'required',
-                        'phone' => 'required',
+                        'is_share' => 'required',
                         'description' => 'required',
                     ];
                 }

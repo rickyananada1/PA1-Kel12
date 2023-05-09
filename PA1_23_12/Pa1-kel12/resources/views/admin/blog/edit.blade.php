@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('blog.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.blog.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -38,7 +38,7 @@
                                         </a>
                                     </td>
                                     <td>              
-                                        <form  class="d-inline-block" action="{{ route('blog.gallery.destroy', [$blog , $gallery]) }}" method="post">
+                                        <form  class="d-inline-block" action="{{ route('admin.blog.gallery.destroy', [$blog , $gallery]) }}" method="post">
                                             @csrf 
                                             @method('delete')
                                             <button class="btn btn-sm btn-danger" > <i class="fa fa-trash"></i> </button>
@@ -57,7 +57,7 @@
             </div>
             <div class="col-lg-12">
                 <div class="card p-3">
-                    <form method="post" action="{{ route('blog.gallery.store', [$blog]) }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.blog.gallery.store', [$blog]) }}" enctype="multipart/form-data">
                         @csrf 
                         <div class="form-group row border-bottom pb-4">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card p-3">
-                        <form method="post" action="{{ route('blog.update', [$blog->id]) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.blog.update', [$blog->id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="form-group row border-bottom pb-4">

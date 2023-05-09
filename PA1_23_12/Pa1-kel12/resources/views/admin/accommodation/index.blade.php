@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-<a class="btn btn-primary" href="{{ Route('accommodation.create') }}" role="button">Tambah <i
+<a class="btn btn-primary" href="{{ Route('admin.accommodation.create') }}" role="button">Tambah <i
     class="fa-solid fa-plus"></i></a>    
 @endsection
 
@@ -43,19 +43,19 @@
                                             <td>{{ $accommodation->price }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form
-                                                    action="{{ route('accommodation.edit', [$accommodation]) }}"
+                                                    action="{{ route('admin.accommodation.edit', [$accommodation]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
                                                 <form
-                                                    onclick="return confirm('are you sure ?');"
-                                                    action="{{ route('accommodation.destroy', [$accommodation]) }}"
+                                            
+                                                    action="{{ route('admin.accommodation.destroy', [$accommodation]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn btn-danger">
+                                                    <button type="submit" class="btn btn btn-danger" id="btn-delete">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -79,4 +79,15 @@
         });
     </script>
     <script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
+
+    @if (session('alert-type') === 'success')
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('message') }}',
+                showConfirmButton: true,
+                timer: 2000
+            });
+        </script>
+    @endif
 @endpush

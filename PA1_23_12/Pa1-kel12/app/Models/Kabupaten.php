@@ -19,4 +19,9 @@ class Kabupaten extends Model
     {
         return $this->hasMany(Blog::class);
     }
+
+    public function restaurant()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }

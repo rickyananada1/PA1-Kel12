@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-primary" href="{{ Route('destinationCategory.create') }}" role="button">Tambah <i
+    <a class="btn btn-primary" href="{{ Route('admin.destinationCategory.create') }}" role="button">Tambah <i
             class="fa-solid fa-plus"></i></a>
 @endsection
 
@@ -49,14 +49,14 @@
                                                 <td>{{ Str::limit($category->description, 10) }}</td>
                                                 <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                     <form
-                                                        action="{{ route('destinationCategory.edit', ['destinationCategory' => $category->id]) }}"
+                                                        action="{{ route('admin.destinationCategory.edit', ['destinationCategory' => $category->id]) }}"
                                                         method="GET" style="margin-right: 10px;">
                                                         @csrf
                                                         <button type="submit" class="btn btn-primary"><i
                                                                 class="fa fa-edit"></i></button>
                                                     </form>
                                                     <form
-                                                        action="{{ route('destinationCategory.destroy', ['destinationCategory' => $category->id]) }}"
+                                                        action="{{ route('admin.destinationCategory.destroy', ['destinationCategory' => $category->id]) }}"
                                                         method="POST" style="margin-right: 10px;">
                                                         @method('delete')
                                                         @csrf

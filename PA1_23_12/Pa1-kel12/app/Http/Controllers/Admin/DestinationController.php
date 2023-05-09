@@ -52,7 +52,7 @@ class DestinationController extends Controller
             $destination = Destination::create($request->validated() + ['slug' => $slug]);
         }
 
-        return redirect()->route('destination.edit', [$destination])->with([
+        return redirect()->route('admin.destination.edit', [$destination])->with([
             'message' => 'Success Created !',
             'alert-type' => 'success'
         ]);
@@ -98,7 +98,7 @@ class DestinationController extends Controller
             $destination->update($request->validated() + ['slug' => $slug]);
         }
 
-        return redirect()->route('destination.index')->with([
+        return redirect()->route('admin.destination.index')->with([
             'message' => 'Success Updated !',
             'alert-type' => 'success'
         ]);

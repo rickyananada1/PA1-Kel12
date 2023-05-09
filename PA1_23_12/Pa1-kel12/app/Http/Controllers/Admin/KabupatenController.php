@@ -43,15 +43,16 @@ class KabupatenController extends Controller
     {
         if ($request->validated()) {
             $logo = $request->file('logo')->store(
-                'kabupaten/logo', 'public'
+                'kabupaten/logo',
+                'public'
             );
-            $slug = Str::slug($request->name, '-'). '-' . time();
+            $slug = Str::slug($request->name, '-') . '-' . time();
 
             Kabupaten::create($request->except('logo') + ['slug' => $slug, 'logo' => $logo]);
         }
 
         // kembalikan ke halaman index dan tampilkan pesan berhasil
-        return redirect()->route('kabupaten.index')->with([
+        return redirect()->route('admin.kabupaten.index')->with([
             'message' => 'Kabupaten baru berhasil ditambahkan!!',
             'alert-type' => 'success'
         ]);
@@ -91,17 +92,18 @@ class KabupatenController extends Controller
         if ($request->validated()) {
             $slug = Str::slug($request->name, '-');
             if ($request->logo) {
-                File::delete('storage'.$kabupaten->logo);
+                File::delete('storage' . $kabupaten->logo);
                 $logo = $request->file('logo')->store(
-                    'kabupaten/logo', 'public'
+                    'kabupaten/logo',
+                    'public'
                 );
                 $kabupaten->update($request->except('logo') + ['slug' => $slug, 'logo' => $logo]);
             } else {
                 $kabupaten->update($request->validated() + ['slug' => $slug]);
             }
         }
-        return redirect()->route('kabupaten.index')->with([
-            'message' => 'Success Updated !',
+        return redirect()->route('admin.kabupaten.index')->with([
+            'message' => 'Data kabupaten berhasil diupdate!',
             'alert-type' => 'success'
         ]);
     }
@@ -114,11 +116,11 @@ class KabupatenController extends Controller
      */
     public function destroy(Kabupaten $kabupaten)
     {
-        File::delete('storage/'. $kabupaten->logo);
+        File::delete('storage/' . $kabupaten->logo);
         $kabupaten->delete();
 
         return redirect()->back()->with([
-            'message' => 'Success Deleted !',
+            'message' => 'Kabupaten berhasil di Hapus !',
             'alert-type' => 'danger'
         ]);
     }

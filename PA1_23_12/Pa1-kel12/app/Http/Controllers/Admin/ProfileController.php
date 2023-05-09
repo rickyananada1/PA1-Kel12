@@ -14,12 +14,13 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        return view('auth.profile');
+        return view('admin.auth.profile');
     }
 
     public function update(Request $request)
     {
-        $user = Auth::user();
+        $user = auth()->guard('admin')->user();
+
 
         $request->validate([
             'name' => 'required|string|max:255',

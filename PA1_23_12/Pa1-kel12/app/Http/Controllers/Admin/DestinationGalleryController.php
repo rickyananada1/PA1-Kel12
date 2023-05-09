@@ -47,7 +47,7 @@ class DestinationGalleryController extends Controller
             DestinationGallery::create($request->except('images') + ['images' => $images, 'destination_id' => $destination->id]);
         }
 
-        return redirect()->route('destination.edit', [$destination])->with([
+        return redirect()->route('admin.destination.edit', [$destination])->with([
             'message' => 'Success Created !',
             'alert-type' => 'success'
         ]);
@@ -97,7 +97,7 @@ class DestinationGalleryController extends Controller
             }
         }
 
-        return redirect()->route('destination.edit', [$destination])->with([
+        return redirect()->route('admin.destination.edit', [$destination])->with([
             'message' => 'Success Updated !',
             'alert-type' => 'info'
         ]);

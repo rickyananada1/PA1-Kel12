@@ -41,4 +41,12 @@ class KabupatenRequest extends FormRequest
                 }
         }
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Kolom nama kabupaten harus diisi!',
+            'logo.required' => 'logo kabupaten harus diisi!',
+            'description.required' => 'Kolom deskripsi harus diisi!'
+        ];
+    }
 }

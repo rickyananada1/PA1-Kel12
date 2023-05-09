@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('destination.index') }}" role="button"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.destination.index') }}" role="button"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -39,7 +39,7 @@
                                             </td>
                                             <td>
                                                 <form class="d-inline-block"
-                                                    action="{{ route('destination.gallery.destroy', [$destination, $gallery]) }}"
+                                                    action="{{ route('admin.destination.gallery.destroy', [$destination, $gallery]) }}"
                                                     method="post" id="form-hapus">
                                                     @csrf
                                                     @method('delete')
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-lg-12">
                     <div class="card p-3">
-                        <form method="post" action="{{ route('destination.gallery.store', [$destination]) }}"
+                        <form method="post" action="{{ route('admin.destination.gallery.store', [$destination]) }}"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row border-bottom pb-4">
@@ -90,7 +90,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card p-3">
-                                        <form method="post" action="{{ route('destination.update', [$destination->id]) }}"
+                                        <form method="post"
+                                            action="{{ route('admin.destination.update', [$destination->id]) }}"
                                             enctype="multipart/form-data">
                                             @csrf
                                             @method('put')
@@ -119,35 +120,45 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row border-bottom pb-4">
-                                                <label for="destination_category_id" class="col-sm-2 col-form-label">Kategori</label>
+                                                <label for="destination_category_id"
+                                                    class="col-sm-2 col-form-label">Kategori</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" name="destination_category_id" id="destination_category_id">
+                                                    <select class="form-control" name="destination_category_id"
+                                                        id="destination_category_id">
                                                         @foreach ($destinationCategories as $category)
-                                                        <option value="{{ $category->id }}" {{ old('destination_category_id', $destination->destination_category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                            <option value="{{ $category->id }}"
+                                                                {{ old('destination_category_id', $destination->destination_category_id) == $category->id ? 'selected' : '' }}>
+                                                                {{ $category->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+
 
                                             <div class="form-group row border-bottom pb-4">
                                                 <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
                                                 <div class="col-sm-10">
                                                     <select class="form-control" name="kabupaten_id" id="kabupaten_id">
                                                         @foreach ($kabupatens as $kabupaten)
-                                                        <option value="{{ $kabupaten->id }}" {{ old('kabupaten_id', $destination->kabupaten_id) == $kabupaten->id ? 'selected' : '' }}>{{ $kabupaten->name }}</option>
+                                                            <option value="{{ $kabupaten->id }}"
+                                                                {{ old('kabupaten_id', $destination->kabupaten_id) == $kabupaten->id ? 'selected' : '' }}>
+                                                                {{ $kabupaten->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+
 
                                             <div class="form-group row border-bottom pb-4">
                                                 <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
                                                 <div class="col-sm-10">
                                                     <select name="is_share" class="form-control">
-                                                        <option value="1" {{ old('is_share', $destination->is_share) == '1' ? 'selected' : '' }}>Yes</option>
-                                                        <option value="0" {{ old('is_share', $destination->is_share) == '0' ? 'selected' : '' }}>No</option>
+                                                        <option value="1"
+                                                            {{ old('is_share', $destination->is_share) == '1' ? 'selected' : '' }}>
+                                                            Yes</option>
+                                                        <option value="0"
+                                                            {{ old('is_share', $destination->is_share) == '0' ? 'selected' : '' }}>
+                                                            No</option>
                                                     </select>
                                                 </div>
                                             </div>

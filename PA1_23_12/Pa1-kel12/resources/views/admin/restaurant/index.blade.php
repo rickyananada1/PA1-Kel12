@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-<a class="btn btn-primary" href="{{ Route('restaurant.create') }}" role="button">Tambah <i
+<a class="btn btn-primary" href="{{ Route('admin.restaurant.create') }}" role="button">Tambah <i
     class="fa-solid fa-plus"></i></a>    
 @endsection
 
@@ -26,8 +26,8 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Tempat makan</th>
                                         <th scope="col">Gambar</th>
-                                        <th scope="col">Location</th>
-                                        <th scope="col">phone</th>
+                                        <th scope="col">Kabupaten</th>
+                                        <th scope="col">is share?</th>
                                         <th scope="col">action</th>
                                     </tr>
                                 </thead>
@@ -37,21 +37,22 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $restaurant->name }}</td>
                                             <td>
-                                                <img src="{{ Storage::url($restaurant->image)}}" width="100" alt="">
+                                                <img src="{{ Storage::url(optional($restaurant->galleries->first())->images) }}"
+                                                    alt="" class="popular__img" width="100" />
                                             </td>
-                                            <td>{{ $restaurant->location }}</td>
-                                            <td>{{ $restaurant->phone }}</td>
+                                            <td>{{ $restaurant->kabupaten->name }}</td>
+                                            <td>{{ $restaurant->is_share == 1 ? 'Ya' : 'Tidak' }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form
-                                                    action="{{ route('restaurant.edit', [$restaurant]) }}"
+                                                    action="{{ route('admin.restaurant.edit', [$restaurant]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
                                                 <form
-                                                    onclick="return confirm('are you sure ?');"
-                                                    action="{{ route('restaurant.destroy', [$restaurant]) }}"
+                                                    id="btn-delete"
+                                                    action="{{ route('admin.restaurant.destroy', [$restaurant]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
@@ -79,4 +80,15 @@
         });
     </script>
     <script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
+
+    @if (session('alert-type') === 'success')
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('message') }}',
+                showConfirmButton: true,
+                timer: 2000
+            });
+        </script>
+    @endif
 @endpush

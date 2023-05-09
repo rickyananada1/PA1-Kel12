@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-<a class="btn btn-primary" href="{{ Route('blog.create') }}" role="button">Tambah <i
+<a class="btn btn-primary" href="{{ Route('admin.blog.create') }}" role="button">Tambah <i
     class="fa-solid fa-plus"></i></a>    
 @endsection
 
@@ -43,14 +43,14 @@
                                             <td>{{ $blog->blog_category_id }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form
-                                                    action="{{ route('blog.edit', [$blog]) }}"
+                                                    action="{{ route('admin.blog.edit', [$blog]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
                                                 <form
-                                                    action="{{ route('blog.destroy', [$blog]) }}"
+                                                    action="{{ route('admin.blog.destroy', [$blog]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf

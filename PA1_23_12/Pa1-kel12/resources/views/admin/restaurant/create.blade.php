@@ -1,11 +1,11 @@
 @extends('admin.master')
 
 @section('title')
-    Create Restaurant
+    Create Tempat Makan
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('restaurant.index') }}" role="button"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.restaurant.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -16,10 +16,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card p-3">
-                        <form method="post" action="{{ route('restaurant.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.restaurant.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row border-bottom pb-4">
-                                <label for="name" class="col-sm-2 col-form-label">Nama Akomodasi</label>
+                                <label for="name" class="col-sm-2 col-form-label">Nama Restaurant</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                         id="name" placeholder="example: Distro">
@@ -27,21 +27,14 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="image" class="col-sm-2 col-form-label">Gambar</label>
-                                <div class="col-sm-10">
-                                    <input type="file" name="image" class="form-control" id="image">
-                                </div>
-                            </div>
-
-                            <div class="form-group row border-bottom pb-4">
-                                <label for="location" class="col-sm-2 col-form-label">Harga</label>
+                                <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="location" value="{{ old('location') }}"
                                         id="location" placeholder="example: Balige">
                                 </div>
                             </div>
                             <div class="form-group row border-bottom pb-4">
-                                <label for="phone" class="col-sm-2 col-form-label">No Hp</label>
+                                <label for="phone" class="col-sm-2 col-form-label">No Telepon</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="phone" value="{{ old('phone') }}"
                                         id="phone" placeholder="example: +6219349012">
@@ -49,13 +42,23 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="destination_id" class="col-sm-2 col-form-label">Destinasi</label>
+                                <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="destination_id" name="destination_id">
+                                    <select class="form-control" id="kabupaten_id" name="kabupaten_id">
                                         <option value="">--Pilih--</option>
-                                        @foreach ($destinations as $destination)
-                                            <option value="{{ $destination->id }}">{{ $destination->name }}</option>
+                                        @foreach ($kabupatens as $kabupaten)
+                                            <option value="{{ $kabupaten->id }}">{{ $kabupaten->name }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row border-bottom pb-4">
+                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                <div class="col-sm-10">
+                                    <select name="is_share" class="form-control">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
                                     </select>
                                 </div>
                             </div>
