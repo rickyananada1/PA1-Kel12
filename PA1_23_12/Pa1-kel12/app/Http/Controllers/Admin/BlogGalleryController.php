@@ -48,7 +48,7 @@ class BlogGalleryController extends Controller
             BlogGallery::create($request->except('images') + ['images' => $images, 'blog_id' => $blog->id]);
         }
 
-        return redirect()->route('blog.edit', [$blog])->with([
+        return redirect()->route('admin.blog.edit', [$blog])->with([
             'message' => 'Success Created !',
             'alert-type' => 'success'
         ]);

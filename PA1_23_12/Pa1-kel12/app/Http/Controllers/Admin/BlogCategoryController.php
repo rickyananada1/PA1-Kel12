@@ -49,7 +49,7 @@ class BlogCategoryController extends Controller
         }
 
         // return to index 
-        return redirect()->route('blogCategory.index')->with([
+        return redirect()->route('admin.blogCategory.index')->with([
             'message' => 'Success Created!',
             'alert-type' => 'success'
         ]);
@@ -92,7 +92,7 @@ class BlogCategoryController extends Controller
             $blogCategory->update($request->validated() + ['slug' => $slug]);
         }
         // Redirect ke halaman lain atau tampilkan pesan sukses
-        return redirect()->route('blogCategory.index')->with(
+        return redirect()->route('admin.blogCategory.index')->with(
             [
                 'message' => 'Success Updated!',
                 'alert-type' => 'success'

@@ -17,8 +17,7 @@ class RestaurantSeeder extends Seeder
         $restaurants = [
             [
                 'name' => 'Rumah Makan khas batak Lamsiar',
-                'image' => 'image_restoran_1.jpg',
-                'destination_id' => 1,
+                'kabupaten_id' => 1,
                 'location' => 'Lokasi Restoran 1',
                 'phone' => '063321516',
                 'description' => 'Opsi layanan: Makan di tempat · Bawa pulang · Tidak menyediakan layanan pengiriman
@@ -28,8 +27,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Rumah Makan khas batak Rap Taruli',
-                'image' => 'image_restoran_1.jpg',
-                'destination_id' => 6,
+                'kabupaten_id' => 6,
                 'location' => 'Lokasi Restoran 1',
                 'phone' => '081375383485',
                 'description' => 'Opsi layanan: Makan di tempat · Bawa pulang
@@ -39,8 +37,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Rumah Makan Muslim Odon',
-                'image' => 'image_restoran_1.jpg',
-                'destination_id' => 4,
+                'kabupaten_id' => 4,
                 'location' => 'Lokasi Restoran 1',
                 'phone' => '082160895338',
                 'description' => 'Opsi layanan: Makan di tempat · Bawa pulang
@@ -50,8 +47,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Deep art Cafe',
-                'image' => 'image_restoran_1.jpg',
-                'destination_id' => 4,
+                'kabupaten_id' => 4,
                 'location' => 'Lokasi Restoran 1',
                 'phone' => '082161344954',
                 'description' => 'MASAKAN
@@ -65,8 +61,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Damar Toba',
-                'image' => 'image_restoran_1.jpg',
-                'destination_id' => 2,
+                'kabupaten_id' => 2,
                 'location' => 'Lokasi Restoran 1',
                 'phone' => '082161344954',
                 'description' => 'Damar Toba is strategically located on the southern shores of Lake Toba, as it can be reached in 40 minutes by road from Silangit International Airport. Established to help unlock the full potential of Lake Toba tourism, Damar Toba is managed by a team of professionals with prior senior exposure at four or 5-star hotels.
@@ -74,8 +69,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Rumah Makan Khas Batak Silindung Simalungun',
-                'image' => 'image_restoran_1.jpg',
-                'destination_id' => 2,
+                'kabupaten_id' => 2,
                 'location' => 'Lokasi Restoran 1',
                 'phone' => '082161344954',
                 'description' => 'Once the promenade around the Vihara Avalokitsvara - Statue of Dewi Kwan Im is over, visit Rumah Makan Khas Batak Silindung Simalungun. This restaurant offers its visitors to degust Indonesian cuisine. Good ikan bakar, kota and Bbq pork might be what you need.
@@ -83,8 +77,7 @@ class RestaurantSeeder extends Seeder
             ],
             [
                 'name' => 'Dope Berastagi',
-                'image' => 'image_restoran_1.jpg',
-                'destination_id' => 2,
+                'kabupaten_id' => 2,
                 'location' => 'Lokasi Restoran 1',
                 'phone' => '081365997007',
                 'description' => 'Opsi layanan: Makan di tempat · Bawa pulang

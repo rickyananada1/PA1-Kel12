@@ -51,7 +51,7 @@ class BlogController extends Controller
             $blog = Blog::create($request->validated() + ['slug' => $slug]);
         }
 
-        return redirect()->route('blog.edit', [$blog])->with([
+        return redirect()->route('admin.blog.edit', [$blog])->with([
             'message' => 'Success Created !',
             'alert-type' => 'success'
         ]);
@@ -96,7 +96,7 @@ class BlogController extends Controller
             $slug = Str::slug($request->title, '-');
             $blog->update($request->validated() + ['slug' => $slug]);
         }
-        return redirect()->route('blog.index')->with([
+        return redirect()->route('admin.blog.index')->with([
             'message' => 'Success Updated !',
             'alert-type' => 'success'
         ]);

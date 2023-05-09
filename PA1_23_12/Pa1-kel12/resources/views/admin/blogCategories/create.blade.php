@@ -5,13 +5,13 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('blogCategory.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.blogCategory.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
 @section('content')
     <div class="section-body">
-        <form action="{{ Route('blogCategory.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ Route('admin.blogCategory.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-12">

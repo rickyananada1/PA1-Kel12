@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-primary" href="{{ Route('destination.create') }}" role="button">Tambah <i
+    <a class="btn btn-primary" href="{{ Route('admin.destination.create') }}" role="button">Tambah <i
             class="fa-solid fa-plus"></i></a>
 @endsection
 
@@ -43,14 +43,14 @@
                                             <td>{{ $destination->ticket }}</td>
                                             <td>{{ $destination->destination_category_id }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
-                                                <form action="{{ route('destination.edit', [$destination]) }}"
+                                                <form action="{{ route('admin.destination.edit', [$destination]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
                                                 <form 
-                                                    action="{{ route('destination.destroy', [$destination]) }}"
+                                                    action="{{ route('admin.destination.destroy', [$destination]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf

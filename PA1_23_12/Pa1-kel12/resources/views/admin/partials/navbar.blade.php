@@ -11,17 +11,17 @@
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
         <img src="{{ asset('Template/dist/img/LogoBetaTudia.png') }}" alt="Profile Picture" width="30" height="30" class="rounded-circle mr-2">
-        {{ Auth::user()->name }}
+        {{ auth('admin')->user()->name }}
       </a>
       <div class="dropdown-menu dropdown-menu-right" style="left: inherit; right: 0px;">
-        <a href="{{ route('profile.show') }}" class="dropdown-item">
+        <a href="{{ route('admin.profile.show') }}" class="dropdown-item">
           <i class="mr-2 fas fa-file"></i>
           {{ __('My profile') }}
       </a>
         <div class="dropdown-divider"></div>
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ route('admin.logout') }}">
           @csrf
-          <a href="{{ route('logout') }}" class="dropdown-item"
+          <a href="{{ route('admin.logout') }}" class="dropdown-item"
             onclick="event.preventDefault(); this.closest('form').submit();">
             <i class="mr-2 fas fa-sign-out-alt"></i>
             {{ __('Log Out') }}

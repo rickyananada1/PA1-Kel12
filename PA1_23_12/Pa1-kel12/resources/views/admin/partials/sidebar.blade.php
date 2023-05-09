@@ -9,7 +9,6 @@
         </div>
     </div>
 
-    
 
 
     <!-- SidebarSearch Form -->
@@ -30,7 +29,7 @@
             <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{Route('dashboard')}}" class="nav-link">
+                <a href="{{ Route('admin.dashboard') }}" class="nav-link">
                     <i class="nav-icon fa-solid fa-home"></i>
                     <p>
                         {{ __('Dashboard') }}
@@ -42,22 +41,30 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
-                        {{ __('Pemilik Wisata') }}
+                        {{ __('Kontributor') }}
                     </p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="{{Route('kabupaten.index')}}" class="nav-link">
+                <a href="{{ Route('admin.kabupaten.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-map"></i>
                     <p>
                         {{ __('Kabupaten') }}
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ Route('admin.restaurant.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-utensils nav-icon"></i>
+                    <p>
+                        {{ __('Tempat Makan') }}
+                    </p>
+                </a>
+            </li>
 
             <li class="nav-item">
-                <a href="{{Route('accommodation.index')}}" class="nav-link">
+                <a href="{{ Route('admin.accommodation.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-hotel nav-icon"></i>
                     <p>
                         {{ __('Akomodasi') }}
@@ -65,14 +72,6 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="{{Route('restaurant.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-utensils nav-icon"></i>
-                    <p>
-                        {{ __('Tempat Makan') }}
-                    </p>
-                </a>
-            </li>
 
             {{-- Wisata --}}
             <li class="nav-item">
@@ -85,15 +84,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{Route('destinationCategory.index')}}" class="nav-link">
+                        <a href="{{ Route('admin.destinationCategory.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>{{__('Kategori')}}</p>
+                            <p>{{ __('Kategori') }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('destination.index')}}" class="nav-link">
+                        <a href="{{ Route('admin.destination.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>{{__('Destinasi')}}</p>
+                            <p>{{ __('Destinasi') }}</p>
                         </a>
                     </li>
                 </ul>
@@ -110,13 +109,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('blogCategory.index') }}" class="nav-link">
+                        <a href="{{ route('admin.blogCategory.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Kategori</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{Route('blog.index')}}" class="nav-link">
+                        <a href="{{ Route('admin.blog.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Blog</p>
                         </a>
@@ -124,7 +123,7 @@
                 </ul>
             </li>
 
-            
+
 
         </ul>
     </nav>

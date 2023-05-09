@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('blog.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.blog.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card p-3">
-                        <form method="post" action="{{ route('blog.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.blog.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row border-bottom pb-4">
                                 <label for="title" class="col-sm-2 col-form-label">Judul Blog*</label>

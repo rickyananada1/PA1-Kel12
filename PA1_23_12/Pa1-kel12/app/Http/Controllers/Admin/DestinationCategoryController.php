@@ -48,7 +48,7 @@ class DestinationCategoryController extends Controller
         }
 
         // kembalikan ke halaman index dan tampilkan pesan berhasil
-        return redirect()->route('destinationCategory.index')->with([
+        return redirect()->route('admin.destinationCategory.index')->with([
             'message' => 'Success Added Destination Category!',
             'alert-type' => 'success'
         ]);
@@ -91,7 +91,7 @@ class DestinationCategoryController extends Controller
             $destinationCategory->update($request->validated() + ['slug' => $slug]);
         }
         // Redirect ke halaman lain atau tampilkan pesan sukses
-        return redirect()->route('destinationCategory.index')->with('success', 'Destination category updated successfully!');
+        return redirect()->route('admin.destinationCategory.index')->with('success', 'Destination category updated successfully!');
     }
 
     /**

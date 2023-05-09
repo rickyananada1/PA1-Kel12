@@ -52,8 +52,8 @@ class AccommodationController extends Controller
             Accommodation::create($request->except('image') + ['slug' => $slug, 'image' => $image]);
         }
 
-        return redirect()->route('accommodation.index')->with([
-            'message' => 'Success Created !',
+        return redirect()->route('admin.accommodation.index')->with([
+            'message' => 'Akomodasi baru berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
     }
@@ -103,9 +103,9 @@ class AccommodationController extends Controller
                 $accommodation->update($request->validated() + ['slug' => $slug]);
             }
         }
-        return redirect()->route('accommodation.index')->with([
+        return redirect()->route('admin.accommodation.index')->with([
             'message' => 'Success Updated !',
-            'alert-type' => 'info'
+            'alert-type' => 'success'
         ]);
     }
 

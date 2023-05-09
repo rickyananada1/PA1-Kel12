@@ -11,8 +11,13 @@ class Restaurant extends Model
 
     protected $guarded = ['id'];
 
-    public function destination()
+    public function kabupaten()
     {
-        return $this->belongsTo(Destination::class);
+        return $this->belongsTo(Kabupaten::class);
+    }
+
+    public function galleries()
+    {
+        return $this->hasMany(RestaurantGallery::class);
     }
 }

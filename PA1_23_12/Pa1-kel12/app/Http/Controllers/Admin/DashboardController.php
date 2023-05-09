@@ -9,6 +9,7 @@ use App\Models\Destination;
 use App\Models\BlogCategory;
 use App\Models\Blog;
 use App\Models\Kabupaten;
+use App\Models\Restaurant;
 use App\Models\User;
 
 class DashboardController extends Controller
@@ -22,6 +23,7 @@ class DashboardController extends Controller
         $sumDestination  = Destination::count();
         $sumBlogCategory = BlogCategory::count();
         $sumBlog = Blog::count();
+        $sumRestaurant = Restaurant::count();
 
         return view('admin.dashboard', compact(
             'sumKabupaten',
@@ -29,6 +31,7 @@ class DashboardController extends Controller
             'sumBlogCategory',
             'sumBlog',
             'sumDestination',
+            'sumRestaurant',
         ));
     }
 }

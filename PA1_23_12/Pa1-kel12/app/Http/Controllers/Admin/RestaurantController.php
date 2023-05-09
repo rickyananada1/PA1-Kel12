@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
-use App\Models\Destination;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\RestaurantRequest;
+use App\Models\Kabupaten;
+use App\Models\RestaurantGallery;
 
 class RestaurantController extends Controller
 {
@@ -19,7 +20,8 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('destination')->paginate(10);
+        $restaurants = Restaurant::with('kabupaten')->paginate(10);
+        
         return view('admin.restaurant.index', compact('restaurants'));
     }
 
@@ -30,8 +32,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        $destinations = Destination::get(['name', 'id']);
-        return view('admin.restaurant.create', compact('destinations'));
+        $kabupatens = Kabupaten::get(['name', 'id']);
+        return view('admin.restaurant.create', compact('kabupatens'));
     }
 
     /**
@@ -43,17 +45,12 @@ class RestaurantController extends Controller
     public function store(RestaurantRequest $request)
     {
         if ($request->validated()) {
-            $image = $request->file('image')->store(
-                'destination/restaurant',
-                'public'
-            );
-            $slug = Str::slug($request->name, '-');
-
-            Restaurant::create($request->except('image') + ['slug' => $slug, 'image' => $image]);
+            $slug = Str::slug($request->location, '-');
+            $restaurant = Restaurant::create($request->validated() + ['slug' => $slug]);
         }
 
-        return redirect()->route('restaurant.index')->with([
-            'message' => 'Success Created !',
+        return redirect()->route('admin.restaurant.edit', [$restaurant])->with([
+            'message' => 'Data Tempat Makan Berhasil Ditambahkan!',
             'alert-type' => 'success'
         ]);
     }
@@ -77,8 +74,9 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        $destinations = Destination::get(['name', 'id']);
-        return view('admin.restaurant.edit', compact('restaurant', 'destinations'));
+        $restaurantGalleries = RestaurantGallery::paginate(10);
+        $kabupatens = Kabupaten::get(['name', 'id']);
+        return view('admin.restaurant.edit', compact('restaurantGalleries','restaurant', 'kabupatens'));
     }
 
     /**
@@ -91,21 +89,13 @@ class RestaurantController extends Controller
     public function update(RestaurantRequest $request, Restaurant $restaurant)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->name, '-');
-            if ($request->image) {
-                File::delete('storage/' . $restaurant->image);
-                $image = $request->file('image')->store(
-                    'destination/restaurant',
-                    'public'
-                );
-                $restaurant->update($request->except('image') + ['slug' => $slug, 'image' => $image]);
-            } else {
-                $restaurant->update($request->validated() + ['slug' => $slug]);
-            }
+            $slug = Str::slug($request->location, '-'). time();
+            $restaurant->update($request->validated() + ['slug' => $slug]);
         }
-        return redirect()->route('restaurant.index')->with([
-            'message' => 'Success Updated !',
-            'alert-type' => 'info'
+
+        return redirect()->route('admin.restaurant.index')->with([
+            'message' => 'Data Tempat Makan Berhasil Diupdate!',
+            'alert-type' => 'success'
         ]);
     }
 
@@ -117,7 +107,6 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        File::delete('storage/' . $restaurant->image);
         $restaurant->delete();
 
         return redirect()->back()->with([

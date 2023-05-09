@@ -1,11 +1,12 @@
 @extends('admin.master')
 
 @section('title')
-    Edit Akamodasi
+    Edit Akomodasi
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('accommodation.index') }}" role="button"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.accommodation.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -25,7 +26,7 @@
                                         <div class="col-lg-12">
                                             <div class="card p-3">
                                                 <form method="post"
-                                                    action="{{ route('accommodation.update', [$accommodation->id]) }}"
+                                                    action="{{ route('admin.accommodation.update', [$accommodation->id]) }}"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
@@ -53,17 +54,34 @@
                                                             Akomodasi</label>
                                                         <div class="col-sm-10">
                                                             <select class="form-control" id="category" name="category">
-                                                                <option value="Hotel">Hotel</option>
-                                                                <option value="Resort">Resort</option>
-                                                                <option value="Apartement">Apartement</option>
-                                                                <option value="Villa">Villa</option>
-                                                                <option value="Hostel">Hostel</option>
-                                                                <option value="Homestay">Homestay</option>
-                                                                <option value="Guest House">Guest House</option>
-                                                                <option value="Camping ground">Camping ground</option>
+                                                                <option value="Hotel"
+                                                                    {{ old('category') == 'Hotel' ? 'selected' : '' }}>Hotel
+                                                                </option>
+                                                                <option value="Resort"
+                                                                    {{ old('category') == 'Resort' ? 'selected' : '' }}>
+                                                                    Resort</option>
+                                                                <option value="Apartement"
+                                                                    {{ old('category') == 'Apartement' ? 'selected' : '' }}>
+                                                                    Apartement</option>
+                                                                <option value="Villa"
+                                                                    {{ old('category') == 'Villa' ? 'selected' : '' }}>Villa
+                                                                </option>
+                                                                <option value="Hostel"
+                                                                    {{ old('category') == 'Hostel' ? 'selected' : '' }}>
+                                                                    Hostel</option>
+                                                                <option value="Homestay"
+                                                                    {{ old('category') == 'Homestay' ? 'selected' : '' }}>
+                                                                    Homestay</option>
+                                                                <option value="Guest House"
+                                                                    {{ old('category') == 'Guest House' ? 'selected' : '' }}>
+                                                                    Guest House</option>
+                                                                <option value="Camping ground"
+                                                                    {{ old('category') == 'Camping ground' ? 'selected' : '' }}>
+                                                                    Camping ground</option>
                                                             </select>
                                                         </div>
                                                     </div>
+
 
                                                     <div class="form-group row border-bottom pb-4">
                                                         <label for="price" class="col-sm-2 col-form-label">Harga</label>
@@ -80,10 +98,12 @@
                                                         <div class="col-sm-10">
                                                             <select class="form-control" id="destination_id"
                                                                 name="destination_id">
-                                                                <option value="">--Pilih--</option>
+
                                                                 @foreach ($destinations as $destination)
-                                                                    <option value="{{ $destination->id }}">
-                                                                        {{ $destination->name }}</option>
+                                                                    <option value="{{ $destination->id }}"
+                                                                        {{ old('destination_id', $accommodation->destination_id) == $destination->id ? 'selected' : '' }}>
+                                                                        {{ $destination->name }}
+                                                                    </option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -91,7 +111,7 @@
 
                                                     <div class="form-group row border-bottom pb-4">
                                                         <label for="description"
-                                                            class="col-sm-2 col-form-label">description</label>
+                                                            class="col-sm-2 col-form-label">deskripsi</label>
                                                         <div class="col-sm-10">
                                                             <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description', $accommodation->description) }}</textarea>
                                                         </div>
@@ -114,7 +134,6 @@
                                 }
                             </style>
                         @endpush
-
 
                         @push('scripts')
                             <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>

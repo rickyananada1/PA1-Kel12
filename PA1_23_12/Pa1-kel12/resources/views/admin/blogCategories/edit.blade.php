@@ -6,7 +6,7 @@
 
 
 @section('content')
-<form action="{{ route('blogCategory.update', [$blogCategory]) }}" method="post">
+<form action="{{ route('admin.blogCategory.update', [$blogCategory]) }}" method="post">
     @method('put')
     @csrf
     <div class="form-group">
@@ -18,7 +18,7 @@
         <textarea class="form-control" id="description" name="description" rows="10" required>{{ $blogCategory->description }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Simpan</button>
-    <a href="{{ route('blogCategory.index') }}" class="btn btn-secondary" id="btn-batal">Batal</a>
+    <a href="{{ route('admin.blogCategory.index') }}" class="btn btn-secondary" id="btn-batal">Batal</a>
 </form>
 @endsection
 
