@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RestaurantGalleryRequest extends FormRequest
+class AccommodationGalleryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +28,6 @@ class RestaurantGalleryRequest extends FormRequest
                 return [
                     'name' => 'required',
                     'images' => ['required','image', 'mimes:png,jpg,jpeg'],
-                    'description' => 'required',
-                    'category' => 'required',
                 ];
             }
             case 'PUT':
@@ -37,8 +35,6 @@ class RestaurantGalleryRequest extends FormRequest
                 return [
                     'name' => 'required',
                     'images' => ['image', 'mimes:png,jpg,jpeg'],
-                    'description' => 'required',
-                    'category' => 'required',
                 ];
             }
         }
@@ -48,8 +44,6 @@ class RestaurantGalleryRequest extends FormRequest
         return [
             'name.required' => 'Kolom nama harus diisi!',
             'images.required' => 'Gambar harus diisi!',
-            'description.required' => 'Kolom deskripsi harus diisi!',
-            'category.required' => 'Kolom kategori gambar harus diisi!',
         ];
     }
 }

@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::resource('restaurant', \App\Http\Controllers\Admin\RestaurantController::class)->except('show');
     Route::resource('restaurant.gallery', \App\Http\Controllers\Admin\RestaurantGalleryController::class)->except(['create', 'index', 'show', 'update']);
     Route::resource('accommodation', \App\Http\Controllers\Admin\AccommodationController::class)->except('show');
+    Route::resource('accommodation.gallery', \App\Http\Controllers\Admin\AccommodationGalleryController::class)->except(['create', 'index', 'show', 'update']);
     Route::get('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
 });

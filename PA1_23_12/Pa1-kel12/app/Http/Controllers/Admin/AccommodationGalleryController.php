@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Restaurant;
-use App\Models\RestaurantGallery;
+use App\Models\Accommodation;
+use App\Models\AccommodationGallery;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\Admin\RestaurantGalleryRequest;
+use App\Http\Requests\Admin\AccommodationGalleryRequest;
 
-class RestaurantGalleryController extends Controller
+class AccommodationGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,17 +37,17 @@ class RestaurantGalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RestaurantGalleryRequest $request, Restaurant $restaurant)
+    public function store(AccommodationGalleryRequest $request, Accommodation $accommodation)
     {
         if ($request->validated()) {
             $images = $request->file('images')->store(
-                'restaurant/gallery',
+                'accommodation/gallery',
                 'public'
             );
-            RestaurantGallery::create($request->except('images') + ['images' => $images, 'restaurant_id' => $restaurant->id]);
+            AccommodationGallery::create($request->except('images') + ['images' => $images, 'accommodation_id' => $accommodation->id]);
         }
 
-        return redirect()->route('admin.restaurant.edit', [$restaurant])->with([
+        return redirect()->route('admin.accommodation.edit', [$accommodation])->with([
             'message' => 'Data berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
@@ -93,7 +93,7 @@ class RestaurantGalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Restaurant $restaurant, RestaurantGallery $gallery)
+    public function destroy(Accommodation $accommodation, AccommodationGallery $gallery)
     {
         File::delete('storage/'. $gallery->images);
         $gallery->delete();

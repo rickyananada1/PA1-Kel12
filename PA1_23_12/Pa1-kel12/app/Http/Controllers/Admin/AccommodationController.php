@@ -9,6 +9,7 @@ use App\Models\Destination;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\AccommodationRequest;
+use App\Models\AccommodationGallery;
 
 class AccommodationController extends Controller
 {
@@ -43,16 +44,11 @@ class AccommodationController extends Controller
     public function store(AccommodationRequest $request)
     {
         if ($request->validated()) {
-            $image = $request->file('image')->store(
-                'destination/accommodation',
-                'public'
-            );
-            $slug = Str::slug($request->name, '-');
-
-            Accommodation::create($request->except('image') + ['slug' => $slug, 'image' => $image]);
+            $slug = Str::slug($request->location, '-');
+            $accommodation = Accommodation::create($request->validated() + ['slug' => $slug]);
         }
 
-        return redirect()->route('admin.accommodation.index')->with([
+        return redirect()->route('admin.accommodation.edit', [$accommodation])->with([
             'message' => 'Akomodasi baru berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
@@ -77,8 +73,9 @@ class AccommodationController extends Controller
      */
     public function edit(Accommodation $accommodation)
     {
+        $accommodationGalleries = AccommodationGallery::paginate(10);
         $destinations = Destination::get(['name', 'id']);
-        return view('admin.accommodation.edit', compact('accommodation', 'destinations'));
+        return view('admin.accommodation.edit', compact('accommodation', 'destinations','accommodationGalleries'));
     }
 
     /**
@@ -91,20 +88,12 @@ class AccommodationController extends Controller
     public function update(AccommodationRequest $request, Accommodation $accommodation)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->name, '-');
-            if ($request->image) {
-                File::delete('storage/' . $accommodation->image);
-                $image = $request->file('image')->store(
-                    'destination/accommodation',
-                    'public'
-                );
-                $accommodation->update($request->except('image') + ['slug' => $slug, 'image' => $image]);
-            } else {
-                $accommodation->update($request->validated() + ['slug' => $slug]);
-            }
+            $slug = Str::slug($request->location, '-'). time();
+            $accommodation->update($request->validated() + ['slug' => $slug]);
         }
+
         return redirect()->route('admin.accommodation.index')->with([
-            'message' => 'Success Updated !',
+            'message' => 'Data Akomodasi Berhasil Diupdate!',
             'alert-type' => 'success'
         ]);
     }
@@ -117,7 +106,6 @@ class AccommodationController extends Controller
      */
     public function destroy(Accommodation $accommodation)
     {
-        File::delete('storage/' . $accommodation->image);
         $accommodation->delete();
 
         return redirect()->back()->with([

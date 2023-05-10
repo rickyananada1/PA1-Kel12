@@ -53,7 +53,7 @@ class DestinationController extends Controller
         }
 
         return redirect()->route('admin.destination.edit', [$destination])->with([
-            'message' => 'Success Created !',
+            'message' => 'Destinasi baru berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
     }
@@ -99,7 +99,7 @@ class DestinationController extends Controller
         }
 
         return redirect()->route('admin.destination.index')->with([
-            'message' => 'Success Updated !',
+            'message' => 'Destinasi berhasil diupdate!',
             'alert-type' => 'success'
         ]);
     }

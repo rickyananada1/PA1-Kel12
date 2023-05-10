@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.kabupaten.index') }}" role="button"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.kabupaten.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
