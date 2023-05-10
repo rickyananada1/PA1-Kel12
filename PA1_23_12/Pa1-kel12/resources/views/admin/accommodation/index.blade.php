@@ -25,10 +25,10 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Akomodasi</th>
-                                        <th scope="col">gambar</th>
+                                        <th scope="col">Gambar</th>
                                         <th scope="col">Kategori</th>
-                                        <th scope="col">harga</th>
-                                        <th scope="col">action</th>
+                                        <th scope="col">Harga</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

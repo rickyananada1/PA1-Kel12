@@ -23,7 +23,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Name</th>
-                                        <th>Images</th>
+                                        <th>Gambar</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -76,7 +76,7 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="images" class="col-sm-2 col-form-label">Images</label>
+                                <label for="images" class="col-sm-2 col-form-label">Gambar</label>
                                 <div class="col-sm-10">
                                     <input type="file" class="form-control" name="images" value="{{ old('images') }}"
                                         id="images">
@@ -86,7 +86,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>
                     <!-- images -->
@@ -189,7 +189,7 @@
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
-                                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                                <label for="is_share" class="col-sm-2 col-form-label">Akan Ditampilkan?</label>
                                                 <div class="col-sm-10">
                                                     <select name="is_share" class="form-control">
                                                         <option value="1"
@@ -206,7 +206,7 @@
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
-                                                <label for="description" class="col-sm-2 col-form-label">deskripsi</label>
+                                                <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
                                                 <div class="col-sm-10">
                                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description', $accommodation->description) }}</textarea>
                                                 </div>
@@ -214,7 +214,7 @@
                                                     <span class="text-danger mt-2">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                            <button type="submit" class="btn btn-success">Save</button>
+                                            <button type="submit" class="btn btn-success">Simpan</button>
                                         </form>
                                     </div>
                                 </div>

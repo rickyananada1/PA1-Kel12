@@ -20,7 +20,7 @@
                             <div class="form-group mb-3">
                                 <label for="name">Kategori Destinasi</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Cth: Wisata Alami">
+                                    placeholder="contoh: Wisata Alami">
                                 @error('name')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror

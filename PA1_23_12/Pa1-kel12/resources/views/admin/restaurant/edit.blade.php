@@ -24,7 +24,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Kategori</th>
-                                        <th>Images</th>
+                                        <th>Gambar</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="images" class="col-sm-2 col-form-label">Images</label>
+                                <label for="images" class="col-sm-2 col-form-label">Gambar</label>
                                 <div class="col-sm-10">
                                     <input type="file" class="form-control" name="images" value="{{ old('images') }}"
                                         id="images">
@@ -116,7 +116,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>
                     <!-- images -->
@@ -146,15 +146,15 @@
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
-                                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                                <label for="is_share" class="col-sm-2 col-form-label">Akan Ditampilkan?</label>
                                                 <div class="col-sm-10">
                                                     <select name="is_share" class="form-control">
                                                         <option value="1"
                                                             {{ old('is_share', $restaurant->is_share) == '1' ? 'selected' : '' }}>
-                                                            Yes</option>
+                                                            Ya</option>
                                                         <option value="0"
                                                             {{ old('is_share', $restaurant->is_share) == '0' ? 'selected' : '' }}>
-                                                            No</option>
+                                                            Tidak</option>
                                                     </select>
                                                 </div>
                                                 @error('is_share')
@@ -174,7 +174,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group row border-bottom pb-4">
-                                                <label for="phone" class="col-sm-2 col-form-label">No.Telepon</label>
+                                                <label for="phone" class="col-sm-2 col-form-label">No.Telepon*</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" name="phone"
                                                         value="{{ old('phone', $restaurant->phone) }}" id="phone"
@@ -211,7 +211,7 @@
                                                     <span class="text-danger mt-2">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                            <button type="submit" class="btn btn-success">Save</button>
+                                            <button type="submit" class="btn btn-success">Simpan</button>
                                         </form>
                                     </div>
                                 </div>

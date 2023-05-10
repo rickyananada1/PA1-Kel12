@@ -23,7 +23,7 @@
                                 <label for="name" class="col-sm-2 col-form-label">Nama Destinasi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                        id="name" placeholder="example: Pantai Bul-bul">
+                                        id="name" placeholder="contoh: Pantai Lumban bul-bul">
                                 </div>
                                 @error('name')
                                     <span class="text-danger mt-2">{{ $message }}</span>
@@ -34,7 +34,7 @@
                                 <label for="ticket" class="col-sm-2 col-form-label">Tiket</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="ticket" value="{{ old('ticket') }}"
-                                        id="ticket" placeholder="example: 50k">
+                                        id="ticket" placeholder="contoh: 50.000,-">
                                 </div>
                             </div>
 
@@ -42,7 +42,7 @@
                                 <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="location" value="{{ old('location') }}"
-                                        id="location" placeholder="example: Bali">
+                                        id="location" placeholder="contoh: Balige">
                                 </div>
                                 @error('location')
                                     <span class="text-danger mt-2">{{ $message }}</span>
@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="destination_category_id" class="col-sm-2 col-form-label">Kategory</label>
+                                <label for="destination_category_id" class="col-sm-2 col-form-label">Kategori destinasi</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="destination_category_id"
                                         name="destination_category_id">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="form-group row border-bottom pb-4">
-                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                <label for="is_share" class="col-sm-2 col-form-label">Akan ditampilkan?</label>
                                 <div class="col-sm-10">
                                     <select name="is_share" class="form-control">
                                         <option value="1">Yes</option>
@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="description" class="col-sm-2 col-form-label">description</label>
+                                <label for="description" class="col-sm-2 col-form-label">Deskripsi Destinasi</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
@@ -93,7 +93,7 @@
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>
                 </div>

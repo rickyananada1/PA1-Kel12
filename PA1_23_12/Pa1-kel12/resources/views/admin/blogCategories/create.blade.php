@@ -21,7 +21,7 @@
                             <div class="form-group mb-3">
                                 <label for="name">Kategori</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Cth: Tips & Tricks">
+                                    placeholder="contoh: Tips & Tricks">
                                 @error('name')
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
@@ -39,7 +39,7 @@
 
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Kirim</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
     </div>

@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-    Kabupaten Sekitaran Toba
+    Kabupaten Sekitaran Danau Toba
 @endsection
 
 @section('subtitle')
