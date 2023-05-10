@@ -19,9 +19,9 @@
     <link rel="website icon" type="png" href="{{ asset('Template/dist/img/LogoBetaTudia.png') }}">
     <!-- Sweet Alert-->
     <link rel="stylesheet" href="{{ asset('Template/plugins/sweetalert2/sweetalert2.min.css') }}">
-    
+
     @stack('styles')
-    
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -120,8 +120,8 @@
                 if (result.isConfirmed) {
                     $('form').submit();
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        'Terhapus!',
+                        'Data telah dihapus.',
                         'success'
                     )
                 }
@@ -145,61 +145,60 @@
                     if (result.isConfirmed) {
                         // jika tombol "Yes, simpan!" ditekan, submit form
                         $('form').submit();
-                        
-                    Swal.fire(
-                        'Tersimpan!',
-                        'Datamu berhasil.',
-                        'success'
-                    )
-                
+
+                        Swal.fire(
+                            'Tersimpan!',
+                            'Datamu berhasil.',
+                            'success'
+                        )
+
                     }
                 })
             });
         });
 
         $(document).on('click', '#btn-batal', function(e) {
-        e.preventDefault();
+            e.preventDefault();
 
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Data yang belum disimpan akan hilang!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, batal!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = $(this).attr('href');
-            }
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang belum disimpan akan hilang!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, batal!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = $(this).attr('href');
+                }
+            })
+        });
+
+
+
+        $(document).on('click', '#btn-hapus', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data akan dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#form-hapus').submit();
+                    Swal.fire(
+                        'Terhapus!',
+                        'Data telah dihapus.',
+                        'success'
+                    )
+                }
+            })
         })
-    });
-
-
-
-    $(document).on('click', '#btn-hapus', function(e) {
-        e.preventDefault();
-
-        Swal.fire({
-            title: 'Apakah anda yakin?',
-            text: "Data akan dihapus!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, hapus!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $('#form-hapus').submit();
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            }
-        })
-    })
-
     </script>
     @stack('scripts')
 

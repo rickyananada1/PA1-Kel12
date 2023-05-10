@@ -24,7 +24,7 @@
                                 <label for="name" class="col-sm-2 col-form-label">Nama Akomodasi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                        id="name" placeholder="example: Hotel Labersa">
+                                        id="name" placeholder="contoh: Hotel Labersa">
                                 </div>
                                 @error('name')
                                     <span class="text-danger mt-2">{{ $message }}</span>
@@ -35,7 +35,7 @@
                                 <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="location" value="{{ old('location') }}"
-                                        id="location" placeholder="example: Balige">
+                                        id="location" placeholder="contoh: Balige">
                                 </div>
                                 @error('location')
                                     <span class="text-danger mt-2">{{ $message }}</span>
@@ -62,7 +62,7 @@
                                 <label for="price" class="col-sm-2 col-form-label">Harga</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="price" value="{{ old('price') }}"
-                                        id="price" placeholder="example: 250k">
+                                        id="price" placeholder="contoh: 250.000,-">
                                 </div>
                                 @error('price')
                                     <span class="text-danger mt-2">{{ $message }}</span>
@@ -82,17 +82,17 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                <label for="is_share" class="col-sm-2 col-form-label">Akan ditampilkan?</label>
                                 <div class="col-sm-10">
                                     <select name="is_share" class="form-control">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="description" class="col-sm-2 col-form-label">description</label>
+                                <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
@@ -100,7 +100,7 @@
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>
                 </div>

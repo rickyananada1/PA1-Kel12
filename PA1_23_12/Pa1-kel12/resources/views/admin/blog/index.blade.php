@@ -28,7 +28,7 @@
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Kutipan</th>
                                         <th scope="col">Kategori</th>
-                                        <th scope="col">action</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

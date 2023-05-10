@@ -95,7 +95,7 @@ class RestaurantGalleryController extends Controller
      */
     public function destroy(Restaurant $restaurant, RestaurantGallery $gallery)
     {
-        File::delete('storage/'. $gallery->images);
+        File::delete('storage/' . $gallery->images);
         $gallery->delete();
 
         return redirect()->back()->with([

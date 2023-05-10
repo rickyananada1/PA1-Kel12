@@ -20,10 +20,10 @@
                         <form method="post" action="{{ route('admin.restaurant.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row border-bottom pb-4">
-                                <label for="name" class="col-sm-2 col-form-label">Nama Restaurant</label>
+                                <label for="name" class="col-sm-2 col-form-label">Nama Tempat Makan</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                        id="name" placeholder="example: Distro">
+                                        id="name" placeholder="contoh: Bistro">
                                 </div>
                                 @error('name')
                                     <span class="text-danger mt-2">{{ $message }}</span>
@@ -34,7 +34,7 @@
                                 <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="location" value="{{ old('location') }}"
-                                        id="location" placeholder="example: Balige">
+                                        id="location" placeholder="contoh: Balige">
                                 </div>
                                 @error('location')
                                     <span class="text-danger mt-2">{{ $message }}</span>
@@ -45,7 +45,7 @@
                                 <label for="phone" class="col-sm-2 col-form-label">No Telepon</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="phone" value="{{ old('phone') }}"
-                                        id="phone" placeholder="example: +6219349012">
+                                        id="phone" placeholder="contoh: 086573652336">
                                 </div>
                             </div>
 
@@ -65,17 +65,17 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                <label for="is_share" class="col-sm-2 col-form-label">Akan ditampilkan?</label>
                                 <div class="col-sm-10">
                                     <select name="is_share" class="form-control">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="1">Ya</option>
+                                        <option value="0">Tidak</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="description" class="col-sm-2 col-form-label">description</label>
+                                <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
@@ -83,7 +83,7 @@
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>
                 </div>

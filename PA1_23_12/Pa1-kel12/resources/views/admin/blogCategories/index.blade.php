@@ -22,7 +22,7 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Kategori Blog</th>
                                         <th scope="col">Deskripsi</th>
-                                        <th scope="col">action</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
