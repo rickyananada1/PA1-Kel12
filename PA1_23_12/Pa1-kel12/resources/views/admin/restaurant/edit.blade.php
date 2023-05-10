@@ -72,6 +72,9 @@
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                         id="name" placeholder="example: Kuta">
                                 </div>
+                                @error('name')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -80,6 +83,9 @@
                                     <input type="file" class="form-control" name="images" value="{{ old('images') }}"
                                         id="images">
                                 </div>
+                                @error('images')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -94,6 +100,9 @@
                                             Gambar Restaurant</option>
                                     </select>
                                 </div>
+                                @error('category')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -102,6 +111,9 @@
                                     <input type="text" class="form-control" name="description"
                                         value="{{ old('description') }}" placeholder="example: Kuta">
                                 </div>
+                                @error('description')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-success">Save</button>
@@ -128,6 +140,9 @@
                                                         value="{{ old('name', $restaurant->name) }}" id="name"
                                                         placeholder="example: Distro">
                                                 </div>
+                                                @error('name')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
@@ -142,6 +157,9 @@
                                                             No</option>
                                                     </select>
                                                 </div>
+                                                @error('is_share')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
@@ -151,6 +169,9 @@
                                                         value="{{ old('location', $restaurant->location) }}"
                                                         id="location" placeholder="example: 250k">
                                                 </div>
+                                                @error('location')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="form-group row border-bottom pb-4">
                                                 <label for="phone" class="col-sm-2 col-form-label">No.Telepon</label>
@@ -159,6 +180,9 @@
                                                         value="{{ old('phone', $restaurant->phone) }}" id="phone"
                                                         placeholder="example: 08526712538">
                                                 </div>
+                                                @error('phone')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
@@ -173,6 +197,9 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                @error('kabupaten_id')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
@@ -180,6 +207,9 @@
                                                 <div class="col-sm-10">
                                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description', $restaurant->description) }}</textarea>
                                                 </div>
+                                                @error('description')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <button type="submit" class="btn btn-success">Save</button>
                                         </form>

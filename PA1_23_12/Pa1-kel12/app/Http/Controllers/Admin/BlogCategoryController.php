@@ -50,7 +50,7 @@ class BlogCategoryController extends Controller
 
         // return to index 
         return redirect()->route('admin.blogCategory.index')->with([
-            'message' => 'Success Created!',
+            'message' => 'Kategori Blog baru berhasil ditambahkan',
             'alert-type' => 'success'
         ]);
     }
@@ -94,7 +94,7 @@ class BlogCategoryController extends Controller
         // Redirect ke halaman lain atau tampilkan pesan sukses
         return redirect()->route('admin.blogCategory.index')->with(
             [
-                'message' => 'Success Updated!',
+                'message' => 'Kategori Blog berhasil diupdate',
                 'alert-type' => 'success'
             ]
         );

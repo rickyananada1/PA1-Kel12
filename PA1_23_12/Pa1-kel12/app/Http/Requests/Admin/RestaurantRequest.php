@@ -47,4 +47,13 @@ class RestaurantRequest extends FormRequest
                 }
         }
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Kolom nama tempat makan harus diisi!',
+            'kabupaten.required' => 'kabupaten harus diisi!',
+            'description.required' => 'Kolom deskripsi harus diisi!',
+            'location.required' => 'Kolom lokasi tempat makan harus diisi!',
+        ];
+    }
 }

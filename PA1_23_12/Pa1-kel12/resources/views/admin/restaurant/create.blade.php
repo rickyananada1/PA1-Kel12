@@ -5,7 +5,8 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.restaurant.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.restaurant.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -24,6 +25,9 @@
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                         id="name" placeholder="example: Distro">
                                 </div>
+                                @error('name')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -32,7 +36,11 @@
                                     <input type="text" class="form-control" name="location" value="{{ old('location') }}"
                                         id="location" placeholder="example: Balige">
                                 </div>
+                                @error('location')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
+                            
                             <div class="form-group row border-bottom pb-4">
                                 <label for="phone" class="col-sm-2 col-form-label">No Telepon</label>
                                 <div class="col-sm-10">
@@ -51,6 +59,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                @error('kabupaten_id')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -68,6 +79,9 @@
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
+                                @error('location')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-success">Save</button>
                         </form>

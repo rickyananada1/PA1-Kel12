@@ -48,7 +48,7 @@ class DestinationGalleryController extends Controller
         }
 
         return redirect()->route('admin.destination.edit', [$destination])->with([
-            'message' => 'Success Created !',
+            'message' => 'Data berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
     }

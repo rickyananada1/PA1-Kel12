@@ -5,7 +5,8 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.blog.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.blog.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -19,11 +20,14 @@
                         <form method="post" action="{{ route('admin.blog.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row border-bottom pb-4">
-                                <label for="title" class="col-sm-2 col-form-label">Judul Blog*</label>
+                                <label for="title" class="col-sm-2 col-form-label">Judul Blog</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="title" value="{{ old('title') }}"
                                         id="title" placeholder="example: 5 tips travel">
                                 </div>
+                                @error('title')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group row border-bottom pb-4">
                                 <label for="blog_category_id" class="col-sm-2 col-form-label">Kategory</label>
@@ -63,12 +67,18 @@
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="excerpt" id="excerpt" cols="30" rows="5">{{ old('excerpt') }}</textarea>
                                 </div>
+                                @error('excerpt')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group row border-bottom pb-4">
                                 <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
+                                @error('description')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-success">Simpan</button>
                         </form>

@@ -49,7 +49,7 @@ class BlogGalleryController extends Controller
         }
 
         return redirect()->route('admin.blog.edit', [$blog])->with([
-            'message' => 'Success Created !',
+            'message' => 'Data berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
     }

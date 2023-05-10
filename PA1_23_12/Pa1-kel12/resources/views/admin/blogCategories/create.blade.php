@@ -5,7 +5,8 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.blogCategory.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.blogCategory.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -20,12 +21,17 @@
                             <div class="form-group mb-3">
                                 <label for="name">Kategori</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Cth: Tips & Tricks" required>
+                                    placeholder="Cth: Tips & Tricks">
+                                @error('name')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="description" class="form-label">Deskripsi Kategori</label>
-                                <textarea class="form-control" id="description" name="description" rows="10"
-                                    placeholder="Deskripsi Kategori..." required></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="10" placeholder="Deskripsi Kategori..."></textarea>
+                                @error('description')
+                                <span class="text-danger mt-2">{{ $message }}</span>
+                            @enderror
                             </div>
                         </div>
                     </div>

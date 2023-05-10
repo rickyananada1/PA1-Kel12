@@ -1,11 +1,12 @@
 @extends('admin.master')
 
 @section('title')
-    Create Blog
+    Create Destinasi
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.destination.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.destination.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -24,6 +25,9 @@
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                         id="name" placeholder="example: Pantai Bul-bul">
                                 </div>
+                                @error('name')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -33,19 +37,23 @@
                                         id="ticket" placeholder="example: 50k">
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row border-bottom pb-4">
                                 <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="location" value="{{ old('location') }}"
                                         id="location" placeholder="example: Bali">
                                 </div>
+                                @error('location')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
                                 <label for="destination_category_id" class="col-sm-2 col-form-label">Kategory</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="destination_category_id" name="destination_category_id">
+                                    <select class="form-control" id="destination_category_id"
+                                        name="destination_category_id">
                                         <option value="">--Pilih--</option>
                                         @foreach ($destinationCategories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -81,8 +89,11 @@
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
+                                @error('description')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <button type="submit" class="btn btn-success" >Save</button>
+                            <button type="submit" class="btn btn-success">Save</button>
                         </form>
                     </div>
                 </div>

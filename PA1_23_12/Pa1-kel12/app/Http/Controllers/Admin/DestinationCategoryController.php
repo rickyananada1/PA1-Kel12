@@ -49,7 +49,7 @@ class DestinationCategoryController extends Controller
 
         // kembalikan ke halaman index dan tampilkan pesan berhasil
         return redirect()->route('admin.destinationCategory.index')->with([
-            'message' => 'Success Added Destination Category!',
+            'message' => 'Kategori Destinasi baru berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
     }

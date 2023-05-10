@@ -15,4 +15,9 @@ class Accommodation extends Model
     {
         return $this->belongsTo(Destination::class);
     }
+
+    public function galleries()
+    {
+        return $this->hasMany(AccommodationGallery::class);
+    }
 }

@@ -50,7 +50,7 @@ class RestaurantController extends Controller
         }
 
         return redirect()->route('admin.restaurant.edit', [$restaurant])->with([
-            'message' => 'Data Tempat Makan Berhasil Ditambahkan!',
+            'message' => 'Tempat Makan baru Berhasil Ditambahkan!',
             'alert-type' => 'success'
         ]);
     }

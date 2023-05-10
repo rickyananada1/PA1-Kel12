@@ -17,9 +17,10 @@ class CreateAccommodationsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('image');
             $table->string('category');
             $table->string('price');
+            $table->string('location');
+            $table->integer('is_share');
             $table->text('description');
             $table->foreignId('destination_id')->constrained('destinations')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();

@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.destination.index') }}" role="button"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.destination.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -69,6 +69,9 @@
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                         id="name" placeholder="example: Kuta">
                                 </div>
+                                @error('name')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -77,6 +80,9 @@
                                     <input type="file" class="form-control" name="images" value="{{ old('images') }}"
                                         id="images">
                                 </div>
+                                @error('images')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-success">Save</button>
@@ -136,7 +142,8 @@
 
 
                                             <div class="form-group row border-bottom pb-4">
-                                                <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
+                                                <label for="kabupaten_id"
+                                                    class="col-sm-2 col-form-label">Kabupaten</label>
                                                 <div class="col-sm-10">
                                                     <select class="form-control" name="kabupaten_id" id="kabupaten_id">
                                                         @foreach ($kabupatens as $kabupaten)
@@ -169,6 +176,9 @@
                                                 <div class="col-sm-10">
                                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description', $destination->description) }}</textarea>
                                                 </div>
+                                                @error('description')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <button type="submit" class="btn btn-success">Save</button>
                                         </form>

@@ -37,7 +37,8 @@
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $accommodation->name }}</td>
                                             <td>
-                                                <img src="{{ Storage::url($accommodation->image)}}" width="100" alt="">
+                                                <img src="{{ Storage::url(optional($accommodation->galleries->first())->images) }}"
+                                                    alt="" class="popular__img" width="100" />
                                             </td>
                                             <td>{{ $accommodation->category }}</td>
                                             <td>{{ $accommodation->price }}</td>

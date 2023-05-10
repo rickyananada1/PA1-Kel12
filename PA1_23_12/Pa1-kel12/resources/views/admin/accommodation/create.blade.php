@@ -5,7 +5,8 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.accommodation.index') }}" role="button"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.accommodation.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -16,7 +17,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card p-3">
-                        <form method="post" action="{{ route('admin.accommodation.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.accommodation.store') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row border-bottom pb-4">
                                 <label for="name" class="col-sm-2 col-form-label">Nama Akomodasi</label>
@@ -24,13 +26,20 @@
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}"
                                         id="name" placeholder="example: Hotel Labersa">
                                 </div>
+                                @error('name')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="image" class="col-sm-2 col-form-label">Gambar</label>
+                                <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                 <div class="col-sm-10">
-                                    <input type="file" name="image" class="form-control" id="image">
+                                    <input type="text" class="form-control" name="location" value="{{ old('location') }}"
+                                        id="location" placeholder="example: Balige">
                                 </div>
+                                @error('location')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -55,6 +64,9 @@
                                     <input type="text" class="form-control" name="price" value="{{ old('price') }}"
                                         id="price" placeholder="example: 250k">
                                 </div>
+                                @error('price')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -70,10 +82,23 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
+                                <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
+                                <div class="col-sm-10">
+                                    <select name="is_share" class="form-control">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row border-bottom pb-4">
                                 <label for="description" class="col-sm-2 col-form-label">description</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" id="description" cols="30" rows="7">{{ old('description') }}</textarea>
                                 </div>
+                                @error('description')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-success">Save</button>
                         </form>

@@ -52,7 +52,7 @@ class BlogController extends Controller
         }
 
         return redirect()->route('admin.blog.edit', [$blog])->with([
-            'message' => 'Success Created !',
+            'message' => 'Blog baru berhasil ditambahkan!',
             'alert-type' => 'success'
         ]);
     }
@@ -97,7 +97,7 @@ class BlogController extends Controller
             $blog->update($request->validated() + ['slug' => $slug]);
         }
         return redirect()->route('admin.blog.index')->with([
-            'message' => 'Success Updated !',
+            'message' => 'Blog berhasil diupdate!',
             'alert-type' => 'success'
         ]);
     }

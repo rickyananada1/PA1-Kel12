@@ -27,9 +27,10 @@ class AccommodationRequest extends FormRequest
             case 'POST': {
                     return [
                         'name' => 'required',
-                        'image' => ['required', 'image', 'mimes:png,jpg,jpeg'],
                         'category' => 'required',
-                        'price' => 'required',
+                        'price' => 'nullable',
+                        'location' => 'required',
+                        'is_share' => 'required',
                         'description' => 'required',
                         'destination_id' => 'required'
                     ];
@@ -38,13 +39,23 @@ class AccommodationRequest extends FormRequest
             case 'PATCH': {
                     return [
                         'name' => 'required',
-                        'image' => ['image', 'mimes:png,jpg,jpeg'],
                         'category' => 'required',
-                        'price' => 'required',
+                        'price' => 'nullable',
+                        'location' => 'required',
+                        'is_share' => 'required',
                         'description' => 'required',
                         'destination_id' => 'required'
                     ];
                 }
         }
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Kolom nama harus diisi!',
+            'category.required' => 'Kategori Akmodasi harus diisi!',
+            'location.required' => 'Kolom lokasi akomodasi harus diisi!',
+            'description.required' => 'Kolom deskripsi harus diisi!',
+        ];
     }
 }
