@@ -20,13 +20,6 @@ use \App\Http\Controllers\Admin\DestinationCategoryController;
 */
 
 
-// Route::get('/admin/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth:admin'])->name('admin.dashboard');
-
-// require __DIR__ . '/adminauth.php';
-
-
 /*== Route Admin ===================================================================================================================================== */
 Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth:admin'])->name('admin.dashboard');
 require __DIR__ . '/adminauth.php';
@@ -47,6 +40,40 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::put('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
 });
 /*== Route Admin ===================================================================================================================================== */
+
+
+
+
+
+
+/*== Route Contributor ===================================================================================================================================== */
+Route::get('/contributor/dashboard', function(){
+    return view('contributor.dashboard');
+})->middleware(['auth:contributor'])->name('contributor.dashboard');
+require __DIR__ . '/contributorauth.php';
+
+Route::group(['prefix' => 'contributor', 'as' => 'contributor.'],function(){
+
+    Route::resource('kabupaten', \App\Http\Controllers\Contributor\KabupatenController::class)->except('show');
+    Route::resource('blog', \App\Http\Controllers\Contributor\BlogController::class)->except('show');
+    Route::resource('blogCategory', \App\Http\Controllers\Contributor\BlogCategoryController::class)->except('show');
+    Route::resource('blog.gallery', \App\Http\Controllers\Contributor\BlogGalleryController::class)->except(['create', 'index', 'show', 'update']);
+    Route::resource('destination', \App\Http\Controllers\Contributor\DestinationController::class)->except('show');
+    Route::resource('destinationCategory', \App\Http\Controllers\Contributor\DestinationCategoryController::class)->except('show');
+    Route::resource('destination.gallery', \App\Http\Controllers\Contributor\DestinationGalleryController::class)->except(['create', 'index', 'show', 'update']);
+    Route::resource('restaurant', \App\Http\Controllers\Contributor\RestaurantController::class)->except('show');
+    Route::resource('restaurant.gallery', \App\Http\Controllers\Contributor\RestaurantGalleryController::class)->except(['create', 'index', 'show', 'update']);
+    Route::resource('accommodation', \App\Http\Controllers\Contributor\AccommodationController::class)->except('show');
+    Route::resource('accommodation.gallery', \App\Http\Controllers\Contributor\AccommodationGalleryController::class)->except(['create', 'index', 'show', 'update']);
+    Route::get('profile', [\App\Http\Controllers\Contributor\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [\App\Http\Controllers\Contributor\ProfileController::class, 'update'])->name('profile.update');
+});
+/*== Route Contributor ===================================================================================================================================== */
+
+
+
+
+
 
 
 

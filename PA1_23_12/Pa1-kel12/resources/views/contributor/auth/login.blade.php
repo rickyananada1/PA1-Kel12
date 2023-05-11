@@ -21,12 +21,12 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
-                                    <form method="POST" action="{{ route('admin.login') }}">
+                                    <form method="POST" action="{{ route('contributor.login') }}">
                                         @csrf
 
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #5E8B7E"></i>
-                                            <span class="h1 fw-bold mb-0">Admin Betta Tudia?</span>
+                                            <span class="h1 fw-bold mb-0">Contributor Betta Tudia?</span>
                                         </div>
 
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Masukkan Akun</h5>
@@ -58,14 +58,14 @@
                                             <img src="https:developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" ></a>
                                         </div>
 
-                                        @if (Route::has('password.request'))
+                                        @if (Route::has('contributor.password.request'))
                                             <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                                                href="{{ route('admin.password.request') }}">
+                                                href="{{ route('contributor.password.request') }}">
                                                 {{ __('Forgot your password?') }}
                                             </a>
                                         @endif
                                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
-                                                href="{{Route('admin.register')}}" style="color: #393f81;">Registrasi disini</a></p>
+                                                href="{{Route('contributor.register')}}" style="color: #393f81;">Registrasi disini</a></p>
                                     </form>
 
                                 </div>

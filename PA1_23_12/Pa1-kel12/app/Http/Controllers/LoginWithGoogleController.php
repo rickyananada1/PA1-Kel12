@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contributor;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
@@ -21,13 +22,13 @@ class LoginWithGoogleController extends Controller
         try {
             $user = Socialite::driver('google')->user();
 
-            $finduser = User::where('google_id', $user->id)->first();
+            $finduser = Contributor::where('google_id', $user->id)->first();
 
             if ($finduser) {
                 Auth::login($finduser);
                 return redirect()->intended('dashboard');
             } else {
-                $newUser = User::create([
+                $newUser = Contributor::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
