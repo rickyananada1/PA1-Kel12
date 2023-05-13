@@ -11,6 +11,11 @@ class Blog extends Model
 
     protected $guarded = ['id'];
 
+    public function contributor()
+    {
+        return $this->belongsTo(Contributor::class);
+    }
+
     public function blogCategory()
     {
         return $this->belongsTo(BlogCategory::class);

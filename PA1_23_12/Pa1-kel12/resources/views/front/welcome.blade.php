@@ -24,15 +24,69 @@
         </div>
         <div class="container">
           <div class="row align-items-center justify-content-start">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
               <h1 class="heading" data-aos="fade-up">Website Wisata Sekitaran Danau Toba</h1><span
                 id="i"></span>
               <h3 class="mb-5" data-aos="fade-up" id="heading" style="color: white;">BetaTudia adalah website
                 penyedia informasi dan tips unik untuk kamu sekalian</h3>
+                <form class="form glass" data-aos="fade-down-right" data-aos-delay="100">
+                    <div class="row mb-2">
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                        <div class="input-group">
+                          <select name="" id="" class="form-control custom-select">
+                            <option value="">Cari Apa?</option>
+                            <option value="">Peru</option>
+                            <option value="">Japan</option>
+                            <option value="">Thailand</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
+                        <div class="input-group">
+                          <select name="" id="" class="form-control custom-select">
+                            <option value="">Kemana?</option>
+                            <option value="">Peru</option>
+                            <option value="">Japan</option>
+                            <option value="">Thailand</option>
+                            <option value="">Brazil</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
+                        <div class="input-group">
+                          <select name="" id="" class="form-control custom-select">
+                            <option value="">Kategori</option>
+                            <option value="">Peru</option>
+                            <option value="">Japan</option>
+                            <option value="">Thailand</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row align-items-center">
+                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                        <button type="submit" class="btn btn-primary btn-block">Search</button>
+                      </div>
+                      <div class="col-lg-8">
+                        <div class="form-check mt-3">
+                          <input type="checkbox" class="form-check-input" id="saveSearch" checked="checked">
+                          <label class="form-check-label" for="saveSearch">Save this search</label>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  
             </div>
-          </div>
+        </div>
+
+
         </div>
       </div>
+
+
+      
+  
+              
 
 
     {{-- section  --}}
@@ -72,7 +126,7 @@
     </div>
 
     {{-- card --}}
-    {{-- @include('front.partials.testimoni') --}}
+    @include('front.partials.testimoni')
     {{-- card end --}}
 
     <div class="section">

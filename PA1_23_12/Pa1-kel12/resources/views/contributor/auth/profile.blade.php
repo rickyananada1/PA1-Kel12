@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('contributor.master')
 
 
 @section('subtitle')
@@ -42,7 +42,7 @@
                                         <input type="email" name="email"
                                             class="form-control @error('email') is-invalid @enderror"
                                             placeholder="{{ __('Email') }}"
-                                            value="{{ old('email', auth()->user()->email) }}" required readonly>
+                                            value="{{ old('email', auth('contributor')->user()->email) }}" required readonly>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-envelope"></span>
@@ -57,7 +57,7 @@
 
 
                                     <!-- Melakukan Pengecekan apakah user login menggunakan akun google-->
-                                    @if (!auth()->user()->google_id)
+                                    @if (!auth('contributor')->user()->google_id)
                                         <!-- Jika dengan Google maka tidak dapat melakukan update password-->
 
                                         <div class="input-group mb-3">
@@ -99,7 +99,7 @@
                                         <input type="text" name="phone"
                                             class="form-control @error('phone') is-invalid @enderror"
                                             placeholder="{{ __('Phone') }}"
-                                            value="{{ old('phone', auth()->user()->phone) }}">
+                                            value="{{ old('phone', auth('contributor')->user()->phone) }}">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-phone"></span>
@@ -115,7 +115,7 @@
                                         <input type="number" name="age"
                                             class="form-control @error('age') is-invalid @enderror"
                                             placeholder="{{ __('Umur') }}"
-                                            value="{{ old('age', auth()->user()->age) }}">
+                                            value="{{ old('age', auth('contributor')->user()->age) }}">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-cake"></span>
@@ -132,7 +132,7 @@
                                         <input type="text" name="address"
                                             class="form-control @error('address') is-invalid @enderror"
                                             placeholder="{{ __('Alamat') }}"
-                                            value="{{ old('address', auth()->user()->address) }}">
+                                            value="{{ old('address', auth('contributor')->user()->address) }}">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-location"></span>

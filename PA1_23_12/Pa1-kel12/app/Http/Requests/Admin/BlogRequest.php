@@ -32,6 +32,7 @@ class BlogRequest extends FormRequest
                         'description' => 'required',
                         'blog_category_id' => 'required',
                         'kabupaten_id' => 'required',
+                        // 'contributor_id' => 'nullable',
                     ];
                 }
             case 'PUT':
@@ -43,6 +44,7 @@ class BlogRequest extends FormRequest
                         'description' => 'required',
                         'blog_category_id' => 'required',
                         'kabupaten_id' => 'required',
+                        // 'contributor_id' => 'nullable',
                     ];
                 }
         }

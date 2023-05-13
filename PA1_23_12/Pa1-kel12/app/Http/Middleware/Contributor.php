@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Contributor
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,15 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
-            return redirect('/admin/login');
+        
+        if (!Auth::guard('contributor')->check()) {
+            return redirect('/contributor/login');
         }
 
+        if (Auth::guard('contributor')->check() && Auth::guard('contributor')->user()->status == 0) {
+            session()->flash('error', 'Akun anda Tidak memili akses!');
+            return redirect('/');
+        }
         return $next($request);
     }
 }

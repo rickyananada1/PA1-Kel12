@@ -32,6 +32,7 @@ class RestaurantRequest extends FormRequest
                         'location' => 'required',
                         'is_share' => 'required',
                         'description' => 'required',
+                        'contributor_id' => 'nullable',
                     ];
                 }
             case 'PUT':
@@ -43,6 +44,7 @@ class RestaurantRequest extends FormRequest
                         'location' => 'required',
                         'is_share' => 'required',
                         'description' => 'required',
+                        'contributor_id' => 'nullable',
                     ];
                 }
         }

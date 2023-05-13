@@ -17,6 +17,8 @@ class CreateBlogsTable extends Migration
             $table->id();
             $table->foreignId('blog_category_id')->constrained('blog_categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('kabupaten_id')->constrained('kabupatens')->cascadeOnUpdate()->cascadeOnDelete()->default(1);
+            $table->unsignedBigInteger('contributor_id')->nullable();
+            $table->foreign('contributor_id')->references('id')->on('contributors');
             $table->string('slug')->unique();
             $table->string('title');
             $table->integer('is_share');

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\BlogRequest;
 use App\Models\BlogGallery;
 use App\Models\Kabupaten;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -47,6 +48,7 @@ class BlogController extends Controller
     public function store(BlogRequest $request)
     {
         if ($request->validated()) {
+            // $request['contributor_id'] = Auth::guard('contributor')->user()->id;
             $slug = Str::slug($request->title, '-') . '-' . time();
             $blog = Blog::create($request->validated() + ['slug' => $slug]);
         }

@@ -8,6 +8,7 @@ use App\Models\DestinationCategory;
 use App\Models\Destination;
 use App\Models\BlogCategory;
 use App\Models\Blog;
+use App\Models\Contributor;
 use App\Models\Kabupaten;
 use App\Models\Restaurant;
 use App\Models\User;
@@ -33,5 +34,25 @@ class DashboardController extends Controller
             'sumDestination',
             'sumRestaurant',
         ));
+    }
+
+    public function contributors()
+    {
+        $contributors = Contributor::get();
+        return view('admin.contributor', compact('contributors'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $contributor = Contributor::find($id);
+
+        if ($contributor['status'] == 1) {
+            $contributor['status'] = 0;
+        }else {
+            $contributor['status'] = 1;
+        }
+        $contributor->save();
+
+        return redirect()->back()->with('message', $contributor['name'] . 'Status Penggunna Berhasil Diganti');
     }
 }

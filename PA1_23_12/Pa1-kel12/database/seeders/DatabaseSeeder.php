@@ -16,11 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(KabupatenSeeder::class);
         $this->call(DestinationCategorySeeder::class);
-        $this->call(DestinationSeeder::class);
+        // $this->call(DestinationSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(RestaurantSeeder::class);
+        $this->call(ContributorSeeder::class);
+        $this->call(AdminSeeder::class);
+        // $this->call(RestaurantSeeder::class);
         $this->call(BlogCategorySeeder::class);
-        $this->call(BlogSeeder::class);
-        $this->call(Accommodation::class);
+        // $this->call(BlogSeeder::class);
+        // $this->call(Accommodation::class);
     }
 }
