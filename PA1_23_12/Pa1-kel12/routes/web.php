@@ -21,9 +21,9 @@ use \App\Http\Controllers\Admin\DestinationCategoryController;
 
 
 /*== Route Admin ===================================================================================================================================== */
-Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth:admin'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->middleware(['admin'])->name('admin.dashboard');
 require __DIR__ . '/adminauth.php';
-Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'],function(){
     
     Route::resource('kabupaten', \App\Http\Controllers\Admin\KabupatenController::class)->except('show');
     Route::resource('blog', \App\Http\Controllers\Admin\BlogController::class)->except('show');
@@ -38,6 +38,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::resource('accommodation.gallery', \App\Http\Controllers\Admin\AccommodationGalleryController::class)->except(['create', 'index', 'show', 'update']);
     Route::get('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
+    /*---------Contributor */
+    Route::get('/contributors', [\App\Http\Controllers\Admin\DashboardController::class, 'contributors'])->name('contributors');
+    Route::patch('/contributors/{id}/update-status', [\App\Http\Controllers\Admin\DashboardController::class, 'updateStatus'])->name('updateStatus');
 });
 /*== Route Admin ===================================================================================================================================== */
 
@@ -49,10 +52,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
 /*== Route Contributor ===================================================================================================================================== */
 Route::get('/contributor/dashboard', function(){
     return view('contributor.dashboard');
-})->middleware(['auth:contributor'])->name('contributor.dashboard');
+})->middleware(['auth:contributor', 'contributor.status'])->name('contributor.dashboard');
 require __DIR__ . '/contributorauth.php';
 
-Route::group(['prefix' => 'contributor', 'as' => 'contributor.'],function(){
+Route::group(['prefix' => 'contributor', 'as' => 'contributor.', 'middleware' => 'contributor.status'],function(){
 
     Route::resource('kabupaten', \App\Http\Controllers\Contributor\KabupatenController::class)->except('show');
     Route::resource('blog', \App\Http\Controllers\Contributor\BlogController::class)->except('show');

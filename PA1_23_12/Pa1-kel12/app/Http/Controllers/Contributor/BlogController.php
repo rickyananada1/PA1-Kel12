@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\Contributor\BlogRequest;
 use App\Models\BlogGallery;
 use App\Models\Kabupaten;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -21,7 +22,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('BlogCategory')->paginate(10);
+        $contributor = Auth::guard('contributor')->id();
+        $blogs = Blog::with('BlogCategory')->where('contributor_id', $contributor)
+            ->paginate(10);
 
         return view('contributor.blog.index', compact('blogs'));
     }
@@ -48,7 +51,8 @@ class BlogController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->title, '-') . '-' . time();
-            $blog = Blog::create($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $blog = Blog::create($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
 
         return redirect()->route('contributor.blog.edit', [$blog])->with([
@@ -76,12 +80,19 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
+        $contributorId = Auth::guard('contributor')->id();
+
+        if ($blog->contributor_id !== $contributorId) {
+            return redirect()->back();
+        }
+
         $kabupatens = Kabupaten::all();
         $categories = BlogCategory::get(['name', 'id']);
         $blogGalleries = BlogGallery::paginate(10);
 
         return view('contributor.blog.edit', compact('blog', 'categories', 'blogGalleries', 'kabupatens'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -94,7 +105,8 @@ class BlogController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->title, '-');
-            $blog->update($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $blog->update($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
         return redirect()->route('contributor.blog.index')->with([
             'message' => 'Blog berhasil diupdate!',

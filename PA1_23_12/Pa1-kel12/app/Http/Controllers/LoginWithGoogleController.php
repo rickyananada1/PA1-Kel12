@@ -25,8 +25,8 @@ class LoginWithGoogleController extends Controller
             $finduser = Contributor::where('google_id', $user->id)->first();
 
             if ($finduser) {
-                Auth::login($finduser);
-                return redirect()->intended('dashboard');
+                Auth::guard('contributor')->login($finduser);
+                return redirect()->intended('contributor/dashboard');
             } else {
                 $newUser = Contributor::create([
                     'name' => $user->name,
@@ -34,8 +34,8 @@ class LoginWithGoogleController extends Controller
                     'google_id' => $user->id,
                     'password' => encrypt('123456dummy')
                 ]);
-                Auth::login($newUser);
-                return redirect()->intended('dashboard');
+                Auth::guard('contributor')->login($newUser);
+                return redirect()->intended('contributor/dashboard');
             }
         } catch (Exception $e) {
             dd($e->getMessage());

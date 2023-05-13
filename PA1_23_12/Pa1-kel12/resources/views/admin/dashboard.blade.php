@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-    Selamat Datang {{ Auth::user()->name }}
+    Selamat Datang {{ Auth::guard('admin')->user()->name }}
 @endsection
 
 @section('subtitle')
