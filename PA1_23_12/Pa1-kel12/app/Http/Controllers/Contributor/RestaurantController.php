@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\Contributor\RestaurantRequest;
 use App\Models\Kabupaten;
 use App\Models\RestaurantGallery;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -20,7 +21,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('kabupaten')->paginate(10);
+        $contributor = Auth::guard('contributor')->id();
+        $restaurants = Restaurant::with('kabupaten')->where('contributor_id', $contributor)
+                                                ->paginate(10);
         
         return view('contributor.restaurant.index', compact('restaurants'));
     }
@@ -46,7 +49,8 @@ class RestaurantController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->location, '-');
-            $restaurant = Restaurant::create($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $restaurant = Restaurant::create($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
 
         return redirect()->route('contributor.restaurant.edit', [$restaurant])->with([
@@ -74,6 +78,12 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
+        $contributorId = Auth::guard('contributor')->id();
+
+        if ($restaurant->contributor_id !== $contributorId) {
+            return redirect()->back();
+        }
+
         $restaurantGalleries = RestaurantGallery::paginate(10);
         $kabupatens = Kabupaten::get(['name', 'id']);
         return view('contributor.restaurant.edit', compact('restaurantGalleries','restaurant', 'kabupatens'));
@@ -90,7 +100,8 @@ class RestaurantController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->location, '-'). time();
-            $restaurant->update($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $restaurant->update($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
 
         return redirect()->route('contributor.restaurant.index')->with([

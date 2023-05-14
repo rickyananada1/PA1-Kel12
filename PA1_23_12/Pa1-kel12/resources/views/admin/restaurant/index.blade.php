@@ -5,8 +5,8 @@
 @endsection
 
 @section('subtitle')
-<a class="btn btn-primary" href="{{ Route('admin.restaurant.create') }}" role="button">Tambah <i
-    class="fa-solid fa-plus"></i></a>    
+    <a class="btn btn-primary" href="{{ Route('admin.restaurant.create') }}" role="button">Tambah <i
+            class="fa-solid fa-plus"></i></a>
 @endsection
 
 @push('styles')
@@ -27,8 +27,9 @@
                                         <th scope="col">Nama Tempat makan</th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Kabupaten</th>
-                                        <th scope="col">is share?</th>
-                                        <th scope="col">action</th>
+                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Is share?</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,17 +42,46 @@
                                                     alt="" class="popular__img" width="100" />
                                             </td>
                                             <td>{{ $restaurant->kabupaten->name }}</td>
-                                            <td>{{ $restaurant->is_share == 1 ? 'Ya' : 'Tidak' }}</td>
+                                            <td>
+                                                @if ($restaurant->contributor)
+                                                    {{ $restaurant->contributor->name }}
+                                                @elseif($restaurant->contributor_id == null)
+                                                    Admin
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.is_share', $restaurant->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="btn btn-sm @if ($restaurant->is_share == 1) btn-success @else btn-danger @endif">
+                                                        @if ($restaurant->is_share == 1)
+                                                            Ya <i class="fa fa-circle-check"></i>
+                                                        @else
+                                                            Tidak <i class="fa fa-circle-xmark"></i>
+                                                        @endif
+                                                    </button>
+
+
+                                                    @error('is_share')
+                                                        <span class="text-danger mt-2">{{ $message }}</span>
+                                                    @enderror
+                                                </form>
+                                            </td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
-                                                <form
-                                                    action="{{ route('admin.restaurant.edit', [$restaurant]) }}"
+                                                <form action="#" method="GET" style="margin-right: 10px;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-info"><i
+                                                            class="fa fa-eye"></i></button>
+                                                </form>
+                                                <form action="{{ route('admin.restaurant.edit', [$restaurant]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
-                                                <form
-                                                    id="btn-delete"
+                                                <form id="btn-delete"
                                                     action="{{ route('admin.restaurant.destroy', [$restaurant]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')

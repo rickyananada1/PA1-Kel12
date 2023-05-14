@@ -12,10 +12,19 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <img src="{{ asset('Template/dist/img/LogoBetaTudia.png') }}" alt="Profile Picture" width="100"
-                            height="100" class="rounded-circle mr-2">
+                        @php
+                            $profileImage = auth('contributor')->user()->image;
+                        @endphp
 
-                        <form action="{{ route('contributor.profile.update') }}" method="POST">
+                        @if ($profileImage)
+                            <img src="{{ asset('storage/' . $profileImage) }}" alt="Profile Picture" width="100"
+                                height="100" class="rounded-circle mr-2">
+                        @else
+                            <img src="{{ asset('Template/dist/img/profile.jpeg') }}"
+                                alt="Default Profile Picture" width="100" height="100" class="rounded-circle mr-2">
+                        @endif
+
+                        <form action="{{ route('contributor.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 

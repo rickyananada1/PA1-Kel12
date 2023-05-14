@@ -50,8 +50,14 @@
 
 <!-- ========================= Script untuk efek Zoom in dan out gambar  ========================= -->
 <script>
-    var images = ['{{ URL::asset("asset/thumbnail.jpg")}}'
-                , '{{ URL::asset("asset/thumbnail.png")}}', '{{ URL::asset("asset/login.jpg")}}'];
+    var images = [
+        '{{ URL::asset("asset/thumbnail.jpg")}}',
+        '{{ URL::asset("asset/thumbnail1.jpg")}}', 
+        '{{ URL::asset("asset/thumbnail2.jpg")}}', 
+        '{{ URL::asset("asset/thumbnail3.jpg")}}', 
+        '{{ URL::asset("asset/thumbnail4.jpg")}}', 
+        '{{ URL::asset("asset/login.jpg")}}'
+    ];
     var currentIndex = 0;
     var img = document.getElementById('image');
 
@@ -67,7 +73,7 @@
         }, 500);
     }
 
-    setInterval(changeImage, 5000);
+    setInterval(changeImage, 7000);
 
     img.addEventListener('mouseover', function() {
         img.classList.add("zoom-in");

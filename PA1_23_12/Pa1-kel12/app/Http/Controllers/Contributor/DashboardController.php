@@ -19,16 +19,12 @@ class DashboardController extends Controller
         // $nama_admin = User::all();
 
         $sumKabupaten  = Kabupaten::count();
-        $sumDestinationCategory  = DestinationCategory::count();
         $sumDestination  = Destination::count();
-        $sumBlogCategory = BlogCategory::count();
         $sumBlog = Blog::count();
         $sumRestaurant = Restaurant::count();
 
         return view('contributor.dashboard', compact(
             'sumKabupaten',
-            'sumDestinationCategory',
-            'sumBlogCategory',
             'sumBlog',
             'sumDestination',
             'sumRestaurant',

@@ -24,7 +24,7 @@ class BlogController extends Controller
     {
         $contributor = Auth::guard('contributor')->id();
         $blogs = Blog::with('BlogCategory')->where('contributor_id', $contributor)
-            ->paginate(10);
+                                            ->paginate(10);
 
         return view('contributor.blog.index', compact('blogs'));
     }

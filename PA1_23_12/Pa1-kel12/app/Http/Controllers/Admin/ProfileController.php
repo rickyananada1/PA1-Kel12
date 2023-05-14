@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\ProfileUpdateRequest;
+use App\Models\Admin;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -17,40 +19,36 @@ class ProfileController extends Controller
         return view('admin.auth.profile');
     }
 
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
         $user = auth()->guard('admin')->user();
 
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:255',
-            'age' => 'nullable|numeric',
-            'address' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $user->name = $request->input('name');
-        $user->phone = $request->input('phone');
-        $user->age = $request->input('age');
-        $user->address = $request->input('address');
+        if ($request->password) {
+            auth()->guard('admin')->user()->update(['password' => Hash::make($request->password)]);
+        }
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $user->image = $imageName;
+            // Menghapus gambar profil sebelumnya jika ada
+            if ($user->image) {
+                Storage::disk('public')->delete($user->image);
+            }
+
+            // Mengunggah dan menyimpan gambar profil yang baru
+            $imagePath = $request->file('image')->store('profile/gallery', 'public');
+            $user->image = $imagePath;
+            
         }
 
-        if ($request->filled('password')) {
-            $request->validate([
-                'password' => 'required|string|min:8|confirmed',
-            ]);
-            $user->password = bcrypt($request->input('password'));
-        }
-
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->age = $request->age;
+        $user->address = $request->address;
         $user->save();
 
-        return redirect()->back()->with('success', 'Profile updated successfully.');
+        return redirect()->back()->with([
+            'message' => 'Profile berhasil diupdate!',
+            'alert-type' => 'success'
+        ]);
     }
 }

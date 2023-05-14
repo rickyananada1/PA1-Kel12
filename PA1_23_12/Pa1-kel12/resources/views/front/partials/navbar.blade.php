@@ -19,12 +19,11 @@
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
                         <li><a href="{{ Route('kumpulanberita') }}">Blogs</a></li>
-
                         <li class="has-children">
-                            <a href="#">Apa carik?</a>
+                            <a href="#">Apa Carik?</a>
                             <ul class="dropdown">
-                                <li><a href="{{ Route('destinations.index') }}">Destinasi</a></li>
-                                <li><a href="#">Akomodasi</a></li>
+                                <li><a href="{{ Route('destinations.index') }}">Destinasi wisata</a></li>
+                                <li><a href="#">Tempat Makan</a></li>
                                 <li><a href="#">Kulineran</a></li>
                                 <li class="has-children">
                                     <a href="#">Destinasi Wisata</a>
@@ -48,6 +47,7 @@
                                 <li><a href="#">Dairi</a></li>
                             </ul>
                         </li>
+                        <li><a href="#">Galeri</a></li>
                         <li><a href="{{ Route('tentangkami') }}">Tentang Kami</a></li>
 
                     </ul>
@@ -64,15 +64,15 @@
                             <li class="cta-button"><a href="{{ Route('contributor.login') }}">Login</a></li>
                         @endif
                     </ul>
-    
+
                     @if (session('error'))
                         <div class="mt-2 alert alert-danger" id="alert">
-                            {{session('error')}}    
-                        </div> 
+                            {{ session('error') }}
+                        </div>
                     @endif
 
                     <script>
-                        setTimeout(function(){
+                        setTimeout(function() {
                             document.getElementById('alert').style.display = 'none';
                         }, 5000);
                     </script>

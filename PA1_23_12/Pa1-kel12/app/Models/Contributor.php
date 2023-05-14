@@ -22,7 +22,10 @@ class Contributor extends Authenticatable
         'email', 
         'password',
         'google_id',
-        ''
+        'image',
+        'phone',
+        'address',
+        'age',
     ];
 
     /**
@@ -46,6 +49,21 @@ class Contributor extends Authenticatable
     public function blog()
     {
         return $this->hasMany(Blog::class);
+    }
+
+    public function destination()
+    {
+        return $this->hasMany(Destination::class);
+    }
+
+    public function restaurant()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+
+    public function accommodation()
+    {
+        return $this->hasMany(Accommodation::class);
     }
 }
 

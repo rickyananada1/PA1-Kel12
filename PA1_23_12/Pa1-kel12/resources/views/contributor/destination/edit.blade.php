@@ -156,7 +156,7 @@
                                             </div>
 
 
-                                            <div class="form-group row border-bottom pb-4">
+                                            <div class="form-group row border-bottom pb-4" hidden>
                                                 <label for="is_share" class="col-sm-2 col-form-label">Is Sharable?</label>
                                                 <div class="col-sm-10">
                                                     <select name="is_share" class="form-control">

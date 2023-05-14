@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Accommodation;
 use App\Models\Destination;
+use App\Models\Contributor;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Contributor\AccommodationRequest;
 use App\Models\AccommodationGallery;
+use Illuminate\Support\Facades\Auth;
 
 class AccommodationController extends Controller
 {
@@ -20,7 +22,9 @@ class AccommodationController extends Controller
      */
     public function index()
     {
-        $accommodations = Accommodation::with('destination')->paginate(10);
+        $contributor = Auth::guard('contributor')->id();
+        $accommodations = Accommodation::with('destination')->where('contributor_id', $contributor)
+                                                            ->paginate(10);
         return view('contributor.accommodation.index', compact('accommodations'));
     }
 
@@ -45,7 +49,8 @@ class AccommodationController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->location, '-');
-            $accommodation = Accommodation::create($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $accommodation = Accommodation::create($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
 
         return redirect()->route('contributor.accommodation.edit', [$accommodation])->with([
@@ -73,6 +78,11 @@ class AccommodationController extends Controller
      */
     public function edit(Accommodation $accommodation)
     {
+        $contributorId = Auth::guard('contributor')->id();
+
+        if ($accommodation->contributor_id !== $contributorId) {
+            return redirect()->back();
+        }
         $accommodationGalleries = AccommodationGallery::paginate(10);
         $destinations = Destination::get(['name', 'id']);
         return view('contributor.accommodation.edit', compact('accommodation', 'destinations','accommodationGalleries'));
@@ -89,7 +99,8 @@ class AccommodationController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->location, '-'). time();
-            $accommodation->update($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $accommodation->update($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
 
         return redirect()->route('contributor.accommodation.index')->with([

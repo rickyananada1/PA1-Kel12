@@ -31,4 +31,9 @@ class Destination extends Model
     {
         return $this->belongsTo(Kabupaten::class);
     }
+
+    public function contributor()
+    {
+        return $this->belongsTo(Contributor::class);
+    }
 }

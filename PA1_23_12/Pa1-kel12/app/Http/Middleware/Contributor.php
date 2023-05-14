@@ -23,7 +23,7 @@ class Contributor
         }
 
         if (Auth::guard('contributor')->check() && Auth::guard('contributor')->user()->status == 0) {
-            session()->flash('error', 'Akun anda Tidak memili akses!');
+            session()->flash('error', 'Akun anda Tidak memiliki akses!');
             return redirect('/');
         }
         return $next($request);

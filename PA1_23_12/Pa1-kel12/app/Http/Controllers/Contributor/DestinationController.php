@@ -10,6 +10,7 @@ use App\Models\Kabupaten;
 use Illuminate\Http\Request;
 use App\Models\DestinationGallery;
 use App\Http\Requests\Contributor\DestinationRequest;
+use Illuminate\Support\Facades\Auth;
 
 class DestinationController extends Controller
 {
@@ -20,7 +21,9 @@ class DestinationController extends Controller
      */
     public function index()
     {
+        $contributor = Auth::guard('contributor')->id();
         $destinations = Destination::with('DestinationCategory')
+                                    ->where('contributor_id', $contributor)
                                     ->orderBy('created_at', 'desc')
                                     ->get();
 
@@ -49,7 +52,8 @@ class DestinationController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->location, '-');
-            $destination = Destination::create($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $destination = Destination::create($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
 
         return redirect()->route('contributor.destination.edit', [$destination])->with([
@@ -77,6 +81,13 @@ class DestinationController extends Controller
      */
     public function edit(Destination $destination)
     {
+
+        $contributorId = Auth::guard('contributor')->id();
+
+        if ($destination->contributor_id !== $contributorId) {
+            return redirect()->back();
+        }
+
         $destinationGalleries = DestinationGallery::paginate(10);
         $destinationCategories = DestinationCategory::all();
         $kabupatens = Kabupaten::all();
@@ -95,7 +106,8 @@ class DestinationController extends Controller
     {
         if ($request->validated()) {
             $slug = Str::slug($request->location, '-'). time();
-            $destination->update($request->validated() + ['slug' => $slug]);
+            $contributor = Auth::guard('contributor')->user()->id;
+            $destination->update($request->validated() + ['slug' => $slug] + ['contributor_id' => $contributor]);
         }
 
         return redirect()->route('contributor.destination.index')->with([

@@ -19,8 +19,10 @@ class CreateRestaurantsTable extends Migration
             $table->string('slug')->unique();
             $table->string('phone')->nullable();
             $table->foreignId('kabupaten_id')->constrained('kabupatens')->cascadeOnUpdate();
+            $table->unsignedBigInteger('contributor_id')->nullable();
+            $table->foreign('contributor_id')->references('id')->on('contributors');
             $table->text('location');
-            $table->integer('is_share');
+            $table->integer('is_share')->default(0);
             $table->text('description');
             $table->timestamps();
         });

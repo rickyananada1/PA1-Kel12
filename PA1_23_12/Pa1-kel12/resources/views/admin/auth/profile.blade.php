@@ -12,10 +12,19 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <img src="{{ asset('Template/dist/img/LogoBetaTudia.png') }}" alt="Profile Picture" width="100"
-                            height="100" class="rounded-circle mr-2">
+                        @php
+                            $profileImage = auth('admin')->user()->image;
+                        @endphp
 
-                        <form action="{{ route('admin.profile.update') }}" method="POST">
+                        @if ($profileImage)
+                            <img src="{{ asset('storage/' . $profileImage) }}" alt="Profile Picture" width="100"
+                                height="100" class="rounded-circle mr-2">
+                        @else
+                            <img src="{{ asset('Template/dist/img/profile.jpeg') }}"
+                                alt="Default Profile Picture" width="100" height="100" class="rounded-circle mr-2">
+                        @endif
+
+                        <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -147,7 +156,8 @@
                                     <div class="form-group row border-bottom pb-4">
                                         <label for="image" class="col-sm-6 col-form-label">Foto Profile</label>
                                         <div class="col-sm-10">
-                                            <input type="file" name="image" class="form-control" id="image">
+                                            <input type="file" name="image" class="form-control" id="image"
+                                                value="{{ old('image') }}">
                                         </div>
                                     </div>
                                 </div>

@@ -113,4 +113,20 @@ class AccommodationController extends Controller
             'alert-type' => 'danger'
         ]);
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $accommodation = Accommodation::find($id);
+
+        if ($accommodation['is_share'] == 1) {
+            $accommodation['is_share'] = 0;
+            $message = $accommodation->name . ' Restaurant tidak akan ditampilkan.';
+        }else {
+            $accommodation['is_share'] = 1;
+            $message = $accommodation->name . ' Restaurant akan ditampilkan.';
+        }
+        $accommodation->save();
+
+        return redirect()->back()->with('message', $message);
+    }
 }
