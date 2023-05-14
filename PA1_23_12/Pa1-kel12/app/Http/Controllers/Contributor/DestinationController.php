@@ -81,6 +81,13 @@ class DestinationController extends Controller
      */
     public function edit(Destination $destination)
     {
+
+        $contributorId = Auth::guard('contributor')->id();
+
+        if ($destination->contributor_id !== $contributorId) {
+            return redirect()->back();
+        }
+
         $destinationGalleries = DestinationGallery::paginate(10);
         $destinationCategories = DestinationCategory::all();
         $kabupatens = Kabupaten::all();

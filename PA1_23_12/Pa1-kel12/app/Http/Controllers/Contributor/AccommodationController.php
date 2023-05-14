@@ -78,6 +78,11 @@ class AccommodationController extends Controller
      */
     public function edit(Accommodation $accommodation)
     {
+        $contributorId = Auth::guard('contributor')->id();
+
+        if ($accommodation->contributor_id !== $contributorId) {
+            return redirect()->back();
+        }
         $accommodationGalleries = AccommodationGallery::paginate(10);
         $destinations = Destination::get(['name', 'id']);
         return view('contributor.accommodation.edit', compact('accommodation', 'destinations','accommodationGalleries'));

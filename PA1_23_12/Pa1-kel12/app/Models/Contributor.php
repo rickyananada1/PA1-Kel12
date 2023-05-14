@@ -22,7 +22,10 @@ class Contributor extends Authenticatable
         'email', 
         'password',
         'google_id',
-        ''
+        'image',
+        'phone',
+        'address',
+        'age',
     ];
 
     /**

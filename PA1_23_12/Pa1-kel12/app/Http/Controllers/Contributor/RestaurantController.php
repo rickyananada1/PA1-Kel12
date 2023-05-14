@@ -78,6 +78,12 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
+        $contributorId = Auth::guard('contributor')->id();
+
+        if ($restaurant->contributor_id !== $contributorId) {
+            return redirect()->back();
+        }
+
         $restaurantGalleries = RestaurantGallery::paginate(10);
         $kabupatens = Kabupaten::get(['name', 'id']);
         return view('contributor.restaurant.edit', compact('restaurantGalleries','restaurant', 'kabupatens'));
