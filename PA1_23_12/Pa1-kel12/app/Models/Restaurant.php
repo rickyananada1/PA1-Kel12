@@ -20,4 +20,9 @@ class Restaurant extends Model
     {
         return $this->hasMany(RestaurantGallery::class);
     }
+
+    public function contributor()
+    {
+        return $this->belongsTo(Contributor::class, 'contributor_id');
+    }
 }

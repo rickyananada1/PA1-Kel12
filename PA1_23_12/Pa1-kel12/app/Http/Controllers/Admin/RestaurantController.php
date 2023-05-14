@@ -114,4 +114,20 @@ class RestaurantController extends Controller
             'alert-type' => 'danger'
         ]);
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $restaurant = Restaurant::find($id);
+
+        if ($restaurant['is_share'] == 1) {
+            $restaurant['is_share'] = 0;
+            $message = $restaurant->name . ' Restaurant tidak akan ditampilkan.';
+        }else {
+            $restaurant['is_share'] = 1;
+            $message = $restaurant->name . ' Restaurant akan ditampilkan.';
+        }
+        $restaurant->save();
+
+        return redirect()->back()->with('message', $message);
+    }
 }

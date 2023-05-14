@@ -81,12 +81,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row border-bottom pb-4">
+                            <div class="form-group row border-bottom pb-4" hidden>
                                 <label for="is_share" class="col-sm-2 col-form-label">Akan ditampilkan?</label>
                                 <div class="col-sm-10">
                                     <select name="is_share" class="form-control">
                                         <option value="1">Ya</option>
-                                        <option value="0">Tidak</option>
+                                        <option value="0" selected>Tidak</option>
                                     </select>
                                 </div>
                             </div>

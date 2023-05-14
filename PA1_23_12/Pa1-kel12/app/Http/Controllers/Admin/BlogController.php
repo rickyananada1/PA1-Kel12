@@ -119,4 +119,20 @@ class BlogController extends Controller
             'alert-type' => 'danger'
         ]);
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $blog = Blog::find($id);
+
+        if ($blog['is_share'] == 1) {
+            $blog['is_share'] = 0;
+            $message = $blog->name . ' Restaurant tidak akan ditampilkan.';
+        }else {
+            $blog['is_share'] = 1;
+            $message = $blog->name . ' Restaurant akan ditampilkan.';
+        }
+        $blog->save();
+
+        return redirect()->back()->with('message', $message);
+    }
 }

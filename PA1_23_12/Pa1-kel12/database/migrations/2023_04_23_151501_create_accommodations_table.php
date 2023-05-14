@@ -20,8 +20,10 @@ class CreateAccommodationsTable extends Migration
             $table->string('category');
             $table->string('price');
             $table->string('location');
-            $table->integer('is_share');
+            $table->integer('is_share')->default(0);
             $table->text('description');
+            $table->unsignedBigInteger('contributor_id')->nullable();
+            $table->foreign('contributor_id')->references('id')->on('contributors');
             $table->foreignId('destination_id')->constrained('destinations')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

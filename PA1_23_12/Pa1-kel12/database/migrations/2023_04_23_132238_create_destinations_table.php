@@ -20,6 +20,8 @@ class CreateDestinationsTable extends Migration
             $table->text('ticket');
             $table->string('location');
             $table->integer('is_share');
+            $table->unsignedBigInteger('contributor_id')->nullable();
+            $table->foreign('contributor_id')->references('id')->on('contributors');
             $table->foreignId('destination_category_id')->constrained('destination_categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('kabupaten_id')->constrained('kabupatens')->cascadeOnUpdate()->cascadeOnDelete()->default(1);
             $table->text('description');

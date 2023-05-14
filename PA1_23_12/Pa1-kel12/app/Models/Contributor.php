@@ -47,5 +47,20 @@ class Contributor extends Authenticatable
     {
         return $this->hasMany(Blog::class);
     }
+
+    public function destination()
+    {
+        return $this->hasMany(Destination::class);
+    }
+
+    public function restaurant()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+
+    public function accommodation()
+    {
+        return $this->hasMany(Accommodation::class);
+    }
 }
 

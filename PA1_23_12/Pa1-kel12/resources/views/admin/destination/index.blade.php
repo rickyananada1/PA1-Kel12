@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-    List Destinasi
+    List Destinasi Wisata
 @endsection
 
 @section('subtitle')
@@ -24,10 +24,12 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama Destinasi</th>
+                                        <th scope="col">Nama Destinasi wisata</th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Tiket</th>
                                         <th scope="col">Lokasi</th>
+                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Is share?</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -42,6 +44,33 @@
                                             </td>
                                             <td>{{ $destination->ticket }}</td>
                                             <td>{{ $destination->destination_category_id }}</td>
+                                            <td>
+                                                @if ($destination->contributor)
+                                                    {{ $destination->contributor->name }}
+                                                @elseif($destination->contributor_id == null)
+                                                    Admin
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.destination.is_share', $destination->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="btn btn-sm @if ($destination->is_share == 1) btn-success @else btn-danger @endif">
+                                                        @if ($destination->is_share == 1)
+                                                            Ya <i class="fa fa-circle-check"></i>
+                                                        @else
+                                                            Tidak <i class="fa fa-circle-xmark"></i>
+                                                        @endif
+                                                    </button>
+
+
+                                                    @error('is_share')
+                                                        <span class="text-danger mt-2">{{ $message }}</span>
+                                                    @enderror
+                                                </form>
+                                            </td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form action="{{ route('admin.destination.edit', [$destination]) }}"
                                                     method="GET" style="margin-right: 10px;">

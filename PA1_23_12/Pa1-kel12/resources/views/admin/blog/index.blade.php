@@ -28,6 +28,8 @@
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Kutipan</th>
                                         <th scope="col">Kategori</th>
+                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Is_share?</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -41,6 +43,33 @@
                                             </td>
                                             <td>{{ $blog->excerpt }}</td>
                                             <td>{{ $blog->blog_category_id }}</td>
+                                            <td>
+                                                @if ($blog->contributor)
+                                                    {{ $blog->contributor->name }}
+                                                @elseif($blog->contributor_id == null)
+                                                    Admin
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.blog.is_share', $blog->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="btn btn-sm @if ($blog->is_share == 1) btn-success @else btn-danger @endif">
+                                                        @if ($blog->is_share == 1)
+                                                            Ya <i class="fa fa-circle-check"></i>
+                                                        @else
+                                                            Tidak <i class="fa fa-circle-xmark"></i>
+                                                        @endif
+                                                    </button>
+
+
+                                                    @error('is_share')
+                                                        <span class="text-danger mt-2">{{ $message }}</span>
+                                                    @enderror
+                                                </form>
+                                            </td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form
                                                     action="{{ route('admin.blog.edit', [$blog]) }}"

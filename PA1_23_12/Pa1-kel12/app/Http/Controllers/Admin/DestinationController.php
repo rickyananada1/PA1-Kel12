@@ -48,7 +48,7 @@ class DestinationController extends Controller
     public function store(DestinationRequest $request)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->location, '-');
+            $slug = Str::slug($request->location, '-') . '-' . time();
             $destination = Destination::create($request->validated() + ['slug' => $slug]);
         }
 
@@ -118,5 +118,21 @@ class DestinationController extends Controller
             'message' => 'Success Deleted !',
             'alert-type' => 'danger'
         ]);
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $destination = Destination::find($id);
+
+        if ($destination['is_share'] == 1) {
+            $destination['is_share'] = 0;
+            $message = $destination->name . ' Restaurant tidak akan ditampilkan.';
+        }else {
+            $destination['is_share'] = 1;
+            $message = $destination->name . ' Restaurant akan ditampilkan.';
+        }
+        $destination->save();
+
+        return redirect()->back()->with('message', $message);
     }
 }

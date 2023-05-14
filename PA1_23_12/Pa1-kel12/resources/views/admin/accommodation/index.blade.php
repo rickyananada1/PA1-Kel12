@@ -27,7 +27,8 @@
                                         <th scope="col">Nama Akomodasi</th>
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Kategori</th>
-                                        <th scope="col">Harga</th>
+                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Is share?</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -41,7 +42,33 @@
                                                     alt="" class="popular__img" width="100" />
                                             </td>
                                             <td>{{ $accommodation->category }}</td>
-                                            <td>{{ $accommodation->price }}</td>
+                                            <td>
+                                                @if ($accommodation->contributor)
+                                                    {{ $accommodation->contributor->name }}
+                                                @elseif($accommodation->contributor_id == null)
+                                                    Admin
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.accommodation.is_share', $accommodation->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="btn btn-sm @if ($accommodation->is_share == 1) btn-success @else btn-danger @endif">
+                                                        @if ($accommodation->is_share == 1)
+                                                            Ya <i class="fa fa-circle-check"></i>
+                                                        @else
+                                                            Tidak <i class="fa fa-circle-xmark"></i>
+                                                        @endif
+                                                    </button>
+
+
+                                                    @error('is_share')
+                                                        <span class="text-danger mt-2">{{ $message }}</span>
+                                                    @enderror
+                                                </form>
+                                            </td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form
                                                     action="{{ route('admin.accommodation.edit', [$accommodation]) }}"
