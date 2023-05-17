@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="widget">
-                    <h3>Beta Tudia?<span class="text-primary">.</span> </h3>
+                    <h3>Beta Tudia<span class="text-primary">?</span> </h3>
                     <p>Danau Toba memang surgawi <br>
                         Tak bisa kuungkapkan dengan kata-kata
                         <br>Biarlah hati ini yang merasakannya <br>

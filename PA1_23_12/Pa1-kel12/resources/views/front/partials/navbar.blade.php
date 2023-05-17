@@ -18,7 +18,7 @@
                 <div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
-                        <li><a href="{{ Route('kumpulanberita') }}">Blogs</a></li>
+                        <li><a href="{{ Route('blogs.index') }}">Blogs</a></li>
                         <li class="has-children">
                             <a href="#">Apa Carik?</a>
                             <ul class="dropdown">

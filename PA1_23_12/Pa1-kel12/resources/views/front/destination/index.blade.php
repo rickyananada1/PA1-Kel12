@@ -1,46 +1,23 @@
-    @include('front.partials.head')
+@extends('front.pages.post')
 
-<body>
+@section('title')
+    Destinasi Wisata Sekitaran Danau Toba
+@endsection
 
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close">
-                <span class="icofont-close js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
-
-    {{-- Navbar --}}
-    @include('front.partials.navbar')
-    {{-- Navbar end --}}
+@section('description')
+    Selamat datang di halaman destinasi BetaTudia?, salah
+    satu destinasi wisata terpopuler di Indonesia yang menawarkan keindahan alam yang memukau dan
+    kearifan lokal yang kaya akan budaya. mulai dari pemandangan hijau perbukitan, air terjun yang
+    indah, dan keindahan pantai yang menawan. Selain itu,
+    destinasi wisata sekitaran Danau Toba juga menawarkan pengalaman wisata budaya yang tak
+    terlupakan, seperti mengunjungi desa tradisional Batak dan mencicipi kuliner khas daerah. Mari
+    jelajahi keindahan alam dan kearifan lokal yang memukau di destinasi wisata sekitaran Danau
+    Toba.
+@endsection
 
 
 
-    <div class="hero overlay">
-
-        <div class="img-bg rellax">
-
-            <img src="{{ URL::asset('frontend/images/hero_5.jpg') }}" alt="Image" class="img-fluid">
-            <img src="{{ URL::asset('frontend/images/hero_2.jpg') }}" alt="Image" class="img-fluid">
-        </div>
-        <div class="container">
-            <div class="row align-items-center justify-content-start">
-                <div class="col-lg-8 mx-auto text-center">
-
-                    <h1 class="heading" data-aos="fade-up">Destinasi Wisata Sekitaran Danau Toba</h1>
-                    <p class="mb-4" data-aos="fade-up">Selamat datang di halaman destinasi BetaTudia?, salah
-                        satu destinasi wisata terpopuler di Indonesia yang menawarkan keindahan alam yang memukau dan
-                        kearifan lokal yang kaya akan budaya. mulai dari pemandangan hijau perbukitan, air terjun yang
-                        indah, dan keindahan pantai yang menawan. Selain itu,
-                        destinasi wisata sekitaran Danau Toba juga menawarkan pengalaman wisata budaya yang tak
-                        terlupakan, seperti mengunjungi desa tradisional Batak dan mencicipi kuliner khas daerah. Mari
-                        jelajahi keindahan alam dan kearifan lokal yang memukau di destinasi wisata sekitaran Danau
-                        Toba.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+@section('content')
     <div class="section">
         <div class="container">
 
@@ -94,13 +71,13 @@
                         @endif
 
                         @for ($i = 1; $i <= $destinations->lastPage(); $i++)
-                            <li class="page-item {{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
+                            <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
                                     class="page-link" href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
                         @endfor
 
                         @if ($destinations->hasMorePages())
-                            <li class="page-item"><a class="page-link"
-                                    href="{{ $destinations->nextPageUrl() }}">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="{{ $destinations->nextPageUrl() }}">Next</a>
+                            </li>
                         @else
                             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                         @endif
@@ -111,22 +88,4 @@
             </div>
         </div>
     </div>
-
-
-    <!-- /.site-footer -->
-    @include('front.partials.footer')
-
-    <!-- Preloader -->
-    <div id="overlayer"></div>
-    <div class="loader">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-
-
-    @include('front.partials.script')
-
-</body>
-
-</html>
+@endsection

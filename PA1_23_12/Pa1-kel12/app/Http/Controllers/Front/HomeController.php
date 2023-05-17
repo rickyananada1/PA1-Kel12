@@ -19,10 +19,6 @@ class HomeController extends Controller
     {
         return view('front.tentangkami');
     }
-    public function kumpulanberita()
-    {
-        return view('front.kumpulanberita');
-    }
         public function berita()
     {
         return view('front.berita');

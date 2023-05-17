@@ -93,6 +93,8 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
 Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations.index');
 Route::get('destinations/{destination:slug}', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
+Route::get('blogs', [\App\Http\Controllers\Front\BlogController::class, 'index'])->name('blogs.index');
+Route::get('blogs/{blog:slug}', [\App\Http\Controllers\Front\blogController::class, 'show'])->name('blogs.show');
 
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
 Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');

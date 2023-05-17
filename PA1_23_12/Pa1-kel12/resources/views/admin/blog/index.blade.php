@@ -37,11 +37,11 @@
                                     @foreach ($blogs as $blog)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $blog->title }}</td>
+                                            <td>{{ Str::limit($blog->title, 50, '...') }}</td>
                                             <td>
                                                 <img src="{{ Storage::url(optional($blog->galleries->first())->images)}}" alt="" class="popular__img" width="100"/>
                                             </td>
-                                            <td>{{ $blog->excerpt }}</td>
+                                            <td>{{ Str::limit($blog->excerpt, 50, '...') }}</td>
                                             <td>{{ $blog->blog_category_id }}</td>
                                             <td>
                                                 @if ($blog->contributor)

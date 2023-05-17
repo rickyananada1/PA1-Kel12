@@ -37,6 +37,7 @@
                     <a href="{{ Route('destinations.show', $destination->slug) }}">
                         <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}" alt="Image" class="img-fluid gambar">
                     </a>
+                    <div class="price">{{ $destination->destination_category_id }}</div>
                 </div>
                 <div class="mt-4">
                     <h3><a href="{{Route('destinations.show',[$destination])}}">{{ $destination->name }}</a></h3>

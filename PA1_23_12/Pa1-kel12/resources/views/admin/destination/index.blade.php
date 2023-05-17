@@ -43,7 +43,7 @@
                                                     alt="" class="popular__img" width="100" />
                                             </td>
                                             <td>{{ $destination->ticket }}</td>
-                                            <td>{{ $destination->destination_category_id }}</td>
+                                            <td>{{ $destination->kabupaten->name }}</td>
                                             <td>
                                                 @if ($destination->contributor)
                                                     {{ $destination->contributor->name }}
