@@ -48,7 +48,7 @@ class DestinationController extends Controller
     public function store(DestinationRequest $request)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->location, '-') . '-' . time();
+            $slug = Str::slug($request->name, '-') . '-' . time();
             $destination = Destination::create($request->validated() + ['slug' => $slug]);
         }
 

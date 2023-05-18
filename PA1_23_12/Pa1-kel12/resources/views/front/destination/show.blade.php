@@ -1,56 +1,18 @@
-    @include('front.partials.head')
+@extends('front.pages.postdetail')
 
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close">
-                <span class="icofont-close js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
+@section('title')
+    {{ $destination->destinationCategory->name }}
+@endsection
 
-    @include('front.partials.navbar')
+@section('back')
+<p class="m-0"><a class="text-white" href="{{ route('destinations.index') }}">Home</a></p>
+@endsection
 
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h3 class="display-3 font-weight-bold text-white">Destinasi </h3>
-            <div class="d-inline-flex text-white">
-                <p class="m-0"><a class="text-white" href="{{route('destinations.index')}}">Home</a></p>
-                <p class="m-0 px-2">/</p>
-                <p class="m-0">Destinasi</p>
-              </div>
-        </div>
-    </div>
-    <!-- Header End -->
+@section('subtitle')
+    {{ 'Destinasi Wisata Detail' }}
+@endsection
 
-    <!-- ======================================================Gambar Slider==============================================================-->
-    {{-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            @foreach ($destination->galleries as $key => $gallery)
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}"
-                    class="{{ $key == 0 ? 'active' : '' }}"></li>
-            @endforeach
-        </ol>
-        <div class="carousel-inner">
-            @foreach ($destination->galleries as $key => $gallery)
-                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                    <img src="{{ Storage::url($gallery->images) }}" class="d-block w-100" alt="...">
-                </div>
-            @endforeach
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
-    </div> --}}
-
-    <!-- ======================================================Gambar Slider==============================================================-->
-
+@section('content')
     <div class="container py-5">
         <div class="row pt-5">
             <div class="col-lg-8">
@@ -73,8 +35,7 @@
                         <div class="carousel-inner">
                             @foreach ($destination->galleries as $key => $gallery)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ Storage::url($gallery->images) }}" class="d-block w-100"
-                                        alt="...">
+                                    <img src="{{ Storage::url($gallery->images) }}" class="d-block w-100" alt="...">
                                 </div>
                             @endforeach
                         </div>
@@ -91,7 +52,7 @@
                     </div>
                     <!-- =============================================Image====================================================-->
                     <span class="date">Created {{ $destination->created_at->format('F j, Y') }}</span>
-                        <span class="date">Updated {{ $destination->updated_at->format('F j, Y') }}</span>
+                    <span class="date">Updated {{ $destination->updated_at->format('F j, Y') }}</span>
                     <br>
                     <p>
                         {!! $destination->description !!}
@@ -112,8 +73,7 @@
                         <div class="carousel-inner">
                             @foreach ($destinations as $destination)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <div
-                                        class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mx-3">
+                                    <div class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mx-3">
                                         <img class="img-fluid"
                                             src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
                                             style="width: 80px; height: 80px" />&nbsp;
@@ -271,13 +231,17 @@
             <div class="col-lg-4 mt-5 mt-lg-0">
                 <!-- Author Bio -->
                 <div class="d-flex flex-column text-center bg-primary rounded mb-5 py-5 px-4">
-                    <img src="{{ URL::asset('frontend/images/hero_2.jpg') }}"
+                    <img src="
+                    @if ($destination->contributor) 
+                        {{ Storage::url($destination->contributor->image) }}
+                    @else
+                        {{ asset('Template/dist/img/profile.jpeg') }} 
+                    @endif
+                    "
                         class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px" />
-                    <h3 class="text-secondary mb-3">John Doe</h3>
+                    <h3 class="text-secondary mb-3">{{ $destination->contributor->name }}</h3>
                     <p class="text-white m-0">
-                        Conset elitr erat vero dolor ipsum et diam, eos dolor lorem ipsum,
-                        ipsum ipsum sit no ut est. Guber ea ipsum erat kasd amet est elitr
-                        ea sit.
+                        Jadilah seorang contributor seperti saya untuk membagikan berbagai informasi menarik
                     </p>
                 </div>
 
@@ -286,11 +250,10 @@
                     <h2 class="mb-4">Kategori Destinasi</h2>
                     <ul class="list-group list-group-flush">
                         @foreach ($categories as $category)
-                        
-                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                            <a href="">{{ $category->name }}</a>
-                            <span class="badge badge-primary badge-pill">150</span>
-                        </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <a href="">{{ $category->name }}</a>
+                                <span class="badge badge-primary badge-pill">150</span>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -336,7 +299,6 @@
                     </div>
                 </div>
 
-
                 <!-- Plain Text -->
                 <div>
                     <h2 class="mb-4">Plain Text</h2>
@@ -348,23 +310,5 @@
             </div>
         </div>
     </div>
-
-    <!-- /.site-footer -->
-
-    <!-- /.site-footer -->
-    @include('front.partials.footer')
-
-    <!-- Preloader -->
-    <div id="overlayer"></div>
-    <div class="loader">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-
-
-    @include('front.partials.script')
-
-    </body>
-
-    </html>
+@endsection
+<!-- ======================================================Gambar Slider==============================================================-->
