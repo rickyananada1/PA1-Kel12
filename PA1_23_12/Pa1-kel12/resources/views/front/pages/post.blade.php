@@ -30,7 +30,7 @@
             <div class="carousel-item active">
                 <div class="hero overlay">
                     <div class="rellax">
-                        <img src="{{ URL::asset('frontend/images/hero_1.jpg') }}" alt="Image"
+                        <img src="{{ URL::asset('asset/thumbnail.jpg') }}" alt="Image"
                             class="img-fluid half animated">
                     </div>
                     <div class="container">
@@ -46,7 +46,7 @@
             <div class="carousel-item">
                 <div class="hero overlay">
                     <div class="rellax">
-                        <img src="{{ URL::asset('frontend/images/hero_2.jpg') }}" alt="Image"
+                        <img src="{{ URL::asset('asset/thumbnail1.jpg') }}" alt="Image"
                             class="img-fluid half animated">
                     </div>
                     <div class="container">
