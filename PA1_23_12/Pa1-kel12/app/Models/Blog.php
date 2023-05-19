@@ -31,10 +31,10 @@ class Blog extends Model
         return $this->belongsTo(Kabupaten::class);
     }
 
-    public function incrementReadCount()
-    {
-        // $this->timestamps = false;
-        $this->reads++;
-        return $this->save();
-    }
+    // public function incrementReadCount()
+    // {
+    //     // $this->timestamps = false;
+    //     $this->reads++;
+    //     return $this->save();
+    // }
 }
