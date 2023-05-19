@@ -123,7 +123,7 @@
 </div>
 
 
-<!-- End Categories -->
+{{-- <!-- End Categories -->
 
 <div class="aside-block">
     <h3 class="aside-title">Tags</h3>
@@ -137,6 +137,6 @@
         <li><a href="category.html">Startups</a></li>
         <li><a href="category.html">Travel</a></li>
     </ul>
-</div><!-- End Tags -->
+</div><!-- End Tags --> --}}
 
 </div>

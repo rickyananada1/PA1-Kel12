@@ -5,7 +5,7 @@
 @endsection
 
 @section('back')
-<p class="m-0"><a class="text-white" href="{{ route('destinations.index') }}">Home</a></p>
+    <p class="m-0"><a class="text-white" href="{{ route('destinations.index') }}">Home</a></p>
 @endsection
 
 @section('subtitle')
@@ -17,9 +17,12 @@
         <div class="row pt-5">
             <div class="col-lg-8">
                 <div class="d-flex flex-column text-left mb-3">
-                    <h1 class="mb-3">{{ $destination->name }}</h1>
+                    <div class="post-meta"><span class="date">{{ $destination->destinationCategory->name }}</span> <span
+                            class="mx-1">&bullet;</span> <span>{{ $destination->created_at->format('F j, Y') }}</span>
+                    </div>
+                    <h1 class="mb-3 bold">{{ $destination->name }}</h1>
                     <p class="section-title pr-5">
-                        <span class="pr-2">{{ $destination->location }}</span><br>
+                        <span class="pr-2">{{ $destination->location }}</span>
                     </p>
                     <hr>
                 </div>
@@ -51,10 +54,11 @@
                         </a>
                     </div>
                     <!-- =============================================Image====================================================-->
-                    <span class="date">Created {{ $destination->created_at->format('F j, Y') }}</span>
-                    <span class="date">Updated {{ $destination->updated_at->format('F j, Y') }}</span>
-                    <br>
+                    {{-- <span class="date">Created {{ $destination->created_at->format('F j, Y') }}</span>
+                    <span class="date">Updated {{ $destination->updated_at->format('F j, Y') }}</span> --}}
+                    {{-- <br> --}}
                     <p>
+                        <span class="firstcharacter">{{ substr($destination->description, 0, 1) }}</span>
                         {!! $destination->description !!}
                     </p>
                     <h3>Harga Tiket Masuk</h3>
@@ -232,11 +236,9 @@
                 <!-- Author Bio -->
                 <div class="d-flex flex-column text-center bg-primary rounded mb-5 py-5 px-4">
                     <img src="
-                    @if ($destination->contributor) 
-                        {{ Storage::url($destination->contributor->image) }}
+                    @if ($destination->contributor) {{ Storage::url($destination->contributor->image) }}
                     @else
-                        {{ asset('Template/dist/img/profile.jpeg') }} 
-                    @endif
+                        {{ asset('Template/dist/img/profile.jpeg') }} @endif
                     "
                         class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px" />
                     <h3 class="text-secondary mb-3">{{ $destination->contributor->name }}</h3>
@@ -251,8 +253,9 @@
                     <ul class="list-group list-group-flush">
                         @foreach ($categories as $category)
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                <a href="">{{ $category->name }}</a>
-                                <span class="badge badge-primary badge-pill">150</span>
+                                <a
+                                    href="{{ route('destinations.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                                <span class="badge badge-primary badge-pill">15</span>
                             </li>
                         @endforeach
                     </ul>

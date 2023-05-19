@@ -65,5 +65,10 @@ class Contributor extends Authenticatable
     {
         return $this->hasMany(Accommodation::class);
     }
+
+    public function testimonies()
+{
+    return $this->hasMany(Testimony::class);
+}
 }
 
