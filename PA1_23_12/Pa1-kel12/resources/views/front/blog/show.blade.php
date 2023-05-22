@@ -85,7 +85,7 @@
                             <div class="comment d-flex mb-4">
                                 <div class="flex-shrink-0">
                                     <div class="avatar avatar-sm rounded-circle">
-                                        <img class="avatar-img" src="@if ($testimony->contributor) 
+                                        <img class="avatar-img" src="@if ($testimony->contributor && $testimony->contributor->image) 
                                         {{ Storage::url($testimony->contributor->image) }}
                                     @else
                                     {{ asset('Template/dist/img/profile.jpeg') }} @endif" alt=""
@@ -109,7 +109,7 @@
                         <!-- ======= Comments Form ======= -->
                         <div class="row justify-content-center mt-5">
                             <div class="col-lg-12">
-                                <h5 class="comment-title">Tinggalkan Testimoni</h5>
+                                <h5 class="comment-title">Berikan Testimoni</h5>
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         @if (Auth::guard('contributor')->check())

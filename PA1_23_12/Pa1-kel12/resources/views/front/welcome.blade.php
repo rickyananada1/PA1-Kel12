@@ -225,28 +225,33 @@
             <div class="row">
                 <div class="col-12"data-aos="fade-up" data-aos-delay="0">
 
-                    <h2 class="heading mb-5">Recent Posts</h2>
+                    <h2 class="heading mb-5">Postingan Terbaru</h2>
                 </div>
             </div>
             <div class="row align-items-stretch">
+
+                @foreach ($blogs as $blog)
+                    
                 <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                     <div class="media-entry">
-                        <a href="#">
-                            <img src="{{ URL::asset('frontend/images/gal_1.jpg') }}" alt="Image"
+                        <a href="{{Route('blogs.show', $blog->slug)}}">
+                            <img src="{{ Storage::url(optional($blog->galleries->random())->images) }}" alt="Image"
                                 class="img-fluid">
                         </a>
                         <div class="bg-white m-body">
-                            <span class="date">May 14, 2020</span>
-                            <h3><a href="#">Far far away, behind the word mountains</a></h3>
-                            <p>Vokalia and Consonantia, there live the blind texts. Separated they live.</p>
+                            <span class="date">{{ $blog->updated_at->format('F j, Y') }}</span>
+                            <h3><a href="{{Route('blogs.show', $blog->slug)}}">{{ $blog->title}}</a></h3>
+                            <p>{{ Str::limit($blog->excerpt,100)}}</p>
 
-                            <a href="single.html" class="more d-flex align-items-center float-start">
+                            <a href="{{Route('blogs.show', $blog->slug)}}" class="more d-flex align-items-center float-start">
                                 <span class="label">Read More</span>
                                 <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
                             </a>
                         </div>
                     </div>
                 </div>
+                @endforeach
+
             </div>
         </div>
     </div>

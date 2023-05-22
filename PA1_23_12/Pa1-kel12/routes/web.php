@@ -93,6 +93,7 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
 Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations.index');
 Route::get('destinations/{destination:slug}', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
+Route::post('destinations/testimonies', [\App\Http\Controllers\Front\destinationController::class, 'testimonies'])->name('destinations.testimonies');
 Route::get('blogs', [\App\Http\Controllers\Front\BlogController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{blog:slug}', [\App\Http\Controllers\Front\blogController::class, 'show'])->name('blogs.show');
 Route::post('blogs/testimonies', [\App\Http\Controllers\Front\blogController::class, 'testimonies'])->name('blog.testimonies');

@@ -21,6 +21,16 @@
     <div class="section">
         <div class="container">
 
+            @if ($selectedCategory)
+                        @php
+                            $category = \App\Models\DestinationCategory::find($selectedCategory);
+                        @endphp
+
+                        <h3 class="category-title">Category: {{ $category->name }}</h3>
+                    @else
+                        <h3 class="category-title">Kategori: Semua Kategori</h3>
+                    @endif
+
             <style>
                 .gambar {
                     height: 200px;
