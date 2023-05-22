@@ -1,11 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-	{{-- head css --}}
+    {{-- head css --}}
     @include('front.partials.head')
     {{-- head css end --}}
 	@stack('style')
-</head>
 <body>
 
     <div class="site-mobile-menu site-navbar-target">

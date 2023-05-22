@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; // Tambahkan baris ini
+use App\Models\Blog;
+use App\Models\Testimony;
 use App\Models\Destination;
 
 class HomeController extends Controller
@@ -12,7 +14,11 @@ class HomeController extends Controller
     {
         $destinations = Destination::with('galleries')->get();
 
-        return view('front.welcome', compact('destinations'));
+        $blogs = Blog::with('galleries')->paginate(4);
+
+        $testimonies = Testimony::get();
+
+        return view('front.welcome', compact('destinations', 'blogs', 'testimonies'));
     }
     
     public function tentangkami()

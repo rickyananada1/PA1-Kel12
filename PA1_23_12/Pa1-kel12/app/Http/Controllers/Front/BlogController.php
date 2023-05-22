@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Contributor;
 use App\Models\Destination;
+use App\Models\Testimony;
 
 class BlogController extends Controller
 {
@@ -46,6 +47,12 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
+        $testimonies = Testimony::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->where('blog_id', $blog->id)
+            ->paginate(6);
+
+
         $latestBlogs = Blog::where('is_share', 1)
             ->orderBy('created_at', 'desc')
             ->paginate(7);
@@ -63,6 +70,30 @@ class BlogController extends Controller
         $blog->increment('views');
 
 
-        return view('front.blog.show', compact('blog', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories'));
+        return view('front.blog.show', compact('blog', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'testimonies'));
+    }
+
+    public function testimonies(Request $request)
+    {
+        $validatedData = $request->validate([
+            'description' => 'required',
+            'blog_id' => 'required',
+            'kabupaten_id' => 'required',
+            'contributor_id' => 'required',
+        ]);
+
+        // Simpan testimoni ke database
+        $testimony = new Testimony;
+        $testimony->description = $validatedData['description'];
+        // set nilai restaurant_id dan blog_id menjadi null
+        $testimony->destination_id = null;
+        $testimony->restaurant_id = null;
+        $testimony->status = 1;
+        $testimony->blog_id = $validatedData['blog_id'];
+        $testimony->kabupaten_id = $validatedData['kabupaten_id'];
+        $testimony->contributor_id = $validatedData['contributor_id'];
+        $testimony->save();
+
+        return redirect()->back()->with('success', 'Testimoni berhasil ditambahkan');
     }
 }
