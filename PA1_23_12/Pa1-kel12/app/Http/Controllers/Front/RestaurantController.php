@@ -11,8 +11,18 @@ class RestaurantController extends Controller
 {
     public function index()
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::with('galleries')
+            ->where('is_share', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+
+        // Pengecekan kategori "tempat"
+        // $restaurants = $restaurants->filter(function ($restaurant) {
+        //     return $restaurant->galleries->where('category', 'place')->count() > 0;
+        // });
+
         $kabupatens = Kabupaten::get();
+
         return view('front.restaurant.index', compact('restaurants', 'kabupatens'));
     }
 

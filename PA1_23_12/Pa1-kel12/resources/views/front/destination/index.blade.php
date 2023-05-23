@@ -42,7 +42,7 @@
                 @foreach ($destinations as $destination)
                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="media-entry">
-                            <a href="{{ Route('destinations.show', $destination->slug) }}">
+                            <a href="{{ Route('destinations.show', $destination->slug) }}" class="zoom-image">
                                 <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
                                     alt="Image" class="img-fluid gambar">
                             </a>

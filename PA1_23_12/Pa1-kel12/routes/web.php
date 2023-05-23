@@ -101,11 +101,10 @@ Route::post('blogs/testimonies', [\App\Http\Controllers\Front\blogController::cl
 Route::get('restaurants', [\App\Http\Controllers\Front\RestaurantController::class, 'index'])->name('restaurants.index');
 Route::get('restaurants/{restaurant:slug}', [\App\Http\Controllers\Front\RestaurantController::class, 'show'])->name('restaurants.show');
 Route::get('galleries', [\App\Http\Controllers\Front\GalleryController::class, 'index'])->name('galleries.index');
-
-Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
-Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');
-Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
+
+
+
 /*==================================Frontend================================== */
 
 Route::get('/test', function () {

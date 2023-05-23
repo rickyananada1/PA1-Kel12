@@ -28,37 +28,33 @@ class HomeController extends Controller
     }
 
     public function kabupatens(Request $request, Kabupaten $kabupaten)
-{
-    $selectedKabupaten = $kabupaten->id;
+    {
+        $selectedKabupaten = $kabupaten->id;
 
-    $destinations = Destination::with('galleries')
-        ->where('kabupaten_id', $selectedKabupaten)
-        ->where('is_share', 1)
-        ->orderBy('views', 'desc')
-        ->get();
+        $destinations = Destination::with('galleries')
+            ->where('kabupaten_id', $selectedKabupaten)
+            ->where('is_share', 1)
+            ->orderBy('views', 'desc')
+            ->get();
 
-    $blogs = Blog::with('galleries')
-        ->where('kabupaten_id', $selectedKabupaten)
-        ->where('is_share', 1)
-        ->orderBy('views', 'desc')
-        ->get();
+        $blogs = Blog::with('galleries')
+            ->where('kabupaten_id', $selectedKabupaten)
+            ->where('is_share', 1)
+            ->orderBy('views', 'desc')
+            ->get();
 
-    $kabupatens = Kabupaten::get();
+        $kabupatens = Kabupaten::get();
 
-    return view('front.kabupaten', compact('destinations', 'blogs', 'kabupatens', 'kabupaten'));
-}
+        return view('front.kabupaten', compact('destinations', 'blogs', 'kabupatens', 'kabupaten'));
+    }
 
+    public function search(Request $request)
+    {
+        
+    }
 
     public function tentangkami()
     {
         return view('front.tentangkami');
-    }
-    public function berita()
-    {
-        return view('front.berita');
-    }
-    public function kumpulanlokasi()
-    {
-        return view('front.kumpulanlokasi');
     }
 }

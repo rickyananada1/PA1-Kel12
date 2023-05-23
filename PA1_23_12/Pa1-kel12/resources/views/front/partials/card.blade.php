@@ -29,11 +29,11 @@
 
     <div class="destination-slider-wrap">
         <div class="destination-slider">
-            
+
             @foreach ($destinations as $destination)
                 
             <div class="destination">
-                <div class="thumb card">
+                <div class="thumb card zoom-image">
                     <a href="{{ Route('destinations.show', $destination->slug) }}">
                         <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}" alt="Image" class="img-fluid gambar">
                     </a>
