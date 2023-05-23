@@ -100,6 +100,7 @@
     <script src="{{ URL::asset('frontend/js/flatpickr.js') }}"></script>
     <script src="{{ URL::asset('frontend/js/glightbox.min.js') }}"></script>
     <script src="{{ URL::asset('frontend/js/custom.js') }}"></script>
+    @stack('script')
 </body>
 
 </html>

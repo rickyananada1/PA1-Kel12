@@ -113,7 +113,7 @@
                                 <div class="row">
                                     <div class="col-12 mb-3">
                                         @if (Auth::guard('contributor')->check())
-                                            <form action="{{ Route('blog.testimonies') }}" method="POST">
+                                            <form action="{{ Route('blogs.testimonies') }}" method="POST">
                                                 @csrf
                                                 <textarea class="form-control" name="description" id="comment-message" placeholder="Masukkan testimoni Anda"
                                                     cols="30" rows="10"></textarea>

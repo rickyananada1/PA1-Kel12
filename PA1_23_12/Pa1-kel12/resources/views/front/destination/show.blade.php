@@ -14,6 +14,11 @@
 
 @push('style')
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/destination.css') }}">
+    <style>
+        body {
+            color: black;
+        }
+    </style>
 @endpush
 
 @section('content')

@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\Testimony;
 use App\Models\DestinationCategory;
 use App\Models\DestinationGallery;
+use App\Models\Kabupaten;
 
 class DestinationController extends Controller
 {
@@ -30,7 +31,10 @@ class DestinationController extends Controller
                 ->paginate(8);
         }
 
-        return view('front.destination.index', compact('destinations', 'selectedCategory'));
+        $kabupatens = Kabupaten::get();
+        $destinationCategories = DestinationCategory::all();
+
+        return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens'));
     }
 
     public function show(Destination $destination)
@@ -48,6 +52,8 @@ class DestinationController extends Controller
             ->where('kabupaten_id', $destination->kabupaten->id)
             ->get();
 
+            $kabupatens = Kabupaten::get();
+
 
         $popularDestinations = Destination::where('id', '!=', $destination->id)
             ->where('is_share', 1)
@@ -61,7 +67,7 @@ class DestinationController extends Controller
         $latestBlogs = Blog::where('is_share', 1)
             ->orderBy('created_at', 'desc')->paginate(4);
 
-        return view('front.destination.show', compact('destination', 'destinations', 'destinationCategories', 'closeDestinations', 'popularDestinations', 'latestBlogs', 'testimonies'));
+        return view('front.destination.show', compact('destination', 'destinations', 'destinationCategories', 'closeDestinations', 'popularDestinations', 'latestBlogs', 'testimonies', 'kabupatens'));
     }
 
     public function testimonies(Request $request)

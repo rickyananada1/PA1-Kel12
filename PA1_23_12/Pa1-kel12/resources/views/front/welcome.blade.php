@@ -35,9 +35,9 @@
                         <div class="input-group">
                           <select name="" id="" class="form-control custom-select">
                             <option value="">Cari Apa?</option>
-                            <option value="">Peru</option>
-                            <option value="">Japan</option>
-                            <option value="">Thailand</option>
+                            <option value="">Destinati Wisata</option>
+                            <option value="">Blog</option>
+                            <option value="">Tempat Makan</option>
                           </select>
                         </div>
                       </div>
@@ -45,10 +45,9 @@
                         <div class="input-group">
                           <select name="" id="" class="form-control custom-select">
                             <option value="">Kemana?</option>
-                            <option value="">Peru</option>
-                            <option value="">Japan</option>
-                            <option value="">Thailand</option>
-                            <option value="">Brazil</option>
+                            @foreach ($kabupatens as $kabupaten)
+                            <option value="">{{$kabupaten->name}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>

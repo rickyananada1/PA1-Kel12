@@ -18,36 +18,31 @@
                 <div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
-                        <li><a href="{{ Route('blogs.index') }}">Blogs</a></li>
+                        {{-- <li><a href="{{ Route('blogs.index') }}">Blogs</a></li> --}}
                         <li class="has-children">
                             <a href="#">Apa Carik?</a>
                             <ul class="dropdown">
-                                <li><a href="{{ Route('destinations.index') }}">Destinasi wisata</a></li>
-                                <li><a href="#">Tempat Makan</a></li>
-                                <li><a href="#">Kulineran</a></li>
-                                <li class="has-children">
-                                    <a href="#">Destinasi Wisata</a>
+                                <li class="has-children"><a href="{{ Route('destinations.index') }}">Destinasi Wisata</a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Alami</a></li>
-                                        <li><a href="#">Buatan</a></li>
-                                        <li><a href="#">Religi</a></li>
+                                        <li><a href="#">Akomodasi</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="{{ Route('blogs.index') }}">Kumpulan Blogs</a></li>
+                                <li><a href="{{ Route('restaurants.index') }}">Tempat Makan</a></li>
+
                             </ul>
                         </li>
                         <li class="has-children">
                             <a href="#">Mau Kemana?</a>
                             <ul class="dropdown">
-                                <li><a href="#">Toba Samosir</a></li>
-                                <li><a href="#">Karo</a></li>
-                                <li><a href="#">Simalungun</a></li>
-                                <li><a href="#">Humbang Hasudutan</a></li>
-                                <li><a href="#">Samosir</a></li>
-                                <li><a href="#">Tapanuli Utara</a></li>
-                                <li><a href="#">Dairi</a></li>
+                                @foreach ($kabupatens as $kabupaten)
+                                <li><a href="{{ route('kabupatens', $kabupaten->slug) }}">{{ $kabupaten->name }}</a></li>
+
+
+                                @endforeach
                             </ul>
                         </li>
-                        <li><a href="#">Galeri</a></li>
+                        <li><a href="{{Route('galleries.index')}}">Galeri</a></li>
                         <li><a href="{{ Route('tentangkami') }}">Tentang Kami</a></li>
 
                     </ul>

@@ -90,18 +90,22 @@ Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoo
 
 /*==================================Frontend================================== */
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+Route::get('/kabupatens/{kabupaten:slug}', [HomeController::class, 'kabupatens'])->name('kabupatens');
 
 Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations.index');
 Route::get('destinations/{destination:slug}', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
 Route::post('destinations/testimonies', [\App\Http\Controllers\Front\destinationController::class, 'testimonies'])->name('destinations.testimonies');
 Route::get('blogs', [\App\Http\Controllers\Front\BlogController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{blog:slug}', [\App\Http\Controllers\Front\blogController::class, 'show'])->name('blogs.show');
-Route::post('blogs/testimonies', [\App\Http\Controllers\Front\blogController::class, 'testimonies'])->name('blog.testimonies');
+Route::post('blogs/testimonies', [\App\Http\Controllers\Front\blogController::class, 'testimonies'])->name('blogs.testimonies');
+Route::get('restaurants', [\App\Http\Controllers\Front\RestaurantController::class, 'index'])->name('restaurants.index');
+Route::get('restaurants/{restaurant:slug}', [\App\Http\Controllers\Front\RestaurantController::class, 'show'])->name('restaurants.show');
+Route::get('galleries', [\App\Http\Controllers\Front\GalleryController::class, 'index'])->name('galleries.index');
 
+Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
 Route::get('/kumpulan-berita', [HomeController::class, 'kumpulanberita'])->name('kumpulanberita');
 Route::get('/berita', [HomeController::class, 'berita'])->name('berita');
-Route::get('/kumpulan-lokasi', [HomeController::class, 'kumpulanlokasi'])->name('kumpulanlokasi');
 /*==================================Frontend================================== */
 
 Route::get('/test', function () {

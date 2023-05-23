@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Contributor;
 use App\Models\Destination;
+use App\Models\Kabupaten;
 use App\Models\Testimony;
 
 class BlogController extends Controller
@@ -15,6 +16,7 @@ class BlogController extends Controller
     public function index(Request $request)
     {
 
+        $kabupatens = Kabupaten::get();
         $selectedCategory = $request->input('category');
 
         if ($selectedCategory) {
@@ -42,7 +44,7 @@ class BlogController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.blog.index', compact('blogs', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'selectedCategory'));
+        return view('front.blog.index', compact('blogs', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'selectedCategory', 'kabupatens'));
     }
 
     public function show(Blog $blog)
@@ -69,8 +71,9 @@ class BlogController extends Controller
 
         $blog->increment('views');
 
+        $kabupatens = Kabupaten::get();
 
-        return view('front.blog.show', compact('blog', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'testimonies'));
+        return view('front.blog.show', compact('blog', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'testimonies', 'kabupatens'));
     }
 
     public function testimonies(Request $request)

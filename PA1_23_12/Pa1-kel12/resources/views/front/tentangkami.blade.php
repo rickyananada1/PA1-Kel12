@@ -1,91 +1,84 @@
-<!doctype html>
-<html lang="en">
+@extends('front.pages.post')
 
-<head>
-    {{-- head css --}}
-    @include('front.partials.head')
-    {{-- head css end --}}
-</head>
+@section('title')
+    Tentang Kami
+@endsection
 
-<body>
-
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close">
-                <span class="icofont-close js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
-
-    {{-- Navbar --}}
-    @include('front.partials.navbar')
-    {{-- Navbar End --}}
+@section('description')
+    Kami berdedikasi untuk mempersembahkan informasi terbaik tentang destinasi wisata di sekitaran Danau toba. Dengan
+    pengalaman dan pengetahuan yang luas, kami siap membantu Anda menemukan pengalaman liburan yang tak terlupakan. Dengan
+    penuh semangat, kami terus mengeksplorasi tempat-tempat baru dan berbagi cerita-cerita inspiratif kepada Anda semua.
+    Kami percaya bahwa perjalanan bukan hanya tentang tempat, tetapi tentang pengalaman dan kenangan yang membekas di hati.
+    Kami berharap dapat menjadi teman setia Anda dalam menjelajahi dunia dan menciptakan momen yang tak terlupakan.
+@endsection
 
 
-    <div class="hero overlay">
+@section('content')
+    
+{{-- section  --}}
+@include('front.partials.section')
+{{-- section  end --}}
 
-        <div class="img-bg rellax">
-            <img src="{{ URL::asset('frontend/images/hero_1.jpg') }}" alt="Image" class="img-fluid">
-        </div>
 
-        <div class="container">
-            <div class="row align-items-center justify-content-start">
-                <div class="col-lg-7">
+{{-- services --}}
+@include('front.partials.services')
+{{-- services end --}}
 
-                    <h1 class="heading" data-aos="fade-up">Tentang Kami</h1>
-                    <p class="mb-5" data-aos="fade-up">Kami berdedikasi untuk mempersembahkan informasi terbaik tentang destinasi wisata di sekitaran Danau toba. Dengan pengalaman dan pengetahuan yang luas, kami siap membantu Anda menemukan pengalaman liburan yang tak terlupakan. Dengan penuh semangat, kami terus mengeksplorasi tempat-tempat baru dan berbagi cerita-cerita inspiratif kepada Anda semua. Kami percaya bahwa perjalanan bukan hanya tentang tempat, tetapi tentang pengalaman dan kenangan yang membekas di hati. Kami berharap dapat menjadi teman setia Anda dalam menjelajahi dunia dan menciptakan momen yang tak terlupakan.</p>
+
+<div class="section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="heading-content" data-aos="fade-up">
+                    <h2 class="heading">Meet Our Team of Experts</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                        there live the blind texts.</p>
                 </div>
-
-
             </div>
         </div>
 
-
+        <div class="row">
+            <div class="col-lg-3">
+                <a href="#" class="person">
+                    <img src="{{ URL::asset('frontend/images/person_1.jpg') }}" alt="Image"
+                        class="img-fluid mb-4">
+                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
+                    <h3 class="mb-3">John Anderson</h3>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p>
+                </a>
+            </div>
+            <div class="col-lg-3">
+                <a href="#" class="person">
+                    <img src="{{ URL::asset('frontend/images/person_2.jpg') }}" alt="Image"
+                        class="img-fluid mb-4">
+                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
+                    <h3 class="mb-3">Jane Parkenson</h3>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p>
+                </a>
+            </div>
+            <div class="col-lg-3">
+                <a href="#" class="person">
+                    <img src="{{ URL::asset('frontend/images/person_3.jpg') }}" alt="Image"
+                        class="img-fluid mb-4">
+                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
+                    <h3 class="mb-3">Kelsey Gutierrez</h3>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p>
+                </a>
+            </div>
+            <div class="col-lg-3">
+                <a href="#" class="person">
+                    <img src="{{ URL::asset('frontend/images/person_2.jpg') }}" alt="Image"
+                        class="img-fluid mb-4">
+                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
+                    <h3 class="mb-3">Matthew Madron</h3>
+                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p>
+                </a>
+            </div>
+        </div>
     </div>
-
-
-    {{-- section  --}}
-	@include('front.partials.section')
-    {{-- section  end --}}
-	
-
-    {{-- services --}}
-        @include('front.partials.services')
-    {{-- services end --}}
-
-
-	{{-- ourteams --}}
-		@include('front.partials.ourteams')
-	{{-- ourteams end --}}
-
-
-
-    <!-- /.site-footer -->
-	@include('front.partials.footer')
-
-
-        <!-- Preloader -->
-        <div id="overlayer"></div>
-        <div class="loader">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-
-
-        <script src="{{ URL::asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/tiny-slider.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/aos.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/navbar.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/counter.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/rellax.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/flatpickr.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/glightbox.min.js') }}"></script>
-        <script src="{{ URL::asset('frontend/js/custom.js') }}"></script>
-
-
-
-</body>
-
-</html>
+</div>
+@endsection
