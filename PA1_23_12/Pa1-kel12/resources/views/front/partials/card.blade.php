@@ -35,7 +35,7 @@
             <div class="destination">
                 <div class="thumb card">
                     <a href="{{ Route('destinations.show', $destination->slug) }}">
-                        <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}" alt="Image" class="img-fluid gambar">
+                        <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}" alt="Image" class="img-fluid gambar">
                     </a>
                     <div class="price">{{ $destination->destinationCategory->name }}</div>
                 </div>

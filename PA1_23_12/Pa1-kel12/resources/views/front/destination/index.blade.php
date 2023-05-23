@@ -21,25 +21,21 @@
     <div class="section">
         <div class="container">
 
+            <ul class="categories d-flex flex-wrap justify-content-center">
+                @foreach ($destinationCategories as $destinationCategory)
+                    <li class="col-3 category-title"><a href="{{ route('destinations.index', ['category' => $destinationCategory->id ])}}">{{ $destinationCategory->name }}</a></li>
+                @endforeach
+            </ul>
+        
             @if ($selectedCategory)
-                        @php
-                            $category = \App\Models\DestinationCategory::find($selectedCategory);
-                        @endphp
+                @php
+                    $category = \App\Models\DestinationCategory::find($selectedCategory);
+                @endphp
 
-                        <h3 class="category-title">Category: {{ $category->name }}</h3>
-                    @else
-                        <h3 class="category-title">Kategori: Semua Kategori</h3>
-                    @endif
-
-            <style>
-                .gambar {
-                    height: 200px;
-                    /* ganti ukuran yang diinginkan */
-                    height: 250px;
-                    /**/
-                    object-fit: cover;
-                }
-            </style>
+                <h3 class="category-title">Category: {{ $category->name }}</h3>
+            @else
+                <h3 class="category-title">Kategori: Semua Kategori</h3>
+            @endif
 
             <!-- ================================================ Card Destinasi =====================================================-->
             <div class="row align-items-stretch">
@@ -81,8 +77,8 @@
                         @endif
 
                         @for ($i = 1; $i <= $destinations->lastPage(); $i++)
-                            <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
-                                    class="page-link" href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
+                            <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a class="page-link"
+                                    href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
                         @endfor
 
                         @if ($destinations->hasMorePages())

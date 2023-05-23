@@ -37,20 +37,20 @@
 
             <div class="col-lg-2 ml-auto">
                 <div class="widget">
-                    <h3>Links</h3>
+                    <h3>Halaman</h3>
                     <ul class="list-unstyled float-left links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{Route('welcome')}}">Beranda</a></li>
+                        <li><a href="{{Route('blogs.index')}}">Blog</a></li>
+                        <li><a href="{{Route('destinations.index')}}">Wisata</a></li>
+                        <li><a href="{{Route('galleries.index')}}">Galeri</a></li>
+                        <li><a href="{{Route('tentangkami')}}">Tentang Kami</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->
 
             <div class="col-lg-2">
                 <div class="widget">
-                    <h3>Company</h3>
+                    <h3>Sekitaran Danau Toba</h3>
                     <ul class="list-unstyled float-left links">
                         <li><a href="#">About us</a></li>
                         <li><a href="#">Services</a></li>
@@ -64,7 +64,7 @@
 
             <div class="col-lg-3">
                 <div class="widget">
-                    <h3>Contact</h3>
+                    <h3>Kontak</h3>
                     <address>43 Raymouth Rd. Baltemoer, London 3910</address>
                     <ul class="list-unstyled links mb-4">
                         <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
