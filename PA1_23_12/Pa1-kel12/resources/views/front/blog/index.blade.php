@@ -33,8 +33,8 @@
                     
 
                     @foreach ($blogs as $blog)
-                        <div class="d-md-flex post-entry-2 half">
-                            <a href="{{ Route('blogs.show', $blog->slug) }}" class="me-4 thumbnail">
+                        <div class="d-md-flex post-entry-2 half ">
+                            <a href="{{ Route('blogs.show', $blog->slug) }}" class="me-4 thumbnail zoom-image">
                                 <img src="{{ Storage::url(optional($blog->galleries->random())->images) }}" alt=""
                                     class="img-fluid">
                             </a>

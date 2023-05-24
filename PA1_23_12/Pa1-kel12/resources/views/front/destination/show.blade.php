@@ -18,6 +18,15 @@
         body {
             color: black;
         }
+
+        .carousel-item img {
+            width: 500px;
+            /* Ganti dengan ukuran yang diinginkan */
+            height: 400px;
+            /* Ganti dengan ukuran yang diinginkan */
+            object-fit: cover;
+            /* Mengatur agar gambar memenuhi area dengan proporsi aslinya */
+        }
     </style>
 @endpush
 
@@ -50,7 +59,7 @@
                             $secondHalf = implode('</p>', array_slice($paragraphs, 1, $halfLength));
                         @endphp
                         <p><span
-                                class="firstcharacter">{{ strip_tags(substr($firstHalf, 0, 4)) }}</span>{!! substr($firstHalf, 4) !!}
+                                class="firstcharacter">{!! strip_tags(substr($firstHalf, 0, 4)) !!}</span>{!! substr($firstHalf, 4) !!}
                         </p>
                         <div class="row my-4">
                             <div id="carouselExampleIndicators" class="carousel slide col-md-12 mb-4"

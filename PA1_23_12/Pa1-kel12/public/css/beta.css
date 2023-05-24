@@ -88,15 +88,20 @@
 }
 
 /*Hover*/
-.card:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    transform: scale(0.9);
-    transition: all 0.9s;
+.zoom-image {
+    position: relative;
+    overflow: hidden;
 }
 
-.card:hover .card-button {
+.zoom-image img {
+    transition: transform 0.9s ease-out;
+}
+
+.zoom-image:hover img {
+    transform: scale(1.05);
+    filter: blur(0.2px);
+}
+.card-button {
     transform: translate(-50%, -20%);
     opacity: 1;
 }
@@ -140,6 +145,14 @@
     height: 200px;
     /* ganti ukuran yang diinginkan */
     height: 250px;
+    /**/
+    object-fit: cover;
+}
+
+.gambar2 {
+    height: 200px;
+    width: 100%;
+    /* ganti ukuran yang diinginkan */
     /**/
     object-fit: cover;
 }

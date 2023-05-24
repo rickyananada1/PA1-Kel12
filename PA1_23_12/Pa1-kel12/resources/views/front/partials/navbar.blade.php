@@ -18,7 +18,6 @@
                 <div class="col-lg-6 d-none d-lg-inline-block text-center nav-center-wrap">
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
-                        {{-- <li><a href="{{ Route('blogs.index') }}">Blogs</a></li> --}}
                         <li class="has-children">
                             <a href="#">Apa Carik?</a>
                             <ul class="dropdown">
@@ -27,7 +26,7 @@
                                         <li><a href="#">Akomodasi</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ Route('blogs.index') }}">Kumpulan Blogs</a></li>
+                                <li><a href="{{ Route('blogs.index') }}">Blog</a></li>
                                 <li><a href="{{ Route('restaurants.index') }}">Tempat Makan</a></li>
 
                             </ul>
@@ -37,8 +36,6 @@
                             <ul class="dropdown">
                                 @foreach ($kabupatens as $kabupaten)
                                 <li><a href="{{ route('kabupatens', $kabupaten->slug) }}">{{ $kabupaten->name }}</a></li>
-
-
                                 @endforeach
                             </ul>
                         </li>

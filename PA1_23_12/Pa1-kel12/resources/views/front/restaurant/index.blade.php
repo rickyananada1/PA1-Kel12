@@ -13,30 +13,22 @@
     <div class="section">
         <div class="container">
 
-            {{-- @if ($selectedCategory)
-                @php
-                    $category = \App\Models\DestinationCategory::find($selectedCategory);
-                @endphp
-
-                <h3 class="category-title">Category: {{ $category->name }}</h3>
-            @else
-                <h3 class="category-title">Kategori: Semua Kategori</h3>
-            @endif --}}
-
             <!-- ================================================ Card Destinasi =====================================================-->
             <div class="row align-items-stretch">
                 @foreach ($restaurants as $restaurant)
                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="media-entry">
-                            <a href="{{ Route('restaurants.show', $restaurant->slug) }}">
-                                <img src="{{ Storage::url(optional($restaurant->galleries->first())->images) }}"
-                                    alt="Image" class="img-fluid gambar">
+                            <a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="zoom-image">
+                                @if ($restaurant->galleries->where('category', 'place')->count() > 0)
+                                    <img src="{{ Storage::url(optional($restaurant->galleries->where('category', 'place')->first())->images) }}"
+                                        alt="Restaurant Image" class="img-fluid gambar">
+                                @endif
+
                             </a>
                             <div class="bg-white m-body">
                                 <span class="date">{{ $restaurant->updated_at->format('F j, Y') }}</span>&mdash;
                                 <span class="date">{{ $restaurant->location }}</span>
-                                <h3><a
-                                        href="{{ Route('restaurants.show', $restaurant->slug) }}">{{ $restaurant->name }}</a>
+                                <h3><a href="{{ Route('restaurants.show', $restaurant->slug) }}">{{ $restaurant->name }}</a>
                                 </h3>
                                 <p>{{ Str::limit(strip_tags($restaurant->description), 100) }}</p>
 
@@ -53,7 +45,7 @@
 
 
                 <!--============================================= Paginate ===================================================-->
-                {{-- <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
+                <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
                     <ul class="custom-pagination pagination">
                         @if ($restaurants->onFirstPage())
                             <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
@@ -74,7 +66,7 @@
                             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                         @endif
                     </ul>
-                </nav> --}}
+                </nav>
                 <!--============================================= Paginate ===================================================-->
 
             </div>

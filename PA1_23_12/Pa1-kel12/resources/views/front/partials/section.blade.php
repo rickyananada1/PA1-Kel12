@@ -21,7 +21,7 @@
                         <br>Kusapa “Horas apa kabar kawan”, Hampa hatiku dibalas “fine, thank you”</h4>
 
 
-                    <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="{{Route('kumpulanlokasi')}}" class="btn btn-primary tombol">Read more</a></p>
+                    <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary tombol">Read more</a></p>
                 </div>
             </div>
             

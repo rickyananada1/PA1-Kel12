@@ -22,19 +22,24 @@ class DestinationController extends Controller
                 ->where('destination_category_id', $selectedCategory)
                 ->where('is_share', 1)
                 ->orderBy('created_at', 'desc')
-                ->paginate(8);
+                ->paginate(6);
         } else {
 
             $destinations = Destination::with('galleries')
                 ->where('is_share', 1)
                 ->orderBy('created_at', 'desc')
-                ->paginate(8);
+                ->paginate(6);
         }
+
+        $popularDestinations = Destination::with('galleries')
+            ->where('is_share', 1)
+            ->orderBy('views', 'desc') // Order by views in descending order
+            ->get();
 
         $kabupatens = Kabupaten::get();
         $destinationCategories = DestinationCategory::all();
 
-        return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens'));
+        return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens', 'popularDestinations'));
     }
 
     public function show(Destination $destination)

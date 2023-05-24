@@ -46,7 +46,7 @@
                           <select name="" id="" class="form-control custom-select">
                             <option value="">Kemana?</option>
                             @foreach ($kabupatens as $kabupaten)
-                            <option value="">{{$kabupaten->name}}</option>
+                            <option value="{{ route('kabupatens', $kabupaten->slug) }}">{{$kabupaten->name}}</option>
                             @endforeach
                           </select>
                         </div>
@@ -233,12 +233,12 @@
                     
                 <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                     <div class="media-entry">
-                        <a href="{{Route('blogs.show', $blog->slug)}}">
+                        <a href="{{Route('blogs.show', $blog->slug)}}" class="zoom-image">
                             <img src="{{ Storage::url(optional($blog->galleries->random())->images) }}" alt="Image"
-                                class="img-fluid">
+                                class="img-fluid gambar2">
                         </a>
                         <div class="bg-white m-body">
-                            <span class="date">{{ $blog->updated_at->format('F j, Y') }}</span>
+                            <span class="date">{{$blog->blogCategory->name}} &mdash; {{ $blog->updated_at->format('F j, Y') }}</span>
                             <h3><a href="{{Route('blogs.show', $blog->slug)}}">{{ $blog->title}}</a></h3>
                             <p>{{ Str::limit($blog->excerpt,100)}}</p>
 
