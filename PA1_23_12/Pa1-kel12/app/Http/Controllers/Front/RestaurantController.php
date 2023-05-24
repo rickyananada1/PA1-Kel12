@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kabupaten;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
+use App\Models\Destination;
 
 class RestaurantController extends Controller
 {
@@ -16,11 +17,6 @@ class RestaurantController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(8);
 
-        // Pengecekan kategori "tempat"
-        // $restaurants = $restaurants->filter(function ($restaurant) {
-        //     return $restaurant->galleries->where('category', 'place')->count() > 0;
-        // });
-
         $kabupatens = Kabupaten::get();
 
         return view('front.restaurant.index', compact('restaurants', 'kabupatens'));
@@ -29,6 +25,15 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         $kabupatens = Kabupaten::get();
-        return view('front.restaurant.show', compact('restaurant', 'kabupatens'));
+
+        $kabupaten = $restaurant->kabupaten->id;
+
+        $destinations = Destination::with('galleries')
+        ->where('is_share', 1)
+        ->orderBy('created_at', 'desc')
+        ->where('kabupaten_id', $kabupaten)
+        ->paginate(8);
+        
+        return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations'));
     }
 }
