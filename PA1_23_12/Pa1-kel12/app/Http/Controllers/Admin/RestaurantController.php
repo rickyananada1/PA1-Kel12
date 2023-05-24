@@ -20,7 +20,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('kabupaten')->paginate(10);
+        $restaurants = Restaurant::with('kabupaten')->get();
         
         return view('admin.restaurant.index', compact('restaurants'));
     }

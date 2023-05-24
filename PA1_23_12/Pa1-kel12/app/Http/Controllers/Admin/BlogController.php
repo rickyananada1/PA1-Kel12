@@ -22,7 +22,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('BlogCategory')->paginate(10);
+        $blogs = Blog::with('BlogCategory')->get();
 
         return view('admin.blog.index', compact('blogs'));
     }

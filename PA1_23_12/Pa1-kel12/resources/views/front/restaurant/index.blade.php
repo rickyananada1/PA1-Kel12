@@ -18,7 +18,7 @@
                 @foreach ($restaurants as $restaurant)
                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="media-entry">
-                            <a href="{{ Route('restaurants.show', $restaurant->slug) }}">
+                            <a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="zoom-image">
                                 @if ($restaurant->galleries->where('category', 'place')->count() > 0)
                                     <img src="{{ Storage::url(optional($restaurant->galleries->where('category', 'place')->first())->images) }}"
                                         alt="Restaurant Image" class="img-fluid gambar">

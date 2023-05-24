@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\Testimony;
 use App\Models\Destination;
 use App\Models\Kabupaten;
+use App\Models\Restaurant;
 
 class HomeController extends Controller
 {
@@ -32,20 +33,26 @@ class HomeController extends Controller
         $selectedKabupaten = $kabupaten->id;
 
         $destinations = Destination::with('galleries')
-            ->where('kabupaten_id', $selectedKabupaten)
+            // ->where('kabupaten_id', $selectedKabupaten)
             ->where('is_share', 1)
             ->orderBy('views', 'desc')
             ->get();
 
         $blogs = Blog::with('galleries')
-            ->where('kabupaten_id', $selectedKabupaten)
+            // ->where('kabupaten_id', $selectedKabupaten)
             ->where('is_share', 1)
             ->orderBy('views', 'desc')
             ->get();
 
+        $restaurants = Restaurant::with('galleries')
+            // ->where('kabupaten_id', $selectedKabupaten)
+            ->where('is_share', 1)
+            // ->orderBy('views', 'desc')
+            ->get();
+
         $kabupatens = Kabupaten::get();
 
-        return view('front.kabupaten', compact('destinations', 'blogs', 'kabupatens', 'kabupaten'));
+        return view('front.kabupaten.index', compact('destinations', 'blogs', 'kabupatens', 'kabupaten', 'restaurants'));
     }
 
     public function search(Request $request)
