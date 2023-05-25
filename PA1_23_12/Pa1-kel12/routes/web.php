@@ -90,7 +90,7 @@ Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoo
 
 /*==================================Frontend================================== */
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
-Route::get('/kabupatens/{kabupaten:slug}', [HomeController::class, 'kabupatens'])->name('kabupatens');
+Route::get('/kabupatens/{kabupaten:id}', [HomeController::class, 'kabupatens'])->name('kabupatens');
 
 Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations.index');
 Route::get('destinations/{destination:slug}', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
@@ -102,6 +102,8 @@ Route::get('restaurants', [\App\Http\Controllers\Front\RestaurantController::cla
 Route::get('restaurants/{restaurant:slug}', [\App\Http\Controllers\Front\RestaurantController::class, 'show'])->name('restaurants.show');
 Route::get('galleries', [\App\Http\Controllers\Front\GalleryController::class, 'index'])->name('galleries.index');
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
+
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 
 

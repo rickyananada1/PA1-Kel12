@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; // Tambahkan baris ini
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Testimony;
 use App\Models\Destination;
+use App\Models\DestinationCategory;
 use App\Models\Kabupaten;
 use App\Models\Restaurant;
 
@@ -20,12 +22,12 @@ class HomeController extends Controller
             ->get();
 
         $blogs = Blog::with('galleries')->paginate(4);
-
         $testimonies = Testimony::get();
-
         $kabupatens = Kabupaten::get();
+        $destinationCategories = DestinationCategory::get();
+        $blogCategories = BlogCategory::get();
 
-        return view('front.welcome', compact('destinations', 'blogs', 'testimonies', 'kabupatens'));
+        return view('front.welcome', compact('destinations', 'blogs', 'testimonies', 'kabupatens', 'destinationCategories', 'blogCategories'));
     }
 
     public function kabupatens(Request $request, Kabupaten $kabupaten)
@@ -57,11 +59,39 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $cariApa = $request->input('cariApa');
+        $kemana = $request->input('kemana');
+        $kategori = $request->input('kategori');
+
         
+        // Lakukan logika pencarian atau tindakan lainnya
+
+        if($cariApa != null && $kemana == null && $kategori == null){
+
+            return redirect()->route($cariApa .'.index');
+
+        }else if($cariApa != null && $kemana == null && $kategori != null){
+
+            return redirect()->route( $cariApa.'.index', ['category' => $kategori ]);
+
+        }else if($cariApa == null && $kemana != null && $kategori == null){
+
+            return redirect()->route( $cariApa.'.index', ['kabupaten' => $kemana ]);
+
+        }else if($cariApa == null && $kemana != null && $kategori == null){
+
+            return redirect()->route('kabupatens', $kemana);
+
+        } else if($cariApa != null && $kemana != null && $kategori != null){
+
+            return redirect()->route( $cariApa.'.index', ['category' => $kategori , 'kabupaten' => $kemana]);
+        }
     }
 
     public function tentangkami()
     {
-        return view('front.tentangkami');
+        $kabupatens = Kabupaten::get();
+
+        return view('front.tentangkami', compact('kabupatens'));
     }
 }

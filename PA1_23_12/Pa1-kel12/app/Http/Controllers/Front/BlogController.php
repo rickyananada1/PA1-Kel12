@@ -18,13 +18,33 @@ class BlogController extends Controller
 
         $kabupatens = Kabupaten::get();
         $selectedCategory = $request->input('category');
+        $selectedKabupaten = $request->input('kabupaten');
 
-        if ($selectedCategory) {
+        if ($selectedCategory != null && $selectedKabupaten == null) {
             $blogs = Blog::with('galleries')
                 ->where('blog_category_id', $selectedCategory)
                 ->where('is_share', 1)
                 ->paginate(5);
-        } else {
+        
+            }
+        else if($selectedCategory == null && $selectedKabupaten != null)
+        {
+            $blogs = Blog::with('galleries')
+                ->where('kabupaten_id', $selectedKabupaten)
+                ->where('is_share', 1)
+                ->paginate(5);
+
+        } 
+        else if($selectedCategory != null  && $selectedKabupaten != null){
+
+            $blogs = Blog::with('galleries')
+                ->where('blog_category_id', $selectedCategory)
+                ->where('kabupaten_id', $selectedKabupaten)
+                ->where('is_share', 1)
+                ->paginate(5);
+
+        } 
+        else {
             $blogs = Blog::with('galleries')
                 ->where('is_share', 1)
                 ->paginate(5);
@@ -44,7 +64,7 @@ class BlogController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.blog.index', compact('blogs', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'selectedCategory', 'kabupatens'));
+        return view('front.blog.index', compact('blogs', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'selectedCategory', 'kabupatens', 'selectedKabupaten'));
     }
 
     public function show(Blog $blog)

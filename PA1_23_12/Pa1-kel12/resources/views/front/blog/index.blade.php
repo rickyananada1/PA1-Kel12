@@ -30,6 +30,14 @@
                     @else
                         <h3 class="category-title">Kategori: Semua Kategori</h3>
                     @endif
+                    @if ($selectedKabupaten)
+                        @php
+                            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                        @endphp
+
+                        <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
+                    
+                    @endif
                     
 
                     @foreach ($blogs as $blog)

@@ -20,72 +20,127 @@
 
     <div class="hero overlay zoom">
         <div class="img-bg rellax">
-          <img src="{{ URL::asset('asset/thumbnail.jpg') }}" alt="Image" class="img-fluid zoom-anim" id="image">
+            <img src="{{ URL::asset('asset/thumbnail.jpg') }}" alt="Image" class="img-fluid zoom-anim" id="image">
         </div>
         <div class="container">
-          <div class="row align-items-center justify-content-start">
-            <div class="col-lg-6">
-              <h1 class="heading" data-aos="fade-up">Website Wisata Sekitaran Danau Toba</h1><span
-                id="i"></span>
-              <h3 class="mb-5" data-aos="fade-up" id="heading" style="color: white;">BetaTudia adalah website
-                penyedia informasi dan tips unik untuk kamu sekalian</h3>
-                <form class="form glass" data-aos="fade-down-right" data-aos-delay="100">
-                    <div class="row mb-2">
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                        <div class="input-group">
-                          <select name="" id="" class="form-control custom-select">
-                            <option value="">Cari Apa?</option>
-                            <option value="">Destinati Wisata</option>
-                            <option value="">Blog</option>
-                            <option value="">Tempat Makan</option>
-                          </select>
+            <div class="row align-items-center justify-content-start">
+                <div class="col-lg-6">
+                    <h1 class="heading" data-aos="fade-up">Website Wisata Sekitaran Danau Toba</h1><span
+                        id="i"></span>
+                    <h3 class="mb-5" data-aos="fade-up" id="heading" style="color: white;">BetaTudia adalah website
+                        penyedia informasi dan tips unik untuk kamu sekalian</h3>
+
+                    <form action="{{ Route('search') }}" method="GET" class="form glass" data-aos="fade-down-right"
+                        data-aos-delay="100">
+                        @csrf
+                        <div class="row mb-2">
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                                <div class="input-group">
+                                    <select name="cariApa" id="cariApa" class="form-control custom-select">
+                                        <option value="">Cari Apa?</option>
+                                        <option value="destinations">Destinati Wisata</option>
+                                        <option value="blogs">Blog</option>
+                                        <option value="restaurants">Tempat Makan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
+                                <div class="input-group">
+                                    <select name="kabupaten" id="kemana" class="form-control custom-select">
+                                        <option value="">Kemana?</option>
+                                        @foreach ($kabupatens as $kabupaten)
+                                            <option value="{{$kabupaten->id}}">
+                                                {{ $kabupaten->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3" id="cat">
+                                <div class="input-group">
+                                    <select name="kategori" id="kategori" class="form-control custom-select" pla>
+                                        <option value="">Kategori</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
-                        <div class="input-group">
-                          <select name="" id="" class="form-control custom-select">
-                            <option value="">Kemana?</option>
-                            @foreach ($kabupatens as $kabupaten)
-                            <option value="{{ route('kabupatens', $kabupaten->slug) }}">{{$kabupaten->name}}</option>
-                            @endforeach
-                          </select>
+                        <div class="row align-items-center">
+                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-check mt-3">
+                                    <input type="checkbox" class="form-check-input" id="saveSearch" checked="checked">
+                                    <label class="form-check-label" for="saveSearch">Save this search</label>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-                        <div class="input-group">
-                          <select name="" id="" class="form-control custom-select">
-                            <option value="">Kategori</option>
-                            <option value="">Peru</option>
-                            <option value="">Japan</option>
-                            <option value="">Thailand</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row align-items-center">
-                      <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                        <button type="submit" class="btn btn-primary btn-block">Search</button>
-                      </div>
-                      <div class="col-lg-8">
-                        <div class="form-check mt-3">
-                          <input type="checkbox" class="form-check-input" id="saveSearch" checked="checked">
-                          <label class="form-check-label" for="saveSearch">Save this search</label>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  
+                    </form>
+
+
+                    <template id="ValueOfDestCat">
+                        @forelse($destinationCategories as $sdcats)
+                            <option value="{{ $sdcats->id }}">{{ $sdcats->name }}</option>
+                        @empty
+                            <option value="">Tidak ada kategori</option>
+                        @endforelse
+                    </template>
+
+                    <template id="ValueOfBlogCat">
+                        @forelse($blogCategories as $sbcats)
+                            <option value="{{ $sbcats->id }}">{{ $sbcats->name }}</option>
+                        @empty
+                            <option value="">Tidak ada kategori</option>
+                        @endforelse
+                    </template>
+
+                    <script>
+                        const cariApa = document.getElementById('cariApa');
+                        const kemana = document.getElementById('kemana');
+                        const kategori = document.getElementById('kategori');
+
+                        cariApa.addEventListener('change', () => {
+
+                            while (kategori.options.length > 1) {
+                                kategori.remove(1);
+                            }
+
+                            switch (cariApa.value) {
+                                case 'none':
+                                    break;
+                                case 'destinations':
+
+                                    let templateKategoriValue = document.getElementById("ValueOfDestCat").content;
+                                    kategori.appendChild(templateKategoriValue.cloneNode(true));
+
+                                    break;
+                                case 'blogs':
+
+                                    let templateBKategoriValue = document.getElementById("ValueOfBlogCat").content;
+                                    kategori.appendChild(templateBKategoriValue.cloneNode(true));
+
+                                    break;
+                                case 'restaurants':
+
+                                    const cat = document.getElementById('cat');
+
+                                    cat.style.display = 'hide';
+
+                                    break;
+                            }
+                        })
+                    </script>
+
+                </div>
             </div>
-        </div>
 
 
         </div>
-      </div>
+    </div>
 
 
-      
-  
-              
+
+
+
 
 
     {{-- section  --}}
@@ -142,7 +197,8 @@
                         <div class="accordion-item">
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How
+                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">How
                                     to download and register?</button>
                             </h2>
 
@@ -159,7 +215,8 @@
                         <div class="accordion-item">
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How
+                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">How
                                     to create your paypal account?</button>
                             </h2>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -194,7 +251,8 @@
                         <div class="accordion-item">
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">We
+                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                    aria-controls="collapseFour">We
                                     are better than others?</button>
                             </h2>
 
@@ -230,25 +288,26 @@
             <div class="row align-items-stretch">
 
                 @foreach ($blogs as $blog)
-                    
-                <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="media-entry">
-                        <a href="{{Route('blogs.show', $blog->slug)}}" class="zoom-image">
-                            <img src="{{ Storage::url(optional($blog->galleries->random())->images) }}" alt="Image"
-                                class="img-fluid gambar2">
-                        </a>
-                        <div class="bg-white m-body">
-                            <span class="date">{{$blog->blogCategory->name}} &mdash; {{ $blog->updated_at->format('F j, Y') }}</span>
-                            <h3><a href="{{Route('blogs.show', $blog->slug)}}">{{ $blog->title}}</a></h3>
-                            <p>{{ Str::limit($blog->excerpt,100)}}</p>
-
-                            <a href="{{Route('blogs.show', $blog->slug)}}" class="more d-flex align-items-center float-start">
-                                <span class="label">Read More</span>
-                                <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="media-entry">
+                            <a href="{{ Route('blogs.show', $blog->slug) }}" class="zoom-image">
+                                <img src="{{ Storage::url(optional($blog->galleries->random())->images) }}"
+                                    alt="Image" class="img-fluid gambar2">
                             </a>
+                            <div class="bg-white m-body">
+                                <span class="date">{{ $blog->blogCategory->name }} &mdash;
+                                    {{ $blog->updated_at->format('F j, Y') }}</span>
+                                <h3><a href="{{ Route('blogs.show', $blog->slug) }}">{{ $blog->title }}</a></h3>
+                                <p>{{ Str::limit($blog->excerpt, 100) }}</p>
+
+                                <a href="{{ Route('blogs.show', $blog->slug) }}"
+                                    class="more d-flex align-items-center float-start">
+                                    <span class="label">Read More</span>
+                                    <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
             </div>
@@ -271,8 +330,9 @@
     </div>
 
     @include('front.partials.script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 
-    
+
 
 </body>
 

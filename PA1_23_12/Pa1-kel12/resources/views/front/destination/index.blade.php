@@ -99,6 +99,7 @@
             <h3 class="heading">Kategori Wisata</h3>
             <ul class="categories">
 
+              <li><a href="{{ route('destinations.index')}}">Semua kategori</a></li>
                 @foreach ($destinationCategories as $destinationCategory)
                     
                 <li><a href="{{ route('destinations.index', ['category' => $destinationCategory->id ])}}">{{ $destinationCategory->name }}</a></li>
