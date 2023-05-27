@@ -32,6 +32,7 @@ class BlogController extends Controller
             $blogs = Blog::with('galleries')
                 ->where('kabupaten_id', $selectedKabupaten)
                 ->where('is_share', 1)
+                ->orderBy('created_at', 'desc')
                 ->paginate(5);
 
         } 
@@ -40,6 +41,7 @@ class BlogController extends Controller
             $blogs = Blog::with('galleries')
                 ->where('blog_category_id', $selectedCategory)
                 ->where('kabupaten_id', $selectedKabupaten)
+                ->orderBy('created_at', 'desc')
                 ->where('is_share', 1)
                 ->paginate(5);
 

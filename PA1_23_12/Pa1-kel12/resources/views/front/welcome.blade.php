@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
                                 <div class="input-group">
-                                    <select name="kabupaten" id="kemana" class="form-control custom-select">
+                                    <select name="kemana" id="kemana" class="form-control custom-select">
                                         <option value="">Kemana?</option>
                                         @foreach ($kabupatens as $kabupaten)
                                             <option value="{{$kabupaten->id}}">

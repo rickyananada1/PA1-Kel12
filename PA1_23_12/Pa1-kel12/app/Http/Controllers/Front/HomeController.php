@@ -74,7 +74,7 @@ class HomeController extends Controller
 
             return redirect()->route( $cariApa.'.index', ['category' => $kategori ]);
 
-        }else if($cariApa == null && $kemana != null && $kategori == null){
+        } else if($cariApa != null && $kemana != null && $kategori == null){
 
             return redirect()->route( $cariApa.'.index', ['kabupaten' => $kemana ]);
 
@@ -82,16 +82,24 @@ class HomeController extends Controller
 
             return redirect()->route('kabupatens', $kemana);
 
-        } else if($cariApa != null && $kemana != null && $kategori != null){
+        } 
+        else if($cariApa != null && $kemana != null && $kategori != null){
 
             return redirect()->route( $cariApa.'.index', ['category' => $kategori , 'kabupaten' => $kemana]);
-        }
+        } 
+        else if ($cariApa == null && $kemana == null && $kategori == null) {
+            
+            return redirect()->back();
+
+        } 
     }
 
     public function tentangkami()
     {
         $kabupatens = Kabupaten::get();
 
-        return view('front.tentangkami', compact('kabupatens'));
+        $blogCategories = BlogCategory::all();
+
+        return view('front.tentangkami', compact('kabupatens', 'blogCategories'));
     }
 }

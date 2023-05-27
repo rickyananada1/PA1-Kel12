@@ -124,7 +124,7 @@
 <div class="aside-block">
     <h3 class="aside-title">Blog Kategori</h3>
     <ul class="aside-links list-unstyled">
-        <li><a href="{{ route('blogs.index') }}">Semua Kategori</a></li>
+        <li><a href="{{ route('blogs.index') }}">Kabupaten</a></li>
         @foreach ($kabupatens as $kabupaten)
             <li><a
                     href="{{ route('blogs.index', ['kabupaten' => $kabupaten->id]) }}">{{ $kabupaten->name }}</a>

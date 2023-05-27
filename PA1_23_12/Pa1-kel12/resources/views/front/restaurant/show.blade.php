@@ -183,30 +183,31 @@
                         <!-- END comment-list -->
 
                         <div class="comment-form-wrap pt-5">
-                            <h3 class="mb-5">Leave a comment</h3>
-                            <form action="#" class="">
-                                <div class="mb-3">
-                                    <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="website">Website</label>
-                                    <input type="url" class="form-control" id="website">
-                                </div>
+                            <h3 class="mb-5">Tinggalkan testimoni</h3>
+                            @if (Auth::guard('contributor')->check())
+                                <form action="{{Route('restaurants.testimonies')}}" method="POST">
+                                    @csrf
 
+                                    <div class="mb-3">
+                                        <label for="message">Message</label>
+                                        <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                    </div>
+                                    <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+                                    <input type="hidden" name="kabupaten_id" value="{{ $restaurant->kabupaten->id }}">
+                                    <input type="hidden" name="contributor_id"
+                                        value="{{ Auth::guard('contributor')->user()->id }}">
+                                    <div class="mb-3">
+                                        <button type="submit" value="Post Comment"
+                                            class="btn btn-primary btn-md text-white">Kirim</button>
+                                    </div>
+
+                                </form>
+                            @else
                                 <div class="mb-3">
                                     <label for="message">Message</label>
                                     <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="submit" value="Post Comment" class="btn btn-primary btn-md text-white">
-                                </div>
-
-                            </form>
+                            @endif
                         </div>
                     </div>
 

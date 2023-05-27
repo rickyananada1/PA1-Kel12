@@ -26,16 +26,24 @@
                                         <li><a href="#">Akomodasi</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ Route('blogs.index') }}">Blog</a></li>
-                                <li><a href="{{ Route('restaurants.index') }}">Tempat Makan</a></li>
+                                <li class="has-children"><a href="{{ Route('blogs.index') }}">Info Wisata</a>
+                                    <ul class="dropdown">
+                                        @foreach ($blogCategories as $category)
+                                            
+                                        <li><a href="{{Route('blogs.index', ['category' => $category->id] )}}">{{ $category->name}}</a></li>
 
+                                        @endforeach
+                                    </ul>
+                                </li>
+                         
+                                <li><a href="{{ Route('restaurants.index') }}">Tempat Makan</a></li>
                             </ul>
                         </li>
                         <li class="has-children">
                             <a href="#">Mau Kemana?</a>
                             <ul class="dropdown">
                                 @foreach ($kabupatens as $kabupaten)
-                                <li><a href="{{ route('kabupatens', $kabupaten->slug) }}">{{ $kabupaten->name }}</a></li>
+                                <li><a href="{{ route('kabupatens', $kabupaten->id) }}">{{ $kabupaten->name }}</a></li>
                                 @endforeach
                             </ul>
                         </li>

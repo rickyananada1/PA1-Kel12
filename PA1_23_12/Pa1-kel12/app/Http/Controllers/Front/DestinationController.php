@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Destination;
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Testimony;
 use App\Models\DestinationCategory;
 use App\Models\DestinationGallery;
@@ -17,13 +18,31 @@ class DestinationController extends Controller
     {
         $selectedCategory = $request->input('category');
 
-        if ($selectedCategory) {
+        $selectedKabupaten = $request->input('kabupaten');
+
+        if ($selectedCategory != null && $selectedKabupaten == null ) {
             $destinations = Destination::with('galleries')
                 ->where('destination_category_id', $selectedCategory)
                 ->where('is_share', 1)
                 ->orderBy('created_at', 'desc')
                 ->paginate(6);
-        } else {
+        }
+        else if ($selectedCategory == null && $selectedKabupaten != null) {
+            $destinations = Destination::with('galleries')
+            ->where('kabupaten_id', $selectedKabupaten)
+            ->where('is_share', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+        }
+        else if ($selectedCategory != null  && $selectedKabupaten != null) {
+            $destinations = Destination::with('galleries')
+            ->where('destination_category_id', $selectedCategory)
+            ->where('kabupaten_id', $selectedKabupaten)
+            ->where('is_share', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+        } 
+        else{
 
             $destinations = Destination::with('galleries')
                 ->where('is_share', 1)
@@ -37,9 +56,12 @@ class DestinationController extends Controller
             ->get();
 
         $kabupatens = Kabupaten::get();
+
+        $blogCategories = BlogCategory::all();
+
         $destinationCategories = DestinationCategory::all();
 
-        return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens', 'popularDestinations'));
+        return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens', 'popularDestinations', 'selectedKabupaten' ,'selectedCategory', 'blogCategories'));
     }
 
     public function show(Destination $destination)
@@ -72,7 +94,11 @@ class DestinationController extends Controller
         $latestBlogs = Blog::where('is_share', 1)
             ->orderBy('created_at', 'desc')->paginate(4);
 
-        return view('front.destination.show', compact('destination', 'destinations', 'destinationCategories', 'closeDestinations', 'popularDestinations', 'latestBlogs', 'testimonies', 'kabupatens'));
+    
+
+        $blogCategories = BlogCategory::all();
+
+        return view('front.destination.show', compact('destination', 'destinations', 'destinationCategories', 'closeDestinations', 'popularDestinations', 'latestBlogs', 'testimonies', 'kabupatens', 'blogCategories'));
     }
 
     public function testimonies(Request $request)
@@ -90,7 +116,7 @@ class DestinationController extends Controller
         // set nilai restaurant_iddestination blog_idestinationnjadi null
         $testimony->blog_id = null;
         $testimony->restaurant_id = null;
-        $testimony->status = 1;
+        $testimony->status = 0;
         $testimony->destination_id = $validatedData['destination_id'];
         $testimony->kabupaten_id = $validatedData['kabupaten_id'];
         $testimony->contributor_id = $validatedData['contributor_id'];

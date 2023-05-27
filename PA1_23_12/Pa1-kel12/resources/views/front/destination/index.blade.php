@@ -35,9 +35,16 @@
                     $category = \App\Models\DestinationCategory::find($selectedCategory);
                 @endphp
 
-                <h3 class="category-title">Category: {{ $category->name }}</h3>
-            @else
-                <h3 class="category-title mb-5">Kategori: Semua Kategori</h3>
+                <h3 class="category-title">Kategori Wisata: {{ $category->name }}</h3>
+           
+            @endif
+
+            @if ($selectedKabupaten)
+            @php
+            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+        @endphp
+
+        <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
             @endif
             <hr class="mb-5">
 
@@ -90,7 +97,7 @@
           <div class="sidebar-box search-form-wrap mb-4">
             <form action="#" class="sidebar-search-form">
               <span class="bi-search"></span>
-              <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+              <input type="text" class="form-control" id="liveSearch" placeholder="Type a keyword and hit enter">
             </form>
           </div>
           

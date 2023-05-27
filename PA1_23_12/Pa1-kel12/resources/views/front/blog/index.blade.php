@@ -1,12 +1,12 @@
 @extends('front.pages.post')
 
 @section('title')
-    Kumpulan Blog
+    Kumpulan Info Wisata
 @endsection
 
 @section('description')
     Penuhi dahaga informasimu di sini, jangan ketinggalan update!
-    Blog kami berisi informasi segar seputar Danau toba terbaru. Jangan lewatkan artikel-artikel menarik yang akan
+    Halaman info wisata kami berisi informasi segar seputar Danau toba terbaru. Jangan lewatkan artikel-artikel menarik yang akan
     memperkaya wawasanmu. Ayo, simak dan rasakan pengalaman baru bersama kami!
 @endsection
 
@@ -26,9 +26,7 @@
                             $category = \App\Models\BlogCategory::find($selectedCategory);
                         @endphp
 
-                        <h3 class="category-title">Category: {{ $category->name }}</h3>
-                    @else
-                        <h3 class="category-title">Kategori: Semua Kategori</h3>
+                        <h3 class="category-title">Kategori Blog: {{ $category->name }}</h3>
                     @endif
                     @if ($selectedKabupaten)
                         @php
