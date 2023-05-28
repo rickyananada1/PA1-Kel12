@@ -40,6 +40,12 @@ class RestaurantController extends Controller
 
     public function show(Restaurant $restaurant)
     {
+
+        $testimonies = Testimony::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->where('restaurant_id', $restaurant->id)
+            ->paginate(6);
+
         $kabupatens = Kabupaten::get();
 
         $kabupaten = $restaurant->kabupaten->id;
@@ -52,7 +58,7 @@ class RestaurantController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations', 'blogCategories'));
+        return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations', 'blogCategories', 'testimonies'));
     }
 
     public function testimonies(Request $request)

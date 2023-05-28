@@ -47,6 +47,15 @@
             </li>
 
             <li class="nav-item">
+                <a href="{{Route('admin.testimonies')}}" class="nav-link">
+                    <i class="nav-icon fas fa-message"></i>
+                    <p>
+                        {{ __('Testimoni') }}
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a href="{{ Route('admin.kabupaten.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-map"></i>
                     <p>

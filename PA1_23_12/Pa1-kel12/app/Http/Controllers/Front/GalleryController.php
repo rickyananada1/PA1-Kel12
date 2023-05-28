@@ -7,6 +7,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogGallery;
 use App\Models\DestinationGallery;
 use App\Models\Kabupaten;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -17,7 +18,8 @@ class GalleryController extends Controller
         $destinationGalleries = DestinationGallery::all();
         $kabupatens = Kabupaten::get();
         $blogCategories = BlogCategory::all();
+        $restaurants = Restaurant::get();
 
-        return view('front.gallery.index', compact('blogGalleries', 'destinationGalleries', 'kabupatens', 'blogCategories'));
+        return view('front.gallery.index', compact('blogGalleries', 'destinationGalleries', 'kabupatens', 'blogCategories','restaurants'));
     }
 }

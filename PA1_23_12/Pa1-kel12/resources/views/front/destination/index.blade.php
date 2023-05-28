@@ -25,129 +25,181 @@
 @endpush
 
 @section('content')
-<div class="section search-result-wrap">
-    <div class="container">
-      
-      <div class="row posts-entry">
-        <div class="col-lg-8">
-            @if ($selectedCategory)
-                @php
-                    $category = \App\Models\DestinationCategory::find($selectedCategory);
-                @endphp
+    <div class="section search-result-wrap">
+        <div class="container">
 
-                <h3 class="category-title">Kategori Wisata: {{ $category->name }}</h3>
-           
-            @endif
+            <div class="row posts-entry">
+                <div class="col-lg-8">
+                    @if ($selectedCategory)
+                        @php
+                            $category = \App\Models\DestinationCategory::find($selectedCategory);
+                        @endphp
 
-            @if ($selectedKabupaten)
-            @php
-            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
-        @endphp
-
-        <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
-            @endif
-            <hr class="mb-5">
-
-            @foreach ($destinations as $destination)
-                
-            <div class="blog-entry d-flex blog-entry-search-item zoom-image">
-              <a href="{{ Route('destinations.show', $destination->slug) }}" class="img-link me-4">
-                <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}" alt="Image" class="img-fluid">
-              </a>
-              <div>
-                <span class="date">{{ $destination->created_at->format('F j, Y') }} &bullet; <a href="#">{{ $destination->destinationCategory->name}}</a></span>
-                <h2><a href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a></h2>
-                <p>{{ Str::limit(strip_tags($destination->description), 150) }}</p>
-                <p><a href="{{ Route('destinations.show', $destination->slug) }}" class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
-              </div>
-            </div>
-            @endforeach
-
-          
-
-          
-
-            <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
-                <ul class="custom-pagination pagination">
-                    @if ($destinations->onFirstPage())
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    @else
-                        <li class="page-item"><a class="page-link"
-                                href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
+                        <h3 class="category-title">Kategori Wisata: {{ $category->name }}</h3>
                     @endif
 
-                    @for ($i = 1; $i <= $destinations->lastPage(); $i++)
-                        <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a class="page-link"
-                                href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
-                    @endfor
+                    @if ($selectedKabupaten)
+                        @php
+                            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                        @endphp
 
-                    @if ($destinations->hasMorePages())
-                        <li class="page-item"><a class="page-link" href="{{ $destinations->nextPageUrl() }}">Next</a>
-                        </li>
-                    @else
-                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                        <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
                     @endif
-                </ul>
-            </nav>
+                    <hr class="mb-5">
 
-        </div>
+                    @foreach ($destinations as $destination)
+                        <div class="blog-entry d-flex blog-entry-search-item zoom-image">
+                            <a href="{{ Route('destinations.show', $destination->slug) }}" class="img-link me-4">
+                                <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}"
+                                    alt="Image" class="img-fluid">
+                            </a>
+                            <div>
+                                <span class="date">{{ $destination->created_at->format('F j, Y') }} &bullet; <a
+                                        href="#">{{ $destination->destinationCategory->name }}</a></span>
+                                <h2><a
+                                        href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a>
+                                </h2>
+                                <p>{{ Str::limit(strip_tags($destination->description), 150) }}</p>
+                                <p><a href="{{ Route('destinations.show', $destination->slug) }}"
+                                        class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
+                            </div>
+                        </div>
+                    @endforeach
 
-        <div class="col-lg-4 sidebar">
 
-          <div class="sidebar-box search-form-wrap mb-4">
-            <form action="#" class="sidebar-search-form">
-              <span class="bi-search"></span>
-              <input type="text" class="form-control" id="liveSearch" placeholder="Type a keyword and hit enter">
-            </form>
-          </div>
-          
 
-          <div class="sidebar-box">
-            <h3 class="heading">Kategori Wisata</h3>
-            <ul class="categories">
 
-              <li><a href="{{ route('destinations.index')}}">Semua kategori</a></li>
-                @foreach ($destinationCategories as $destinationCategory)
-                    
-                <li><a href="{{ route('destinations.index', ['category' => $destinationCategory->id ])}}">{{ $destinationCategory->name }}</a></li>
-                @endforeach
-              
-            </ul>
-          </div>
-          <!-- END sidebar-box -->
 
-          <!-- END sidebar-box -->
-          <div class="sidebar-box">
-            <h3 class="heading">Popular Posts</h3>
-            <div class="post-entry-sidebar">
-              <ul>
-                @php $count = 0 @endphp
-                @foreach ($popularDestinations as $popularDestination)
-                    
-                <li>
-                  <a href="">
-                    <img src="{{ Storage::url(optional($popularDestination->galleries->random())->images) }}" alt="Image placeholder" class="me-4 rounded">
-                    <div class="text">
-                      <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                      <div class="post-meta">
-                        <span class="mr-2">March 15, 2018 </span>
-                      </div>
+                    <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
+                        <ul class="custom-pagination pagination">
+                            @if ($destinations->onFirstPage())
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            @else
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
+                            @endif
+
+                            @for ($i = 1; $i <= $destinations->lastPage(); $i++)
+                                <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a class="page-link"
+                                        href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
+                            @endfor
+
+                            @if ($destinations->hasMorePages())
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $destinations->nextPageUrl() }}">Next</a>
+                                </li>
+                            @else
+                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            @endif
+                        </ul>
+                    </nav>
+
+                </div>
+
+                <div class="col-lg-4 sidebar">
+
+                    <div class="sidebar-box search-form-wrap mb-4">
+                        <form action="{{ Route('destinations.index') }}" class="sidebar-search-form">
+                            @csrf
+                            <span class="bi-search"></span>
+                            <input type="text" class="form-control" name="keyword" id="searchInput"
+                                placeholder="Type a keyword and hit enter">
+                        </form>
                     </div>
-                  </a>
-                </li>
-                @php $count++ @endphp
-                @if ($count == 6)
-                @break
-            @endif
-                @endforeach
-                
-              </ul>
-            </div>
-          </div>
-          <!-- END sidebar-box -->
 
+                    <div id="searchResults"></div>
+
+                    {{-- <script>
+                        // Ambil elemen input pencarian
+                        const searchInput = document.getElementById('searchInput');
+                        const searchResults = document.getElementById('searchResults');
+
+                        // Tambahkan event listener untuk input
+                        searchInput.addEventListener('input', function() {
+                            // Ambil nilai kata kunci pencarian
+                            const keyword = searchInput.value;
+
+                            // Kirim permintaan Ajax ke server
+                            fetch('{{ route('destinations.liveSearch') }}', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    body: JSON.stringify({
+                                        keyword: keyword
+                                    })
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Hapus konten hasil pencarian sebelumnya
+                                    searchResults.innerHTML = '';
+
+                                    // Tampilkan hasil pencarian di sini
+                                    data.forEach(result => {
+                                        // Buat elemen untuk setiap hasil pencarian
+                                        const resultElement = document.createElement('div');
+                                        resultElement.textContent = result
+                                        .title; // Ubah sesuai dengan properti yang ingin ditampilkan
+
+                                        // Tambahkan elemen hasil pencarian ke dalam div #searchResults
+                                        searchResults.appendChild(resultElement);
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error(error);
+                                });
+                        });
+                    </script> --}}
+
+
+                    <div class="sidebar-box">
+                        <h3 class="heading">Kategori Wisata</h3>
+                        <ul class="categories">
+
+                            <li><a href="{{ route('destinations.index') }}">Semua kategori</a></li>
+                            @foreach ($destinationCategories as $destinationCategory)
+                                <li><a
+                                        href="{{ route('destinations.index', ['category' => $destinationCategory->id]) }}">{{ $destinationCategory->name }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        <h3 class="heading">Popular Posts</h3>
+                        <div class="post-entry-sidebar">
+                            <ul>
+                                @php $count = 0 @endphp
+                                @foreach ($popularDestinations as $popularDestination)
+                                    <li>
+                                        <a href="">
+                                            <img src="{{ Storage::url(optional($popularDestination->galleries->random())->images) }}"
+                                                alt="Image placeholder" class="me-4 rounded">
+                                            <div class="text">
+                                                <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                                <div class="post-meta">
+                                                    <span class="mr-2">March 15, 2018 </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    @php $count++ @endphp
+                                    @if ($count == 6)
+                                    @break
+                                @endif
+                            @endforeach
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- END sidebar-box -->
+
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 @endsection

@@ -34,6 +34,8 @@ class HomeController extends Controller
     {
         $selectedKabupaten = $kabupaten->id;
 
+        $blogCategories = BlogCategory::get();
+
         $destinations = Destination::with('galleries')
             // ->where('kabupaten_id', $selectedKabupaten)
             ->where('is_share', 1)
@@ -54,7 +56,7 @@ class HomeController extends Controller
 
         $kabupatens = Kabupaten::get();
 
-        return view('front.kabupaten.index', compact('destinations', 'blogs', 'kabupatens', 'kabupaten', 'restaurants'));
+        return view('front.kabupaten.index', compact('destinations', 'blogs', 'kabupatens', 'kabupaten', 'restaurants', 'blogCategories'));
     }
 
     public function search(Request $request)

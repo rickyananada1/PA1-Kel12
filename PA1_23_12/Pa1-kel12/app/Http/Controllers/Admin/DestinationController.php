@@ -120,7 +120,7 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function updateStatus(Request $request, $id)
+    public function updateStatus($id)
     {
         $destination = Destination::find($id);
 

@@ -45,6 +45,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'],fu
     /*---------Contributor */
     Route::get('/contributors', [\App\Http\Controllers\Admin\DashboardController::class, 'contributors'])->name('contributors');
     Route::patch('/contributors/{id}/update-status', [\App\Http\Controllers\Admin\DashboardController::class, 'updateStatus'])->name('updateStatus');
+    Route::get('/testimonies', [\App\Http\Controllers\Admin\DashboardController::class, 'testimonies'])->name('testimonies');
+    Route::patch('/testimoniess/{id}/update-status', [\App\Http\Controllers\Admin\DashboardController::class, 'updateTestimony'])->name('updateTestimony');
 });
 /*== Route Admin ===================================================================================================================================== */
 
@@ -95,6 +97,8 @@ Route::get('/kabupatens/{kabupaten:id}', [HomeController::class, 'kabupatens'])-
 Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations.index');
 Route::get('destinations/{destination:slug}', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
 Route::post('destinations/testimonies', [\App\Http\Controllers\Front\destinationController::class, 'testimonies'])->name('destinations.testimonies');
+Route::post('/destinations/live-search', 'DestinationController@liveSearch')->name('destinations.liveSearch');
+
 Route::get('blogs', [\App\Http\Controllers\Front\BlogController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{blog:slug}', [\App\Http\Controllers\Front\blogController::class, 'show'])->name('blogs.show');
 Route::post('blogs/testimonies', [\App\Http\Controllers\Front\blogController::class, 'testimonies'])->name('blogs.testimonies');
@@ -103,7 +107,6 @@ Route::get('restaurants/{restaurant:slug}', [\App\Http\Controllers\Front\Restaur
 Route::post('restaurants/testimonies', [\App\Http\Controllers\Front\RestaurantController::class, 'testimonies'])->name('restaurants.testimonies');
 Route::get('galleries', [\App\Http\Controllers\Front\GalleryController::class, 'index'])->name('galleries.index');
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
-
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 

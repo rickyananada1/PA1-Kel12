@@ -19,7 +19,7 @@
                     <ul class="js-clone-nav  text-center site-menu p-0 m-0">
                         <li class="active"><a href="{{ Route('welcome') }}">Beranda</a></li>
                         <li class="has-children">
-                            <a href="#">Apa Carik?</a>
+                            <a href="#">Cari Apa?</a>
                             <ul class="dropdown">
                                 <li class="has-children"><a href="{{ Route('destinations.index') }}">Destinasi Wisata</a>
                                     <ul class="dropdown">

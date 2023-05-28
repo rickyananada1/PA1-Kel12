@@ -161,22 +161,26 @@
 
 
                     <div class="pt-5">
-                        <h3 class="mb-5">6 Comments</h3>
+                        <h3 class="mb-5">{{$testimonies->count()}} Testimoni</h3>
                         <ul class="comment-list">
+
+                            @foreach ($testimonies as $testimony)
+                                
                             <li class="comment">
                                 <div class="vcard bio">
-                                    <img src="images/person_2.jpg" alt="Free Website Template by Free-Template.co">
+                                    <img src="@if ($testimony->contributor && $testimony->contributor->image) 
+                                    {{ Storage::url($testimony->contributor->image) }}
+                                @else 
+                                {{ asset('Template/dist/img/profile.jpeg') }} @endif" alt="Free Website Template by Free-Template.co">
                                 </div>
                                 <div class="comment-body">
-                                    <h3>Jacob Smith</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on
-                                        the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the
-                                        subline of her own road, the Line Lane. Pityful a rethoric question ran over her
-                                        cheek, then she continued her way.</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
+                                    <h3>{{$testimony->contributor->name}}</h3>
+                                    <div class="meta">{{ $testimony->created_at->diffForHumans() }}</div>
+                                    <p>{{ $testimony->description }}</p>
+    
                                 </div>
                             </li>
+                            @endforeach
 
 
                         </ul>
@@ -190,7 +194,7 @@
 
                                     <div class="mb-3">
                                         <label for="message">Message</label>
-                                        <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                        <textarea name="description" id="message" cols="30" rows="10" class="form-control"></textarea>
                                     </div>
                                     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
                                     <input type="hidden" name="kabupaten_id" value="{{ $restaurant->kabupaten->id }}">
