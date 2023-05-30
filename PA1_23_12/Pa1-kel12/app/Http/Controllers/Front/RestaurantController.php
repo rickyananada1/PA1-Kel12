@@ -8,6 +8,7 @@ use App\Models\Kabupaten;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Destination;
+use App\Models\DestinationCategory;
 use App\Models\Testimony;
 
 class RestaurantController extends Controller
@@ -35,7 +36,7 @@ class RestaurantController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        $destinationCategories = Destination::all();
+        $destinationCategories = DestinationCategory::all();
 
         return view('front.restaurant.index', compact('restaurants', 'kabupatens', 'selectedKabupaten', 'blogCategories', 'destinationCategories'));
     }
@@ -60,7 +61,7 @@ class RestaurantController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        $destinationCategories = Destination::all();
+        $destinationCategories = DestinationCategory::all();
 
         return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations', 'blogCategories', 'testimonies', 'destinationCategories'));
     }

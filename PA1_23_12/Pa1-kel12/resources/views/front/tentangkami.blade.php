@@ -30,9 +30,8 @@
         <div class="row mb-5">
             <div class="col-lg-6 mx-auto text-center">
                 <div class="heading-content" data-aos="fade-up">
-                    <h2 class="heading">Meet Our Team of Experts</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                        there live the blind texts.</p>
+                    <h2 class="heading">Team Kami</h2>
+                    <p>Kami berdedikasi untuk mempersembahkan informasi terbaik tentang destinasi wisata di sekitaran Danau toba.</p>
                 </div>
             </div>
         </div>
@@ -42,40 +41,40 @@
                 <a href="#" class="person">
                     <img src="{{ URL::asset('frontend/images/person_1.jpg') }}" alt="Image"
                         class="img-fluid mb-4">
-                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
-                    <h3 class="mb-3">John Anderson</h3>
-                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p>
+                    <span class="subheading d-inline-block">Project manager</span>
+                    <h3 class="mb-3">Kenan Tomfie Bukit</h3>
+                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p> --}}
                 </a>
             </div>
             <div class="col-lg-3">
                 <a href="#" class="person">
                     <img src="{{ URL::asset('frontend/images/person_2.jpg') }}" alt="Image"
                         class="img-fluid mb-4">
-                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
-                    <h3 class="mb-3">Jane Parkenson</h3>
-                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p>
+                    <span class="subheading d-inline-block">Data Analist</span>
+                    <h3 class="mb-3">Elisabet Tambunan</h3>
+                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p> --}}
                 </a>
             </div>
             <div class="col-lg-3">
                 <a href="#" class="person">
                     <img src="{{ URL::asset('frontend/images/person_3.jpg') }}" alt="Image"
                         class="img-fluid mb-4">
-                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
-                    <h3 class="mb-3">Kelsey Gutierrez</h3>
-                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p>
+                        <span class="subheading d-inline-block">a Programer</span>
+                    <h3 class="mb-3">Nania Pangaribuan</h3>
+                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p> --}}
                 </a>
             </div>
             <div class="col-lg-3">
                 <a href="#" class="person">
                     <img src="{{ URL::asset('frontend/images/person_2.jpg') }}" alt="Image"
                         class="img-fluid mb-4">
-                    <span class="subheading d-inline-block">CEO, Co-Founder</span>
-                    <h3 class="mb-3">Matthew Madron</h3>
-                    <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p>
+                    <span class="subheading d-inline-block">Data Analist</span>
+                    <h3 class="mb-3">Maria Pangaribuan</h3>
+                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
+                        and Consonantia, there live the blind texts.</p> --}}
                 </a>
             </div>
         </div>

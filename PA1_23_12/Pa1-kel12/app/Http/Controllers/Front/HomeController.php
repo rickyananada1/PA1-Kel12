@@ -56,7 +56,7 @@ class HomeController extends Controller
 
         $kabupatens = Kabupaten::get();
 
-        $destinationCategories = Destination::all();
+        $destinationCategories = DestinationCategory::all();
 
         return view('front.kabupaten.index', compact('destinations', 'blogs', 'kabupatens', 'kabupaten', 'restaurants', 'blogCategories', 'destinationCategories'));
     }
@@ -104,7 +104,7 @@ class HomeController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        $destinationCategories = Destination::all();
+        $destinationCategories = DestinationCategory::all();
 
         return view('front.tentangkami', compact('kabupatens', 'blogCategories', 'destinationCategories'));
     }
