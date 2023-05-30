@@ -36,6 +36,7 @@
                         @endphp
 
                         <h3 class="category-title">Kategori Wisata: {{ $category->name }}</h3>
+                        <hr class="mb-5">
                     @endif
 
                     @if ($selectedKabupaten)
@@ -44,8 +45,8 @@
                         @endphp
 
                         <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
+                        <hr class="mb-5">
                     @endif
-                    <hr class="mb-5">
 
                     @foreach ($destinations as $destination)
                         <div class="blog-entry d-flex blog-entry-search-item zoom-image">
@@ -109,48 +110,6 @@
 
                     <div id="searchResults"></div>
 
-                    {{-- <script>
-                        // Ambil elemen input pencarian
-                        const searchInput = document.getElementById('searchInput');
-                        const searchResults = document.getElementById('searchResults');
-
-                        // Tambahkan event listener untuk input
-                        searchInput.addEventListener('input', function() {
-                            // Ambil nilai kata kunci pencarian
-                            const keyword = searchInput.value;
-
-                            // Kirim permintaan Ajax ke server
-                            fetch('{{ route('destinations.liveSearch') }}', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                    },
-                                    body: JSON.stringify({
-                                        keyword: keyword
-                                    })
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    // Hapus konten hasil pencarian sebelumnya
-                                    searchResults.innerHTML = '';
-
-                                    // Tampilkan hasil pencarian di sini
-                                    data.forEach(result => {
-                                        // Buat elemen untuk setiap hasil pencarian
-                                        const resultElement = document.createElement('div');
-                                        resultElement.textContent = result
-                                        .title; // Ubah sesuai dengan properti yang ingin ditampilkan
-
-                                        // Tambahkan elemen hasil pencarian ke dalam div #searchResults
-                                        searchResults.appendChild(resultElement);
-                                    });
-                                })
-                                .catch(error => {
-                                    console.error(error);
-                                });
-                        });
-                    </script> --}}
 
 
                     <div class="sidebar-box">

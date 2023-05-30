@@ -9487,9 +9487,6 @@ body {
     opacity: 1;
     visibility: visible; }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, .logo {
-  font-family: 'EB Garamond', serif; }
-
 a, .btn {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
