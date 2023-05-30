@@ -13,110 +13,39 @@
 @endpush
 
 @section('content')
-    <div class="portfolio-3-section">
-        <ul class="portfolio-filter pf-2 controls">
-            <li class="control" data-filter="all">All</li>
-            <li class="control" data-filter=".nature">Nature</li>
-            <li class="control" data-filter=".studio">Studio Photography</li>
-            <li class="control" data-filter=".weddings">Weddings</li>
-            <li class="control" data-filter=".lifestyle">Lifestyle</li>
-            <li class="control" data-filter=".fashion">Fashion</li>
-        </ul>
-        <div class="portfolio-grid portfolio-gallery nature">
-            <div class="grid-sizer"></div>
-            @foreach ($destinationGalleries as $destinationGallery)
-                
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ Storage::url($destinationGallery->images) }}" alt="">
-                    <h6>{{ $destinationGallery->name}}</h6>
-                    <p>2019</p>
+<div class="row align-items-stretch">
+    @foreach ($restaurants as $restaurant)
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="media-entry">
+                <a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="zoom-image">
+                    @if ($restaurant->galleries->where('category', 'place')->count() > 0)
+                        <img src="{{ Storage::url(optional($restaurant->galleries->where('category', 'place')->first())->images) }}"
+                            alt="Restaurant Image" class="img-fluid gambar">
+                    @endif
+
+                </a>
+                <div class="bg-white m-body">
+                    <span class="date">{{ $restaurant->updated_at->format('F j, Y') }}</span>&mdash;
+                    <span class="date">{{ $restaurant->location }}</span>
+                    <h3><a href="{{ Route('restaurants.show', $restaurant->slug) }}">{{ $restaurant->name }}</a>
+                    </h3>
+                    <p>{{ Str::limit(strip_tags($restaurant->description), 100) }}</p>
+
+                    <a href="{{ Route('restaurants.show', $restaurant->slug) }}"
+                        class="more d-flex align-items-center float-start">
+                        <span class="label">Baca selengkapnya..</span>
+                        <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+                    </a>
                 </div>
             </div>
-            @endforeach
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            {{-- <div class="mix grid-item grid-width-1 studio">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/2.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item weddings">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/3.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div> --}}
-            {{-- <div class="mix grid-item lifestyle">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/4.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div>
-            <div class="mix grid-item">
-                <div class="grid-portfolio">
-                    <img src="{{ asset('asset/portfolio-2/1.jpg') }}" alt="">
-                    <h6>Pink Flamingo</h6>
-                    <p>2019</p>
-                </div>
-            </div> --}}
-              
         </div>
+    @endforeach
+    <!-- ================================================ Card Destinasi =====================================================-->
 
 
+    
 
-    </div>
+</div>
 @endsection
 
 @push('script')

@@ -66,7 +66,9 @@ class BlogController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.blog.index', compact('blogs', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'selectedCategory', 'kabupatens', 'selectedKabupaten'));
+        $destinationCategories = Destination::all();
+
+        return view('front.blog.index', compact('blogs', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'selectedCategory', 'kabupatens', 'selectedKabupaten', 'destinationCategories'));
     }
 
     public function show(Blog $blog)
@@ -95,7 +97,9 @@ class BlogController extends Controller
 
         $kabupatens = Kabupaten::get();
 
-        return view('front.blog.show', compact('blog', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'testimonies', 'kabupatens'));
+        $destinationCategories = Destination::get();
+
+        return view('front.blog.show', compact('blog', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'testimonies', 'kabupatens', 'destinationCategories'));
     }
 
     public function testimonies(Request $request)

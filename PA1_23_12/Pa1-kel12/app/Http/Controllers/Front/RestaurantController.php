@@ -35,11 +35,19 @@ class RestaurantController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.restaurant.index', compact('restaurants', 'kabupatens', 'selectedKabupaten', 'blogCategories'));
+        $destinationCategories = Destination::all();
+
+        return view('front.restaurant.index', compact('restaurants', 'kabupatens', 'selectedKabupaten', 'blogCategories', 'destinationCategories'));
     }
 
     public function show(Restaurant $restaurant)
     {
+
+        $testimonies = Testimony::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->where('restaurant_id', $restaurant->id)
+            ->paginate(6);
+
         $kabupatens = Kabupaten::get();
 
         $kabupaten = $restaurant->kabupaten->id;
@@ -52,7 +60,9 @@ class RestaurantController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations', 'blogCategories'));
+        $destinationCategories = Destination::all();
+
+        return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations', 'blogCategories', 'testimonies', 'destinationCategories'));
     }
 
     public function testimonies(Request $request)

@@ -20,35 +20,39 @@ class DestinationController extends Controller
 
         $selectedKabupaten = $request->input('kabupaten');
 
-        if ($selectedCategory != null && $selectedKabupaten == null ) {
+        $keyword = $request->input('keyword');
+
+        if ($selectedCategory != null && $selectedKabupaten == null) {
             $destinations = Destination::with('galleries')
                 ->where('destination_category_id', $selectedCategory)
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc')
-                ->paginate(6);
-        }
-        else if ($selectedCategory == null && $selectedKabupaten != null) {
+                ->orderBy('created_at', 'desc');
+                
+        } else if ($selectedCategory == null && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
-            ->where('kabupaten_id', $selectedKabupaten)
-            ->where('is_share', 1)
-            ->orderBy('created_at', 'desc')
-            ->paginate(6);
-        }
-        else if ($selectedCategory != null  && $selectedKabupaten != null) {
+                ->where('kabupaten_id', $selectedKabupaten)
+                ->where('is_share', 1)
+                ->orderBy('created_at', 'desc');
+                
+        } else if ($selectedCategory != null  && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
-            ->where('destination_category_id', $selectedCategory)
-            ->where('kabupaten_id', $selectedKabupaten)
-            ->where('is_share', 1)
-            ->orderBy('created_at', 'desc')
-            ->paginate(6);
-        } 
-        else{
+                ->where('destination_category_id', $selectedCategory)
+                ->where('kabupaten_id', $selectedKabupaten)
+                ->where('is_share', 1)
+                ->orderBy('created_at', 'desc');
+                
+        } else {
 
             $destinations = Destination::with('galleries')
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc')
-                ->paginate(6);
+                ->orderBy('created_at', 'desc');
+                
         }
+        if ($keyword != null) {
+            $destinations = $destinations->where('name', 'like', '%' . $keyword . '%');
+            
+        }
+        $destinations = $destinations->paginate(6);
 
         $popularDestinations = Destination::with('galleries')
             ->where('is_share', 1)
@@ -61,7 +65,7 @@ class DestinationController extends Controller
 
         $destinationCategories = DestinationCategory::all();
 
-        return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens', 'popularDestinations', 'selectedKabupaten' ,'selectedCategory', 'blogCategories'));
+        return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens', 'popularDestinations', 'selectedKabupaten', 'selectedCategory', 'blogCategories'));
     }
 
     public function show(Destination $destination)
@@ -79,7 +83,7 @@ class DestinationController extends Controller
             ->where('kabupaten_id', $destination->kabupaten->id)
             ->get();
 
-            $kabupatens = Kabupaten::get();
+        $kabupatens = Kabupaten::get();
 
 
         $popularDestinations = Destination::where('id', '!=', $destination->id)
@@ -94,7 +98,7 @@ class DestinationController extends Controller
         $latestBlogs = Blog::where('is_share', 1)
             ->orderBy('created_at', 'desc')->paginate(4);
 
-    
+
 
         $blogCategories = BlogCategory::all();
 
@@ -123,5 +127,18 @@ class DestinationController extends Controller
         $testimony->save();
 
         return redirect()->back()->with('success', 'Testimoni berhasil ditambahkan');
+    }
+
+    public function liveSearch(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $results = Destination::with('galleries')
+            ->where('name', 'like', '%' . $keyword . '%')
+            ->where('is_share', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json($results);
     }
 }

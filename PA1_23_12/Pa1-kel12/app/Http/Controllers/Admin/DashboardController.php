@@ -11,6 +11,7 @@ use App\Models\Blog;
 use App\Models\Contributor;
 use App\Models\Kabupaten;
 use App\Models\Restaurant;
+use App\Models\Testimony;
 use App\Models\User;
 
 class DashboardController extends Controller
@@ -54,5 +55,26 @@ class DashboardController extends Controller
         $contributor->save();
 
         return redirect()->back()->with('message', $contributor['name'] . 'Status Penggunna Berhasil Diganti');
+    }
+
+    public function testimonies()
+    {
+        $testimonies = Testimony::get();
+        return view('admin.testimony', compact('testimonies'));
+    }
+
+    public function updateTestimony($id){
+
+        $testimony = Testimony::find($id);
+
+        if ($testimony['status'] == 1) {
+            $testimony['status'] = 0;
+        }else {
+            $testimony['status'] = 1;
+        }
+        $testimony->save();
+
+        return redirect()->back()->with('message', 'Status testimony Berhasil Diganti');
+        
     }
 }

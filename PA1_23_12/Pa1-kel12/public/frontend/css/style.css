@@ -2545,7 +2545,7 @@ textarea.form-control-lg {
   .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active,
   .show > .btn-primary.dropdown-toggle {
     color: #000;
-    background-color: #f4946a;
+    background-color: #2F5D62;
     border-color: #2F5D62; }
     .btn-check:checked + .btn-primary:focus,
     .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus,

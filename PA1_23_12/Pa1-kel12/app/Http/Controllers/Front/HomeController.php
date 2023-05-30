@@ -34,27 +34,31 @@ class HomeController extends Controller
     {
         $selectedKabupaten = $kabupaten->id;
 
+        $blogCategories = BlogCategory::get();
+
         $destinations = Destination::with('galleries')
-            // ->where('kabupaten_id', $selectedKabupaten)
+            ->where('kabupaten_id', $selectedKabupaten)
             ->where('is_share', 1)
             ->orderBy('views', 'desc')
             ->get();
 
         $blogs = Blog::with('galleries')
-            // ->where('kabupaten_id', $selectedKabupaten)
+            ->where('kabupaten_id', $selectedKabupaten)
             ->where('is_share', 1)
             ->orderBy('views', 'desc')
             ->get();
 
         $restaurants = Restaurant::with('galleries')
-            // ->where('kabupaten_id', $selectedKabupaten)
+            ->where('kabupaten_id', $selectedKabupaten)
             ->where('is_share', 1)
             // ->orderBy('views', 'desc')
             ->get();
 
         $kabupatens = Kabupaten::get();
 
-        return view('front.kabupaten.index', compact('destinations', 'blogs', 'kabupatens', 'kabupaten', 'restaurants'));
+        $destinationCategories = Destination::all();
+
+        return view('front.kabupaten.index', compact('destinations', 'blogs', 'kabupatens', 'kabupaten', 'restaurants', 'blogCategories', 'destinationCategories'));
     }
 
     public function search(Request $request)
@@ -100,6 +104,8 @@ class HomeController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.tentangkami', compact('kabupatens', 'blogCategories'));
+        $destinationCategories = Destination::all();
+
+        return view('front.tentangkami', compact('kabupatens', 'blogCategories', 'destinationCategories'));
     }
 }

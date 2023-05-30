@@ -191,15 +191,14 @@
                 </div>
                 <div class="col-lg-5 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
 
-                    <h2 class="heading mb-5">Frequently Asked <br> Questions</h2>
+                    <h2 class="heading mb-5">Sering Ditanyakan?</h2>
 
                     <div class="custom-accordion" id="accordion_1">
                         <div class="accordion-item">
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">How
-                                    to download and register?</button>
+                                    aria-controls="collapseOne">Bagaimana cara registrasi sebagai contributor?</button>
                             </h2>
 
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
