@@ -179,9 +179,7 @@
                                         Admin
                                     @endif
                                 </h2>
-                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem
-                                    facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga
-                                    sit molestias minus.</p>
+                                <p class="mb-4">Kami membuka kesempatan bagi Anda untuk berperan sebagai contributor. Mari bergabung dan berbagi pengetahuan serta keterampilan Anda dengan kami</p>
                             </div>
                         </div>
                     </div>

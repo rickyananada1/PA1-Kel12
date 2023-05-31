@@ -40,7 +40,7 @@
                                                 <img src="{{ Storage::url(optional($blog->galleries->first())->images)}}" alt="" class="popular__img" width="100"/>
                                             </td>
                                             <td>{{ $blog->excerpt }}</td>
-                                            <td>{{ Str::limit($blog->blog_category_id, 30, '...') }}</td>
+                                            <td>{{ $blog->blogCategory->name}}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form
                                                     action="{{ route('contributor.blog.edit', [$blog]) }}"

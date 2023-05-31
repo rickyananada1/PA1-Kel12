@@ -105,6 +105,8 @@ Route::post('blogs/testimonies', [\App\Http\Controllers\Front\blogController::cl
 Route::get('restaurants', [\App\Http\Controllers\Front\RestaurantController::class, 'index'])->name('restaurants.index');
 Route::get('restaurants/{restaurant:slug}', [\App\Http\Controllers\Front\RestaurantController::class, 'show'])->name('restaurants.show');
 Route::post('restaurants/testimonies', [\App\Http\Controllers\Front\RestaurantController::class, 'testimonies'])->name('restaurants.testimonies');
+Route::get('accommodations', [\App\Http\Controllers\Front\AccommodationController::class, 'index'])->name('accommodations.index');
+Route::get('accommodations/{accommodation:slug}', [\App\Http\Controllers\Front\AccommodationController::class, 'show'])->name('accommodations.show');
 Route::get('galleries', [\App\Http\Controllers\Front\GalleryController::class, 'index'])->name('galleries.index');
 Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
 Route::get('/search', [HomeController::class, 'search'])->name('search');

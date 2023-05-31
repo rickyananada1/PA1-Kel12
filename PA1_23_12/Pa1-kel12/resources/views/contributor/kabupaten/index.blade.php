@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         <h3>{{ $kabupaten->name }}</h3>
-                        <p class="card-text">{{ Str::limit($kabupaten->description, 30, '...') }}</p>
+                        <p class="card-text">{{ $kabupaten->description }}</p>
                     </div>
                 </div>
             </div>

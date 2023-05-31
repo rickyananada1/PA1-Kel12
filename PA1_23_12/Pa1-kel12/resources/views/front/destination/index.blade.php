@@ -104,7 +104,7 @@
                             @csrf
                             <span class="bi-search"></span>
                             <input type="text" class="form-control" name="keyword" id="searchInput"
-                                placeholder="Type a keyword and hit enter">
+                                placeholder="Cari Destinasi Wisata..">
                         </form>
                     </div>
 

@@ -211,6 +211,8 @@
                                     <label for="message">Message</label>
                                     <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
                                 </div>
+                                <a href="{{ route('contributor.login') }}" class="btn btn-primary mt-3">login
+                                    untuk menambahkan testimoni</a>
                             @endif
                         </div>
                     </div>

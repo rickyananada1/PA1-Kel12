@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Contributor;
 use App\Models\Destination;
+use App\Models\DestinationCategory;
 use App\Models\Kabupaten;
 use App\Models\Testimony;
 
@@ -66,7 +67,7 @@ class BlogController extends Controller
 
         $blogCategories = BlogCategory::all();
 
-        $destinationCategories = Destination::all();
+        $destinationCategories = DestinationCategory::all();
 
         return view('front.blog.index', compact('blogs', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'selectedCategory', 'kabupatens', 'selectedKabupaten', 'destinationCategories'));
     }
@@ -97,7 +98,7 @@ class BlogController extends Controller
 
         $kabupatens = Kabupaten::get();
 
-        $destinationCategories = Destination::get();
+        $destinationCategories = DestinationCategory::get();
 
         return view('front.blog.show', compact('blog', 'latestBlogs', 'destinations', 'popularBlogs', 'blogCategories', 'testimonies', 'kabupatens', 'destinationCategories'));
     }

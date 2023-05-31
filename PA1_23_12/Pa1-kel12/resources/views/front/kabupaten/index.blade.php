@@ -23,55 +23,55 @@
         <div class="container">
             <div class="row align-items-stretch retro-layout">
                 <div class="col-md-4">
-                    <a href="single.html" class="h-entry mb-30 v-height gradient">
+                @php $count = 0 @endphp
+                @foreach ($destinations as $destination)
+                    
+                    <a href="{{ Route('destinations.show', $destination->slug) }}" class="h-entry mb-30 v-height gradient">
 
-                        <div class="featured-img" style="background-image: url('images/img_2_horizontal.jpg');"></div>
-
-                        <div class="text">
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2>AI can now kill those annoying cookie pop-ups</h2>
-                        </div>
-                    </a>
-                    <a href="single.html" class="h-entry v-height gradient">
-
-                        <div class="featured-img" style="background-image: url('images/img_5_horizontal.jpg');"></div>
+                        <div class="featured-img" style="background-image: url('{{ Storage::url(optional($destination->galleries->random())->images) }}');"></div>
 
                         <div class="text">
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2>Don’t assume your user data in the cloud is safe</h2>
+                            <span class="date">{{ $destination->created_at->format('F j, Y')}}</span>
+                            <h2>{{ $destination->name}}</h2>
                         </div>
                     </a>
+    
+                    @php $count++ @endphp
+                    @if ($count == 2)
+                    @break
+                    @endif
+                    @endforeach
                 </div>
                 <div class="col-md-4">
-                    <a href="single.html" class="h-entry img-5 h-100 gradient">
+                    <a href="#" class="h-entry img-5 h-100 gradient">
 
                         <div class="featured-img" style="background-image: url('{{ Storage::url($kabupaten->logo) }}');"></div>
 
                         <div class="text">
-                            <span class="date">{{ $kabupaten->created_at}}</span>
+                            <span class="date">{{ $kabupaten->created_at->format('F j, Y')}}</span>
                             <h2>{{$kabupaten->name}}</h2>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="single.html" class="h-entry mb-30 v-height gradient">
+                    @php $count = 0 @endphp
+                    @foreach ($blogs as $blog)
+                        
+                    <a href="{{ Route('blogs.show', $blog->slug) }}" class="h-entry mb-30 v-height gradient">
 
-                        <div class="featured-img" style="background-image: url('images/img_3_horizontal.jpg');"></div>
-
-                        <div class="text">
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2>Startup vs corporate: What job suits you best?</h2>
-                        </div>
-                    </a>
-                    <a href="single.html" class="h-entry v-height gradient">
-
-                        <div class="featured-img" style="background-image: url('images/img_4_horizontal.jpg');"></div>
+                        <div class="featured-img" style="background-image: url('{{ Storage::url(optional($blog->galleries->random())->images) }}');"></div>
 
                         <div class="text">
-                            <span class="date">Apr. 14th, 2022</span>
-                            <h2>Thought you loved Python? Wait until you meet Rust</h2>
+                            <span class="date">{{ $blog->created_at->format('F j, Y')}}</span>
+                            <h2>{{ $blog->title}}</h2>
                         </div>
                     </a>
+                    @php $count++ @endphp
+                    @if ($count == 2)
+                    @break
+                    @endif
+                    @endforeach
+                    
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                     <h2 class="posts-entry-title">Tempat Makan</h2>
                 </div>
                 <div class="col-sm-6 text-sm-end">
-                    <a href="{{ route('restaurants.index', $kabupaten->id) }}" class="read-more">View All</a>
+                    <a href="{{ route('restaurants.index', ["kabupaten"  =>$kabupaten->id]) }}" class="read-more">View All</a>
                 </div>
                 
             </div>

@@ -11,17 +11,22 @@ use App\Models\Blog;
 use App\Models\Kabupaten;
 use App\Models\Restaurant;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function dashboard()
     {
-        // $nama_admin = User::all();
+        $contributor = Auth::guard('contributor')->id();
 
         $sumKabupaten  = Kabupaten::count();
-        $sumDestination  = Destination::count();
-        $sumBlog = Blog::count();
-        $sumRestaurant = Restaurant::count();
+
+        $sumDestination  = Destination::where('contributor_id', $contributor)
+        ->count();
+        $sumBlog = Blog::where('contributor_id', $contributor)
+        ->count();
+        $sumRestaurant = Restaurant::where('contributor_id', $contributor)
+        ->count();
 
         return view('contributor.dashboard', compact(
             'sumKabupaten',

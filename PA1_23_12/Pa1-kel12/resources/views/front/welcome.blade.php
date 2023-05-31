@@ -38,7 +38,7 @@
                                 <div class="input-group">
                                     <select name="cariApa" id="cariApa" class="form-control custom-select">
                                         <option value="">Cari Apa?</option>
-                                        <option value="destinations">Destinati Wisata</option>
+                                        <option value="destinations">Destinasi Wisata</option>
                                         <option value="blogs">Blog</option>
                                         <option value="restaurants">Tempat Makan</option>
                                     </select>
@@ -49,7 +49,7 @@
                                     <select name="kemana" id="kemana" class="form-control custom-select">
                                         <option value="">Kemana?</option>
                                         @foreach ($kabupatens as $kabupaten)
-                                            <option value="{{$kabupaten->id}}">
+                                            <option value="{{ $kabupaten->id }}">
                                                 {{ $kabupaten->name }}</option>
                                         @endforeach
                                     </select>
@@ -137,12 +137,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
     {{-- section  --}}
     @include('front.partials.section')
     {{-- section  end --}}
@@ -198,15 +192,14 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">Bagaimana cara registrasi sebagai contributor?</button>
+                                    aria-controls="collapseOne">Bagaimana cara registrasi sebagai kontributor?</button>
                             </h2>
 
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right
-                                    at the coast of the Semantics, a large language ocean.
+                                    Untuk dapat menjadi seorang kontributor anda dapat melakukan registrasi dan bersama
+                                    kami berikan lebih banyak informasi menarik.
                                 </div>
                             </div>
                         </div> <!-- .accordion-item -->
@@ -215,15 +208,13 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseTwo" aria-expanded="false"
-                                    aria-controls="collapseTwo">How
-                                    to create your paypal account?</button>
+                                    aria-controls="collapseTwo">Apa objek wisata terkenal di daerah ini?</button>
                             </h2>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    A small river named Duden flows by their place and supplies it with the necessary
-                                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                                    into your mouth.
+                                    Kami telah mengurutkan objek wisata terkenal setiap daerah mulai dari yang paling
+                                    sering dilihat bahkan sampai yang terbaru.
                                 </div>
                             </div>
                         </div> <!-- .accordion-item -->
@@ -231,16 +222,14 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseThree" aria-expanded="false"
-                                    aria-controls="collapseThree">How to link your paypal and bank account?</button>
+                                    aria-controls="collapseThree">Bagaimana cara menuju objek wisata tersebut?</button>
                             </h2>
 
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                                 data-bs-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    When she reached the first hills of the Italic Mountains, she had a last view back
-                                    on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and
-                                    the subline of her own road, the Line Lane. Pityful a rethoric question ran over her
-                                    cheek, then she continued her way.
+                                    Untuk itu kami juga sudah menyediakan data untuk transportasi yang dapat anda
+                                    gunakan sebagai sarana anda menuju objek wisata.
                                 </div>
                             </div>
 
@@ -251,17 +240,17 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseFour" aria-expanded="false"
-                                    aria-controls="collapseFour">We
-                                    are better than others?</button>
+                                    aria-controls="collapseFour">Apakah ada hotel atau penginapan di dekat objek wisata
+                                    ini?</button>
                             </h2>
 
                             <div id="collapseFour" class="collapse" aria-labelledby="headingThree"
                                 data-bs-parent="#accordion_1">
                                 <div class="accordion-body">
-                                    When she reached the first hills of the Italic Mountains, she had a last view back
-                                    on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and
-                                    the subline of her own road, the Line Lane. Pityful a rethoric question ran over her
-                                    cheek, then she continued her way.
+                                    Kami juga menyediakan opsi penginapan di sekitar objek wisata, mulai dari hotel
+                                    bintang lima hingga penginapan budget. Anda dapat menghubungi pihak objek wisata
+                                    atau melakukan penelusuran online untuk menemukan opsi penginapan yang sesuai dengan
+                                    kebutuhan dan anggaran Anda.
                                 </div>
                             </div>
 
