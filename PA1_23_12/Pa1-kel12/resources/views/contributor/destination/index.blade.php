@@ -41,7 +41,7 @@
                                                     alt="" class="popular__img" width="100" />
                                             </td>
                                             <td>{{ $destination->ticket }}</td>
-                                            <td>{{ $destination->destination_category_id }}</td>
+                                            <td>{{ $destination->kabupaten->name }}</td>
                                             <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
                                                 <form action="{{ route('contributor.destination.edit', [$destination]) }}"
                                                     method="GET" style="margin-right: 10px;">
