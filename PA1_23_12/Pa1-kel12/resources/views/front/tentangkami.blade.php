@@ -38,43 +38,39 @@
 
         <div class="row">
             <div class="col-lg-3">
-                <a href="#" class="person">
-                    <img src="{{ URL::asset('frontend/images/person_1.jpg') }}" alt="Image"
-                        class="img-fluid mb-4">
+                <a href="#" class="person zoom-image">
+                    <img src="{{ URL::asset('asset/Tentang Kami/kenan1.jpg') }}" alt="Image"
+                        class="img-fluid mb-4 gambar2">
                     <span class="subheading d-inline-block">Project manager</span>
                     <h3 class="mb-3">Kenan Tomfie Bukit</h3>
-                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p> --}}
+                    {{-- <p class="text-muted">Jika terlalu menjaga image, hidupmu hanya sebatas jpeg.</p> --}}
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="#" class="person">
-                    <img src="{{ URL::asset('frontend/images/person_2.jpg') }}" alt="Image"
-                        class="img-fluid mb-4">
+                <a href="#" class="person zoom-image">
+                    <img src="{{ URL::asset('asset/Tentang Kami/sabet1.jpg') }}" alt="Image"
+                        class="img-fluid mb-4 gambar2">
                     <span class="subheading d-inline-block">Data Analist</span>
                     <h3 class="mb-3">Elisabet Tambunan</h3>
-                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p> --}}
+                    {{-- <p class="text-muted">Saat semua pekerjaan terasa makin tidak menyenangkan, ingatlah cicilan.</p> --}}
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="#" class="person">
-                    <img src="{{ URL::asset('frontend/images/person_3.jpg') }}" alt="Image"
-                        class="img-fluid mb-4">
-                        <span class="subheading d-inline-block">a Programer</span>
+                <a href="#" class="person zoom-image">
+                    <img src="{{ URL::asset('asset/Tentang Kami/nania1.jpg') }}" alt="Image"
+                        class="img-fluid mb-4 gambar2">
+                        <span class="subheading d-inline-block">Data Analist</span>
                     <h3 class="mb-3">Nania Pangaribuan</h3>
-                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p> --}}
+                    {{-- <p class="text-muted">Semua manusia sama di hadapan ikan</p> --}}
                 </a>
             </div>
             <div class="col-lg-3">
-                <a href="#" class="person">
-                    <img src="{{ URL::asset('frontend/images/person_2.jpg') }}" alt="Image"
-                        class="img-fluid mb-4">
+                <a href="#" class="person zoom-image">
+                    <img src="{{ URL::asset('asset/Tentang Kami/maria.jpg') }}" alt="Image"
+                        class="img-fluid mb-4 gambar2">
                     <span class="subheading d-inline-block">Data Analist</span>
                     <h3 class="mb-3">Maria Pangaribuan</h3>
-                    {{-- <p class="text-muted">Far far away, behind the word mountains, far from the countries Vokalia
-                        and Consonantia, there live the blind texts.</p> --}}
+                    {{-- <p class="text-muted">Aku bukan pemalas. Aku sedang menjalankan mode hemat energi</p> --}}
                 </a>
             </div>
         </div>
