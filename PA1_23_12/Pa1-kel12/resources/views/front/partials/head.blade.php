@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="author" content="Untree.co">
-    <link rel="website icon" type="png" href="{{ asset('Template/dist/img/LogoBetaTudia.png') }}">
+    <link rel="website icon" type="png" href="{{ asset('asset/logo.png') }}">
 
     <meta name="description" content="" />
     <meta name="keywords" content="bootstrap, bootstrap5" />
