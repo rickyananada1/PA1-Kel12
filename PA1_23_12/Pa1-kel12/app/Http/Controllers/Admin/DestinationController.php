@@ -21,7 +21,7 @@ class DestinationController extends Controller
     public function index()
     {
         $destinations = Destination::with('DestinationCategory')
-                                    ->orderBy('created_at', 'desc')
+                                  
                                     ->get();
 
         return view('admin.destination.index', compact('destinations'));
@@ -48,7 +48,7 @@ class DestinationController extends Controller
     public function store(DestinationRequest $request)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->name, '-') . '-' . time();
+            $slug = Str::slug($request->name, '-');
             $destination = Destination::create($request->validated() + ['slug' => $slug]);
         }
 
@@ -94,7 +94,7 @@ class DestinationController extends Controller
     public function update(DestinationRequest $request, Destination $destination)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->location, '-'). time();
+            $slug = Str::slug($request->name, '-'). time();
             $destination->update($request->validated() + ['slug' => $slug]);
         }
 
@@ -120,7 +120,7 @@ class DestinationController extends Controller
         ]);
     }
 
-    public function updateStatus(Request $request, $id)
+    public function updateStatus($id)
     {
         $destination = Destination::find($id);
 

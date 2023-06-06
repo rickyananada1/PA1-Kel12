@@ -18,8 +18,8 @@ class Contributor extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
+        'name',
+        'email',
         'password',
         'google_id',
         'image',
@@ -65,5 +65,9 @@ class Contributor extends Authenticatable
     {
         return $this->hasMany(Accommodation::class);
     }
-}
 
+    public function testimonies()
+    {
+        return $this->hasMany(Testimony::class);
+    }
+}

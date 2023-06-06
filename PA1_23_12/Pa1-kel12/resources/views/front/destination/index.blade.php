@@ -15,77 +15,150 @@
     Toba.
 @endsection
 
-
+@push('style')
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/destination.css') }}">
+    <style>
+        body {
+            color: black;
+        }
+    </style>
+@endpush
 
 @section('content')
-    <div class="section">
+    <div class="section search-result-wrap">
         <div class="container">
 
-            <style>
-                .gambar {
-                    height: 200px;
-                    /* ganti ukuran yang diinginkan */
-                    height: 250px;
-                    /**/
-                    object-fit: cover;
-                }
-            </style>
+            <div class="row posts-entry">
+                <div class="col-lg-8">
+                    @if ($selectedCategory)
+                        @php
+                            $category = \App\Models\DestinationCategory::find($selectedCategory);
+                        @endphp
 
-            <!-- ================================================ Card Destinasi =====================================================-->
-            <div class="row align-items-stretch">
-                @foreach ($destinations as $destination)
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="media-entry">
-                            <a href="{{ Route('destinations.show', $destination->slug) }}">
-                                <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
-                                    alt="Image" class="img-fluid gambar">
+                        <h3 class="category-title">Kategori Wisata: {{ $category->name }}</h3>
+                        <hr class="mb-5">
+                    @endif
+
+                    @if ($selectedKabupaten)
+                        @php
+                            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                        @endphp
+
+                        <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
+                        <hr class="mb-5">
+                    @endif
+
+                    @foreach ($destinations as $destination)
+                        <div class="blog-entry d-flex blog-entry-search-item zoom-image">
+                            <a href="{{ Route('destinations.show', $destination->slug) }}" class="img-link me-4">
+                                <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}"
+                                    alt="Image" class="img-fluid">
                             </a>
-                            <div class="bg-white m-body">
-                                <span class="date">{{ $destination->updated_at->format('F j, Y') }}</span>&mdash;
-                                <span class="date">{{ $destination->location }}</span>
-                                <h3><a
+                            <div>
+                                <span class="date">{{ $destination->created_at->format('F j, Y') }} &bullet; <a
+                                        href="#">{{ $destination->destinationCategory->name }}</a></span>
+                                <h2><a
                                         href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a>
-                                </h3>
-                                <p>{{ Str::limit(strip_tags($destination->description), 100) }}</p>
-
-                                <a href="{{ Route('destinations.show', $destination->slug) }}"
-                                    class="more d-flex align-items-center float-start">
-                                    <span class="label">Baca selengkapnya..</span>
-                                    <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
-                                </a>
+                                </h2>
+                                <p>{{ Str::limit(strip_tags($destination->description), 150) }}</p>
+                                <p><a href="{{ Route('destinations.show', $destination->slug) }}"
+                                        class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
                             </div>
                         </div>
+                    @endforeach
+
+
+
+
+
+                    <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
+                        <ul class="custom-pagination pagination">
+                            @if ($destinations->onFirstPage())
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            @else
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
+                            @endif
+
+                            @for ($i = 1; $i <= $destinations->lastPage(); $i++)
+                                <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a class="page-link"
+                                        href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
+                            @endfor
+
+                            @if ($destinations->hasMorePages())
+                                <li class="page-item"><a class="page-link"
+                                        href="{{ $destinations->nextPageUrl() }}">Next</a>
+                                </li>
+                            @else
+                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            @endif
+                        </ul>
+                    </nav>
+
+                </div>
+
+                <div class="col-lg-4 sidebar">
+
+                    <div class="sidebar-box search-form-wrap mb-4">
+                        <form action="{{ Route('destinations.index') }}" class="sidebar-search-form">
+                            @csrf
+                            <span class="bi-search"></span>
+                            <input type="text" class="form-control" name="keyword" id="searchInput"
+                                placeholder="Cari Destinasi Wisata..">
+                        </form>
                     </div>
-                @endforeach
-                <!-- ================================================ Card Destinasi =====================================================-->
+
+                    <div id="searchResults"></div>
 
 
-                <!--============================================= Paginate ===================================================-->
-                <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
-                    <ul class="custom-pagination pagination">
-                        @if ($destinations->onFirstPage())
-                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        @else
-                            <li class="page-item"><a class="page-link"
-                                    href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
-                        @endif
 
-                        @for ($i = 1; $i <= $destinations->lastPage(); $i++)
-                            <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
-                                    class="page-link" href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
-                        @endfor
+                    <div class="sidebar-box">
+                        <h3 class="heading">Kategori Wisata</h3>
+                        <ul class="categories">
 
-                        @if ($destinations->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $destinations->nextPageUrl() }}">Next</a>
-                            </li>
-                        @else
-                            <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                        @endif
-                    </ul>
-                </nav>
-                <!--============================================= Paginate ===================================================-->
+                            <li><a href="{{ route('destinations.index') }}">Semua kategori</a></li>
+                            @foreach ($destinationCategories as $destinationCategory)
+                                <li><a
+                                        href="{{ route('destinations.index', ['category' => $destinationCategory->id]) }}">{{ $destinationCategory->name }}</a>
+                                </li>
+                            @endforeach
+
+                        </ul>
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        <h3 class="heading">Popular Posts</h3>
+                        <div class="post-entry-sidebar">
+                            <ul>
+                                @php $count = 0 @endphp
+                                @foreach ($popularDestinations as $popularDestination)
+                                    <li>
+                                        <a href="">
+                                            <img src="{{ Storage::url(optional($popularDestination->galleries->random())->images) }}"
+                                                alt="Image placeholder" class="me-4 rounded">
+                                            <div class="text">
+                                                <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                                <div class="post-meta">
+                                                    <span class="mr-2">March 15, 2018 </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    @php $count++ @endphp
+                                    @if ($count == 6)
+                                    @break
+                                @endif
+                            @endforeach
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- END sidebar-box -->
 
             </div>
         </div>
     </div>
+</div>
 @endsection

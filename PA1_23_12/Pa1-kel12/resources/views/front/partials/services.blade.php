@@ -6,7 +6,7 @@
                 <div class="heading-content" data-aos="fade-up">
                     <h2>Layanan <span class="d-block">Yang Tersedia</span></h2>
                     <p data-aos="fade-up" data-aos-delay="200">Beragam pesona tujuan destinasi yang ada di Toba dari Budaya, Alam, Bahari ataupun kearifan lokal.</p>
-                    <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="#"
+                    <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="{{Route('tentangkami')}}"
                             class="btn btn-primary">View All</a></p>
                 </div>
             </div>
@@ -31,8 +31,8 @@
                                     class="img-fluid">
                             </span>
                             <div>
-                                <h3>Blog</h3>
-                                <p>Blog kami hadir untuk memberikan informasi dan wawasan baru yang dapat memperkaya pengalaman travelingmu.</p>
+                                <h3>Info Wisata</h3>
+                                <p>kami hadir untuk memberikan informasi dan wawasan baru yang dapat memperkaya pengalaman travelingmu.</p>
                             </div>
                         </div>
                     </div>

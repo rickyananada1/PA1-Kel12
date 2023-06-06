@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Testimony extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function contributor()
+    {
+        return $this->belongsTo(Contributor::class);
+    }
 }

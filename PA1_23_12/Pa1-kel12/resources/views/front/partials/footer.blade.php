@@ -20,7 +20,8 @@
                     <p>Danau Toba memang surgawi <br>
                         Tak bisa kuungkapkan dengan kata-kata
                         <br>Biarlah hati ini yang merasakannya <br>
-                        Keindahan yang takkan pernah terlupa</p>
+                        Keindahan yang takkan pernah terlupa
+                    </p>
                 </div> <!-- /.widget -->
                 <div class="widget">
                     <h3>Connect</h3>
@@ -35,48 +36,46 @@
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->
 
-            <div class="col-lg-2 ml-auto">
+            <div class="col-lg-3 ml-auto">
                 <div class="widget">
-                    <h3>Links</h3>
+                    <h3>Halaman</h3>
                     <ul class="list-unstyled float-left links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ Route('welcome') }}">Beranda</a></li>
+                        <li><a href="{{ Route('blogs.index') }}">Blog</a></li>
+                        <li><a href="{{ Route('destinations.index') }}">Wisata</a></li>
+                        <li><a href="{{ Route('galleries.index') }}">Galeri</a></li>
+                        <li><a href="{{ Route('tentangkami') }}">Tentang Kami</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->
-
-            <div class="col-lg-2">
-                <div class="widget">
-                    <h3>Company</h3>
-                    <ul class="list-unstyled float-left links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div> <!-- /.widget -->
-            </div> <!-- /.col-lg-3 -->
-
 
             <div class="col-lg-3">
                 <div class="widget">
-                    <h3>Contact</h3>
-                    <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+                    <h3>Sekitaran Danau Toba</h3>
+                    <ul class="list-unstyled float-left links">
+                        @foreach ($kabupatens as $kabupaten)
+                            <li><a href="{{ route('kabupatens', $kabupaten->slug) }}">{{ $kabupaten->name }}</a></li>
+                        @endforeach
+                    </ul>
+                </div> <!-- /.widget -->
+            </div> <!-- /.col-lg-3 -->
+
+
+            <div class="col-lg-2">
+                <div class="widget">
+                    <h3>Kontak</h3>
+                    <address>Kelompok 12. TI, DEL 2022</address>
                     <ul class="list-unstyled links mb-4">
                         <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
                         <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
-                        <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+                        <li><a href="mailto:beta@tudia.com">beta@tudia.com</a></li>
                     </ul>
                 </div> <!-- /.widget -->
             </div> <!-- /.col-lg-3 -->
 
         </div> <!-- /.row -->
 
-        <div class="row mt-5">
+        {{-- <div class="row mt-5">
             <div class="col-12 text-center">
                 <p class="mb-0">Copyright &copy;
                     <script>
@@ -87,5 +86,5 @@
                     Distributed By <a href="https://themewagon.com" target="_blank">Kelompok12</a>
                 </p>
             </div>
-        </div> <!-- /.container -->
-    </div> 
+        </div> <!-- /.container --> --}}
+    </div>

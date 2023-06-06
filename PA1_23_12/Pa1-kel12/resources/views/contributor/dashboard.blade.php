@@ -5,7 +5,7 @@
 @endsection
 
 @section('subtitle')
-    Kumpulan data
+    Kumpulan data kontributor
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
     <div class="row">
 
         <!-- ./col -->
-        <div class="col-lg-4 col-4">
+        <div class="col-lg-6 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
@@ -33,7 +33,7 @@
 
 
         <!-- ./col -->
-        <div class="col-lg-4 col-4">
+        <div class="col-lg-6 col-6">
             <!-- small box -->
             <div class="small-box bg-purple">
                 <div class="inner">
@@ -49,7 +49,7 @@
             </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-4 col-4">
+        <div class="col-lg-6 col-6">
             <!-- small box -->
             <div class="small-box bg-secondary">
                 <div class="inner">
@@ -64,7 +64,7 @@
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-4 col-4">
+        <div class="col-lg-6 col-6">
             <!-- small box -->
             <div class="small-box bg-pink">
                 <div class="inner">
