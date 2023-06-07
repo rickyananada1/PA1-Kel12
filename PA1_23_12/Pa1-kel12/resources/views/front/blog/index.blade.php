@@ -6,7 +6,8 @@
 
 @section('description')
     Penuhi dahaga informasimu di sini, jangan ketinggalan update!
-    Halaman info wisata kami berisi informasi segar seputar Danau toba terbaru. Jangan lewatkan artikel-artikel menarik yang akan
+    Halaman info wisata kami berisi informasi segar seputar Danau toba terbaru. Jangan lewatkan artikel-artikel menarik yang
+    akan
     memperkaya wawasanmu. Ayo, simak dan rasakan pengalaman baru bersama kami!
 @endsection
 
@@ -18,6 +19,53 @@
 @section('content')
     <div class="section">
         <div class="container">
+            <div class="search col-sm-8 mb-5 d-flex">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa fa-search fa-2x"></i>
+                    </span>
+                    <div class="input-group-append" for="search">
+
+                    </div>
+                    <input type="search" name="search" id="search" class="form-control"
+                        placeholder="Cari info wisata..">
+                </div>
+
+                <div class="input-group ml-2">
+                    <form id="searchForm" action="{{ route('blogs.index') }}" method="GET" class="d-flex">
+                        <select name="kabupaten" id="kabupaten" class="custom-select mr-2">
+                            @if ($selectedKabupaten)
+                                @php
+                                    $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                                @endphp
+                                <option value="{{ $kabupaten->id }}" selected>{{ $kabupaten->name }}</option>
+                            @else
+                                <option value="" selected>Mau Kemana?</option>
+                            @endif
+                            @foreach ($kabupatens as $kabupaten)
+                                <option value="{{ $kabupaten->id }}">{{ $kabupaten->name }}</option>
+                            @endforeach
+                        </select>
+                        <select name="category" id="category" class="custom-select">
+                            @if ($selectedCategory)
+                                @php
+                                    $category = \App\Models\BlogCategory::find($selectedCategory);
+                                @endphp
+                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                            @else
+                                <option value="" selected>Kategori ?</option>
+                            @endif
+                            @foreach ($blogCategories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-primary ml-2">Submit</button>
+                    </form>
+                </div>
+
+
+            </div>
+
             <div class="row">
 
                 <div class="col-md-9 aos-init aos-animate" data-aos="fade-up">
@@ -34,9 +82,8 @@
                         @endphp
 
                         <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
-                    
                     @endif
-                    
+
 
                     @foreach ($blogs as $blog)
                         <div class="d-md-flex post-entry-2 half ">
@@ -57,8 +104,7 @@
                                 <div class="d-flex align-items-center author">
                                     <div class="photo"><img
                                             src=" 
-                                        @if ($blog->contributor) 
-                                            {{ Storage::url($blog->contributor->image) }}
+                                        @if ($blog->contributor) {{ Storage::url($blog->contributor->image) }}
                                         @else
                                         {{ asset('Template/dist/img/profile.jpeg') }} @endif
                                         "

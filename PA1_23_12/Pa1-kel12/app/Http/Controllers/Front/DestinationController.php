@@ -27,26 +27,29 @@ class DestinationController extends Controller
             $destinations = Destination::with('galleries')
                 ->where('destination_category_id', $selectedCategory)
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         } else if ($selectedCategory == null && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
                 ->where('kabupaten_id', $selectedKabupaten)
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         } else if ($selectedCategory != null  && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
                 ->where('destination_category_id', $selectedCategory)
                 ->where('kabupaten_id', $selectedKabupaten)
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         } else {
 
             $destinations = Destination::with('galleries')
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         }
 
-        $destinations = $destinations->paginate(6);
 
         $popularDestinations = Destination::with('galleries')
             ->where('is_share', 1)
@@ -123,7 +126,6 @@ class DestinationController extends Controller
 
     public function searchDest(Request $request)
     {
-
         $selectedKabupaten = $request->input('kabupaten');
         $selectedCategory = $request->input('category');
         $output = "";
@@ -132,16 +134,13 @@ class DestinationController extends Controller
             ->where('is_share', 1)
             ->orderBy('created_at', 'desc');
 
-        if ($selectedKabupaten) {
-
+        if ($selectedKabupaten != null) {
             $query->where('kabupaten_id', $selectedKabupaten);
-        } else if ($selectedCategory) {
-
+        } elseif ($selectedCategory != null) {
             $query->where('category_id', $selectedCategory);
-        } elseif ($selectedKabupaten && $selectedCategory) {
-
-            $query->where('category_id', $selectedCategory);
-            $query->where('kabupaten_id', $selectedKabupaten);
+        } elseif ($selectedKabupaten != null && $selectedCategory != null) {
+            $query->where('category_id', $selectedCategory)
+                ->where('kabupaten_id', $selectedKabupaten);
         }
 
         $destinations = $query->where(function ($query) use ($request) {
@@ -152,18 +151,19 @@ class DestinationController extends Controller
 
         foreach ($destinations as $destination) {
             $output .= '<div class="blog-entry d-flex blog-entry-search-item">
-    <a href="' . route('destinations.show', $destination->slug) . '" class="img-link me-4 zoom-image" style="width:70%">
-        <img src="' . Storage::url(optional($destination->galleries->random())->images) . '"
-            alt="Image" class="img-fluidd">
-    </a>
-    <div>
-        <span class="date">' . $destination->created_at->format('F j, Y') . ' &bullet; <a href="#">' . $destination->destinationCategory->name . '</a></span>
-        <h2><a href="' . route('destinations.show', $destination->slug) . '">' . $destination->name . '</a></h2>
-        <p>' . Str::limit(strip_tags($destination->description), 150) . '</p>
-        <p><a href="' . route('destinations.show', $destination->slug) . '" class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
-    </div>
-</div>';
+            <a href="' . route('destinations.show', $destination->slug) . '" class="img-link me-4 zoom-image">
+                <img src="' . Storage::url(optional($destination->galleries->random())->images) . '"
+                    alt="Image" class="img-fluidd">
+            </a>
+            <div>
+                <span class="date">' . $destination->created_at->format('F j, Y') . ' &bullet; <a href="#">' . $destination->destinationCategory->name . '</a></span>
+                <h2><a href="' . route('destinations.show', $destination->slug) . '">' . $destination->name . '</a></h2>
+                <p>' . Str::limit(strip_tags($destination->description), 150) . '</p>
+                <p><a href="' . route('destinations.show', $destination->slug) . '" class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
+            </div>
+        </div>';
         }
+
         return response($output);
     }
 }
