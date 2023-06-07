@@ -11,11 +11,14 @@ use App\Models\Testimony;
 use App\Models\DestinationCategory;
 use App\Models\DestinationGallery;
 use App\Models\Kabupaten;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DestinationController extends Controller
 {
     public function index(Request $request)
     {
+        $output = "";
         $selectedCategory = $request->input('category');
 
         $selectedKabupaten = $request->input('kabupaten');
@@ -27,32 +30,49 @@ class DestinationController extends Controller
                 ->where('destination_category_id', $selectedCategory)
                 ->where('is_share', 1)
                 ->orderBy('created_at', 'desc');
-                
         } else if ($selectedCategory == null && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
                 ->where('kabupaten_id', $selectedKabupaten)
                 ->where('is_share', 1)
                 ->orderBy('created_at', 'desc');
-                
         } else if ($selectedCategory != null  && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
                 ->where('destination_category_id', $selectedCategory)
                 ->where('kabupaten_id', $selectedKabupaten)
                 ->where('is_share', 1)
                 ->orderBy('created_at', 'desc');
-                
         } else {
 
             $destinations = Destination::with('galleries')
                 ->where('is_share', 1)
                 ->orderBy('created_at', 'desc');
-                
         }
+
         if ($keyword != null) {
-            $destinations = $destinations->where('name', 'like', '%' . $keyword . '%');
+
+            $destinationsSearch = $destinations->where('name', 'like', '%' . $keyword . '%');
+            $destinations = $destinationsSearch->get();
+
+            foreach ($destinations as $destination) {
+                $output .= '<div class="blog-entry d-flex blog-entry-search-item zoom-image">';
+                $output .= '<a href="' . route('destinations.show', $destination->slug) . '" class="img-link me-4">';
+                $output .= '<img src="' . Storage::url(optional($destination->galleries->random())->images) . '" alt="Image" class="img-fluid">';
+                $output .= '</a>';
+                $output .= '<div>';
+                $output .= '<span class="date">' . $destination->created_at->format('F j, Y') . ' &bullet; <a href="#">' . $destination->destinationCategory->name . '</a></span>';
+                $output .= '<h2><a href="' . route('destinations.show', $destination->slug) . '">' . $destination->name . '</a></h2>';
+                $output .= '<p>' . Str::limit(strip_tags($destination->description), 150) . '</p>';
+                $output .= '<p><a href="' . route('destinations.show', $destination->slug) . '" class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>';
+                $output .= '</div>';
+                $output .= '</div>';
             
+            
+            }
+
+            return response($output);
+        } else {
+            $destinations = $destinations->paginate(6);
         }
-        $destinations = $destinations->paginate(6);
 
         $popularDestinations = Destination::with('galleries')
             ->where('is_share', 1)
@@ -64,6 +84,7 @@ class DestinationController extends Controller
         $blogCategories = BlogCategory::all();
 
         $destinationCategories = DestinationCategory::all();
+
 
         return view('front.destination.index', compact('destinations', 'selectedCategory', 'destinationCategories', 'kabupatens', 'popularDestinations', 'selectedKabupaten', 'selectedCategory', 'blogCategories'));
     }

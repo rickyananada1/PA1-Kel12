@@ -10,6 +10,8 @@ use App\Models\Restaurant;
 use App\Models\Destination;
 use App\Models\DestinationCategory;
 use App\Models\Testimony;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
@@ -88,5 +90,56 @@ class RestaurantController extends Controller
         $testimony->save();
 
         return redirect()->back()->with('success', 'Testimoni berhasil ditambahkan');
+    }
+
+    public function searchRest(Request $request)
+    {
+        $selectedKabupaten = $request->input('kabupaten');
+        $output = "";
+
+        $query = Restaurant::with('galleries')
+            ->where('is_share', 1)
+            ->orderBy('created_at', 'desc');
+
+        if ($selectedKabupaten) {
+            $query->where('kabupaten_id', $selectedKabupaten);
+        }
+
+        $restaurants = $query->where(function ($query) use ($request) {
+            $search = $request->input('search');
+            $query->where('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('location', 'LIKE', '%' . $search . '%');
+        })->get();
+
+        foreach ($restaurants as $restaurant) {
+            $output .= '
+    <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="media-entry">
+            <a href="' . route('restaurants.show', $restaurant->slug) . '" class="zoom-image">';
+
+            if ($restaurant->galleries->where('category', 'place')->count() > 0) {
+                $output .= '
+            <img src="' . Storage::url(optional($restaurant->galleries->where('category', 'place')->first())->images) . '"
+                alt="Restaurant Image" class="img-fluid gambar">';
+            }
+
+            $output .= '
+            </a>
+            <div class="bg-white m-body">
+                <span class="date">' . $restaurant->updated_at->format('F j, Y') . '</span>&mdash;
+                <span class="date">' . $restaurant->location . '</span>
+                <h3><a href="' . route('restaurants.show', $restaurant->slug) . '">' . $restaurant->name . '</a></h3>
+                <p>' . Str::limit(strip_tags($restaurant->description), 50) . '</p>
+                <a href="' . route('restaurants.show', $restaurant->slug) . '"
+                    class="more d-flex align-items-center float-start">
+                    <span class="label">Baca selengkapnya..</span>
+                    <span class="arrow"><span class="icon-keyboard_arrow_right"></span></span>
+                </a>
+            </div>
+        </div>
+    </div>';
+        }
+
+        return response($output);
     }
 }

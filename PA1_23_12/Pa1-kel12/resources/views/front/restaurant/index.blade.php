@@ -13,8 +13,31 @@
     <div class="section">
         <div class="container">
 
-            <!-- ================================================ Card Destinasi =====================================================-->
-            <div class="row align-items-stretch">
+            <div class="search col-sm-4 mb-5 d-flex">
+                <div class="input-group">
+                    <div class="input-group-append" for="search">
+                        <span class="input-group-text">
+                            <i class="fa fa-search fa-2x"></i>
+                        </span>
+                    </div>
+                    <input type="search" name="search" id="search" class="form-control"
+                        placeholder="Cari tempat makan..">
+                </div>
+            </div>
+
+            @if ($selectedKabupaten)
+                @php
+                    $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                @endphp
+
+                <h3 class="category-title mb-5">Kabupaten: {{ $kabupaten->name }}</h3>
+            @endif
+
+
+
+
+            <!-- ================================================ Card Tempat Makan =====================================================-->
+            <div class="row align-items-stretch alldata">
                 @foreach ($restaurants as $restaurant)
                     <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="media-entry">
@@ -26,7 +49,7 @@
 
                             </a>
                             <div class="bg-white m-body">
-                                <span class="date">{{ $restaurant->updated_at->format('F j, Y') }}</span>&mdash;
+                                <span class="date">{{ $restaurant->created_at->format('F j, Y') }}</span>&mdash;
                                 <span class="date">{{ $restaurant->location }}</span>
                                 <h3><a href="{{ Route('restaurants.show', $restaurant->slug) }}">{{ $restaurant->name }}</a>
                                 </h3>
@@ -41,17 +64,15 @@
                         </div>
                     </div>
                 @endforeach
-                <!-- ================================================ Card Destinasi =====================================================-->
-
-
-                <!--============================================= Paginate ===================================================-->
+                <!-- ================================================ Card Tempat Makan =====================================================-->
                 <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
                     <ul class="custom-pagination pagination">
                         @if ($restaurants->onFirstPage())
                             <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                         @else
                             <li class="page-item"><a class="page-link"
-                                    href="{{ $restaurants->previousPageUrl() }}">Previous</a></li>
+                                    href="{{ $restaurants->previousPageUrl() }}">Previous</a>
+                            </li>
                         @endif
 
                         @for ($i = 1; $i <= $restaurants->lastPage(); $i++)
@@ -67,9 +88,54 @@
                         @endif
                     </ul>
                 </nav>
-                <!--============================================= Paginate ===================================================-->
+            </div>
+
+            <div id="Content" class="row align-items-stretch searchdata">
 
             </div>
+
+            <!--============================================= Paginate ===================================================-->
+
+            <script>
+                $('#search').on('keyup', function() {
+                    $value = $(this).val();
+                    // Mengambil nilai parameter kabupaten dari URL
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var kabupatenId = urlParams.get('kabupaten');
+
+                    console.log(kabupatenId);
+
+                    if ($value) {
+                        $('.alldata').hide();
+                        $('.searchdata').show();
+                    } else {
+                        $('.alldata').show();
+                        $('.searchdata').hide();
+                    }
+
+                    $.ajax({
+
+                        type: 'POST',
+                        url: '{{ route('searchRest') }}',
+                        data: {
+                            '_method': 'GET', // Menyertakan _method sebagai 'GET'
+                            'search': $value,
+                            'kabupaten': kabupatenId
+                        },
+
+                        success: function(data) {
+                            console.log(data);
+                            if (data.trim() == '') {
+                                // Tampilkan pesan jika tidak ada data yang cocok dengan pencarian
+                                $('#Content').html('<div class="col-12">Tempat Makan tidak ditemukan.</div>');
+                            } else {
+                                $('#Content').html(data);
+                            }
+                        }
+                    });
+                });
+            </script>
+
         </div>
     </div>
 @endsection

@@ -95,14 +95,15 @@ Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/kabupatens/{kabupaten:id}', [HomeController::class, 'kabupatens'])->name('kabupatens');
 
 Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::class, 'index'])->name('destinations.index');
+Route::get('searchDest', 'DestinationController@liveSearch')->name('destinations.liveSearch');
 Route::get('destinations/{destination:slug}', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
 Route::post('destinations/testimonies', [\App\Http\Controllers\Front\destinationController::class, 'testimonies'])->name('destinations.testimonies');
-Route::post('/destinations/live-search', 'DestinationController@liveSearch')->name('destinations.liveSearch');
 
 Route::get('blogs', [\App\Http\Controllers\Front\BlogController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{blog:slug}', [\App\Http\Controllers\Front\blogController::class, 'show'])->name('blogs.show');
 Route::post('blogs/testimonies', [\App\Http\Controllers\Front\blogController::class, 'testimonies'])->name('blogs.testimonies');
 Route::get('restaurants', [\App\Http\Controllers\Front\RestaurantController::class, 'index'])->name('restaurants.index');
+Route::get('/searchRest', [\App\Http\Controllers\Front\RestaurantController::class, 'searchRest'])->name('searchRest');
 Route::get('restaurants/{restaurant:slug}', [\App\Http\Controllers\Front\RestaurantController::class, 'show'])->name('restaurants.show');
 Route::post('restaurants/testimonies', [\App\Http\Controllers\Front\RestaurantController::class, 'testimonies'])->name('restaurants.testimonies');
 Route::get('accommodations', [\App\Http\Controllers\Front\AccommodationController::class, 'index'])->name('accommodations.index');

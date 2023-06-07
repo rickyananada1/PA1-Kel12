@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/glightbox.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/style.css') }}">
 
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('Template/fontawesome/css/all.min.css') }}">
+
     <!-- Css Custom sendiri-->
     <link rel="stylesheet" href="{{ URL::asset('css/beta.css') }}">
 
