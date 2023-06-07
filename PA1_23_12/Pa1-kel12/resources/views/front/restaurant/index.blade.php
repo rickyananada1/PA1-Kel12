@@ -13,17 +13,49 @@
     <div class="section">
         <div class="container">
 
-            <div class="search col-sm-4 mb-5 d-flex">
+            <div class="search col-sm-8 mb-5 d-flex">
                 <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa fa-search fa-2x"></i>
+                    </span>
                     <div class="input-group-append" for="search">
-                        <span class="input-group-text">
-                            <i class="fa fa-search fa-2x"></i>
-                        </span>
+
                     </div>
                     <input type="search" name="search" id="search" class="form-control"
                         placeholder="Cari tempat makan..">
                 </div>
+                
+                <div class="input-group ml-2">
+                    <form id="searchForm" action="{{ route('restaurants.index') }}" method="GET">
+                        <select name="kabupaten" id="kabupaten" class="custom-select">
+                            @if ($selectedKabupaten)
+                                @php
+                                    $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                                @endphp
+                                <option value="{{ $kabupaten->id }}" class="text-center" selected>{{ $kabupaten->name }}</option>
+ 
+                            @else
+                                <option value="" class="text-center" selected>Mau Kemana?</option>
+                            @endif
+                                
+                            @foreach ($kabupatens as $kabupaten)
+                                <option value="{{ $kabupaten->id }} "class="text-center">{{ $kabupaten->name }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" style="display: none;" hidden></button>
+                    </form>
+                </div>
+
             </div>
+    
+            <script>
+                const selectKabupaten = document.getElementById('kabupaten');
+                const searchForm = document.getElementById('searchForm');
+            
+                selectKabupaten.addEventListener('change', function() {
+                    searchForm.submit();
+                });
+            </script>
 
             @if ($selectedKabupaten)
                 @php

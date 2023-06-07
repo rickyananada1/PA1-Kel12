@@ -17,11 +17,6 @@
 
 @push('style')
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/destination.css') }}">
-    <style>
-        body {
-            color: black;
-        }
-    </style>
 @endpush
 
 @section('content')
@@ -51,10 +46,11 @@
                     <div class="alldata">
 
                         @foreach ($destinations as $destination)
-                            <div class="blog-entry d-flex blog-entry-search-item zoom-image">
-                                <a href="{{ Route('destinations.show', $destination->slug) }}" class="img-link me-4">
+                            <div class="blog-entry d-flex blog-entry-search-item">
+                                <a href="{{ Route('destinations.show', $destination->slug) }}"
+                                    class="img-link me-4 zoom-image">
                                     <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}"
-                                        alt="Image" class="img-fluid">
+                                        alt="Image" class="img-fluidd">
                                 </a>
                                 <div>
                                     <span class="date">{{ $destination->created_at->format('F j, Y') }} &bullet; <a
@@ -68,11 +64,11 @@
                                 </div>
                             </div>
                         @endforeach
-    
-    
-    
-    
-    
+
+
+
+
+
                         <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
                             <ul class="custom-pagination pagination">
                                 @if ($destinations->onFirstPage())
@@ -81,12 +77,13 @@
                                     <li class="page-item"><a class="page-link"
                                             href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
                                 @endif
-    
+
                                 @for ($i = 1; $i <= $destinations->lastPage(); $i++)
-                                    <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a class="page-link"
-                                            href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
+                                    <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
+                                            class="page-link" href="{{ $destinations->url($i) }}">{{ $i }}</a>
+                                    </li>
                                 @endfor
-    
+
                                 @if ($destinations->hasMorePages())
                                     <li class="page-item"><a class="page-link"
                                             href="{{ $destinations->nextPageUrl() }}">Next</a>
@@ -98,14 +95,14 @@
                         </nav>
                     </div>
 
-                    <div id="Content" class="col-lg-8 searchdata"></div>
+                    <div id="Content" class="searchdata"></div>
                 </div>
 
 
 
                 <div class="col-lg-4 sidebar">
 
-                    <div class="sidebar-box search-form-wrap mb-1 search d-flex">
+                    <div class="search d-flex">
 
                         <input type="search" class="form-control" name="search" id="search"
                             placeholder="Cari Destinasi Wisata..">
@@ -115,6 +112,38 @@
                             </span>
                         </div>
                     </div>
+
+
+                    <div class="input-group">
+                        <form id="searchForm" action="{{ route('destinations.index') }}" method="GET">
+                            <select name="kabupaten" id="kabupaten" class="custom-select ">
+                                @if ($selectedKabupaten)
+                                    @php
+                                        $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                                    @endphp
+                                    <option value="{{ $kabupaten->id }}" class="text-center" selected>
+                                        {{ $kabupaten->name }}</option>
+                                @else
+                                    <option value="" class="text-center" selected>Mau Kemana?</option>
+                                @endif
+
+                                @foreach ($kabupatens as $kabupaten)
+                                    <option value="{{ $kabupaten->id }} "class="text-center">{{ $kabupaten->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="submit" style="display: none;" hidden></button>
+                        </form>
+                    </div>
+
+                    <script>
+                        const selectKabupaten = document.getElementById('kabupaten');
+                        const searchForm = document.getElementById('searchForm');
+
+                        selectKabupaten.addEventListener('change', function() {
+                            searchForm.submit();
+                        });
+                    </script>
 
 
 
@@ -180,9 +209,9 @@
 
                         $.ajax({
                             type: 'get',
-                            url: '{{ route('destinations.index') }}',
+                            url: '{{ route('searchDest') }}',
                             data: {
-                                'keyword': $value,
+                                'search': $value,
                             },
 
                             success: function(data) {

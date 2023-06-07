@@ -231,10 +231,8 @@
                                 Admin
                             @endif
                         </h3>
-                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                            unorthographic life One day however a small line of blind text by the name of Lorem Ipsum
-                            decided to leave for the far World of Grammar.</p>
-                        <p><a href="#" class="btn btn-primary btn-md text-white">Read More</a></p>
+                        <p>Bersama-sama, kita dapat menghadirkan konten yang menarik dan informatif tentang destinasi wisata terbaik di seluruh dunia. Dari ulasan pribadi, tips perjalanan, hingga cerita petualangan, semua itu dapat dijadikan sumber inspirasi bagi para pelancong.</p>
+                      
                     </div>
 
                     <div class="sidebar-box">

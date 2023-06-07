@@ -98,6 +98,7 @@ Route::get('destinations', [\App\Http\Controllers\Front\DestinationController::c
 Route::get('searchDest', 'DestinationController@liveSearch')->name('destinations.liveSearch');
 Route::get('destinations/{destination:slug}', [\App\Http\Controllers\Front\DestinationController::class, 'show'])->name('destinations.show');
 Route::post('destinations/testimonies', [\App\Http\Controllers\Front\destinationController::class, 'testimonies'])->name('destinations.testimonies');
+Route::get('/searchDest', [\App\Http\Controllers\Front\DestinationController::class, 'searchDest'])->name('searchDest');
 
 Route::get('blogs', [\App\Http\Controllers\Front\BlogController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{blog:slug}', [\App\Http\Controllers\Front\blogController::class, 'show'])->name('blogs.show');
