@@ -56,7 +56,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'],fu
 
 
 /*== Route Contributor ===================================================================================================================================== */
-Route::get('/contributor/dashboard', [\App\Http\Controllers\Contributor\DashboardController::class, 'dashboard'])->middleware(['auth:contributor', 'contributor.status'])->name('contributor.dashboard');
+// 'auth:contributor'
+Route::get('/contributor/dashboard', [\App\Http\Controllers\Contributor\DashboardController::class, 'dashboard'])->middleware(['contributor.status'])->name('contributor.dashboard');
 
 require __DIR__ . '/contributorauth.php';
 

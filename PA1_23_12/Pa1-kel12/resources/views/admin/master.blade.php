@@ -16,7 +16,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('Template/fontawesome/css/all.min.css') }}">
     <!-- Logo website-->
-    <link rel="website icon" type="png" href="{{ asset('Template/dist/img/LogoBetaTudia.png') }}">
+    <link rel="website icon" type="png" href="{{ asset('asset/logo.png') }}">
     <!-- Sweet Alert-->
     <link rel="stylesheet" href="{{ asset('Template/plugins/sweetalert2/sweetalert2.min.css') }}">
 
