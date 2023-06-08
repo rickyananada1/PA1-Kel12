@@ -39,7 +39,8 @@
                         $category = \App\Models\DestinationCategory::find($selectedCategory);
                         $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
                     @endphp
-                    <h2 class="category-title mb-4">Kabupaten {{ $kabupaten->name }} dan Berkategori {{ $category->name }}</h2>
+                    <h2 class="category-title mb-4">Kabupaten {{ $kabupaten->name }} dan Berkategori {{ $category->name }}
+                    </h2>
                 @endif
 
 

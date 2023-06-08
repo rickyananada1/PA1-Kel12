@@ -9,7 +9,6 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Testimony;
 use App\Models\DestinationCategory;
-use App\Models\DestinationGallery;
 use App\Models\Kabupaten;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;

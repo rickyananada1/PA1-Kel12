@@ -39,7 +39,7 @@
                             @endif
                                 
                             @foreach ($kabupatens as $kabupaten)
-                                <option value="{{ $kabupaten->id }} "class="text-center">{{ $kabupaten->name }}</option>
+                                <option value="{{ $kabupaten->id }}"class="text-center">{{ $kabupaten->name }}</option>
                             @endforeach
                         </select>
                         <button type="submit" style="display: none;" hidden></button>
