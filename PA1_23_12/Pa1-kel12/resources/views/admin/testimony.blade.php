@@ -57,10 +57,10 @@
                                                         <span class="text-danger mt-2">{{ $message }}</span>
                                                     @enderror
                                                 </form>
-                                                <form action="{{ route('admin.testimony.delete', $testimony->id) }}" method="POST" id="btn-delete">
+                                                <form action="{{ route('admin.testimony.delete', $testimony->id) }}" method="POST" id="form-delete-{{ $testimony->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-danger" id="btn-delete" data-id="{{ $testimony->id }}"><i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

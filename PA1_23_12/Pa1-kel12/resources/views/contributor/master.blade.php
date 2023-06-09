@@ -9,6 +9,8 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('Template/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
@@ -118,7 +120,8 @@
                 confirmButtonText: 'Yes, hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('form').submit();
+                    var dataId = $(this).data('id');
+                    $('#form-delete-' + dataId).submit();
                     Swal.fire(
                         'Terhapus!',
                         'Data telah dihapus.',

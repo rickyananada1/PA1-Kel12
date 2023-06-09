@@ -120,7 +120,8 @@
                 confirmButtonText: 'Yes, hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('form').submit();
+                    var dataId = $(this).data('id');
+                    $('#form-delete-' + dataId).submit();
                     Swal.fire(
                         'Terhapus!',
                         'Data telah dihapus.',
@@ -129,6 +130,7 @@
                 }
             })
         });
+
 
         $(document).ready(function() {
             $('#btn-simpan').click(function(e) {

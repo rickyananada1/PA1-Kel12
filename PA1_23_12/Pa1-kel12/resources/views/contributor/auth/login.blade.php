@@ -59,12 +59,16 @@
                                             <img src="https:developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" ></a>
                                         </div>
 
-                                        @if (Route::has('contributor.password.request'))
+                                        {{-- @if (Route::has('contributor.password.request'))
                                             <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                                 href="{{ route('contributor.password.request') }}">
                                                 {{ __('Forgot your password?') }}
                                             </a>
-                                        @endif
+                                        @endif --}}
+                                        <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                                href="{{ route('admin.login') }}">
+                                                {{ __('Login Admin?') }}
+                                            </a>
                                         <p class="mb-5 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
                                                 href="{{Route('contributor.register')}}" style="color: #393f81;">Registrasi disini</a></p>
                                     </form>

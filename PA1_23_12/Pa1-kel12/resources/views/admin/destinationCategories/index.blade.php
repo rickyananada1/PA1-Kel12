@@ -55,13 +55,13 @@
                                                         <button type="submit" class="btn btn-primary"><i
                                                                 class="fa fa-edit"></i></button>
                                                     </form>
-                                                    <form
-                                                        action="{{ route('admin.destinationCategory.destroy', ['destinationCategory' => $category->id]) }}"
+                                                    <form id="form-delete-{{ $category->id }}""
+                                                        action="{{ route('admin.destinationCategory.destroy', ['destinationCategory' => $category->id])}}"
                                                         method="POST" style="margin-right: 10px;">
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit" class="btn btn btn-danger"
-                                                             id="btn-delete">
+                                                             id="btn-delete" data-id="{{ $category->id }}">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
