@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered " id="example1">
+                            <table class="table table-bordered text-center" id="example1">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -69,24 +69,21 @@
                                                     @enderror
                                                 </form>
                                             </td>
-                                            <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
-                                                <form action="#" method="GET" style="margin-right: 10px;">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-info"><i
-                                                            class="fa fa-eye"></i></button>
-                                                </form>
+                                            <td class="justify-content-center d-flex">
+                                                
                                                 <form action="{{ route('admin.restaurant.edit', [$restaurant]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
-                                                <form id="btn-delete"
+                                                <form id="form-delete-{{ $restaurant->id }}"
                                                     action="{{ route('admin.restaurant.destroy', [$restaurant]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn btn-danger">
+                                                    <button type="submit" class="btn btn btn-danger" id="btn-delete"
+                                                        data-id="{{ $restaurant->id }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

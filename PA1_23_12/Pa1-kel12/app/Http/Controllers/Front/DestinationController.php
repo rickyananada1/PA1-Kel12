@@ -9,50 +9,46 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Testimony;
 use App\Models\DestinationCategory;
-use App\Models\DestinationGallery;
 use App\Models\Kabupaten;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DestinationController extends Controller
 {
     public function index(Request $request)
     {
+
         $selectedCategory = $request->input('category');
 
         $selectedKabupaten = $request->input('kabupaten');
-
-        $keyword = $request->input('keyword');
 
         if ($selectedCategory != null && $selectedKabupaten == null) {
             $destinations = Destination::with('galleries')
                 ->where('destination_category_id', $selectedCategory)
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
-                
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         } else if ($selectedCategory == null && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
                 ->where('kabupaten_id', $selectedKabupaten)
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
-                
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         } else if ($selectedCategory != null  && $selectedKabupaten != null) {
             $destinations = Destination::with('galleries')
                 ->where('destination_category_id', $selectedCategory)
                 ->where('kabupaten_id', $selectedKabupaten)
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
-                
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         } else {
 
             $destinations = Destination::with('galleries')
                 ->where('is_share', 1)
-                ->orderBy('created_at', 'desc');
-                
+                ->orderBy('created_at', 'desc')
+                ->paginate(6);
         }
-        if ($keyword != null) {
-            $destinations = $destinations->where('name', 'like', '%' . $keyword . '%');
-            
-        }
-        $destinations = $destinations->paginate(6);
+
 
         $popularDestinations = Destination::with('galleries')
             ->where('is_share', 1)
@@ -98,8 +94,6 @@ class DestinationController extends Controller
         $latestBlogs = Blog::where('is_share', 1)
             ->orderBy('created_at', 'desc')->paginate(4);
 
-
-
         $blogCategories = BlogCategory::all();
 
         return view('front.destination.show', compact('destination', 'destinations', 'destinationCategories', 'closeDestinations', 'popularDestinations', 'latestBlogs', 'testimonies', 'kabupatens', 'blogCategories'));
@@ -129,16 +123,46 @@ class DestinationController extends Controller
         return redirect()->back()->with('success', 'Testimoni berhasil ditambahkan');
     }
 
-    public function liveSearch(Request $request)
+    public function searchDest(Request $request)
     {
-        $keyword = $request->input('keyword');
+        $selectedKabupaten = $request->input('kabupaten');
+        $selectedCategory = $request->input('category');
+        $output = "";
 
-        $results = Destination::with('galleries')
-            ->where('name', 'like', '%' . $keyword . '%')
+        $query = Destination::with('galleries')
             ->where('is_share', 1)
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->orderBy('created_at', 'desc');
 
-        return response()->json($results);
+        if ($selectedKabupaten != null) {
+            $query->where('kabupaten_id', $selectedKabupaten);
+        } elseif ($selectedCategory != null) {
+            $query->where('category_id', $selectedCategory);
+        } elseif ($selectedKabupaten != null && $selectedCategory != null) {
+            $query->where('category_id', $selectedCategory)
+                ->where('kabupaten_id', $selectedKabupaten);
+        }
+
+        $destinations = $query->where(function ($query) use ($request) {
+            $search = $request->input('search');
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('location', 'LIKE', '%' . $search . '%');
+        })->get();
+
+        foreach ($destinations as $destination) {
+            $output .= '<div class="blog-entry d-flex blog-entry-search-item">
+            <a href="' . route('destinations.show', $destination->slug) . '" class="img-link me-4 zoom-image">
+                <img src="' . Storage::url(optional($destination->galleries->random())->images) . '"
+                    alt="Image" class="img-fluidd">
+            </a>
+            <div>
+                <span class="date">' . $destination->created_at->format('F j, Y') . ' &bullet; <a href="#">' . $destination->destinationCategory->name . '</a></span>
+                <h2><a href="' . route('destinations.show', $destination->slug) . '">' . $destination->name . '</a></h2>
+                <p>' . Str::limit(strip_tags($destination->description), 150) . '</p>
+                <p><a href="' . route('destinations.show', $destination->slug) . '" class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
+            </div>
+        </div>';
+        }
+
+        return response($output);
     }
 }

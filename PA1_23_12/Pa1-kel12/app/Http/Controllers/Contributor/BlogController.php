@@ -23,8 +23,10 @@ class BlogController extends Controller
     public function index()
     {
         $contributor = Auth::guard('contributor')->id();
-        $blogs = Blog::with('BlogCategory')->where('contributor_id', $contributor)
-                                            ->paginate(10);
+        $blogs = Blog::with('BlogCategory')
+        ->orderBy('created_at', 'desc')
+        ->where('contributor_id', $contributor)
+        ->paginate(10);
 
         return view('contributor.blog.index', compact('blogs'));
     }

@@ -24,11 +24,11 @@
                             <a href="{{ route('admin.kabupaten.edit', $kabupaten->id) }}" class="btn btn-sm btn-primary mr-2">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <form action="{{ route('admin.kabupaten.destroy', $kabupaten->id) }}" method="POST">
+                            <form action="{{ route('admin.kabupaten.destroy', $kabupaten->id) }}" method="POST" id="form-delete-{{ $kabupaten->id}}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"
-                                    id="btn-delete">
+                                    id="btn-delete" data-id="{{$kabupaten->id}}">
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
                             </form>

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Admin Login</title>
+    <link rel="website icon" type="png" href="{{ asset('asset/logo.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -53,14 +54,14 @@
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                                         </div>
                                         
-                                        @if (Route::has('password.request'))
+                                        {{-- @if (Route::has('password.request'))
                                             <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                                 href="{{ route('admin.password.request') }}">
                                                 {{ __('Forgot your password?') }}
                                             </a>
-                                        @endif
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
-                                                href="{{Route('admin.register')}}" style="color: #393f81;">Registrasi disini</a></p>
+                                        @endif --}}
+                                        <p class="mb-5 pb-lg-2" style="color: #393f81;"><a
+                                                href="{{Route('contributor.login')}}" style="color: #393f81;">Anda seorang contributor?</a></p>
                                     </form>
 
                                 </div>

@@ -17,11 +17,6 @@
 
 @push('style')
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/destination.css') }}">
-    <style>
-        body {
-            color: black;
-        }
-    </style>
 @endpush
 
 @section('content')
@@ -29,86 +24,136 @@
         <div class="container">
 
             <div class="row posts-entry">
+                @if ($selectedCategory != null && $selectedKabupaten == null)
+                    @php
+                        $category = \App\Models\DestinationCategory::find($selectedCategory);
+                    @endphp
+                    <h2 class="category-title mb-4">Kategori: {{ $category->name }}</h2>
+                @elseif ($selectedKabupaten != null && $selectedCategory == null)
+                    @php
+                        $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                    @endphp
+                    <h2 class="category-title mb-4">Kabupaten: {{ $kabupaten->name }}</h2>
+                @elseif ($selectedCategory != null && $selectedKabupaten != null)
+                    @php
+                        $category = \App\Models\DestinationCategory::find($selectedCategory);
+                        $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                    @endphp
+                    <h2 class="category-title mb-4">Kabupaten {{ $kabupaten->name }} dan Berkategori {{ $category->name }}
+                    </h2>
+                @endif
+
+
                 <div class="col-lg-8">
-                    @if ($selectedCategory)
-                        @php
-                            $category = \App\Models\DestinationCategory::find($selectedCategory);
-                        @endphp
 
-                        <h3 class="category-title">Kategori Wisata: {{ $category->name }}</h3>
-                        <hr class="mb-5">
-                    @endif
+                    <div class="alldata">
 
-                    @if ($selectedKabupaten)
-                        @php
-                            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
-                        @endphp
-
-                        <h3 class="category-title">Kabupaten: {{ $kabupaten->name }}</h3>
-                        <hr class="mb-5">
-                    @endif
-
-                    @foreach ($destinations as $destination)
-                        <div class="blog-entry d-flex blog-entry-search-item zoom-image">
-                            <a href="{{ Route('destinations.show', $destination->slug) }}" class="img-link me-4">
-                                <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}"
-                                    alt="Image" class="img-fluid">
-                            </a>
-                            <div>
-                                <span class="date">{{ $destination->created_at->format('F j, Y') }} &bullet; <a
-                                        href="#">{{ $destination->destinationCategory->name }}</a></span>
-                                <h2><a
-                                        href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a>
-                                </h2>
-                                <p>{{ Str::limit(strip_tags($destination->description), 150) }}</p>
-                                <p><a href="{{ Route('destinations.show', $destination->slug) }}"
-                                        class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
+                        @foreach ($destinations as $destination)
+                            <div class="blog-entry d-flex blog-entry-search-item">
+                                <a href="{{ Route('destinations.show', $destination->slug) }}"
+                                    class="img-link me-4 zoom-image">
+                                    <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}"
+                                        alt="Image" class="img-fluidd">
+                                </a>
+                                <div>
+                                    <span class="date">{{ $destination->created_at->format('F j, Y') }} &bullet; <a
+                                            href="#">{{ $destination->destinationCategory->name }}</a></span>
+                                    <h2><a
+                                            href="{{ Route('destinations.show', $destination->slug) }}">{{ $destination->name }}</a>
+                                    </h2>
+                                    <p>{{ Str::limit(strip_tags($destination->description), 150) }}</p>
+                                    <p><a href="{{ Route('destinations.show', $destination->slug) }}"
+                                            class="btn btn-sm btn-outline-primary">Baca selengkapnya..</a></p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
 
 
 
 
-                    <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
-                        <ul class="custom-pagination pagination">
-                            @if ($destinations->onFirstPage())
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                            @else
-                                <li class="page-item"><a class="page-link"
-                                        href="{{ $destinations->previousPageUrl() }}">Previous</a></li>
-                            @endif
+                        <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
+                            <ul class="custom-pagination pagination">
+                                @if ($destinations->onFirstPage())
+                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                @else
+                                    <li class="page-item"><a class="page-link"
+                                            href="{{ $destinations->previousPageUrl() }}&category={{ $selectedCategory }}&kabupaten={{ $selectedKabupaten }}">Previous</a>
+                                    </li>
+                                @endif
 
-                            @for ($i = 1; $i <= $destinations->lastPage(); $i++)
-                                <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a class="page-link"
-                                        href="{{ $destinations->url($i) }}">{{ $i }}</a></li>
-                            @endfor
+                                @for ($i = 1; $i <= $destinations->lastPage(); $i++)
+                                    <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
+                                            class="page-link"
+                                            href="{{ $destinations->url($i) }}&category={{ $selectedCategory }}&kabupaten={{ $selectedKabupaten }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
 
-                            @if ($destinations->hasMorePages())
-                                <li class="page-item"><a class="page-link"
-                                        href="{{ $destinations->nextPageUrl() }}">Next</a>
-                                </li>
-                            @else
-                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                            @endif
-                        </ul>
-                    </nav>
+                                @if ($destinations->hasMorePages())
+                                    <li class="page-item"><a class="page-link"
+                                            href="{{ $destinations->nextPageUrl() }}&category={{ $selectedCategory }}&kabupaten={{ $selectedKabupaten }}">Next</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                                @endif
+                            </ul>
+                        </nav>
 
+                    </div>
+
+                    <div id="Content" class="searchdata"></div>
                 </div>
+
+
 
                 <div class="col-lg-4 sidebar">
 
-                    <div class="sidebar-box search-form-wrap mb-4">
-                        <form action="{{ Route('destinations.index') }}" class="sidebar-search-form">
-                            @csrf
-                            <span class="bi-search"></span>
-                            <input type="text" class="form-control" name="keyword" id="searchInput"
-                                placeholder="Cari Destinasi Wisata..">
+                    <div class="search d-flex">
+                        <input type="search" class="form-control border-2 border-dark rounded" name="search"
+                            id="search" placeholder="Cari Destinasi Wisata..">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-search fa-2x"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-2">
+                        <form id="searchForm" action="{{ route('destinations.index') }}" method="GET">
+                            <select name="kabupaten" id="kabupaten"
+                                class="custom-select border border-2 border-dark rounded w-100">
+                                @if ($selectedKabupaten)
+                                    @php
+                                        $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                                    @endphp
+                                    <option value="{{ $kabupaten->id }}" class="text-center" selected>
+                                        {{ $kabupaten->name }}
+                                    </option>
+                                @else
+                                    <option value="" class="text-center" selected>Mau Kemana?</option>
+                                @endif
+
+                                @foreach ($kabupatens as $kabupaten)
+                                    <option value="{{ $kabupaten->id }}"
+                                        {{ $selectedKabupaten == $kabupaten->id ? 'selected' : '' }} class="text-center">
+                                        {{ $kabupaten->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="submit" style="display: none;" hidden></button>
                         </form>
                     </div>
 
-                    <div id="searchResults"></div>
+
+
+                    <script>
+                        const selectKabupaten = document.getElementById('kabupaten');
+                        const searchForm = document.getElementById('searchForm');
+
+                        selectKabupaten.addEventListener('change', function() {
+                            searchForm.submit();
+                        });
+                    </script>
 
 
 
@@ -119,7 +164,7 @@
                             <li><a href="{{ route('destinations.index') }}">Semua kategori</a></li>
                             @foreach ($destinationCategories as $destinationCategory)
                                 <li><a
-                                        href="{{ route('destinations.index', ['category' => $destinationCategory->id]) }}">{{ $destinationCategory->name }}</a>
+                                        href="{{ route('destinations.index', ['category' => $destinationCategory->id, 'kabupaten' => $selectedKabupaten]) }}">{{ $destinationCategory->name }}</a>
                                 </li>
                             @endforeach
 
@@ -139,9 +184,10 @@
                                             <img src="{{ Storage::url(optional($popularDestination->galleries->random())->images) }}"
                                                 alt="Image placeholder" class="me-4 rounded">
                                             <div class="text">
-                                                <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                                <h4>{{ $popularDestination->name }}</h4>
                                                 <div class="post-meta">
-                                                    <span class="mr-2">March 15, 2018 </span>
+                                                    <span
+                                                        class="mr-2">{{ $popularDestination->created_at->format('F j, Y') }}</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -157,8 +203,40 @@
                 </div>
                 <!-- END sidebar-box -->
 
+
+                <script>
+                    $('#search').on('keyup', function() {
+                        var searchValue = $(this).val();
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var kabupatenId = urlParams.get('kabupaten');
+                        var categoryId = urlParams.get('category');
+
+                        if (searchValue) {
+                            $('.alldata').hide();
+                            $('.searchdata').show();
+                        } else {
+                            $('.alldata').show();
+                            $('.searchdata').hide();
+                        }
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ route('searchDest') }}',
+                            data: {
+                                '_method': 'GET',
+                                'search': searchValue,
+                                'kabupaten': kabupatenId,
+                                'category': categoryId,
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                $('#Content').html(data);
+                            }
+                        });
+                    });
+                </script>
             </div>
+
         </div>
     </div>
-</div>
 @endsection

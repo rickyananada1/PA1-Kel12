@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Contributor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accommodation;
 use Illuminate\Http\Request;
 use App\Models\DestinationCategory;
 use App\Models\Destination;
@@ -27,12 +28,15 @@ class DashboardController extends Controller
         ->count();
         $sumRestaurant = Restaurant::where('contributor_id', $contributor)
         ->count();
+        $sumAccommodation = Accommodation::where('contributor_id', $contributor)
+        ->count();
 
         return view('contributor.dashboard', compact(
             'sumKabupaten',
             'sumBlog',
             'sumDestination',
             'sumRestaurant',
+            'sumAccommodation',
         ));
     }
 }

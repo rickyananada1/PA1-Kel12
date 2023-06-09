@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered " id="example1">
+                            <table class="table table-bordered text-center" id="example1">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -42,7 +42,7 @@
                                             </td>
                                             <td>{{ $accommodation->category }}</td>
                                             <td>{{ $accommodation->price }}</td>
-                                            <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
+                                            <td class="d-flex justify-content-center">
                                                 <form
                                                     action="{{ route('contributor.accommodation.edit', [$accommodation]) }}"
                                                     method="GET" style="margin-right: 10px;">
@@ -50,13 +50,12 @@
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
-                                                <form
-                                            
+                                                <form id="form-delete-{{ $accommodation->id }}"
                                                     action="{{ route('contributor.accommodation.destroy', [$accommodation]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn btn-danger" id="btn-delete">
+                                                    <button type="submit" class="btn btn btn-danger" id="btn-delete" data-id="{{ $accommodation->id }}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

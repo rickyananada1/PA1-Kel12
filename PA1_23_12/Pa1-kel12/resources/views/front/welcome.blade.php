@@ -39,7 +39,7 @@
                                     <select name="cariApa" id="cariApa" class="form-control custom-select">
                                         <option value="">Cari Apa?</option>
                                         <option value="destinations">Destinasi Wisata</option>
-                                        <option value="blogs">Blog</option>
+                                        <option value="blogs">Info Wisata</option>
                                         <option value="restaurants">Tempat Makan</option>
                                     </select>
                                 </div>
@@ -156,11 +156,11 @@
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-5 mb-4 mb-lg-0 order-lg-2" data-aos="fade-up">
-                    <img src="{{ URL::asset('frontend/images/img-1.jpg') }}" alt="Image" class="img-fluid">
+                    <img src="{{ URL::asset('asset/welcome/2.jpg') }}" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
                     <h2 class="heading mb-4">Bersama kami dan dapatkan kenangan manis untuk dikenang</h2>
-                    <p>Mengunjungi website wisata sekitaran Toba membawa kenangan manis yang tak terlupakan, seperti
+                    <p>Mengunjungi Website Wisata Sekitaran Danau Toba membawa kenangan manis yang tak terlupakan, seperti
                         merasakan keindahan alamnya yang menakjubkan dan merasakan kehangatan keramahan penduduk
                         setempat.
                     </p>
@@ -181,7 +181,7 @@
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-5 mb-4 mb-lg-0">
-                    <img src="{{ URL::asset('frontend/images/img_v_2.jpg') }}" alt="Image" class="img-fluid">
+                    <img src="{{ URL::asset('asset/welcome/5.jpeg') }}" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-lg-5 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
 

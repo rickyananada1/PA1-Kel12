@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin BetaTudia?</title>
+    <title>Contributor BetaTudia?</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('Template/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
@@ -16,7 +18,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('Template/fontawesome/css/all.min.css') }}">
     <!-- Logo website-->
-    <link rel="website icon" type="png" href="{{ asset('Template/dist/img/LogoBetaTudia.png') }}">
+    <link rel="website icon" type="png" href="{{ asset('asset/logo.png') }}">
     <!-- Sweet Alert-->
     <link rel="stylesheet" href="{{ asset('Template/plugins/sweetalert2/sweetalert2.min.css') }}">
 
@@ -118,7 +120,8 @@
                 confirmButtonText: 'Yes, hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('form').submit();
+                    var dataId = $(this).data('id');
+                    $('#form-delete-' + dataId).submit();
                     Swal.fire(
                         'Terhapus!',
                         'Data telah dihapus.',

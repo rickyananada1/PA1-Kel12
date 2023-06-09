@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accommodation;
 use Illuminate\Http\Request;
 use App\Models\DestinationCategory;
 use App\Models\Destination;
@@ -26,6 +27,8 @@ class DashboardController extends Controller
         $sumBlogCategory = BlogCategory::count();
         $sumBlog = Blog::count();
         $sumRestaurant = Restaurant::count();
+        $sumContributor = Contributor::count();
+        $sumAccommodation = Accommodation::count();
 
         return view('admin.dashboard', compact(
             'sumKabupaten',
@@ -34,6 +37,8 @@ class DashboardController extends Controller
             'sumBlog',
             'sumDestination',
             'sumRestaurant',
+            'sumContributor',
+            'sumAccommodation',
         ));
     }
 
@@ -54,7 +59,18 @@ class DashboardController extends Controller
         }
         $contributor->save();
 
-        return redirect()->back()->with('message', $contributor['name'] . 'Status Penggunna Berhasil Diganti');
+        return redirect()->back()->with('message', $contributor['name'] . 'Status Penggunna Berhasil Diganti!');
+    }
+
+    public function deleteTestimony($id)
+    {
+        $testimony = Testimony::find($id);
+        $testimony->delete();
+
+        return redirect()->back()->with([
+            'message' => 'Success Deleted !',
+            'alert-type' => 'danger'
+        ]);
     }
 
     public function testimonies()

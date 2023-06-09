@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered " id="example1">
+                            <table class="table table-bordered text-center" id="example1">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -42,7 +42,7 @@
                                             </td>
                                             <td>{{ $restaurant->kabupaten->name }}</td>
                                             <td>{{ $restaurant->is_share == 1 ? 'Ya' : 'Tidak' }}</td>
-                                            <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
+                                            <td class="d-flex justify-content-center">
                                                 <form
                                                     action="{{ route('contributor.restaurant.edit', [$restaurant]) }}"
                                                     method="GET" style="margin-right: 10px;">
@@ -50,13 +50,13 @@
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="fa fa-edit"></i></button>
                                                 </form>
-                                                <form
-                                                    id="btn-delete"
+                                                <form id="form-delete-{{ $restaurant->id }}"
+                                                    
                                                     action="{{ route('contributor.restaurant.destroy', [$restaurant]) }}"
                                                     method="POST" style="margin-right: 10px;">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn btn-danger">
+                                                    <button type="submit" class="btn btn btn-danger" data-id="{{ $restaurant->id }}" id="btn-delete">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
