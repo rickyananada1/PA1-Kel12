@@ -44,7 +44,7 @@ class AccommodationController extends Controller
     public function store(AccommodationRequest $request)
     {
         if ($request->validated()) {
-            $slug = Str::slug($request->location, '-');
+            $slug = Str::slug($request->location, '-'). '-' . time();
             $accommodation = Accommodation::create($request->validated() + ['slug' => $slug]);
         }
 
