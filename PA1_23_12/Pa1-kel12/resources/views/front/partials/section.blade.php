@@ -4,10 +4,10 @@
             <div class="col-lg-6 order-lg-2 mb-5 mb-lg-0">
                 <div class="image-stack mb-5 mb-lg-0">
                     <div class="image-stack__item image-stack__item--bottom" data-aos="fade-up"  >
-                        <img src="{{ URL::asset('frontend/images/img_v_1.jpg')}}" alt="Image" class="img-fluid rellax ">
+                        <img src="{{ URL::asset('asset/welcome/4.jpeg')}}" alt="Image" class="img-fluid rellax ">
                     </div>
                     <div class="image-stack__item image-stack__item--top" data-aos="fade-up" data-aos-delay="100"  data-rellax-percentage="0.5">
-                        <img src="{{ URL::asset('frontend/images/img_v_2.jpg')}}" alt="Image" class="img-fluid">
+                        <img src="{{ URL::asset('asset/welcome/7.jpeg')}}" alt="Image" class="img-fluid">
                     </div>
                 </div>
 
