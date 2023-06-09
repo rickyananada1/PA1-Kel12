@@ -23,8 +23,11 @@ class AccommodationController extends Controller
     public function index()
     {
         $contributor = Auth::guard('contributor')->id();
-        $accommodations = Accommodation::with('destination')->where('contributor_id', $contributor)
-                                                            ->paginate(10);
+        $accommodations = Accommodation::with('destination')
+        ->orderBy('created_at', 'desc')
+        ->where('contributor_id', $contributor)
+        ->paginate(10);
+        
         return view('contributor.accommodation.index', compact('accommodations'));
     }
 

@@ -20,7 +20,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('kabupaten')->get();
+        $restaurants = Restaurant::with('kabupaten')
+        ->orderBy('created_at', 'desc')
+        ->get();
         
         return view('admin.restaurant.index', compact('restaurants'));
     }

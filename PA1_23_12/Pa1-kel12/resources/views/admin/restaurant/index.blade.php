@@ -70,11 +70,7 @@
                                                 </form>
                                             </td>
                                             <td class="justify-content-center d-flex">
-                                                <form action="#" method="GET" style="margin-right: 10px;">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-info"><i
-                                                            class="fa fa-eye"></i></button>
-                                                </form>
+                                                
                                                 <form action="{{ route('admin.restaurant.edit', [$restaurant]) }}"
                                                     method="GET" style="margin-right: 10px;">
                                                     @csrf
