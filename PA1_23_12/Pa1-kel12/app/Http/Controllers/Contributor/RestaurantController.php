@@ -22,7 +22,9 @@ class RestaurantController extends Controller
     public function index()
     {
         $contributor = Auth::guard('contributor')->id();
-        $restaurants = Restaurant::with('kabupaten')->where('contributor_id', $contributor)
+        $restaurants = Restaurant::with('kabupaten')
+        ->orderBy('created_at', 'desc')
+        ->where('contributor_id', $contributor)
                                                 ->paginate(10);
         
         return view('contributor.restaurant.index', compact('restaurants'));
