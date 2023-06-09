@@ -39,7 +39,7 @@
                                     <select name="cariApa" id="cariApa" class="form-control custom-select">
                                         <option value="">Cari Apa?</option>
                                         <option value="destinations">Destinasi Wisata</option>
-                                        <option value="blogs">Blog</option>
+                                        <option value="blogs">Info Wisata</option>
                                         <option value="restaurants">Tempat Makan</option>
                                     </select>
                                 </div>

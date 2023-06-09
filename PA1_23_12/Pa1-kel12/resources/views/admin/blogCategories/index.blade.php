@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered " id="example1">
+                            <table class="table table-bordered text-center" id="example1">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -30,8 +30,8 @@
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $category->name }}</td>
-                                            <td>{{ Str::limit($category->description, 10) }}</td>
-                                            <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
+                                            <td>{{ $category->description }}</td>
+                                            <td class="d-flex justify-content-center">
                                                 <form
                                                     action="{{ route('admin.blogCategory.edit', ['blogCategory' => $category->id]) }}"
                                                     method="GET" style="margin-right: 10px;">

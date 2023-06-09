@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'],fu
     Route::get('/contributors', [\App\Http\Controllers\Admin\DashboardController::class, 'contributors'])->name('contributors');
     Route::patch('/contributors/{id}/update-status', [\App\Http\Controllers\Admin\DashboardController::class, 'updateStatus'])->name('updateStatus');
     Route::get('/testimonies', [\App\Http\Controllers\Admin\DashboardController::class, 'testimonies'])->name('testimonies');
+    Route::delete('/testimonies/{id}', [\App\Http\Controllers\Admin\DashboardController::class, 'deleteTestimony'])->name('testimony.delete');
     Route::patch('/testimoniess/{id}/update-status', [\App\Http\Controllers\Admin\DashboardController::class, 'updateTestimony'])->name('updateTestimony');
 });
 /*== Route Admin ===================================================================================================================================== */

@@ -32,13 +32,13 @@
                         @endpush
 
                             <div class="table-responsive">
-                                <table class="table table-bordered " id="example1">
+                                <table class="table table-bordered text-center" id="example1">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Kategori Destinasi</th>
-                                            <th scope="col">Deskripsi</th>
-                                            <th scope="col">Action</th>
+                                            <th class="col-1">No</th>
+                                            <th class="col-2">Kategori Destinasi</th>
+                                            <th class="col-4">Deskripsi</th>
+                                            <th class="col-2">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,8 +46,8 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $category->name }}</td>
-                                                <td>{{ Str::limit($category->description, 10) }}</td>
-                                                <td class="pt_10 pb_10" style="display: flex; flex-direction: row;">
+                                                <td>{{ Str::limit($category->description, 100) }}</td>
+                                                <td class="d-flex justify-content-center">
                                                     <form
                                                         action="{{ route('admin.destinationCategory.edit', ['destinationCategory' => $category->id]) }}"
                                                         method="GET" style="margin-right: 10px;">

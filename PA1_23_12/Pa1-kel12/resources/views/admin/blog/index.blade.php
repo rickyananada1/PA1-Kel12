@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered " id="example1">
+                            <table class="table table-bordered text-center" id="example1">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -37,12 +37,12 @@
                                     @foreach ($blogs as $blog)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ Str::limit($blog->title, 50, '...') }}</td>
+                                            <td>{{ $blog->title }}</td>
                                             <td>
                                                 <img src="{{ Storage::url(optional($blog->galleries->first())->images)}}" alt="" class="popular__img" width="100"/>
                                             </td>
                                             <td>{{ Str::limit($blog->excerpt, 50, '...') }}</td>
-                                            <td>{{ $blog->blog_category_id }}</td>
+                                            <td>{{ $blog->blogCategory->name }}</td>
                                             <td>
                                                 @if ($blog->contributor)
                                                     {{ $blog->contributor->name }}
