@@ -112,7 +112,7 @@ class BlogController extends Controller
         // set nilai restaurant_id dan blog_id menjadi null
         $testimony->destination_id = null;
         $testimony->restaurant_id = null;
-        $testimony->status = 1;
+        $testimony->status = 0;
         $testimony->blog_id = $validatedData['blog_id'];
         $testimony->kabupaten_id = $validatedData['kabupaten_id'];
         $testimony->contributor_id = $validatedData['contributor_id'];

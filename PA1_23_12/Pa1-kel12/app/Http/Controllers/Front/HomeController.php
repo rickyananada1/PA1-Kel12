@@ -22,12 +22,13 @@ class HomeController extends Controller
             ->get();
 
         $blogs = Blog::with('galleries')
-        ->where('is_share', 1)
-        ->orderBy('views', 'desc')
-        ->paginate(4);
+            ->where('is_share', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(4);
 
         $testimonies = Testimony::where('status',1)
-        ->get();
+            ->get();
+            
         $kabupatens = Kabupaten::get();
         $destinationCategories = DestinationCategory::get();
         $blogCategories = BlogCategory::get();

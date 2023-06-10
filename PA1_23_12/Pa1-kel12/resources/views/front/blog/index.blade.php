@@ -19,64 +19,6 @@
 @section('content')
     <div class="section">
         <div class="container">
-            
-            <div class="search col-sm-8 mb-5 d-flex">
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        <i class="fa fa-search fa-2x"></i>
-                    </span>
-                    <input type="search" name="search" id="search" class="form-control"
-                        placeholder="Cari info wisata..">
-                </div>
-
-                <div class="input-group">
-                    <form id="searchForm" action="{{ route('blogs.index') }}" method="GET" class="d-flex">
-                        <select name="kabupaten" id="kabupaten" class="custom-select">
-                            @if ($selectedKabupaten)
-                                @php
-                                    $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
-                                @endphp
-                                <option value="{{ $kabupaten->id }}" selected>{{ $kabupaten->name }}</option>
-                                <option value="">Semua Kabupaten?</option>
-                            @else
-                                <option value="" selected>Mau Kemana?</option>
-                            @endif
-                            @foreach ($kabupatens as $kabupaten)
-                                <option value="{{ $kabupaten->id }}">{{ $kabupaten->name }}</option>
-                            @endforeach
-                        </select>
-                        <select name="category" id="category" class="custom-select">
-                            @if ($selectedCategory)
-                                @php
-                                    $category = \App\Models\BlogCategory::find($selectedCategory);
-                                @endphp
-                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                                <option value="">Semua Kategori ?</option>
-                            @else
-                                <option value="" selected>Kategori ?</option>
-                            @endif
-                            @foreach ($blogCategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="btn btn-primary ml-2" hidden>Submit</button>
-                    </form>
-                </div>
-
-                <script>
-                    const selectKabupaten = document.getElementById('kabupaten');
-                    const selectCategory = document.getElementById('category');
-                    const searchForm = document.getElementById('searchForm');
-
-                    selectKabupaten.addEventListener('change', function() {
-                        searchForm.submit();
-                    });
-                    selectCategory.addEventListener('change', function() {
-                        searchForm.submit();
-                    });
-                </script>
-            </div>
-
 
             <div class="row">
 
@@ -84,22 +26,79 @@
                     @php
                         $category = \App\Models\BlogCategory::find($selectedCategory);
                     @endphp
-                    <h2 class="category-title mb-4">Kategori: {{ $category->name }}</h2>
+                    <h2 class="category-title mb-1">Kategori: {{ $category->name }}</h2>
                 @elseif ($selectedKabupaten != null && $selectedCategory == null)
                     @php
                         $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
                     @endphp
-                    <h2 class="category-title mb-4">Kabupaten: {{ $kabupaten->name }}</h2>
+                    <h2 class="category-title mb-1">Kabupaten: {{ $kabupaten->name }}</h2>
                 @elseif ($selectedCategory != null && $selectedKabupaten != null)
                     @php
                         $category = \App\Models\BlogCategory::find($selectedCategory);
                         $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
                     @endphp
-                    <h2 class="category-title mb-4">Kabupaten {{ $kabupaten->name }} dan Berkategori
+                    <h2 class="category-title mb-1">Kabupaten {{ $kabupaten->name }} dan Berkategori
                         {{ $category->name }}
                     </h2>
                 @endif
                 <div class="col-md-9 aos-init aos-animate" data-aos="fade-up">
+
+                    <div class="search col-sm-11 mb-5 d-flex justify-content-center glass" style="align-items: center; ">
+                        <div class="input-group">
+                            <span class="input-group-text" style="background-color: transparent">
+                                <i class="fa fa-search fa-2x"></i>
+                            </span>
+                            <input type="search" name="search" id="search" class="form-control" style="border: none;"
+                                placeholder="Cari info wisata..">
+                        </div>
+
+                        <div class="input-group">
+                            <form id="searchForm" action="{{ route('blogs.index') }}" method="GET" class="d-flex">
+                                <select name="kabupaten" id="kabupaten" class="custom-select" style="border: none;">
+                                    @if ($selectedKabupaten)
+                                        @php
+                                            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                                        @endphp
+                                        <option value="{{ $kabupaten->id }}" selected>{{ $kabupaten->name }}</option>
+                                        <option value="">Semua Kabupaten?</option>
+                                    @else
+                                        <option value="" selected>Mau Kemana?</option>
+                                    @endif
+                                    @foreach ($kabupatens as $kabupaten)
+                                        <option value="{{ $kabupaten->id }}">{{ $kabupaten->name }}</option>
+                                    @endforeach
+                                </select>
+                                <select name="category" id="category" class="custom-select" style="border: none;">
+                                    @if ($selectedCategory)
+                                        @php
+                                            $category = \App\Models\BlogCategory::find($selectedCategory);
+                                        @endphp
+                                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                        <option value="">Semua Kategori ?</option>
+                                    @else
+                                        <option value="" selected>Kategori ?</option>
+                                    @endif
+                                    @foreach ($blogCategories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" style="width: 0.1px" hidden></button>
+                            </form>
+                        </div>
+
+                        <script>
+                            const selectKabupaten = document.getElementById('kabupaten');
+                            const selectCategory = document.getElementById('category');
+                            const searchForm = document.getElementById('searchForm');
+
+                            selectKabupaten.addEventListener('change', function() {
+                                searchForm.submit();
+                            });
+                            selectCategory.addEventListener('change', function() {
+                                searchForm.submit();
+                            });
+                        </script>
+                    </div>
 
                     <div class="alldata">
                         @foreach ($blogs as $blog)
@@ -172,7 +171,7 @@
                     </div>
 
                     <div id="Content" class="searchdata">
-                        
+
                     </div>
 
                     <script>

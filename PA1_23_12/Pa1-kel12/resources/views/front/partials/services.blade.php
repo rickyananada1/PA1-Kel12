@@ -43,7 +43,7 @@
                                     class="img-fluid">
                             </span>
                             <div>
-                                <h3>Kulineran</h3>
+                                <h3>Tempat makan</h3>
                                 <p>Nikmati kelezatan kuliner lokal dan internasional di destinasi impianmu. Rasakan pengalaman tak terlupakan dengan mencoba hidangan khas setempat.</p>
                             </div>
                         </div>

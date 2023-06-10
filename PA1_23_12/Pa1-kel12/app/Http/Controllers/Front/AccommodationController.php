@@ -9,6 +9,7 @@ use App\Models\Destination;
 use App\Models\DestinationCategory;
 use App\Models\Kabupaten;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class AccommodationController extends Controller
 {
@@ -16,22 +17,26 @@ class AccommodationController extends Controller
     {
         $destinationCategories = DestinationCategory::get();
         $blogCategories = BlogCategory::get();
-        $accommodations = Accommodation::paginate(1);
+
+        $accommodations = Accommodation::where('is_share', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+
         $kabupatens = Kabupaten::get();
 
         return view('front.accommodation.index', compact('accommodations', 'destinationCategories', 'blogCategories', 'kabupatens'));
     }
 
-    public function show(Accommodation $accommodation){
+    public function show(Accommodation $accommodation)
+    {
         $blogCategories = BlogCategory::get();
         $destinationCategories = DestinationCategory::all();
         $kabupatens = Kabupaten::get();
 
-        $popularDestinations = Destination::
-            where('is_share', 1)
+        $popularDestinations = Destination::where('is_share', 1)
             ->where('views', 'desc')
             ->get();
 
-        return view('front.accommodation.show', compact('accommodation', 'blogCategories', 'destinationCategories', 'kabupatens','popularDestinations'));
+        return view('front.accommodation.show', compact('accommodation', 'blogCategories', 'destinationCategories', 'kabupatens', 'popularDestinations'));
     }
 }

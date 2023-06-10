@@ -23,11 +23,10 @@
     </div>
     <style>
         .gambar {
-            height: 200px;
-            /* ganti ukuran yang diinginkan */
-            height: 400px;
-            /**/
+            height: 300px;
+            width: auto;
             object-fit: cover;
+            object-position: center;
         }
     </style>
 
@@ -36,17 +35,20 @@
 
             @foreach ($destinations as $destination)
                 <div class="destination">
+                    <a href="{{ Route('destinations.show', $destination->slug) }}">
                     <div class="thumb card zoom-image">
-                        <a href="{{ Route('destinations.show', $destination->slug) }}">
                             <img src="{{ Storage::url(optional($destination->galleries->random())->images) }}"
                                 alt="Image" class="img-fluid gambar">
+                                <div class="price">
+                                    <p style="background-color: #5E8B7E; color: white; padding: 5px 10px; border-radius: 10px;">{{ $destination->destinationCategory->name }}</p>
+                                </div>
+                                
+                            </div>
+                            <div class="mt-4">
+                                <h3><a href="{{ Route('destinations.show', [$destination]) }}">{{ $destination->name }}</a></h3>
+                                <span class="meta">{{ $destination->location }}</span>
+                            </div>
                         </a>
-                        <div class="price">{{ $destination->destinationCategory->name }}</div>
-                    </div>
-                    <div class="mt-4">
-                        <h3><a href="{{ Route('destinations.show', [$destination]) }}">{{ $destination->name }}</a></h3>
-                        <span class="meta">{{ $destination->location }}</span>
-                    </div>
                 </div>
             @endforeach
 

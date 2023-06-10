@@ -68,10 +68,6 @@
                             </div>
                         @endforeach
 
-
-
-
-
                         <nav class="mt-5" aria-label="Page navigation example" data-aos="fade-up" data-aos-delay="100">
                             <ul class="custom-pagination pagination">
                                 @if ($destinations->onFirstPage())
@@ -81,14 +77,27 @@
                                             href="{{ $destinations->previousPageUrl() }}&category={{ $selectedCategory }}&kabupaten={{ $selectedKabupaten }}">Previous</a>
                                     </li>
                                 @endif
-
-                                @for ($i = 1; $i <= $destinations->lastPage(); $i++)
+                        
+                                @php
+                                    $start = max(1, $destinations->currentPage() - 1);
+                                    $end = min($start + 2, $destinations->lastPage());
+                                @endphp
+                        
+                                @if ($start > 1)
+                                    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                                @endif
+                        
+                                @for ($i = $start; $i <= $end; $i++)
                                     <li class="{{ $i == $destinations->currentPage() ? 'active' : '' }}"><a
                                             class="page-link"
                                             href="{{ $destinations->url($i) }}&category={{ $selectedCategory }}&kabupaten={{ $selectedKabupaten }}">{{ $i }}</a>
                                     </li>
                                 @endfor
-
+                        
+                                @if ($end < $destinations->lastPage())
+                                    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                                @endif
+                        
                                 @if ($destinations->hasMorePages())
                                     <li class="page-item"><a class="page-link"
                                             href="{{ $destinations->nextPageUrl() }}&category={{ $selectedCategory }}&kabupaten={{ $selectedKabupaten }}">Next</a>
@@ -98,6 +107,7 @@
                                 @endif
                             </ul>
                         </nav>
+                        
 
                     </div>
 
@@ -108,40 +118,46 @@
 
                 <div class="col-lg-4 sidebar">
 
-                    <div class="search d-flex">
-                        <input type="search" class="form-control border-2 border-dark rounded" name="search"
-                            id="search" placeholder="Cari Destinasi Wisata..">
-                        <div class="input-group-append">
-                            <span class="input-group-text">
-                                <i class="fa fa-search fa-2x"></i>
-                            </span>
+                    <div style="background-color: #A7C4BC;" class="glass">
+                        <div class="search d-flex">
+
+                            <input type="search" class="form-control border-2 border-dark rounded" name="search"
+                                id="search" placeholder="Cari Destinasi Wisata..">
+                            <div class="input-group-append">
+                                <span class="input-group-text form-control">
+                                    <i class="fa fa-search fa-2x"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="input-group mt-2">
-                        <form id="searchForm" action="{{ route('destinations.index') }}" method="GET">
-                            <select name="kabupaten" id="kabupaten"
-                                class="custom-select border border-2 border-dark rounded w-100">
-                                @if ($selectedKabupaten)
-                                    @php
-                                        $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
-                                    @endphp
-                                    <option value="{{ $kabupaten->id }}" class="text-center" selected>
-                                        {{ $kabupaten->name }}
-                                    </option>
-                                @else
-                                    <option value="" class="text-center" selected>Mau Kemana?</option>
-                                @endif
 
-                                @foreach ($kabupatens as $kabupaten)
-                                    <option value="{{ $kabupaten->id }}"
-                                        {{ $selectedKabupaten == $kabupaten->id ? 'selected' : '' }} class="text-center">
-                                        {{ $kabupaten->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <button type="submit" style="display: none;" hidden></button>
-                        </form>
+                        <div class="input-group mt-2">
+                            <form id="searchForm" action="{{ route('destinations.index') }}" method="GET">
+                                <select name="kabupaten" id="kabupaten"
+                                    class="custom-select border-2 border-dark rounded">
+                                    @if ($selectedKabupaten)
+                                        @php
+                                            $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
+                                        @endphp
+                                        <option value="{{ $kabupaten->id }}" class="text-center" selected>
+                                            {{ $kabupaten->name }}
+                                        </option>
+                                    @else
+                                        <option value="" class="text-center" selected>Mau Kemana?</option>
+                                    @endif
+
+                                    @foreach ($kabupatens as $kabupaten)
+                                        <option value="{{ $kabupaten->id }}"
+                                            {{ $selectedKabupaten == $kabupaten->id ? 'selected' : '' }}
+                                            class="text-center">
+                                            {{ $kabupaten->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" style="display: none;" hidden></button>
+                            </form>
+                        </div>
+
                     </div>
 
 
@@ -160,7 +176,6 @@
                     <div class="sidebar-box">
                         <h3 class="heading">Kategori Wisata</h3>
                         <ul class="categories">
-
                             <li><a href="{{ route('destinations.index') }}">Semua kategori</a></li>
                             @foreach ($destinationCategories as $destinationCategory)
                                 <li><a
@@ -174,13 +189,13 @@
 
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
-                        <h3 class="heading">Popular Posts</h3>
+                        <h3 class="heading">Destinasi terpopuler</h3>
                         <div class="post-entry-sidebar">
                             <ul>
                                 @php $count = 0 @endphp
                                 @foreach ($popularDestinations as $popularDestination)
                                     <li>
-                                        <a href="">
+                                        <a href="{{ Route('destinations.show', $popularDestination->slug) }}">
                                             <img src="{{ Storage::url(optional($popularDestination->galleries->random())->images) }}"
                                                 alt="Image placeholder" class="me-4 rounded">
                                             <div class="text">

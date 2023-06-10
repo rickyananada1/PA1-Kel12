@@ -64,7 +64,7 @@ require __DIR__ . '/contributorauth.php';
 
 Route::group(['prefix' => 'contributor', 'as' => 'contributor.', 'middleware' => 'contributor.status'],function(){
 
-    Route::resource('kabupaten', \App\Http\Controllers\Contributor\KabupatenController::class)->except(['create', 'show', 'update']);
+    Route::resource('kabupaten', \App\Http\Controllers\Contributor\KabupatenController::class)->only('index');
     Route::resource('blog', \App\Http\Controllers\Contributor\BlogController::class)->except('show');
     Route::resource('blogCategory', \App\Http\Controllers\Contributor\BlogCategoryController::class)->except('show');
     Route::resource('blog.gallery', \App\Http\Controllers\Contributor\BlogGalleryController::class)->except(['create', 'index', 'show', 'update']);
@@ -111,10 +111,11 @@ Route::get('restaurants', [\App\Http\Controllers\Front\RestaurantController::cla
 Route::get('/searchRest', [\App\Http\Controllers\Front\RestaurantController::class, 'searchRest'])->name('searchRest');
 Route::get('restaurants/{restaurant:slug}', [\App\Http\Controllers\Front\RestaurantController::class, 'show'])->name('restaurants.show');
 Route::post('restaurants/testimonies', [\App\Http\Controllers\Front\RestaurantController::class, 'testimonies'])->name('restaurants.testimonies');
+
 Route::get('accommodations', [\App\Http\Controllers\Front\AccommodationController::class, 'index'])->name('accommodations.index');
 Route::get('accommodations/{accommodation:slug}', [\App\Http\Controllers\Front\AccommodationController::class, 'show'])->name('accommodations.show');
 Route::get('galleries', [\App\Http\Controllers\Front\GalleryController::class, 'index'])->name('galleries.index');
-Route::get('/tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
+Route::get('tentang-kami', [HomeController::class, 'tentangkami'])->name('tentangkami');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 

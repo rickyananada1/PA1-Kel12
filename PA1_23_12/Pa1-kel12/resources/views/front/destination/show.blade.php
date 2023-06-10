@@ -90,13 +90,16 @@
                                     <span class="visually-hidden">Next</span>
                                 </a>
                             </div>
-                            <div class="col-md-6 mb-4">
-                                <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
-                                    alt="Image placeholder" class="img-fluid rounded">
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <img src="{{ Storage::url(optional($destination->galleries->last())->images) }}"
-                                    alt="Image placeholder" class="img-fluid rounded">
+                            <div class="d-flex justify-content-center">
+
+                                <div class="mb-4 m-2">
+                                    <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
+                                        alt="Image placeholder" class="img-fluid rounded gambar2">
+                                </div>
+                                <div class="mb-4 m-2">
+                                    <img src="{{ Storage::url(optional($destination->galleries->last())->images) }}"
+                                        alt="Image placeholder" class="img-fluid rounded gambar2">
+                                </div>
                             </div>
                         </div>
                         <p>{!! $secondHalf !!}</p>
@@ -265,15 +268,17 @@
 <section class="section posts-entry posts-entry-sm bg-light">
 <div class="container">
     <div class="row mb-4">
-        <div class="col-12 text-uppercase text-black">Lebih banyak blog</div>
+        <a href="{{route('blogs.index')}}">
+            <div class="col-12 text-uppercase text-black text-decoration-underline">Lebih banyak info..</div>
+        </a>
     </div>
     <div class="row">
         @foreach ($latestBlogs as $latestBlog)
             <div class="col-md-6 col-lg-3">
                 <div class="blog-entry">
-                    <a href="{{Route('blogs.show', $latestBlog->slug)}}" class="img-link">
+                    <a href="{{Route('blogs.show', $latestBlog->slug)}}" class="img-link zoom-image">
                         <img src="{{ Storage::url(optional($latestBlog->galleries->random())->images) }}"
-                            alt="Image" class="img-fluid">
+                            alt="Image" class="img-fluid gambar2">
                     </a>
                     <span class="date">{{ $latestBlog->created_at->format('F j, Y') }}</span>
                     <h2><a href="{{Route('blogs.show', $latestBlog->slug)}}">{{ $latestBlog->name }}</a></h2>

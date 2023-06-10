@@ -69,7 +69,7 @@
                                                 href="{{ route('admin.login') }}">
                                                 {{ __('Login Admin?') }}
                                             </a>
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
+                                        <p class="mb-5 mt-3 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
                                                 href="{{Route('contributor.register')}}" style="color: #393f81;">Registrasi disini</a></p>
                                     </form>
 

@@ -155,12 +155,13 @@
     <div class="section">
         <div class="container">
             <div class="row justify-content-between align-items-center">
-                <div class="col-lg-5 mb-4 mb-lg-0 order-lg-2" data-aos="fade-up">
+                <div class="col-lg-5 mb-4 mb-lg-0 order-lg-2 zoom-image" data-aos="fade-up">
                     <img src="{{ URL::asset('asset/welcome/2.jpg') }}" alt="Image" class="img-fluid">
                 </div>
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
                     <h2 class="heading mb-4">Bersama kami dan dapatkan kenangan manis untuk dikenang</h2>
-                    <p>Mengunjungi Website Wisata Sekitaran Danau Toba membawa kenangan manis yang tak terlupakan, seperti
+                    <p>Mengunjungi Website Wisata Sekitaran Danau Toba membawa kenangan manis yang tak terlupakan,
+                        seperti
                         merasakan keindahan alamnya yang menakjubkan dan merasakan kehangatan keramahan penduduk
                         setempat.
                     </p>
@@ -268,10 +269,12 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-12"data-aos="fade-up" data-aos-delay="0">
-
+                <div class="col-12 d-flex justify-content-between align-items-center" data-aos="fade-up" data-aos-delay="0">
                     <h2 class="heading mb-5">Postingan Terbaru</h2>
+                    <a href="{{ route('blogs.index')}}" class="text-center h4 text-decoration-underline">view all</a>
                 </div>
+                
+
             </div>
             <div class="row align-items-stretch">
 

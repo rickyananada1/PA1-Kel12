@@ -9916,19 +9916,18 @@ textarea {
   .sidebar-box *:last-child {
     margin-bottom: 0; }
   .sidebar-box .heading {
-    font-size: 18px;
+    /* font-size: 18px; */
     color: #000;
     font-weight: 400;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
+
     border-bottom: 1px solid #e6e6e6; }
 
 .comment-wrap .heading, .search-result-wrap .heading {
-  font-size: 18px;
+  /* font-size: 18px; */
   color: #000;
   font-weight: 400;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
+  /* margin-bottom: 30px;
+  padding-bottom: 20px; */
   border-bottom: 1px solid #e6e6e6; }
 
 .tags {
