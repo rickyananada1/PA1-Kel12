@@ -10,7 +10,7 @@
 
 @section('content')
     {{-- custom --}}
-    <div class="row justify-content-center">
+    <div class="row ">
 
         <!-- ./col -->
         <div class="col-lg-4 col-6">

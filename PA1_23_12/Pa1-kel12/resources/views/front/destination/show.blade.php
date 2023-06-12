@@ -22,7 +22,7 @@
         .carousel-item img {
             width: 500px;
             /* Ganti dengan ukuran yang diinginkan */
-            height: 400px;
+            height: 300px;
             /* Ganti dengan ukuran yang diinginkan */
             object-fit: cover;
             /* Mengatur agar gambar memenuhi area dengan proporsi aslinya */
@@ -44,22 +44,40 @@
                                 <span class="mx-1">&bullet;</span>
                                 <span>{{ $destination->created_at->format('F j, Y') }}</span>
                             </div>
-                            <h1 class="mb-3 bold">{{ $destination->name }}</h1>
-                            <p class="section-title pr-5">
-                                <span class="pr-2">{{ $destination->location }}</span>
-                            </p>
+
+                            <div class="d-flex justify-content-between">
+
+                                <div>
+                                    <h1 class="mb-3 bold">{{ $destination->name }}</h1>
+                                    <p class="section-title pr-5">
+                                        <span class="pr-2">{{ $destination->location }}</span>
+                                    </p>
+                                </div>
+
+                                <div style="margin-top: -60px">
+                                    <a class="card1" href="#">
+                                        <p>Harga Tiket</p>
+                                        <p class="small">{{ $destination->ticket }}</p>
+                                        <div class="go-corner" href="#">
+                                            <div class="go-arrow">
+                                                →
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
                             <hr class="firstcharacter" color="black">
                         </div>
                         @php
                             $description = $destination->description;
                             $paragraphs = explode('</p>', $description);
                             $totalParagraphs = count($paragraphs);
-                            $halfLength = ceil($totalParagraphs / 3);
+                            $halfLength = ceil($totalParagraphs / 2);
                             $firstHalf = implode('</p>', array_slice($paragraphs, 0, $halfLength)) . '</p>';
                             $secondHalf = implode('</p>', array_slice($paragraphs, 1, $halfLength));
                         @endphp
-                        <p><span
-                                class="firstcharacter">{!! strip_tags(substr($firstHalf, 0, 4)) !!}</span>{!! substr($firstHalf, 4) !!}
+                        <p><span class="firstcharacter">{!! strip_tags(substr($firstHalf, 0, 4)) !!}</span>{!! substr($firstHalf, 4) !!}
                         </p>
                         <div class="row my-4">
                             <div id="carouselExampleIndicators" class="carousel slide col-md-12 mb-4"
@@ -90,7 +108,8 @@
                                     <span class="visually-hidden">Next</span>
                                 </a>
                             </div>
-                            <div class="d-flex justify-content-center">
+
+                            {{-- <div class="d-flex justify-content-center">
 
                                 <div class="mb-4 m-2">
                                     <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
@@ -100,30 +119,31 @@
                                     <img src="{{ Storage::url(optional($destination->galleries->last())->images) }}"
                                         alt="Image placeholder" class="img-fluid rounded gambar2">
                                 </div>
-                            </div>
+                            </div> --}}
+
                         </div>
+
                         <p>{!! $secondHalf !!}</p>
                     </div>
 
 
                     <div class="pt-5 comment-wrap">
-                        <h3 class="comment-title py-4">{{ $testimonies->count()}} Testimoni</h3>
+                        <h3 class="comment-title py-4">{{ $testimonies->count() }} Testimoni</h3>
                         <ul class="comment-list">
                             @foreach ($testimonies as $testimony)
-                                
-                            <li class="comment">
-                                <div class="vcard">
-                                    <img src="@if ($testimony->contributor && $testimony->contributor->image) 
-                                    {{ Storage::url($testimony->contributor->image) }}
+                                <li class="comment">
+                                    <div class="vcard">
+                                        <img src="@if ($testimony->contributor && $testimony->contributor->image) {{ Storage::url($testimony->contributor->image) }}
                                 @else 
-                                {{ asset('Template/dist/img/profile.jpeg') }} @endif" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>{{$testimony->contributor->name}}</h3>
-                                    <div class="meta">{{ $testimony->created_at->diffForHumans() }}</div>
-                                    <p>{{ $testimony->description }}</p>
-                                </div>
-                            </li>
+                                {{ asset('Template/dist/img/profile.jpeg') }} @endif"
+                                            alt="Image placeholder">
+                                    </div>
+                                    <div class="comment-body">
+                                        <h3>{{ $testimony->contributor->name }}</h3>
+                                        <div class="meta">{{ $testimony->created_at->diffForHumans() }}</div>
+                                        <p>{{ $testimony->description }}</p>
+                                    </div>
+                                </li>
                             @endforeach
                         </ul>
                         <!-- END comment-list -->
@@ -142,7 +162,7 @@
                                         <input type="hidden" name="contributor_id"
                                             value="{{ Auth::guard('contributor')->user()->id }}">
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary mt-3">Kirim
+                                            <button type="submit" class="btn btn-primary mt-3 tombol">Kirim
                                                 Testimoni</button>
                                         </div>
                                     </div>
@@ -182,27 +202,54 @@
                                         Admin
                                     @endif
                                 </h2>
-                                <p class="mb-4">Kami membuka kesempatan bagi Anda untuk berperan sebagai contributor. Mari bergabung dan berbagi pengetahuan serta keterampilan Anda dengan kami</p>
+                                <p class="mb-4">Kami membuka kesempatan bagi Anda untuk berperan sebagai contributor.
+                                    Mari bergabung dan berbagi pengetahuan serta keterampilan Anda dengan kami</p>
                             </div>
                         </div>
                     </div>
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
-                        <h2>Wisata Popular</h2>
+                        @if ($accommodations->count() > 0)
+                            <h2 class="mb-2">Akomodasi terdekat</h2>
+                            <div class="post-entry-sidebar">
+                                <ul>
+                                    @php $count = 0 @endphp
+                                    @foreach ($accommodations as $acc)
+                                        <li>
+                                            <a href="{{ Route('accommodations.show', $acc->slug) }}">
+                                                <img src="{{ Storage::url($acc->galleries->first()->images) }}"
+                                                    alt="Image placeholder" class="me-4 rounded">
+                                                <div class="text">
+                                                    <h3 class="text-secondary">{{ $acc->name }}</h3>
+                                                    <div class="post-meta">
+                                                        <span
+                                                            class="mr-2">{{ $acc->created_at->format('F j, Y') }}</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        @php $count++ @endphp
+                                        @if ($count == 3)
+                                        @break
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    @else
+                        <h2>Destinasi terpopuler</h2>
                         <div class="post-entry-sidebar">
                             <ul>
                                 @php $count = 0 @endphp
-                                @foreach ($popularDestinations as $popularDestination)
+                                @foreach ($popularDestinations as $acc)
                                     <li>
-                                        <a href="{{Route('destinations.show', $popularDestination->slug)}}">
-                                            <img src="{{ Storage::url($popularDestination->galleries->first()->images) }}"
+                                        <a href="{{ Route('destinations.show', $acc->slug) }}">
+                                            <img src="{{ Storage::url($acc->galleries->first()->images) }}"
                                                 alt="Image placeholder" class="me-4 rounded">
                                             <div class="text">
-                                                <h3 class="text-secondary">{{ $popularDestination->name }}</h3
-                                                    class="text-secondary">
+                                                <h3 class="text-secondary">{{ $acc->name }}</h3>
                                                 <div class="post-meta">
                                                     <span
-                                                        class="mr-2">{{ $popularDestination->created_at->format('F j, Y') }}</span>
+                                                        class="mr-2">{{ $acc->created_at->format('F j, Y') }}</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -214,52 +261,56 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
-
-                <div class="sidebar-box">
-                    <h2>Wisata terdekat</h2>
-                    <div class="post-entry-sidebar">
-                        <ul>
-                            @php $count = 0 @endphp
-                            @foreach ($closeDestinations as $closeDestination)
-                                <li>
-                                    <a href="{{Route('destinations.show', $closeDestination->slug)}}">
-                                        <img src="{{ Storage::url($closeDestination->galleries->first()->images) }}"
-                                            alt="Image placeholder" class="me-4 rounded">
-                                        <div class="text">
-                                            <h3 class="text-secondary">{{ $closeDestination->name }}</h3
-                                                class="text-secondary">
-                                            <div class="post-meta">
-                                                <span
-                                                    class="mr-2">{{ $closeDestination->created_at->format('F j, Y') }}</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                @php $count++ @endphp
-                                @if ($count == 3)
-                                @break
-                            @endif
-                        @endforeach
-
-                    </ul>
-                </div>
+                @endif
             </div>
-            <!-- END sidebar-box -->
+
+
 
             <div class="sidebar-box">
-                <h2>Destinasi Kategori</h2>
-                <ul class="categories">
-                    @foreach ($destinationCategories as $destinationCategory)
-                        <li><a href="{{ route('destinations.index', ['category' => $destinationCategory->id ])}}">{{ $destinationCategory->name }} <span>(12)</span></a></li>
+                <h2>Wisata terdekat</h2>
+                <div class="post-entry-sidebar">
+                    <ul>
+                        @php $count = 0 @endphp
+                        @foreach ($closeDestinations as $closeDestination)
+                            <li>
+                                <a href="{{ Route('destinations.show', $closeDestination->slug) }}">
+                                    <img src="{{ Storage::url($closeDestination->galleries->first()->images) }}"
+                                        alt="Image placeholder" class="me-4 rounded">
+                                    <div class="text">
+                                        <h3 class="text-secondary">{{ $closeDestination->name }}</h3
+                                            class="text-secondary">
+                                        <div class="post-meta">
+                                            <span
+                                                class="mr-2">{{ $closeDestination->created_at->format('F j, Y') }}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            @php $count++ @endphp
+                            @if ($count == 3)
+                            @break
+                        @endif
                     @endforeach
+
                 </ul>
             </div>
-
         </div>
-        <!-- END sidebar -->
+        <!-- END sidebar-box -->
+
+        <div class="sidebar-box">
+            <h2>Destinasi Kategori</h2>
+            <ul class="categories">
+                @foreach ($destinationCategories as $destinationCategory)
+                    <li><a href="{{ route('destinations.index', ['category' => $destinationCategory->id]) }}">{{ $destinationCategory->name }}
+                        </a></li>
+                @endforeach
+            </ul>
+        </div>
 
     </div>
+    <!-- END sidebar -->
+
+</div>
 </div>
 </section>
 
@@ -267,28 +318,30 @@
 <!-- Start posts-entry -->
 <section class="section posts-entry posts-entry-sm bg-light">
 <div class="container">
-    <div class="row mb-4">
-        <a href="{{route('blogs.index')}}">
-            <div class="col-12 text-uppercase text-black text-decoration-underline">Lebih banyak info..</div>
-        </a>
-    </div>
-    <div class="row">
-        @foreach ($latestBlogs as $latestBlog)
-            <div class="col-md-6 col-lg-3">
-                <div class="blog-entry">
-                    <a href="{{Route('blogs.show', $latestBlog->slug)}}" class="img-link zoom-image">
-                        <img src="{{ Storage::url(optional($latestBlog->galleries->random())->images) }}"
-                            alt="Image" class="img-fluid gambar2">
-                    </a>
-                    <span class="date">{{ $latestBlog->created_at->format('F j, Y') }}</span>
-                    <h2><a href="{{Route('blogs.show', $latestBlog->slug)}}">{{ $latestBlog->name }}</a></h2>
-                    <p>{{ Str::limit($latestBlog->excerpt, 100) }}</p>
-                    <p><a href="{{Route('blogs.show', $latestBlog->slug)}}" class="read-more">Continue Reading</a></p>
-                </div>
+<div class="row mb-4">
+    <a href="{{ route('blogs.index') }}">
+        <div class="col-12 text-uppercase text-black text-decoration-underline">Lihat info lainnya..</div>
+    </a>
+</div>
+<div class="row">
+    @foreach ($latestBlogs as $latestBlog)
+        <div class="col-md-6 col-lg-3">
+            <div class="blog-entry">
+                <a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="img-link zoom-image">
+                    <img src="{{ Storage::url(optional($latestBlog->galleries->random())->images) }}"
+                        alt="Image" class="img-fluid gambar2">
+                </a>
+                <br>
+                <span class="date">{{ $latestBlog->created_at->format('F j, Y') }}</span>
+                <h2><a href="{{ Route('blogs.show', $latestBlog->slug) }}">{{ $latestBlog->name }}</a></h2>
+                <p>{{ Str::limit($latestBlog->excerpt, 100) }}</p>
+                <p><a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="read-more">Continue
+                        Reading</a></p>
             </div>
-        @endforeach
+        </div>
+    @endforeach
 
-    </div>
+</div>
 </div>
 </section>
 <!-- End posts-entry -->

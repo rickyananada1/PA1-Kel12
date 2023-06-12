@@ -21,27 +21,28 @@
                         <li class="has-children">
                             <a href="#">Cari Apa?</a>
                             <ul class="dropdown">
-                                <li class="has-children"><a href="{{ Route('destinations.index') }}">Destinasi Wisata</a>
+                                <li class="has-children"><a href="{{ Route('destinations.index') }}">Destinasi
+                                        Wisata</a>
                                     <ul class="dropdown">
-                                       
-                                        @foreach ($destinationCategories as $category)
-                                            
-                                        <li><a href="{{Route('destinations.index', ['category' => $category->id] )}}">{{ $category->name}}</a></li>
 
+                                        @foreach ($destinationCategories as $category)
+                                            <li><a
+                                                    href="{{ Route('destinations.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </li>
                                 <li class="has-children"><a href="{{ Route('blogs.index') }}">Info Wisata</a>
                                     <ul class="dropdown">
                                         @foreach ($blogCategories as $category)
-                                            
-                                        <li><a href="{{Route('blogs.index', ['category' => $category->id] )}}">{{ $category->name}}</a></li>
-
+                                            <li><a
+                                                    href="{{ Route('blogs.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="{{Route('accommodations.index')}}">Akomodasi</a></li>
-                         
+                                <li><a href="{{ Route('accommodations.index') }}">Akomodasi</a></li>
+
                                 <li><a href="{{ Route('restaurants.index') }}">Tempat Makan</a></li>
                             </ul>
                         </li>
@@ -49,11 +50,12 @@
                             <a href="#">Mau Kemana?</a>
                             <ul class="dropdown">
                                 @foreach ($kabupatens as $kabupaten)
-                                <li><a href="{{ route('kabupatens', $kabupaten->id) }}">{{ $kabupaten->name }}</a></li>
+                                    <li><a href="{{ route('kabupatens', $kabupaten->id) }}">{{ $kabupaten->name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
-                        <li><a href="{{Route('galleries.index')}}">Galeri</a></li>
+                        <li><a href="{{ Route('galleries.index') }}">Galeri</a></li>
                         <li><a href="{{ Route('tentangkami') }}">Tentang Kami</a></li>
 
                     </ul>
@@ -75,13 +77,13 @@
                         <div class="mt-2 alert alert-danger" id="alert">
                             {{ session('error') }}
                         </div>
+                        <script>
+                            setTimeout(function() {
+                                document.getElementById('alert').style.display = 'none';
+                            }, 5000);
+                        </script>
                     @endif
 
-                    <script>
-                        setTimeout(function() {
-                            document.getElementById('alert').style.display = 'none';
-                        }, 5000);
-                    </script>
 
                     <a href="#"
                         class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"

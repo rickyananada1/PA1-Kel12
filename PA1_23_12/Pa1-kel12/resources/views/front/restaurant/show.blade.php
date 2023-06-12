@@ -160,26 +160,25 @@
 
 
 
-                    <div class="pt-5">
-                        <h3 class="mb-5">{{$testimonies->count()}} Testimoni</h3>
+                    <div class="pt-5 mb-3">
+                        <h3 class="mb-5">{{ $testimonies->count() }} Testimoni</h3>
                         <ul class="comment-list">
 
                             @foreach ($testimonies as $testimony)
-                                
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="@if ($testimony->contributor && $testimony->contributor->image) 
-                                    {{ Storage::url($testimony->contributor->image) }}
+                                <li class="comment">
+                                    <div class="vcard bio">
+                                        <img src="@if ($testimony->contributor && $testimony->contributor->image) {{ Storage::url($testimony->contributor->image) }}
                                 @else 
-                                {{ asset('Template/dist/img/profile.jpeg') }} @endif" alt="Free Website Template by Free-Template.co">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>{{$testimony->contributor->name}}</h3>
-                                    <div class="meta">{{ $testimony->created_at->diffForHumans() }}</div>
-                                    <p>{{ $testimony->description }}</p>
-    
-                                </div>
-                            </li>
+                                {{ asset('Template/dist/img/profile.jpeg') }} @endif"
+                                            alt="Free Website Template by Free-Template.co">
+                                    </div>
+                                    <div class="comment-body">
+                                        <h3>{{ $testimony->contributor->name }}</h3>
+                                        <div class="meta">{{ $testimony->created_at->diffForHumans() }}</div>
+                                        <p>{{ $testimony->description }}</p>
+
+                                    </div>
+                                </li>
                             @endforeach
 
 
@@ -189,7 +188,7 @@
                         <div class="comment-form-wrap pt-5">
                             <h3 class="mb-5">Tinggalkan testimoni</h3>
                             @if (Auth::guard('contributor')->check())
-                                <form action="{{Route('restaurants.testimonies')}}" method="POST">
+                                <form action="{{ Route('restaurants.testimonies') }}" method="POST">
                                     @csrf
 
                                     <div class="mb-3">
@@ -231,8 +230,10 @@
                                 Admin
                             @endif
                         </h3>
-                        <p>Bersama-sama, kita dapat menghadirkan konten yang menarik dan informatif tentang destinasi wisata terbaik di seluruh dunia. Dari ulasan pribadi, tips perjalanan, hingga cerita petualangan, semua itu dapat dijadikan sumber inspirasi bagi para pelancong.</p>
-                      
+                        <p>Bersama-sama, kita dapat menghadirkan konten yang menarik dan informatif tentang destinasi wisata
+                            terbaik di seluruh dunia. Dari ulasan pribadi, tips perjalanan, hingga cerita petualangan, semua
+                            itu dapat dijadikan sumber inspirasi bagi para pelancong.</p>
+
                     </div>
 
                     <div class="sidebar-box">
@@ -256,11 +257,22 @@
                 </div>
 
                 <div class="sidebar-box">
-                    <h3 class="text-black">Paragraph</h3>
-                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline
-                        of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own
-                        road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.
-                    </p>
+                    <div class="categories">
+                        <h3>Destinasi Terdekat</h3>
+                        @php $count = 0 @endphp
+                        @foreach ($blogs as $blog)
+                            <li><a href="{{ Route('blogs.show', $blog->slug) }}">
+                                    <img src="{{ Storage::url($blog->galleries->first()->images) }}"
+                                        alt="Image placeholder" class="me-4 rounded" style="width: 100px">
+                                    {{ $blog->title }}
+
+                                </a></li>
+                            @php $count++ @endphp
+                            @if ($count == 5)
+                            @break
+                        @endif
+                    @endforeach
+
                 </div>
             </div>
         </div>

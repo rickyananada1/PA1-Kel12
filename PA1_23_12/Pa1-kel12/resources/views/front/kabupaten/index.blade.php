@@ -108,12 +108,13 @@
                     @if (!in_array($restaurant->id, $displayedRestaurantsFirst))
                         <div class="col-md-6">
                             <div class="blog-entry">
-                                <a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="img-link">
+                                <a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="img-link zoom-image">
                                     @if ($restaurant->galleries->where('category', 'place')->count() > 0)
                                         <img src="{{ Storage::url(optional($restaurant->galleries->where('category', 'place')->first())->images) }}"
-                                            alt="Image" class="img-fluid" style="max-width: 100%; height: auto;">
+                                            alt="Image" class="img-fluid" style="max-width: 100%; height: auto; width: 500px; ">
                                     @endif
                                 </a>
+                                <br>
                                 <span class="date">{{ $restaurant->created_at->format('F j, Y') }}</span>
                                 <h2><a
                                         href="{{ Route('restaurants.show', $restaurant->slug) }}">{{ $restaurant->name }}</a>
@@ -152,7 +153,7 @@
                         <h3><a
                                 href="{{ Route('restaurants.show', $restaurant->slug) }}">{{ $restaurant->name }}</a>
                         </h3>
-                        <p>{!! $restaurant->description !!}</p>
+                        <p>{!! Str::limit($restaurant->description,250) !!}</p>
                         <p><a href="{{ Route('restaurants.show', $restaurant->slug) }}"
                                 class="read-more">Continue Reading</a></p>
                     </li>
@@ -186,7 +187,7 @@
                 $count < 4)
             <div class="col-md-6 col-lg-3">
                 <div class="blog-entry">
-                    <a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="img-link">
+                    <a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="img-link zoom-image">
                         @if ($restaurant->galleries->where('category', 'place')->count() > 0)
                             <img src="{{ Storage::url(optional($restaurant->galleries->where('category', 'place')->first())->images) }}"
                                 alt="Image" class="img-fluid" style="height: auto">
@@ -196,7 +197,7 @@
                     <h2><a
                             href="{{ Route('restaurants.show', $restaurant->slug) }}">{{ $restaurant->name }}</a>
                     </h2>
-                    <p>{{ $restaurant->description }}</p>
+                    <p>{{ Str::limit($restaurant->description,250) }}</p>
                     <p><a href="{{ Route('restaurants.show', $restaurant->slug) }}" class="read-more">Continue
                             Reading</a></p>
                 </div>
@@ -218,21 +219,24 @@
 <section class="section">
 <div class="container">
 
-<div class="row mb-4">
-    <div class="col-sm-6">
-        <h2 class="posts-entry-title">Blogs</h2>
+    @if ($blogs->count() > 0)
+        
+    <div class="row mb-4">
+        <div class="col-sm-6">
+            <h2 class="posts-entry-title">Blogs</h2>
+        </div>
+        <div class="col-sm-6 text-sm-end"><a href="{{ Route('blogs.index', ['kabupaten' => $kabupaten->id]) }}"
+                class="read-more">View All</a>
+        </div>
     </div>
-    <div class="col-sm-6 text-sm-end"><a href="{{ Route('blogs.index', ['kabupaten' => $kabupaten->id]) }}"
-            class="read-more">View All</a>
-    </div>
-</div>
+    @endif
 
 <div class="row">
 
     @foreach ($blogs as $blog)
         <div class="col-lg-4 mb-4">
             <div class="post-entry-alt">
-                <a href="{{ Route('blogs.show', $blog->slug) }}" class="img-link"><img
+                <a href="{{ Route('blogs.show', $blog->slug) }}" class="img-link zoom-image"><img
                         src="{{ Storage::url(optional($blog->galleries->random())->images) }}" alt="Image"
                         class="img-fluid" style="height: 250px"></a>
                 <div class="excerpt">
@@ -241,7 +245,7 @@
                     <h2><a href="{{ Route('blogs.show', $blog->slug) }}">{{ $blog->title }}</a></h2>
                     <div class="post-meta align-items-center text-left clearfix">
                         <figure class="author-figure mb-0 me-3 float-start"><img
-                                src="@if ($blog->contributor->image != null) {{ Storage::url($blog->contributor->image) }}
+                                src="@if ($blog->contributor) {{ Storage::url($blog->contributor->image) }}
                                 @else
                                 {{ asset('Template/dist/img/profile.jpeg') }} @endif"
                                 alt="Image" class="img-fluid"></figure>

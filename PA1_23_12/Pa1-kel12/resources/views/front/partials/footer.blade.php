@@ -4,9 +4,6 @@
             <div class="col-lg-7 text-center mb-3 mb-lg-0 text-lg-start">
                 <h3 class="text-white m-0">Jelajahi Sekitaran Danau Toba Disini</h3>
             </div>
-            <div class="col-lg-5 text-center text-lg-end">
-                <a href="#atas" class="btn btn-outline-white">Jelajahi</a>
-            </div>
         </div>
     </div>
 </div>

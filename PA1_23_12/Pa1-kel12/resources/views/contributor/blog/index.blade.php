@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered text-center" id="example1">
+                            <table class="table table-bordered " id="example1">
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">No</th>
@@ -28,6 +28,7 @@
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Kutipan</th>
                                         <th scope="col">Kategori</th>
+                                        <th scope="col">Is share?</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,7 @@
                                             </td>
                                             <td>{{ $blog->excerpt }}</td>
                                             <td>{{ $blog->blogCategory->name}}</td>
+                                            <td>{{ $blog->is_share == 1 ? 'Diterima' : 'Menunggu' }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form
                                                     action="{{ route('contributor.blog.edit', [$blog]) }}"

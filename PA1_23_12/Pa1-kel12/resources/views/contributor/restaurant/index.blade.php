@@ -41,7 +41,7 @@
                                                     alt="" class="popular__img" width="100" />
                                             </td>
                                             <td>{{ $restaurant->kabupaten->name }}</td>
-                                            <td>{{ $restaurant->is_share == 1 ? 'Ya' : 'Tidak' }}</td>
+                                            <td>{{ $restaurant->is_share == 1 ? 'Diterima' : 'Menunggu'}}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form
                                                     action="{{ route('contributor.restaurant.edit', [$restaurant]) }}"

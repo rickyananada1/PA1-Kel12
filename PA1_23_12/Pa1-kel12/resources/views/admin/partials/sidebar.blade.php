@@ -2,7 +2,7 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-4 pb-4 mb-4 d-flex">
         <div class="image">
-            <img src="{{ asset('Template/dist/img/LogoBetaTudia.png') }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('asset/logo.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
             <a href="#" class="d-block">Admin BetaTudia?</a>

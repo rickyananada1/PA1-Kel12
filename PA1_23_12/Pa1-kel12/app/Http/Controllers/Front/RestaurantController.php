@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Kabupaten;
 use Illuminate\Http\Request;
@@ -61,11 +62,17 @@ class RestaurantController extends Controller
             ->where('kabupaten_id', $kabupaten)
             ->paginate(8);
 
+        $blogs = Blog::with('galleries')
+            ->where('is_share', 1)
+            ->orderBy('created_at', 'desc')
+            ->where('kabupaten_id', $kabupaten)
+            ->paginate(8);
+
         $blogCategories = BlogCategory::all();
 
         $destinationCategories = DestinationCategory::all();
 
-        return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations', 'blogCategories', 'testimonies', 'destinationCategories'));
+        return view('front.restaurant.show', compact('restaurant', 'kabupatens', 'destinations', 'blogCategories', 'testimonies', 'destinationCategories', 'blogs'));
     }
 
     public function testimonies(Request $request)

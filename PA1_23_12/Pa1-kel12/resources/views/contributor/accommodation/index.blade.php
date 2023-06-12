@@ -28,6 +28,7 @@
                                         <th scope="col">Gambar</th>
                                         <th scope="col">Kategori</th>
                                         <th scope="col">Harga</th>
+                                        <th scope="col">is share?</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -42,6 +43,7 @@
                                             </td>
                                             <td>{{ $accommodation->category }}</td>
                                             <td>{{ $accommodation->price }}</td>
+                                            <td>{{ $accommodation->is_share == 1 ? 'Diterima' : 'Menunggu' }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form
                                                     action="{{ route('contributor.accommodation.edit', [$accommodation]) }}"

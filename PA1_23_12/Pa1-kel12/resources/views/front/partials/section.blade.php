@@ -17,7 +17,7 @@
                 <div>
                     <h2 class="heading mb-3" data-aos="fade-up" data-aos-delay="100">Jelajahi Sekitaran Danau Toba Bersama Kami</h2>
 
-                    <h4 data-aos="fade-up" data-aos-delay="300">Kota Jakarta kota metropolitan ,Surga impian para perantau
+                    <h4 data-aos="fade-up" data-aos-delay="300">Kota Jakarta kota metropolitan ,<br> Surga impian para perantau
                         <br>Kusapa “Horas apa kabar kawan”, Hampa hatiku dibalas “fine, thank you”</h4>
 
 

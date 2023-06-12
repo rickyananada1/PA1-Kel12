@@ -62,7 +62,7 @@
 
                             <p>{!! $firstHalf !!}</p>
 
-                            @if ($blog->galleries->count() > 0)
+                            @if ($blog->galleries->count() > 1)
                                 <figure class="my-4">
                                     @php
                                         $randomImage2 = optional($blog->galleries->random());

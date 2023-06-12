@@ -26,8 +26,9 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Destinasi</th>
                                         <th scope="col">Gambar</th>
-                                        <th scope="col">Tiket</th>
+                                        <th scope="col" class="col-2">Tiket</th>
                                         <th scope="col">Lokasi</th>
+                                        <th scope="col">Is share?</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -42,6 +43,7 @@
                                             </td>
                                             <td>{{ $destination->ticket }}</td>
                                             <td>{{ $destination->kabupaten->name }}</td>
+                                            <td>{{ $destination->is_share == 1 ? 'Diterima' : 'Menunggu' }}</td>
                                             <td class="d-flex justify-content-center">
                                                 <form action="{{ route('contributor.destination.edit', [$destination]) }}"
                                                     method="GET" style="margin-right: 10px;">
