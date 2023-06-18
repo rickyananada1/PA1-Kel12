@@ -193,7 +193,8 @@
                 confirmButtonText: 'Yes, hapus!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('#form-hapus').submit();
+                    var imgId = $(this).data('id');
+                    $('#form-hapus-' + imgId).submit();
                     Swal.fire(
                         'Terhapus!',
                         'Data telah dihapus.',

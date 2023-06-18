@@ -41,10 +41,10 @@
                                             <td>
                                                 <form class="d-inline-block"
                                                     action="{{ route('admin.blog.gallery.destroy', [$blog, $gallery]) }}"
-                                                    method="post">
+                                                    method="post" id="form-hapus-{{$gallery->id}}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i>
+                                                    <button class="btn btn-sm btn-danger" id="btn-hapus" data-id="{{ $gallery->id }}"> <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>

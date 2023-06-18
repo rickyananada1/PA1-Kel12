@@ -130,6 +130,30 @@
                 }
             })
         });
+        
+        $(document).on('click', '#btn-hapus', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data akan dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var imgId = $(this).data('id');
+                    $('#form-hapus-' + imgId).submit();
+                    Swal.fire(
+                        'Terhapus!',
+                        'Data telah dihapus.',
+                        'success'
+                    )
+                }
+            })
+        })
 
 
         $(document).ready(function() {
@@ -178,31 +202,6 @@
                 }
             })
         });
-
-
-
-        $(document).on('click', '#btn-hapus', function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Data akan dihapus!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $('#form-hapus').submit();
-                    Swal.fire(
-                        'Terhapus!',
-                        'Data telah dihapus.',
-                        'success'
-                    )
-                }
-            })
-        })
     </script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

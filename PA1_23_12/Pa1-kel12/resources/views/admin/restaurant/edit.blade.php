@@ -43,10 +43,10 @@
                                             <td>
                                                 <form class="d-inline-block"
                                                     action="{{ route('admin.restaurant.gallery.destroy', [$restaurant, $gallery]) }}"
-                                                    method="post" id="form-hapus">
+                                                    method="post" id="form-hapus-{{$gallery->id}}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-sm btn-danger" id="btn-hapus" type="submit"> <i
+                                                    <button class="btn btn-sm btn-danger" id="btn-hapus" type="submit" data-id="{{ $gallery->id }}"> <i
                                                             class="fa fa-trash"></i> </button>
                                                 </form>
                                             </td>

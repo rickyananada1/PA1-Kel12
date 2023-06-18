@@ -112,7 +112,7 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-newspaper nav-icon"></i>
                     <p>
-                        Blog
+                        Info Wisata
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>

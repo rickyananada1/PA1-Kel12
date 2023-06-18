@@ -15,14 +15,10 @@
 @push('style')
     <link rel="stylesheet" href="{{ URL::asset('frontend/css/destination.css') }}">
     <style>
-        body {
-            color: black;
-        }
-
         .carousel-item img {
             width: 500px;
             /* Ganti dengan ukuran yang diinginkan */
-            height: 300px;
+            height: 400px;
             /* Ganti dengan ukuran yang diinginkan */
             object-fit: cover;
             /* Mengatur agar gambar memenuhi area dengan proporsi aslinya */
@@ -40,44 +36,37 @@
 
                     <div class="post-content-body">
                         <div class="d-flex flex-column text-left mb-3">
-                            <div class="post-meta"><span class="date">{{ $destination->destinationCategory->name }}</span>
+                            <div class="post-meta text-center"><span class="date">{{ $destination->destinationCategory->name }}</span>
                                 <span class="mx-1">&bullet;</span>
                                 <span>{{ $destination->created_at->format('F j, Y') }}</span>
+                                <span class="mx-1">&bullet;</span>
+                                <i class="fas fa-eye">{{ $destination->views }}</i>
                             </div>
 
-                            <div class="d-flex justify-content-between">
 
-                                <div>
+                                <div class="text-center">
                                     <h1 class="mb-3 bold">{{ $destination->name }}</h1>
                                     <p class="section-title pr-5">
-                                        <span class="pr-2">{{ $destination->location }}</span>
+                                        <span class="pr-2"><i class="fas fa-pin"></i>{{ $destination->location }}</span>
                                     </p>
                                 </div>
-
-                                <div style="margin-top: -60px">
-                                    <a class="card1" href="#">
-                                        <p>Harga Tiket</p>
-                                        <p class="small">{{ $destination->ticket }}</p>
-                                        <div class="go-corner" href="#">
-                                            <div class="go-arrow">
-                                                →
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            
                             <hr class="firstcharacter" color="black">
                         </div>
                         @php
                             $description = $destination->description;
                             $paragraphs = explode('</p>', $description);
                             $totalParagraphs = count($paragraphs);
-                            $halfLength = ceil($totalParagraphs / 2);
+                            $halfLength = ceil($totalParagraphs / 3);
                             $firstHalf = implode('</p>', array_slice($paragraphs, 0, $halfLength)) . '</p>';
-                            $secondHalf = implode('</p>', array_slice($paragraphs, 1, $halfLength));
+                            $secondHalf = implode('</p>', array_slice($paragraphs, $halfLength));
                         @endphp
-                        <p><span class="firstcharacter">{!! strip_tags(substr($firstHalf, 0, 4)) !!}</span>{!! substr($firstHalf, 4) !!}
+                        <p>
+                            <?php
+                            $firstHalf = strip_tags($firstHalf);
+                            $firstCharacter = substr($firstHalf, 0, 1);
+                            $remainingText = substr($firstHalf, 1);
+                            ?>
+                            <span class="firstcharacter">{{ $firstCharacter }}</span>{!! strip_tags($remainingText) !!}
                         </p>
                         <div class="row my-4">
                             <div id="carouselExampleIndicators" class="carousel slide col-md-12 mb-4"
@@ -94,6 +83,7 @@
                                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                             <img src="{{ Storage::url($gallery->images) }}" class="d-block w-100"
                                                 alt="...">
+                                            <p class="text-center carousel-caption">{{$gallery->name}}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -108,23 +98,22 @@
                                     <span class="visually-hidden">Next</span>
                                 </a>
                             </div>
-
-                            {{-- <div class="d-flex justify-content-center">
-
-                                <div class="mb-4 m-2">
-                                    <img src="{{ Storage::url(optional($destination->galleries->first())->images) }}"
-                                        alt="Image placeholder" class="img-fluid rounded gambar2">
-                                </div>
-                                <div class="mb-4 m-2">
-                                    <img src="{{ Storage::url(optional($destination->galleries->last())->images) }}"
-                                        alt="Image placeholder" class="img-fluid rounded gambar2">
-                                </div>
-                            </div> --}}
-
                         </div>
 
                         <p>{!! $secondHalf !!}</p>
+                        <div>
+                            <a class="card1" href="#">
+                                <p>Harga Tiket</p>
+                                <p class="small">{{ $destination->ticket }}</p>
+                                <div class="go-corner" href="#">
+                                    <div class="go-arrow">
+                                        →
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
+                    
 
 
                     <div class="pt-5 comment-wrap">
@@ -169,7 +158,7 @@
                                 </form>
                             @else
                                 <textarea name="description" id="message" cols="30" rows="10" class="form-control" placeholder="...."></textarea>
-                                <a href="{{ route('contributor.login') }}" class="btn btn-primary mt-3">login
+                                <a href="{{ route('contributor.login') }}" class="btn btn-primary mt-3 tombol">login
                                     untuk menambahkan testimoni</a>
                             @endif
                             @if (session('success'))
@@ -216,7 +205,7 @@
                                     @php $count = 0 @endphp
                                     @foreach ($accommodations as $acc)
                                         <li>
-                                            <a href="{{ Route('accommodations.show', $acc->slug) }}">
+                                            <a href="{{ Route('accommodations.show', $acc->slug) }}" class="zoom-image">
                                                 <img src="{{ Storage::url($acc->galleries->first()->images) }}"
                                                     alt="Image placeholder" class="me-4 rounded">
                                                 <div class="text">
@@ -242,7 +231,7 @@
                                 @php $count = 0 @endphp
                                 @foreach ($popularDestinations as $acc)
                                     <li>
-                                        <a href="{{ Route('destinations.show', $acc->slug) }}">
+                                        <a href="{{ Route('destinations.show', $acc->slug) }}" class="zoom-image">
                                             <img src="{{ Storage::url($acc->galleries->first()->images) }}"
                                                 alt="Image placeholder" class="me-4 rounded">
                                             <div class="text">
@@ -273,7 +262,7 @@
                         @php $count = 0 @endphp
                         @foreach ($closeDestinations as $closeDestination)
                             <li>
-                                <a href="{{ Route('destinations.show', $closeDestination->slug) }}">
+                                <a href="{{ Route('destinations.show', $closeDestination->slug) }}" class="zoom-image">
                                     <img src="{{ Storage::url($closeDestination->galleries->first()->images) }}"
                                         alt="Image placeholder" class="me-4 rounded">
                                     <div class="text">

@@ -132,6 +132,11 @@
     -webkit-backdrop-filter: blur(5.4px);
     border: 1px solid rgba(255, 255, 255, 0.24);
 }
+.glass input,
+.glass select {
+    box-shadow: inset 1px 1px 1px rgba(15, 15, 15, 0.315);
+}
+
 .glass input:focus,
 .glass select:focus {
     box-shadow: inset 4px 4px 4px rgba(15, 15, 15, 0.315);
@@ -191,7 +196,6 @@
     background-color: #dfeeea;
     border-radius: 4px;
     padding: 32px 24px;
-    margin: 12px;
     text-decoration: none;
     z-index: 0;
     overflow: hidden;
@@ -348,4 +352,15 @@
 
 .card4:hover .go-arrow {
     opacity: 1;
+}
+
+.drag-and-drop {
+    border: 2px dashed #ccc;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.drag-and-drop.active {
+    border-color: #555;
 }

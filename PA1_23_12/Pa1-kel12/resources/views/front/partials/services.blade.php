@@ -6,8 +6,7 @@
                 <div class="heading-content" data-aos="fade-up">
                     <h2>Layanan <span class="d-block">Yang Tersedia</span></h2>
                     <p data-aos="fade-up" data-aos-delay="200">Beragam pesona tujuan destinasi yang ada di Toba dari Budaya, Alam, Bahari ataupun kearifan lokal.</p>
-                    <p class="my-4" data-aos="fade-up" data-aos-delay="300"><a href="{{Route('tentangkami')}}"
-                            class="btn btn-primary">View All</a></p>
+                    
                 </div>
             </div>
             <div class="col-lg-9">

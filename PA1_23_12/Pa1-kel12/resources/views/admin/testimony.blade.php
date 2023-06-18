@@ -46,7 +46,7 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit"
-                                                        class="btn btn-sm @if ($testimony->status == 1) btn-success @else btn-secondary @endif">
+                                                        class="btn @if ($testimony->status == 1) btn-success @else btn-secondary @endif">
                                                         @if ($testimony->status == 1)
                                                             Ditampilkan <i class="fa fa-circle-check ml-1"></i>
                                                         @else

@@ -27,7 +27,7 @@
 
                                         @foreach ($destinationCategories as $category)
                                             <li><a
-                                                    href="{{ Route('destinations.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                                                    href="{{ Route('destinations.index', ['category' => $category->id]) }}">Wisata {{ $category->name }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -41,16 +41,16 @@
                                         @endforeach
                                     </ul>
                                 </li>
+                                <li><a href="{{ Route('restaurants.index') }}">Tempat Makan</a></li>
                                 <li><a href="{{ Route('accommodations.index') }}">Akomodasi</a></li>
 
-                                <li><a href="{{ Route('restaurants.index') }}">Tempat Makan</a></li>
                             </ul>
                         </li>
                         <li class="has-children">
                             <a href="#">Mau Kemana?</a>
                             <ul class="dropdown">
                                 @foreach ($kabupatens as $kabupaten)
-                                    <li><a href="{{ route('kabupatens', $kabupaten->id) }}">{{ $kabupaten->name }}</a>
+                                    <li><a href="{{ route('kabupatens', $kabupaten->id) }}">kabupaten {{ $kabupaten->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>

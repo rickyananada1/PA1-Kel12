@@ -13,7 +13,7 @@
     <div class="section">
         <div class="container">
 
-            <div class="search col-sm-8 mb-5 d-flex">
+            <div class="search col-sm-8 mb-5 d-flex glass">
                 <div class="input-group">
                     <span class="input-group-text">
                         <i class="fa fa-search fa-2x"></i>
@@ -22,12 +22,12 @@
 
                     </div>
                     <input type="search" name="search" id="search" class="form-control"
-                        placeholder="Cari tempat makan..">
+                        placeholder="Cari tempat makan.." style="border: none;">
                 </div>
                 
                 <div class="input-group ml-2">
                     <form id="searchForm" action="{{ route('restaurants.index') }}" method="GET">
-                        <select name="kabupaten" id="kabupaten" class="custom-select">
+                        <select name="kabupaten" id="kabupaten" class="custom-select" style="border: none;">
                             @if ($selectedKabupaten)
                                 @php
                                     $kabupaten = \App\Models\Kabupaten::find($selectedKabupaten);
