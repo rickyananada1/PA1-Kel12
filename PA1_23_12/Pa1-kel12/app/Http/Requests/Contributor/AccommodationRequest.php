@@ -32,7 +32,8 @@ class AccommodationRequest extends FormRequest
                         'location' => 'required',
                         'is_share' => 'required',
                         'description' => 'required',
-                        'destination_id' => 'required'
+                        'destination_id' => 'required',
+                        'phone' => 'nullable'
                     ];
                 }
             case 'PUT':
@@ -44,7 +45,8 @@ class AccommodationRequest extends FormRequest
                         'location' => 'required',
                         'is_share' => 'required',
                         'description' => 'required',
-                        'destination_id' => 'required'
+                        'destination_id' => 'required',
+                        'phone' => 'nullable'
                     ];
                 }
         }

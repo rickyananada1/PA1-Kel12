@@ -13,12 +13,9 @@
 @endsection
 
 @push('style')
-<link rel="stylesheet" href="{{ URL::asset('frontend/css/destination.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/destination.css') }}">
     <style>
-        body {
-            color: black;
-        }
-
+    
         .carousel-item img {
             width: 500px;
             /* Ganti dengan ukuran yang diinginkan */
@@ -58,8 +55,7 @@
                             $firstHalf = implode('</p>', array_slice($paragraphs, 0, $halfLength)) . '</p>';
                             $secondHalf = implode('</p>', array_slice($paragraphs, 1, $halfLength));
                         @endphp
-                        <p><span
-                                class="firstcharacter">{!! strip_tags(substr($firstHalf, 0, 4)) !!}</span>{!! substr($firstHalf, 4) !!}
+                        <p class="text-justify"><span class="firstcharacter">{!! strip_tags(substr($firstHalf, 0, 4)) !!}</span>{!! substr($firstHalf, 4) !!}
                         </p>
                         <div class="row my-4">
                             <div id="carouselExampleIndicators" class="carousel slide col-md-12 mb-4"
@@ -89,10 +85,58 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </a>
+                                <p>{{ $gallery->name }}</p>
                             </div>
-                            
+
                         </div>
-                        <p>{!! $secondHalf !!}</p>
+                        <p class="text-justify">{!! $secondHalf !!}</p>
+                        <table class="table table-hover col-4 table-responsive" style="width: 50%;">
+                            <thead class="table-dark">
+                                <tr>
+                                    <td>
+
+                                        Data lainnnya
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody class="table-primary">
+                                <tr>
+                                    <td class="col-2">
+                                        Kisaran Harga:
+                                    </td>
+                                    <td class="text-center">
+                                        Rp. {{ $accommodation->price }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        No Handphone:
+                                    </td>
+                                    <td class="text-center align-center">
+                                        @if ($accommodation->phone != null)
+                                            
+                                        {{ $accommodation->phone }}
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Lokasi
+                                    </td>
+                                    <td class="text-center align-center">
+                                        @if ($accommodation->location != null)
+                                            
+                                        {{ $accommodation->location }}
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                           
+                        </table>
                     </div>
 
 
@@ -118,7 +162,8 @@
                                         Admin
                                     @endif
                                 </h2>
-                                <p class="mb-4">Kami membuka kesempatan bagi Anda untuk berperan sebagai contributor. Mari bergabung dan berbagi pengetahuan serta keterampilan Anda dengan kami</p>
+                                <p class="mb-4">Kami membuka kesempatan bagi Anda untuk berperan sebagai contributor. Mari
+                                    bergabung dan berbagi pengetahuan serta keterampilan Anda dengan kami</p>
                             </div>
                         </div>
                     </div>
@@ -130,7 +175,7 @@
                                 @php $count = 0 @endphp
                                 @foreach ($popularDestinations as $popularDestination)
                                     <li>
-                                        <a href="{{Route('accommodations.show', $popularDestination->slug)}}">
+                                        <a href="{{ Route('accommodations.show', $popularDestination->slug) }}" class="zoom-image">
                                             <img src="{{ Storage::url($popularDestination->galleries->first()->images) }}"
                                                 alt="Image placeholder" class="me-4 rounded">
                                             <div class="text">
@@ -159,7 +204,7 @@
         <!-- END sidebar -->
 
     </div>
-</div>
+    </div>
 </section>
 
 

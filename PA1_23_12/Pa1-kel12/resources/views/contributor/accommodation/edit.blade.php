@@ -160,6 +160,15 @@
                                             </div>
 
                                             <div class="form-group row border-bottom pb-4">
+                                                <label for="phone" class="col-sm-2 col-form-label">No Telepon</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="phone"
+                                                        value="{{ old('phone', $accommodation->phone) }}" id="phone"
+                                                        placeholder="example: 0526128397192">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row border-bottom pb-4">
                                                 <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" name="location"

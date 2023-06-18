@@ -271,7 +271,7 @@
             <div class="row">
                 <div class="col-12 d-flex justify-content-between align-items-center" data-aos="fade-up" data-aos-delay="0">
                     <h2 class="heading mb-5">Info Terbaru</h2>
-                    <a href="{{ route('blogs.index')}}" class="text-center h4 text-decoration-underline">Lihat Lainnya</a>
+                    <a href="{{ route('blogs.index')}}" class="text-center h4 text-decoration-underline">Lihat Lainnya..</a>
                 </div>
                 
 

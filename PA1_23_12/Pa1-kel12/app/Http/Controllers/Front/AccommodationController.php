@@ -19,7 +19,7 @@ class AccommodationController extends Controller
         $blogCategories = BlogCategory::get();
 
         $accommodations = Accommodation::where('is_share', 1)
-            ->orderBy('created_at', 'desc')
+            // ->where('created_at', 'desc')
             ->paginate(6);
 
         $kabupatens = Kabupaten::get();

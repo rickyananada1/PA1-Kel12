@@ -43,6 +43,17 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
+                                <label for="phone" class="col-sm-2 col-form-label">No Telepon</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="phone" value="{{ old('phone') }}"
+                                        id="phone" placeholder="contoh: Balige">
+                                </div>
+                                @error('phone')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group row border-bottom pb-4">
                                 <label for="category" class="col-sm-2 col-form-label">Kategory</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="category" name="category">

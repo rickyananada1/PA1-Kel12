@@ -28,7 +28,8 @@
                         <!-- ======= Single Post Content ======= -->
                         <div class="single-post">
                             <div class="post-meta"><span class="date">{{ $blog->blogCategory->name }}</span> <span
-                                    class="mx-1">&bullet;</span> <span>{{ $blog->created_at->format('F j, Y') }}</span>
+                                    class="mx-1">&bullet;</span> <span>{{ $blog->created_at->format('F j, Y') }}</span>                               
+                                    &bullet; <i class="fas fa-eye"> {{ $blog->views }}</i>
                             </div>
                             <h1 class="mb-5">{{ $blog->title }}</h1>
                             <p><span
