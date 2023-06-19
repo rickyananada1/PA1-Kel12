@@ -151,11 +151,11 @@
 
 
                                             <div class="form-group row border-bottom pb-4">
-                                                <label for="price" class="col-sm-2 col-form-label">Harga</label>
+                                                <label for="price" class="col-sm-2 col-form-label">Rentang Harga</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" name="price"
                                                         value="{{ old('price', $accommodation->price) }}" id="price"
-                                                        placeholder="example: 250k">
+                                                        placeholder="example: 250000 - 500000">
                                                 </div>
                                             </div>
 

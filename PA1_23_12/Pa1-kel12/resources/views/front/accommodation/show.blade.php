@@ -195,6 +195,32 @@
                             @endforeach
                         </ul>
                     </div>
+
+                    <h2>Tempat Makan</h2>
+                    <div class="post-entry-sidebar">
+                        <ul>
+                            @php $count = 0 @endphp
+                            @foreach ($restaurants as $acc)
+                                <li>
+                                    <a href="{{ Route('restaurants.show', $acc->slug) }}" class="zoom-image">
+                                        <img src="{{ Storage::url($acc->galleries->first()->images) }}"
+                                            alt="Image placeholder" class="me-4 rounded">
+                                        <div class="text">
+                                            <h3 class="text-secondary">{{ $acc->name }}</h3>
+                                            <div class="post-meta">
+                                                <span
+                                                    class="mr-2">{{ $acc->created_at->format('F j, Y') }}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                @php $count++ @endphp
+                                @if ($count == 3)
+                                @break
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
                 </div>
 
             </div>
@@ -207,6 +233,34 @@
     </div>
 </section>
 
+<section class="section posts-entry posts-entry-sm bg-light">
+    <div class="container">
+    <div class="row mb-4">
+    <a href="{{ route('blogs.index') }}">
+        <div class="col-12 text-uppercase text-black text-decoration-underline">Lihat info lainnya..</div>
+    </a>
+    </div>
+    <div class="row">
+    @foreach ($latestBlogs as $latestBlog)
+        <div class="col-md-6 col-lg-3">
+            <div class="blog-entry">
+                <a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="img-link zoom-image">
+                    <img src="{{ Storage::url(optional($latestBlog->galleries->random())->images) }}"
+                        alt="Image" class="img-fluid gambar2">
+                </a>
+                <br>
+                <span class="date">{{ $latestBlog->created_at->format('F j, Y') }}</span>
+                <h2><a href="{{ Route('blogs.show', $latestBlog->slug) }}">{{ $latestBlog->name }}</a></h2>
+                <p>{{ Str::limit($latestBlog->excerpt, 100) }}</p>
+                <p><a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="read-more">Continue
+                        Reading</a></p>
+            </div>
+        </div>
+    @endforeach
+    
+    </div>
+    </div>
+    </section>
 
 <!-- End posts-entry -->
 @endsection

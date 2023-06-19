@@ -127,7 +127,6 @@
                             <p class="font-weight-bold">(Sumber: <span
                                     class="font-italic">{{ $destination->source }}</span>)</p>
                         @endif
-
                     </div>
 
 

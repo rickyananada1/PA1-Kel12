@@ -70,10 +70,10 @@
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
-                                <label for="price" class="col-sm-2 col-form-label">Harga</label>
+                                <label for="price" class="col-sm-2 col-form-label">Rentang Harga</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="price" value="{{ old('price') }}"
-                                        id="price" placeholder="contoh: 250.000,-">
+                                        id="price" placeholder="contoh: 250000 - 500000">
                                 </div>
                                 @error('price')
                                     <span class="text-danger mt-2">{{ $message }}</span>
