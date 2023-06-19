@@ -36,7 +36,8 @@
 
                     <div class="post-content-body">
                         <div class="d-flex flex-column text-left mb-3">
-                            <div class="post-meta text-center"><span class="date">{{ $destination->destinationCategory->name }}</span>
+                            <div class="post-meta text-center"><span
+                                    class="date">{{ $destination->destinationCategory->name }}</span>
                                 <span class="mx-1">&bullet;</span>
                                 <span>{{ $destination->created_at->format('F j, Y') }}</span>
                                 <span class="mx-1">&bullet;</span>
@@ -44,12 +45,12 @@
                             </div>
 
 
-                                <div class="text-center">
-                                    <h1 class="mb-3 bold">{{ $destination->name }}</h1>
-                                    <p class="section-title pr-5">
-                                        <span class="pr-2"><i class="fas fa-pin"></i>{{ $destination->location }}</span>
-                                    </p>
-                                </div>
+                            <div class="text-center">
+                                <h1 class="mb-3 bold">{{ $destination->name }}</h1>
+                                <p class="section-title pr-5">
+                                    <span class="pr-2"><i class="fas fa-pin"></i>{{ $destination->location }}</span>
+                                </p>
+                            </div>
                             <hr class="firstcharacter" color="black">
                         </div>
                         @php
@@ -74,7 +75,8 @@
                                 <ol class="carousel-indicators">
                                     @foreach ($destination->galleries as $key => $gallery)
                                         <li data-bs-target="#carouselExampleIndicators"
-                                            data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}">
+                                            data-bs-slide-to="{{ $key }}"
+                                            class="{{ $key == 0 ? 'active' : '' }}">
                                         </li>
                                     @endforeach
                                 </ol>
@@ -83,7 +85,7 @@
                                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                             <img src="{{ Storage::url($gallery->images) }}" class="d-block w-100"
                                                 alt="...">
-                                            <p class="text-center carousel-caption">{{$gallery->name}}</p>
+                                            <p class="text-center carousel-caption">{{ $gallery->name }}</p>
                                         </div>
                                     @endforeach
                                 </div>
@@ -98,13 +100,22 @@
                                     <span class="visually-hidden">Next</span>
                                 </a>
                             </div>
+                            @if ($destination->source != null)
+                                <p class="font-weight-bold">(Sumber: <span
+                                        class="font-italic">{{ $destination->source }}</span>)</p>
+                            @endif
                         </div>
 
                         <p>{!! $secondHalf !!}</p>
                         <div>
                             <a class="card1" href="#">
                                 <p>Harga Tiket</p>
-                                <p class="small">{{ $destination->ticket }}</p>
+                                @if ($destination->ticket != null)
+                                    <p class="small">Rp {{ number_format(intval($destination->ticket), 0, ',', '.') }}</p>
+                                    </p>
+                                @else
+                                    <p class="small">Rp -</p>
+                                @endif
                                 <div class="go-corner" href="#">
                                     <div class="go-arrow">
                                         →
@@ -112,8 +123,13 @@
                                 </div>
                             </a>
                         </div>
+                        @if ($destination->source != null)
+                            <p class="font-weight-bold">(Sumber: <span
+                                    class="font-italic">{{ $destination->source }}</span>)</p>
+                        @endif
+
                     </div>
-                    
+
 
 
                     <div class="pt-5 comment-wrap">
@@ -197,41 +213,46 @@
                         </div>
                     </div>
                     <!-- END sidebar-box -->
+
                     <div class="sidebar-box">
-                        @if ($accommodations->count() > 0)
-                            <h2 class="mb-2">Akomodasi terdekat</h2>
-                            <div class="post-entry-sidebar">
-                                <ul>
-                                    @php $count = 0 @endphp
-                                    @foreach ($accommodations as $acc)
-                                        <li>
-                                            <a href="{{ Route('accommodations.show', $acc->slug) }}" class="zoom-image">
-                                                <img src="{{ Storage::url($acc->galleries->first()->images) }}"
-                                                    alt="Image placeholder" class="me-4 rounded">
-                                                <div class="text">
-                                                    <h3 class="text-secondary">{{ $acc->name }}</h3>
-                                                    <div class="post-meta">
-                                                        <span
-                                                            class="mr-2">{{ $acc->created_at->format('F j, Y') }}</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        @php $count++ @endphp
-                                        @if ($count == 3)
-                                        @break
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                    @else
-                        <h2>Destinasi terpopuler</h2>
+                        <h2>Wisata terdekat</h2>
                         <div class="post-entry-sidebar">
                             <ul>
                                 @php $count = 0 @endphp
-                                @foreach ($popularDestinations as $acc)
+                                @foreach ($closeDestinations as $closeDestination)
                                     <li>
-                                        <a href="{{ Route('destinations.show', $acc->slug) }}" class="zoom-image">
+                                        <a href="{{ Route('destinations.show', $closeDestination->slug) }}"
+                                            class="zoom-image">
+                                            <img src="{{ Storage::url($closeDestination->galleries->first()->images) }}"
+                                                alt="Image placeholder" class="me-4 rounded">
+                                            <div class="text">
+                                                <h3 class="text-secondary">{{ $closeDestination->name }}</h3
+                                                    class="text-secondary">
+                                                <div class="post-meta">
+                                                    <span
+                                                        class="mr-2">{{ $closeDestination->created_at->format('F j, Y') }}</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    @php $count++ @endphp
+                                    @if ($count == 3)
+                                    @break
+                                @endif
+                            @endforeach
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-box">
+                    @if ($accommodations->count() > 0)
+                        <h2 class="mb-2">Akomodasi terdekat</h2>
+                        <div class="post-entry-sidebar">
+                            <ul>
+                                @php $count = 0 @endphp
+                                @foreach ($accommodations as $acc)
+                                    <li>
+                                        <a href="{{ Route('accommodations.show', $acc->slug) }}" class="zoom-image">
                                             <img src="{{ Storage::url($acc->galleries->first()->images) }}"
                                                 alt="Image placeholder" class="me-4 rounded">
                                             <div class="text">
@@ -250,27 +271,47 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
-            </div>
-
-
-
-            <div class="sidebar-box">
-                <h2>Wisata terdekat</h2>
+                @elseif ($restaurants->count() > 0)
+                    <h2>Tempat Makan</h2>
+                    <div class="post-entry-sidebar">
+                        <ul>
+                            @php $count = 0 @endphp
+                            @foreach ($restaurants as $acc)
+                                <li>
+                                    <a href="{{ Route('restaurants.show', $acc->slug) }}" class="zoom-image">
+                                        <img src="{{ Storage::url($acc->galleries->first()->images) }}"
+                                            alt="Image placeholder" class="me-4 rounded">
+                                        <div class="text">
+                                            <h3 class="text-secondary">{{ $acc->name }}</h3>
+                                            <div class="post-meta">
+                                                <span
+                                                    class="mr-2">{{ $acc->created_at->format('F j, Y') }}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                @php $count++ @endphp
+                                @if ($count == 3)
+                                @break
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            @else
+                <h2>Destinasi terpopuler</h2>
                 <div class="post-entry-sidebar">
                     <ul>
                         @php $count = 0 @endphp
-                        @foreach ($closeDestinations as $closeDestination)
+                        @foreach ($popularDestinations as $acc)
                             <li>
-                                <a href="{{ Route('destinations.show', $closeDestination->slug) }}" class="zoom-image">
-                                    <img src="{{ Storage::url($closeDestination->galleries->first()->images) }}"
+                                <a href="{{ Route('destinations.show', $acc->slug) }}" class="zoom-image">
+                                    <img src="{{ Storage::url($acc->galleries->first()->images) }}"
                                         alt="Image placeholder" class="me-4 rounded">
                                     <div class="text">
-                                        <h3 class="text-secondary">{{ $closeDestination->name }}</h3
-                                            class="text-secondary">
+                                        <h3 class="text-secondary">{{ $acc->name }}</h3>
                                         <div class="post-meta">
                                             <span
-                                                class="mr-2">{{ $closeDestination->created_at->format('F j, Y') }}</span>
+                                                class="mr-2">{{ $acc->created_at->format('F j, Y') }}</span>
                                         </div>
                                     </div>
                                 </a>
@@ -280,24 +321,28 @@
                             @break
                         @endif
                     @endforeach
-
                 </ul>
             </div>
-        </div>
-        <!-- END sidebar-box -->
-
-        <div class="sidebar-box">
-            <h2>Destinasi Kategori</h2>
-            <ul class="categories">
-                @foreach ($destinationCategories as $destinationCategory)
-                    <li><a href="{{ route('destinations.index', ['category' => $destinationCategory->id]) }}">{{ $destinationCategory->name }}
-                        </a></li>
-                @endforeach
-            </ul>
-        </div>
-
+        @endif
     </div>
-    <!-- END sidebar -->
+
+
+
+
+    <!-- END sidebar-box -->
+
+    <div class="sidebar-box">
+        <h2>Destinasi Kategori</h2>
+        <ul class="categories">
+            @foreach ($destinationCategories as $destinationCategory)
+                <li><a href="{{ route('destinations.index', ['category' => $destinationCategory->id]) }}">{{ $destinationCategory->name }}
+                    </a></li>
+            @endforeach
+        </ul>
+    </div>
+
+</div>
+<!-- END sidebar -->
 
 </div>
 </div>
@@ -308,27 +353,27 @@
 <section class="section posts-entry posts-entry-sm bg-light">
 <div class="container">
 <div class="row mb-4">
-    <a href="{{ route('blogs.index') }}">
-        <div class="col-12 text-uppercase text-black text-decoration-underline">Lihat info lainnya..</div>
-    </a>
+<a href="{{ route('blogs.index') }}">
+    <div class="col-12 text-uppercase text-black text-decoration-underline">Lihat info lainnya..</div>
+</a>
 </div>
 <div class="row">
-    @foreach ($latestBlogs as $latestBlog)
-        <div class="col-md-6 col-lg-3">
-            <div class="blog-entry">
-                <a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="img-link zoom-image">
-                    <img src="{{ Storage::url(optional($latestBlog->galleries->random())->images) }}"
-                        alt="Image" class="img-fluid gambar2">
-                </a>
-                <br>
-                <span class="date">{{ $latestBlog->created_at->format('F j, Y') }}</span>
-                <h2><a href="{{ Route('blogs.show', $latestBlog->slug) }}">{{ $latestBlog->name }}</a></h2>
-                <p>{{ Str::limit($latestBlog->excerpt, 100) }}</p>
-                <p><a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="read-more">Continue
-                        Reading</a></p>
-            </div>
+@foreach ($latestBlogs as $latestBlog)
+    <div class="col-md-6 col-lg-3">
+        <div class="blog-entry">
+            <a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="img-link zoom-image">
+                <img src="{{ Storage::url(optional($latestBlog->galleries->random())->images) }}"
+                    alt="Image" class="img-fluid gambar2">
+            </a>
+            <br>
+            <span class="date">{{ $latestBlog->created_at->format('F j, Y') }}</span>
+            <h2><a href="{{ Route('blogs.show', $latestBlog->slug) }}">{{ $latestBlog->name }}</a></h2>
+            <p>{{ Str::limit($latestBlog->excerpt, 100) }}</p>
+            <p><a href="{{ Route('blogs.show', $latestBlog->slug) }}" class="read-more">Continue
+                    Reading</a></p>
         </div>
-    @endforeach
+    </div>
+@endforeach
 
 </div>
 </div>

@@ -34,8 +34,11 @@
                                 <label for="ticket" class="col-sm-2 col-form-label">Tiket</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="ticket" value="{{ old('ticket') }}"
-                                        id="ticket" placeholder="contoh: 50.000,-">
+                                        id="ticket" placeholder="contoh: 50000,-">
                                 </div>
+                                @error('ticket')
+                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group row border-bottom pb-4">
@@ -93,6 +96,16 @@
                                     <span class="text-danger mt-2">{{ $message }}</span>
                                 @enderror
                             </div>
+
+                            <div class="form-group row border-bottom pb-4">
+                                <label for="source" class="col-sm-2 col-form-label">Sumber *</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="source" value="{{ old('source') }}"
+                                        id="source" placeholder="contoh: Http/....">
+                                        <span class="text-warning mt-2">*tambahkan apabila berasal dari sumber lain</span>
+                                </div>
+                            </div>
+
                             <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>

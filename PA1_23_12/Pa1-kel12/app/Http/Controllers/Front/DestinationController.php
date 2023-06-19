@@ -11,6 +11,7 @@ use App\Models\BlogCategory;
 use App\Models\Testimony;
 use App\Models\DestinationCategory;
 use App\Models\Kabupaten;
+use App\Models\Restaurant;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -82,6 +83,7 @@ class DestinationController extends Controller
         $closeDestinations = Destination::where('id', '!=', $destination->id)
             ->where('is_share', 1)
             ->where('kabupaten_id', $destination->kabupaten->id)
+            ->where('views', 'desc')
             ->get();
 
         $kabupatens = Kabupaten::get();
@@ -92,16 +94,34 @@ class DestinationController extends Controller
             ->where('views', 'desc')
             ->get();
 
+        $restaurants = Restaurant::where('is_share', 1)
+        ->where('kabupaten_id', $destination->kabupaten->id)
+        ->get();
+
         $destinationCategories = DestinationCategory::all();
 
         $destination->increment('views');
 
         $latestBlogs = Blog::where('is_share', 1)
-            ->orderBy('created_at', 'desc')->paginate(4);
+            ->orderBy('created_at', 'desc')
+            // ->where('kabupaten_id', $destination->kabupaten->id)
+            ->paginate(4);
 
         $blogCategories = BlogCategory::all();
 
-        return view('front.destination.show', compact('destination', 'destinations', 'destinationCategories', 'closeDestinations', 'popularDestinations', 'latestBlogs', 'testimonies', 'kabupatens', 'blogCategories','accommodations'));
+        return view('front.destination.show', compact(
+            'destination', 
+            'destinations', 
+            'destinationCategories', 
+            'closeDestinations', 
+            'popularDestinations', 
+            'latestBlogs', 
+            'testimonies', 
+            'kabupatens', 
+            'blogCategories',
+            'accommodations', 
+            'restaurants'
+        ));
     }
 
     public function testimonies(Request $request)

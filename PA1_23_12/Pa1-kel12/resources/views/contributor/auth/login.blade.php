@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login Contributor</title>
     <link rel="website icon" type="png" href="{{ asset('asset/logo.png') }}">
+    <link rel="stylesheet" href="{{ asset('Template/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
+
 <body>
     <section class="vh-100" style="background-color: #2F5D62;">
         <div class="container py-5 h-100">
+            <a href="{{Route('welcome')}}" class="btn btn-warning">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
@@ -53,10 +59,11 @@
                                         <div class="pt-1 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                                         </div>
-                                        
+
                                         <div class="flex items-center justify-end mt-4">
                                             <a href="{{ url('auth/google') }}">
-                                            <img src="https:developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" ></a>
+                                                <img
+                                                    src="https:developers.google.com/identity/images/btn_google_signin_dark_normal_web.png"></a>
                                         </div>
 
                                         {{-- @if (Route::has('contributor.password.request'))
@@ -66,11 +73,12 @@
                                             </a>
                                         @endif --}}
                                         <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                                                href="{{ route('admin.login') }}">
-                                                {{ __('Login Admin?') }}
-                                            </a>
+                                            href="{{ route('admin.login') }}">
+                                            {{ __('Login Admin?') }}
+                                        </a>
                                         <p class="mb-5 mt-3 pb-lg-2" style="color: #393f81;">Belum punya akun? <a
-                                                href="{{Route('contributor.register')}}" style="color: #393f81;">Registrasi disini</a></p>
+                                                href="{{ Route('contributor.register') }}"
+                                                style="color: #393f81;">Registrasi disini</a></p>
                                     </form>
 
                                 </div>
@@ -82,4 +90,5 @@
         </div>
     </section>
 </body>
+
 </html>

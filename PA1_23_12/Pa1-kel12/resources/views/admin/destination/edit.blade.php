@@ -5,7 +5,8 @@
 @endsection
 
 @section('subtitle')
-    <a class="btn btn-warning" href="{{ Route('admin.destination.index') }}" role="button" id="btn-batal"><i class="fa fa-arrow-left"></i>
+    <a class="btn btn-warning" href="{{ Route('admin.destination.index') }}" role="button" id="btn-batal"><i
+            class="fa fa-arrow-left"></i>
         Kembali</a>
 @endsection
 
@@ -40,11 +41,11 @@
                                             <td>
                                                 <form class="d-inline-block"
                                                     action="{{ route('admin.destination.gallery.destroy', [$destination, $gallery]) }}"
-                                                    method="post" id="form-hapus-{{$gallery->id}}">
+                                                    method="post" id="form-hapus-{{ $gallery->id }}">
                                                     @csrf
                                                     @method('delete')
-                                                    <button class="btn btn-sm btn-danger" id="btn-hapus" type="submit" data-id="{{ $gallery->id }}"> <i
-                                                            class="fa fa-trash"></i> </button>
+                                                    <button class="btn btn-sm btn-danger" id="btn-hapus" type="submit"
+                                                        data-id="{{ $gallery->id }}"> <i class="fa fa-trash"></i> </button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -114,8 +115,11 @@
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" name="ticket"
                                                         value="{{ old('ticket', $destination->ticket) }}" id="ticket"
-                                                        placeholder="example: 50k">
+                                                        placeholder="example: 50000">
                                                 </div>
+                                                @error('ticket')
+                                                    <span class="text-danger mt-2">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                             <div class="form-group row border-bottom pb-4">
                                                 <label for="location" class="col-sm-2 col-form-label">Lokasi</label>
@@ -180,6 +184,17 @@
                                                     <span class="text-danger mt-2">{{ $message }}</span>
                                                 @enderror
                                             </div>
+
+                                            <div class="form-group row border-bottom pb-4">
+                                                <label for="source" class="col-sm-2 col-form-label">Sumber *</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" name="source"
+                                                        value="{{ old('source', $destination->source) }}" id="source"
+                                                        placeholder="contoh: Http/....">
+                                                        <span class="text-warning mt-2">*tambahkan apabila berasal dari sumber lain</span>
+                                                </div>
+                                            </div>
+
                                             <button type="submit" class="btn btn-success">Save</button>
                                         </form>
                                     </div>

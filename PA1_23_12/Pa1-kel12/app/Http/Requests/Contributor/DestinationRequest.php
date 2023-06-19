@@ -27,24 +27,26 @@ class DestinationRequest extends FormRequest
             case 'POST': {
                     return [
                         'name' => 'required',
-                        'ticket' => 'required',
+                        'ticket' => 'required|numeric',
                         'location' => 'required',
                         'is_share' => 'required',
                         'description' => 'required',
                         'destination_category_id' => 'required',
                         'kabupaten_id' => 'required',
+                        'source' => 'nullable'
                     ];
                 }
             case 'PUT':
             case 'PATCH': {
                     return [
                         'name' => 'required',
-                        'ticket' => 'required',
+                        'ticket' => 'required|numeric',
                         'location' => 'required',
                         'is_share' => 'required',
                         'description' => 'required',
                         'destination_category_id' => 'required',
                         'kabupaten_id' => 'required',
+                        'source' => 'nullable'
                     ];
                 }
             default: {
