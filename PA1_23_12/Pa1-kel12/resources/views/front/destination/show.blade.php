@@ -57,9 +57,9 @@
                             $description = $destination->description;
                             $paragraphs = explode('</p>', $description);
                             $totalParagraphs = count($paragraphs);
-                            $halfLength = ceil($totalParagraphs / 3);
-                            $firstHalf = implode('</p>', array_slice($paragraphs, 0, $halfLength)) . '</p>';
-                            $secondHalf = implode('</p>', array_slice($paragraphs, $halfLength));
+                            $halfLength = ceil($totalParagraphs);
+                            $firstHalf = implode('</p>', array_slice($paragraphs, 0, 1)) . '</p>';
+                            $secondHalf = implode('</p>', array_slice($paragraphs, 1, $halfLength));
                         @endphp
                         <p>
                             <?php
@@ -67,7 +67,7 @@
                             $firstCharacter = substr($firstHalf, 0, 1);
                             $remainingText = substr($firstHalf, 1);
                             ?>
-                            <span class="firstcharacter">{{ $firstCharacter }}</span>{!! strip_tags($remainingText) !!}
+                            <span class="firstcharacter">{{ $firstCharacter }}</span>{!! $remainingText !!}
                         </p>
                         <div class="row my-4">
                             <div id="carouselExampleIndicators" class="carousel slide col-md-12 mb-4"
